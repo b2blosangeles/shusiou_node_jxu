@@ -31,16 +31,22 @@ function streamVideo(req, res) {
 }
 
 
-
-
-
-var request = require(env.root_path + '/package/request/node_modules/request');
-var file = pkg.fs.createWriteStream(fn);
-var http = require('http');
-var tm =  new Date().getTime();
-var request = http.get('http://shusiou.com/api/video/test_pipe.api?vid=1&'+req.query['vid'], function(response) {
-	response.pipe(file);
-	response.on('end', function() {
-		 streamVideo(req, res);
+pkg.fs.stat(fn, function(err, data) {
+    if (err) {
+	var request = require(env.root_path + '/package/request/node_modules/request');
+	var file = pkg.fs.createWriteStream(fn);
+	var http = require('http');
+	var tm =  new Date().getTime();
+	var request = http.get('http://shusiou.com/api/video/test_pipe.api?vid=1&'+req.query['vid'], function(response) {
+		response.pipe(file);
+		response.on('end', function() {
+			 streamVideo(req, res);
+		});
 	});
-});
+    } else {
+	    streamVideo(req, res);
+    }
+});	
+
+
+
