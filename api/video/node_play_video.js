@@ -39,6 +39,8 @@ var request = http.get('http://shusiou.com/api/video/test_pipe.api?vid='+req.que
 		    if (err) {
 		      res.send('Video does not exist');
 		    } else {
+			    streamVideo();
+			    /*
 			      var total = data.size;
 			      var range = req.headers.range;
 			      if (range) {
@@ -56,6 +58,7 @@ var request = http.get('http://shusiou.com/api/video/test_pipe.api?vid='+req.que
 				} else {
 					res.send('Need streaming player');
 				}
+				*/
 			}
 		});
 	});
