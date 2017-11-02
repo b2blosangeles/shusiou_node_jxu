@@ -32,6 +32,8 @@ function streamVideo(req, res) {
 
 
 pkg.fs.stat(fn, function(err, data) {
+	res.send(data);
+	return true;
     if ((err) || !data.size) {
 	var request = require(env.root_path + '/package/request/node_modules/request');
 	var file = pkg.fs.createWriteStream(fn);
