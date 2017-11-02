@@ -39,8 +39,6 @@ var request = http.get('http://shusiou.com/api/video/test_pipe.api?vid='+req.que
 		    if (err) {
 		      res.send('Video does not exist');
 		    } else {
-			    res.send('niu');
-			    return true;
 			      var total = data.size;
 			      var range = req.headers.range;
 			      if (range) {
