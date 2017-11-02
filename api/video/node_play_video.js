@@ -1,4 +1,4 @@
-var fn = mnt_folder + 'videos/' + req.query['vid'] + '/video/video.mp4';
+var fn = '/tmp/video_a.mp4';
 
 pkg.fs.stat(fn, function(err, data) {
     if (err) {
