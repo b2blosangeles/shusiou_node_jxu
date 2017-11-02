@@ -33,8 +33,8 @@ if (req.query['type'] =='image') {
     info_fn = info_fd +req.query['w']+'_'+req.query['s']+'.json'
 }
 
-
-
+var CP = new pkg.crowdProcess();
+// var folderP = require(env.site_path + '/api/inc/folderP/folderP');
 
 res.send('== fn ' + fn + '--info_fn--' + info_fn + ' ==');
 
