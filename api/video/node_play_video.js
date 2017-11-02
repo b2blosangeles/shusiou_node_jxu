@@ -4,7 +4,7 @@ if (!req.query['vid']) {
 }
 var fn = '/tmp/video_'+req.query['vid']+'.mp4';
 
-function streamVideo(fn, req, res, data) {
+function streamVideo(data) {
       var total = data.size;
       var range = req.headers.range;
       if (range) {
