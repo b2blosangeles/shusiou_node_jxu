@@ -45,9 +45,7 @@ _f['I0'] = function(cbk) { /* --- check mnt exist --- */
 	pkg.fs.stat(info_fn, function (err, stats){
 		if (err) { 
 			var request = http.get('http://'+req.query['host']+'/api/video/hub_info.api?fn='+fn, function(response) {
-				response.on('end', function() {
-					cbk('response');
-				});
+				cbk(response);
 			});
 
 		} else {
