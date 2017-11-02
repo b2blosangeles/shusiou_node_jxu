@@ -2,6 +2,11 @@ if (!req.query['vid']) {
 	res.send('vid error ');
 	return true;
 }
+if (req.query['channel']) {
+	res.send(req.query['channel']);
+	return true;
+}
+
 var fn = '/tmp/video_'+req.query['vid']+'.mp4';
 
 function streamVideo(req, res) {
@@ -43,7 +48,7 @@ function pull_stream(req, res) {
 }	
 
 pkg.fs.stat(fn, function(err, data) {
-	res.send(req.url);
+	res.redirect(req.url + '&channel=' + 2);
 	return true;
     if (err) {
 	pull_stream(req, res);
