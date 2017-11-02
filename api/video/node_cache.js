@@ -1,5 +1,6 @@
 if (['video', 'section','image'].indexOf(req.query['type']) === -1) { res.send('type error '); return true; }
 if (isNaN(req.query['vid']) || !parseInt(req.query['vid'])) { res.send('wrong vid'); return true; }
+if (!req.query['host']) { res.send('missing host'); return true; }
 
 var vid = req.query['vid'];
 
@@ -35,16 +36,24 @@ if (req.query['type'] =='image') {
 
 var CP = new pkg.crowdProcess();
 // var folderP = require(env.site_path + '/api/inc/folderP/folderP');
+var request = require(env.root_path + '/package/request/node_modules/request');
+	var file = pkg.fs.createWriteStream(fn);
+	var http = require('http');
+	var tm =  new Date().getTime();
 
 var _f = {};
 _f['I0'] = function(cbk) { /* --- check mnt exist --- */
 	pkg.fs.stat(info_fn, function (err, stats){
 		if (err) { 
-            cbk(err.message);
-        
-        } else {
-             cbk(true);
-        }
+			var request = http.get('http://'+req.query['host']+'/api/video/hub_info.api?fn='+fn, function(response) {
+				response.on('end', function() {
+					cbk('response');
+				});
+			});
+
+		} else {
+		     cbk(true);
+		}
 	});
 };
 CP.serial(
