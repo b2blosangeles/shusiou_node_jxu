@@ -32,10 +32,7 @@ function streamVideo(req, res) {
 
 
 pkg.fs.stat(fn, function(err, data) {
-	var d = parseInt(new Date().getTime() * 0.001) - parseInt(data.ctimeMs * 0.001);
-	res.send(d + '');
-	return true;
-    if ((err) || !data.size) {
+    if (err) {
 	var request = require(env.root_path + '/package/request/node_modules/request');
 	var file = pkg.fs.createWriteStream(fn);
 	var http = require('http');
@@ -47,7 +44,12 @@ pkg.fs.stat(fn, function(err, data) {
 		});
 	});
     } else {
-	    streamVideo(req, res);
+	  var d = parseInt(new Date().getTime() * 0.001) - parseInt(data.ctimeMs * 0.001);  
+	  if (!data.size && d > 10) {
+		  res.send('==niu==');
+	  } else {
+	  	streamVideo(req, res);
+	  }		  
     }
 });	
 
