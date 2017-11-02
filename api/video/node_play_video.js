@@ -2,10 +2,7 @@ if (!req.query['vid']) {
 	res.send('vid error ');
 	return true;
 }
-if (req.query['channel']) {
-	res.send(req.query['channel']);
-	return true;
-}
+var channel = req.query['channel'];
 
 var fn = '/tmp/video_'+req.query['vid']+'.mp4';
 
@@ -48,14 +45,13 @@ function pull_stream(req, res) {
 }	
 
 pkg.fs.stat(fn, function(err, data) {
-	res.redirect(req.url + '&channel=' + 2);
-	return true;
     if (err) {
 	pull_stream(req, res);
     } else {
 	  var d = parseInt(new Date().getTime() * 0.001) - parseInt(data.ctimeMs * 0.001);  
-	  if (!data.size && d > 10) {
-		  res.send('==niu==');
+	  if (!data.size && d < 10) {
+		 if (!channel)  res.redirect(req.url + '&channel=' + 2);
+		 else {  res.send('Error'); }
 	  } else {
 	  	streamVideo(req, res);
 	  }		  
