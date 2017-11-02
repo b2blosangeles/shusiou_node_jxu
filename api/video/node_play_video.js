@@ -29,10 +29,7 @@ function streamVideo(req, res) {
 	    }
 	});	
 }
-
-
-pkg.fs.stat(fn, function(err, data) {
-    if (err) {
+function pull_stream(req, res) {
 	var request = require(env.root_path + '/package/request/node_modules/request');
 	var file = pkg.fs.createWriteStream(fn);
 	var http = require('http');
@@ -43,6 +40,11 @@ pkg.fs.stat(fn, function(err, data) {
 			 streamVideo(req, res);
 		});
 	});
+}	
+
+pkg.fs.stat(fn, function(err, data) {
+    if (err) {
+	pull_stream(req, res);
     } else {
 	  var d = parseInt(new Date().getTime() * 0.001) - parseInt(data.ctimeMs * 0.001);  
 	  if (!data.size && d > 10) {
