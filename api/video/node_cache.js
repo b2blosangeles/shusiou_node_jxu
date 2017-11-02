@@ -20,7 +20,7 @@ if (req.query['type'] =='section') {
     fd = mnt_folder +  + vid + '/sections/';
     info_fd = info_folder +  + vid + '/sections/';    
     fn = fd+ req.query['s']+'_'+req.query['l']+'.mp4';
-    info_fn = info_fd + req.query['s']+'_'+req.query['s'] '.json'
+    info_fn = info_fd + req.query['s']+'_'+req.query['s'] + '.json'
 }
 
 if (req.query['type'] =='image') {
