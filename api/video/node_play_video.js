@@ -32,7 +32,7 @@ function streamVideo(req, res) {
 
 
 pkg.fs.stat(fn, function(err, data) {
-    if (err) {
+    if ((err) || !data.size) {
 	var request = require(env.root_path + '/package/request/node_modules/request');
 	var file = pkg.fs.createWriteStream(fn);
 	var http = require('http');
