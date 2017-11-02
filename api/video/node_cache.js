@@ -58,7 +58,7 @@ _f['I0'] = function(cbk) { /* --- check mnt exist --- */
 CP.serial(
 	_f,
 	function(data) {
-		res.send(env);
+		res.send(data);
 	},
 	6000
 );
