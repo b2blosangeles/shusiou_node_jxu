@@ -13,15 +13,17 @@ if (req.query['type'] =='video') {
 }
 
 if (req.query['type'] =='section') {
+    if (isNaN(req.query['s']) || !parseInt(req.query['s'])) { res.send('wrong s'); return true; }
+    if (isNaN(req.query['l']) || !parseInt(req.query['l'])) { res.send('wrong l'); return true; }
     fn = mnt_folder +  + vid + '/sections/---.mp4';
     info_fn = info_folder +  + vid + '/sections/---.json'
 }
 
 if (req.query['type'] =='image') {
-    if (isNaN(req.query['w']) || !parseInt(req.query['w'])) { res.send('wrong w'); return true; }
+    if (['FULL', '90', '180', '480'].indexOf(req.query['w']) === -1) { res.send('wrong w'); return true; }
     if (isNaN(req.query['s']) || !parseInt(req.query['s'])) { res.send('wrong s'); return true; }
-    fn = mnt_folder +  + vid + '/images/---.png';
-    info_fn = info_folder +  + vid + '/images/.info'
+    fn = mnt_folder +  + vid + '/images/'+req.query['w']+'_'+req.query['s']+'.png';
+    info_fn = info_folder +  + vid + '/images/'+req.query['w']+'_'+req.query['s']+'.json'
 }
 
 
