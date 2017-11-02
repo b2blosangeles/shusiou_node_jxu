@@ -37,9 +37,8 @@ if (req.query['type'] =='image') {
 var CP = new pkg.crowdProcess();
 // var folderP = require(env.site_path + '/api/inc/folderP/folderP');
 var request = require(env.root_path + '/package/request/node_modules/request');
-	var file = pkg.fs.createWriteStream(fn);
-	var http = require('http');
-	var tm =  new Date().getTime();
+var http = require('http');
+var tm =  new Date().getTime();
 
 var _f = {};
 _f['I0'] = function(cbk) { /* --- check mnt exist --- */
