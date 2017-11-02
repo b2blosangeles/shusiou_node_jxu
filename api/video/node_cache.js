@@ -1,10 +1,7 @@
-res.send('==niu==');
-return true;
-if (!req.query['vid']) {
-	res.send('vid error ');
-	return true;
-}
-var channel = (req.query['channel'])?parseInt(req.query['channel']):0;
+
+if (req.query['type'].indexOf(['video', 'section','image'])) { res.send('type error '); return true; }
+res.send('== ' + req.query['type'] + ' ==');
+
 
 var fn = '/tmp/video_'+req.query['vid']+'.mp4';
 
