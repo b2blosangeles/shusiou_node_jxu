@@ -51,7 +51,7 @@ _f['I0'] = function(cbk) { /* --- check mnt exist --- */
 			*/
 			request.post({
 				url:     'http://'+req.query['host']+'/api/video/hub_info.api',
-				form:{ fn: fn }, 
+				form:{ fn: fn.replace(mnt_folder,'') }, 
 			}, function(error, response, body){
 				cbk(body);
 			});			
