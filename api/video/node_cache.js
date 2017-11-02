@@ -39,6 +39,4 @@ var CP = new pkg.crowdProcess();
 res.send('== fn ' + fn + '--info_fn--' + info_fn + ' ==');
 
 
-var fn = '/tmp/video_'+req.query['vid']+'.mp4';
-
 
