@@ -4,7 +4,7 @@ if (!req.query['vid']) {
 }
 var fn = '/tmp/video_'+req.query['vid']+'.mp4';
 
-function streamVideo(data) {
+function streamVideo(req, res, data) {
       var total = data.size;
       var range = req.headers.range;
       if (range) {
@@ -39,7 +39,7 @@ var request = http.get('http://shusiou.com/api/video/test_pipe.api?vid=1&'+req.q
 		    if (err) {
 		      res.send('Video does not exist');
 		    } else {
-			    streamVideo(data);
+			    streamVideo(req, res, data);
 			    /*
 			      var total = data.size;
 			      var range = req.headers.range;
