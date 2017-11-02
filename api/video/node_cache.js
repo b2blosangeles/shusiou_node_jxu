@@ -47,6 +47,13 @@ _f['I0'] = function(cbk) { /* --- check mnt exist --- */
 			var request = http.get('http://'+req.query['host']+'/api/video/hub_info.api?fn='+fn, function(response) {
 				cbk(response);
 			});
+			request.post({
+				headers: {'content-type' : 'application/x-www-form-urlencoded'},
+				url:     'http://'+req.query['host']+'/api/video/hub_info.api?fn='+fn,
+				body:    "mes=heydude"
+			}, function(error, response, body){
+				cbk(body);
+			});			
 
 		} else {
 		     cbk(true);
