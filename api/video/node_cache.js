@@ -36,7 +36,24 @@ if (req.query['type'] =='image') {
 var CP = new pkg.crowdProcess();
 // var folderP = require(env.site_path + '/api/inc/folderP/folderP');
 
-res.send('== fn ' + fn + '--info_fn--' + info_fn + ' ==');
+var _f = {};
+_f['I0'] = function(cbk) { /* --- check mnt exist --- */
+	pkg.fs.stat(info_fn, function (err, stats){
+		if (err) { 
+            cbk(err.message);
+        
+        } else {
+             cbk(true);
+        }
+	});
+};
+CP.serial(
+	_f,
+	function(data) {
+		res.send(data);
+	},
+	58000
+);
 
 
 
