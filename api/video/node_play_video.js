@@ -32,9 +32,9 @@ function streamVideo(req, res) {
 
 
 pkg.fs.stat(fn, function(err, data) {
-	var d = new Date().getTime() - parseInt(data.ctimeMs);
-	res.send(d + '');
-	return true;
+	//var d = new Date().getTime() - parseInt(data.ctimeMs);
+	//res.send(d + '');
+	// return true;
     if ((err) || !data.size) {
 	var request = require(env.root_path + '/package/request/node_modules/request');
 	var file = pkg.fs.createWriteStream(fn);
