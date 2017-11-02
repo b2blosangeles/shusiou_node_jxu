@@ -19,8 +19,8 @@ if (req.query['type'] =='section') {
     if (isNaN(req.query['l']) || !parseInt(req.query['l'])) { res.send('wrong l'); return true; }
     fd = mnt_folder +  + vid + '/sections/';
     info_fd = info_folder +  + vid + '/sections/';    
-    fn = mnt_folder +  + vid + '/sections/---.mp4';
-    info_fn = info_folder +  + vid + '/sections/---.json'
+    fn = fd+ req.query['s']+'_'+req.query['l']+'.mp4';
+    info_fn = info_fd + req.query['s']+'_'+req.query['s'] '.json'
 }
 
 if (req.query['type'] =='image') {
