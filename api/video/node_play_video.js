@@ -43,6 +43,8 @@ function pull_stream(req, res) {
 }	
 
 pkg.fs.stat(fn, function(err, data) {
+	res.send(req.url);
+	return true;
     if (err) {
 	pull_stream(req, res);
     } else {
