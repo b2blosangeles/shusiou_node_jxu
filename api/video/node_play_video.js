@@ -50,15 +50,13 @@ pkg.fs.stat(fn, function(err, data) {
     } else {
 	  var d = parseInt(new Date().getTime() * 0.001) - parseInt(data.ctimeMs * 0.001);  
 	  if (!data.size && d < 10) {
-		 if (!channel) {
-			 if (channel > 3) {
-				 res.send('timeout');
-			 } else {
-				 setTimeout(function() {
-					res.redirect(req.url + '&channel=' + (channel+1));
-				 }, Math.floor(Math.random() * (1000)));
-			 }	 
-		 } else {  res.send('Error'); }
+		 if (channel > 3) {
+			 res.send('Error! timeout');
+		 } else {
+			 setTimeout(function() {
+				res.redirect(req.url + '&channel=' + (channel+1));
+			 }, Math.floor(Math.random() * (1000)));
+		 }	 
 	  } else {
 	  	streamVideo(req, res);
 	  }		  
