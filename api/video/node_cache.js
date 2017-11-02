@@ -18,6 +18,8 @@ if (req.query['type'] =='section') {
 }
 
 if (req.query['type'] =='image') {
+    if (isNaN(req.query['w']) || !parseInt(req.query['w'])) { res.send('wrong w'); return true; }
+    if (isNaN(req.query['s']) || !parseInt(req.query['s'])) { res.send('wrong s'); return true; }
     fn = mnt_folder +  + vid + '/images/---.png';
     info_fn = info_folder +  + vid + '/images/.info'
 }
