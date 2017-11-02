@@ -50,9 +50,8 @@ _f['I0'] = function(cbk) { /* --- check mnt exist --- */
 			});
 			*/
 			request.post({
-				headers: {'content-type' : 'application/x-www-form-urlencoded'},
-				url:     'http://'+req.query['host']+'/api/video/hub_info.api?fn='+fn,
-				body:    "mes=heydude"
+				url:     'http://'+req.query['host']+'/api/video/hub_info.api',
+				{form:{ fn: fn }}, 
 			}, function(error, response, body){
 				cbk(body);
 			});			
