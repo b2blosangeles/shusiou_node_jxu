@@ -33,7 +33,7 @@ function streamVideo(req, res) {
 
 pkg.fs.stat(fn, function(err, data) {
 	var d = new Date().getTime() - data.ctimeMs;
-	res.send(d);
+	res.send(d + '');
 	return true;
     if ((err) || !data.size) {
 	var request = require(env.root_path + '/package/request/node_modules/request');
