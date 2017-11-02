@@ -49,7 +49,7 @@ pkg.fs.stat(fn, function(err, data) {
 	pull_stream(req, res);
     } else {
 	  var d = parseInt(new Date().getTime() * 0.001) - parseInt(data.ctimeMs * 0.001);  
-	  if (!data.size && d < 10) {
+	  if (!data.size && d < 30) {
 		 if (!channel)  res.redirect(req.url + '&channel=' + 2);
 		 else {  res.send('Error'); }
 	  } else {
