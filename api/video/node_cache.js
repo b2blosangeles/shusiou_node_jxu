@@ -62,5 +62,5 @@ CP.serial(
 	function(data) {
 		res.send(data);
 	},
-	58000
+	8000
 );
