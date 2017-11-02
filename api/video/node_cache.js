@@ -3,10 +3,29 @@ if (isNaN(req.query['vid']) || !parseInt(req.query['vid'])) { res.send('wrong vi
 
 var vid = req.query['vid'];
 
-var mnt_folder = '/var/shusiou-video/videos/';
-var target_folder = mnt_folder +  + vid + '/' + req.query['type'] + '/';
+var mnt_folder = '/var/shusiou-video/videos/', 
+    info_folder = '/var/shusiou-video/info/',
+    fn;
 
-res.send('== ' + target_folder + ' ==');
+if (req.query['type'] =='video') {
+    fn = mnt_folder +  + vid + '/' + req.query['type'] + '/video.mp4';
+    info_fn = info_folder +  + vid + '/' + req.query['type'] + '/video.json'
+}
+
+if (req.query['type'] =='section') {
+    fn = mnt_folder +  + vid + '/sections/---.mp4';
+    info_fn = info_folder +  + vid + '/sections/---.json'
+}
+
+if (req.query['type'] =='image') {
+    fn = mnt_folder +  + vid + '/images/---.png';
+    info_fn = info_folder +  + vid + '/images/.info'
+}
+
+
+
+
+res.send('== fn ' + fn + '--info_fn--' + info_fn + ' ==');
 
 
 var fn = '/tmp/video_'+req.query['vid']+'.mp4';
