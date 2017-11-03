@@ -96,7 +96,9 @@ _f['I1'] = function (cbk) {
 function streamVideo(req, res) {
 	pkg.fs.stat(fn, function(err, data) {
 	    if (err) {
-	      res.send('Video does not exist');
+		res.writeHead(404, {'Content-Type': 'text/html'});
+		res.write('Stream does not exist');
+		res.end();
 	    } else {	
 	      var total = data.size;
 	      var range = req.headers.range;
@@ -122,7 +124,9 @@ function streamVideo(req, res) {
 function streamFile(req, res) {
 	pkg.fs.stat(fn, function(err, data) {
 	    if (err) {
-	      res.send('File does not exist');
+		res.writeHead(404, {'Content-Type': 'text/html'});
+		res.write('Stream does not exist');
+		res.end();
 	    } else {	
 		    var file = pkg.fs.createReadStream(fn);
 		    file.pipe(res);
@@ -131,35 +135,44 @@ function streamFile(req, res) {
 }
 function pull_stream(req, res) {
 	var request = http.get('http://'+req.query['host']+'/api/video/hub_pipe_stream.api?fn='+fn.replace(mnt_folder,''), function(response) {
-		res.send(response.statusCode+'==kkk==');
-		
-		return true;
-		fp.build(fd, function() {
-			var file = pkg.fs.createWriteStream(fn);
-			response.pipe(file);
-			response.on('end', function() {
-				 if (req.query['type'] =='image') streamFile(req, res);
-				else streamVideo(req, res);
+		if (response.statusCode == 404 || response.statusCode == 500) {
+			res.writeHead(404, {'Content-Type': 'text/html'});
+			res.write('Stream does not exist');
+			res.end();		
+		} else {
+			fp.build(fd, function() {
+				var file = pkg.fs.createWriteStream(fn);
+				response.pipe(file);
+				response.on('end', function() {
+					 if (req.query['type'] =='image') streamFile(req, res);
+					else streamVideo(req, res);
+				});
 			});
-		});	
+		}	
 	});
 }	
 
 function direct_pull_stream(req, res) {
 	if (!durl) {
-		res.send('video does not exist');
+		res.writeHead(404, {'Content-Type': 'text/html'});
+		res.write('Stream does not exist');
+		res.end();		
 	}	
 	var request = http.get(durl, function(response) {
-		res.send(response.statusCode+'==888==');
-		return true;		
-		fp.build(fd, function() {
-			var file = pkg.fs.createWriteStream(fn);
-			response.pipe(file);
-			response.on('end', function() {
-				 if (req.query['type'] =='image') streamFile(req, res);
-				else streamVideo(req, res);
+		if (response.statusCode == 404 || response.statusCode == 500) {
+			res.writeHead(404, {'Content-Type': 'text/html'});
+			res.write('Stream does not exist');
+			res.end();		
+		} else {
+			fp.build(fd, function() {
+				var file = pkg.fs.createWriteStream(fn);
+				response.pipe(file);
+				response.on('end', function() {
+					 if (req.query['type'] =='image') streamFile(req, res);
+					else streamVideo(req, res);
+				});
 			});
-		});		
+		}	
 	});
 }
 
