@@ -140,9 +140,7 @@ function pull_stream(req, res) {
 			res.writeHead(404);
 			res.write('Stream does not exist or size too small --E-.');
 			res.end();*/
-			res.writeHead(404);
-			res.write('Stream does not exist or size too small DD.body ' + request.body);
-			res.end();		
+					
 		} else {
 			fp.build(fd, function() {
 				var file = pkg.fs.createWriteStream(fn);
@@ -154,6 +152,11 @@ function pull_stream(req, res) {
 			});
 		}	
 	});
+	request.on("error", function(e){ //e is the error
+	    	res.writeHead(404);
+		res.write('Stream does not exist or size too small DD.ee ');
+		res.end();
+	});	
 }	
 
 function direct_pull_stream(req, res) {
