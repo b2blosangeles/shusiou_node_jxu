@@ -191,7 +191,7 @@ CP.serial(
 				 CP.data.I1 = 1;
 			 }
 			 if (data.size < CP.data.I1) {	
-				 var d = parseInt(new Date().getTime() * 0.001) - parseInt(data_s.ctimeMs * 0.001);
+				 var d = parseInt(new Date().getTime() * 0.001) - parseInt(data.ctimeMs * 0.001);
 				 if (d > 120) {
 					pkd.fs.unlink(fn, function(error) {
 					   res.redirect(req.url.replace(/\&channel\=([0-9]+)/,'') + '&channel=' + (channel+1)); 
