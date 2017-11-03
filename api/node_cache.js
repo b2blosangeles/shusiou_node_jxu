@@ -74,9 +74,12 @@ _f['I0'] = function(cbk) { /* --- get catch info --- */
 
 		} else {
 			var v = {};
+			var d = parseInt(new Date().getTime() * 0.001) - parseInt(data.ctimeMs * 0.001); 
 			try { v = JSON.parse(data); } catch(e) { }
-			v.cache = true;
+			
+			v.cache = true; v.d = d;
 			cbk(v);
+			
 			return true;
 			if (v.status == 'success' && v.size > 0) {
 				v.cache = true; cbk(v);
