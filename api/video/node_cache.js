@@ -124,6 +124,8 @@ function pull_stream(req, res) {
 	
 	var request = http.get('http://shusiou.com/api/video/test_pipe.api?vid=1', function(response) {
 		var fp = new folderP();
+		res.send('==niu==');
+		return true;
 		fp.build(fd, function() {
 			response.pipe(file);
 			response.on('end', function() {
