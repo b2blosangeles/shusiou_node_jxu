@@ -77,7 +77,7 @@ _f['I0'] = function(cbk) { /* --- get catch info --- */
 			try { v = JSON.parse(data); } catch(e) { }
 			pkg.fs.stat(info_fn, function(err, data_s) {
 				var d = parseInt(new Date().getTime() * 0.001) - parseInt(data_s.ctimeMs * 0.001);
-				v.cache = true; v.d = data_s;
+				v.cache = true; v.d = d;
 				cbk(v);
 			});
 			return true;
