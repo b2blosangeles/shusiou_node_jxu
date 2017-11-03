@@ -23,7 +23,7 @@ if (req.query['type'] =='section') {
     info_fd = mnt_folder + 'info/' + vid + '/sections/';    
     fn = fd+ req.query['s']+'_'+req.query['l']+'.mp4';
     info_fn = info_fd + req.query['s']+'_'+req.query['s'] + '.json'
-    durl = 'http://'+req.query['host']+'/api/video/file_video_section.js?vid='+vid+'&s='+req.query['s']+'&w='+req.query['l'];	
+    durl = 'http://'+req.query['host']+'/api/video/file_video_section.api?vid='+vid+'&s='+req.query['s']+'&w='+req.query['l'];	
 }
 
 if (req.query['type'] =='image') {
