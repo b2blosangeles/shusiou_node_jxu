@@ -41,17 +41,19 @@ var tm =  new Date().getTime();
 
 var _f = {};
 _f['I0'] = function(cbk) { /* --- check mnt exist --- */
-	pkg.fs.stat(info_fn, function (err, stats){
+	pkg.fs.readFile(info_fn, 'utf-8', function (err, data){
 		if (err) { 
 			request.post({
 				url:     'http://'+req.query['host']+'/api/video/hub_info.api',
 				form:{ fn: fn.replace(mnt_folder,'') }, 
 			}, function(error, response, body){
-				cbk(JSON.parse(body));
+				var v = {};
+				try { v = JSON.parse(body); } catch(e) { }
+				cbk(JSON.stringify(v));
 			});			
 
 		} else {
-		     cbk(true);
+		     cbk(data);
 		}
 	});
 };
