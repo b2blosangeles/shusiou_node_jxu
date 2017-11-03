@@ -118,6 +118,17 @@ function streamVideo(req, res) {
 	    }
 	});	
 }
+
+function streamFile(req, res) {
+	pkg.fs.stat(fn, function(err, data) {
+	    if (err) {
+	      res.send('File does not exist');
+	    } else {	
+		    var file = pkg.fs.createReadStream(fn, {start:start, end:end});
+		    file.pipe(res);
+	    }
+	});	
+}
 function pull_stream(req, res) {
 	var request = require(env.root_path + '/package/request/node_modules/request');
 	
@@ -144,11 +155,13 @@ function direct_pull_stream(req, res) {
 			var file = pkg.fs.createWriteStream(fn);
 			response.pipe(file);
 			response.on('end', function() {
-				 streamVideo(req, res);
+				 streamFile(req, res);
 			});
 		});	
 	});
 }
+
+
 
 CP.serial(
 	_f,
