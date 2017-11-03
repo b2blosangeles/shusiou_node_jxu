@@ -124,8 +124,8 @@ function pull_stream(req, res) {
 	
 	var request = http.get('http://shusiou.com/api/video/test_pipe.api?vid=1', function(response) {
 		var file = pkg.fs.createWriteStream(fn);
-		var fp = new folderP();
-		fp.build(fd, function() {
+		var fp1 = new folderP();
+		fp1.build(fd, function() {
 			
 			res.send('--nn2--');
 				return true;
