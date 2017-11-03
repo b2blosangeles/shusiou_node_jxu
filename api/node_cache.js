@@ -161,9 +161,11 @@ function direct_pull_stream(req, res) {
 	}	
 	var request = http.get(durl, function(response) {
 		if (response.statusCode == 404 || response.statusCode == 500) {
-			res.writeHead(404);
-			res.write('Stream does not exist or size too small.' + response.text);
-			res.end();		
+			response.on('data', function(str) {
+				res.writeHead(404);
+				res.write('Stream does not exist or size too small::' + str);
+				res.end();				
+			});		
 		} else {
 			fp.build(fd, function() {
 				var file = pkg.fs.createWriteStream(fn);
