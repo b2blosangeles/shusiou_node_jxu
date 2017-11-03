@@ -22,8 +22,8 @@ if (req.query['type'] =='section') {
     fd = mnt_folder + 'videos/' + vid + '/sections/';
     info_fd = mnt_folder + 'info/' + vid + '/sections/';    
     fn = fd+ req.query['s']+'_'+req.query['l']+'.mp4';
-    info_fn = info_fd + req.query['s']+'_'+req.query['s'] + '.json'
-    durl = 'http://'+req.query['host']+'/api/video/file_video_section.api?vid='+vid+'&s='+req.query['s']+'&w='+req.query['l'];	
+    info_fn = info_fd + req.query['s']+'_'+req.query['l'] + '.json'
+    durl = 'http://'+req.query['host']+'/api/video/file_video_section.api?vid='+vid+'&s='+req.query['s']+'&l='+req.query['l'];	
 }
 
 if (req.query['type'] =='image') {
