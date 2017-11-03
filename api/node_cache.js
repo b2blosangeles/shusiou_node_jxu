@@ -60,8 +60,6 @@ _f['I0'] = function(cbk) { /* --- get catch info --- */
 						else cbk(v);
 					});
 				});				
-			
-				
 			});		
 		}
 		if (err) { 
@@ -134,12 +132,12 @@ function streamFile(req, res) {
 	});	
 }
 function pull_stream(req, res) {
-	var request = http.get('http://'+req.query['host']+'/api/video/hub_pipe_stream.apiAA?fn='+fn.replace(mnt_folder,''), function(response) {
+	var request = http.get('http://'+req.query['host']+'/api/video/hub_pipe_stream.api?fn='+fn.replace(mnt_folder,''), function(response) {
 		if (response.statusCode == 404 || response.statusCode == 500) {
 			
 			response.on('data', function(str) {
 				res.writeHead(404);
-				res.write('Stream does not exist or size too small. CC-> ' + str);
+				res.write('Stream does not exist or size too small::' + str);
 				res.end();				
 			});				
 		} else {
