@@ -92,7 +92,7 @@ _f['I1'] = function (cbk) {
 	if (CP.data.I0.status == 'success' && CP.data.I0.size > 0) {
 		cbk(CP.data.I0.size);
 	} else {
-		cbk(1);
+		cbk(false);
 	}
 };
 function streamVideo(req, res) {
