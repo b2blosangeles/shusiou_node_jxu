@@ -42,7 +42,7 @@ var tm =  new Date().getTime();
 var _f = {};
 _f['I0'] = function(cbk) { /* --- get catch info --- */
 	pkg.fs.readFile(info_fn, 'utf-8', function (err, data){
-		if (!err) { 
+		if (err) { 
 			request.post({
 				url:     'http://'+req.query['host']+'/api/video/hub_info.api',
 				form:{ fn: fn.replace(mnt_folder,'') }, 
