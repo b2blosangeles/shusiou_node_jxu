@@ -65,7 +65,7 @@ _f['I0'] = function(cbk) { /* --- get catch info --- */
 			});			
 
 		} else {
-		     cbk(data);
+		     cbk(data.size);
 		}
 	});
 };
