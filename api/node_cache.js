@@ -124,7 +124,7 @@ function streamFile(req, res) {
 	    if (err) {
 	      res.send('File does not exist');
 	    } else {	
-		    var file = pkg.fs.createReadStream(fn, {start:start, end:end});
+		    var file = pkg.fs.createReadStream(fn);
 		    file.pipe(res);
 	    }
 	});	
