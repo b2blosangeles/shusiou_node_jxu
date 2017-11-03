@@ -78,6 +78,13 @@ _f['I0'] = function(cbk) { /* --- get catch info --- */
 		}
 	});
 };
+_f['I0'] = function () {
+	if (CP.data.I0.status == 'success' && CP.data.I0.size > 0) {
+		cbk(data.I0.size);
+	} else {
+		cbk(false);
+	}
+};
 CP.serial(
 	_f,
 	function(data) {
