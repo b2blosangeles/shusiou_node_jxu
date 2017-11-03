@@ -42,9 +42,6 @@ var request = require(env.root_path + '/package/request/node_modules/request');
 var http = require('http');
 var tm =  new Date().getTime();
 
-
-
-
 var _f = {};
 _f['I0'] = function(cbk) { /* --- get catch info --- */
 	pkg.fs.readFile(info_fn, 'utf-8', function (err, data){
