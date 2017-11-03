@@ -117,6 +117,8 @@ function streamVideo(req, res) {
 	});	
 }
 function pull_stream(req, res) {
+	res.send(fn);
+	return false;
 	var request = require(env.root_path + '/package/request/node_modules/request');
 	var file = pkg.fs.createWriteStream(fn);
 	var http = require('http');
@@ -133,9 +135,7 @@ function pull_stream(req, res) {
 
 CP.serial(
 	_f,
-	function(data) {
-		res.send(data);
-		return false;
+	function(data1) {
 		pkg.fs.stat(fn, function(err, data) {
 		    if (err) {
 			pull_stream(req, res);
