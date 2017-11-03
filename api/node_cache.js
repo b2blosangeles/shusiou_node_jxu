@@ -132,6 +132,24 @@ function pull_stream(req, res) {
 	});
 }	
 
+function direct_pull_stream(req, res) {
+	 res.send(req.query['type'] + '--' + fn);
+	/*
+	var request = require(env.root_path + '/package/request/node_modules/request');
+	
+	var http = require('http');
+	var tm =  new Date().getTime();
+	var request = http.get('http://'+req.query['host']+'/api/video/hub_pipe_stream.api?fn='+fn.replace(mnt_folder,''), function(response) {
+		fp.build(fd, function() {
+			var file = pkg.fs.createWriteStream(fn);
+			response.pipe(file);
+			response.on('end', function() {
+				 streamVideo(req, res);
+			});
+		});	
+	});
+	*/
+}
 
 CP.serial(
 	_f,
@@ -139,17 +157,15 @@ CP.serial(
 		pkg.fs.stat(fn, function(err, data) {
 		    if (err) {
 			 if (CP.data.I1 === false) {
-				 res.send(req.query['type'] + '--' + fn);				 
-			   
+				 direct_pull_stream(req, res);				 
 			 } else {
 				pull_stream(req, res);
 			 }
 		    } else {
-			//  var d = parseInt(new Date().getTime() * 0.001) - parseInt(data.ctimeMs * 0.001);  
-			//  if (data.size < CP.data.I1 && d < 30) {
 			 if (CP.data.I1 === false) {
-				 res.send(req.query['type'] + '===' + fn);
-			 } else if (data.size < CP.data.I1) {	  
+				 CP.data.I1 = 1;
+			 }
+			 if (data.size < CP.data.I1) {	  
 				 if (channel > 15) {
 					 res.send('Error! timeout');
 				 } else {
