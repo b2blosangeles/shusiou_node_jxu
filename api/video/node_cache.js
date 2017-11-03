@@ -128,6 +128,8 @@ function pull_stream(req, res) {
 		fp.build(fd, function() {
 			response.pipe(file);
 			response.on('end', function() {
+				res.send('--nn3--');
+				return true;
 				 streamVideo(req, res);
 			});
 		});	
