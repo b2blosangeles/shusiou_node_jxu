@@ -138,7 +138,7 @@ function pull_stream(req, res) {
 		if (response.statusCode == 404 || response.statusCode == 500) {
 			response.on('data', function(t) {
 				res.writeHead(404);
-				res.write('Stream does not exist or size too small. CC ');
+				res.write('Stream does not exist or size too small. CC-> ' + t);
 				res.end();				
 			});  
 	
