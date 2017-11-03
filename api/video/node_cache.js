@@ -52,8 +52,8 @@ _f['I0'] = function(cbk) { /* --- get catch info --- */
 				var fp = new folderP();
 				fp.build(info_fd, function() {
 					if (v.status == 'success' && v.size > 0) {
-						pkg.fs.writeFile(info_fn, 'Hello World!', function (err) {
-							if (err) cbk({});
+						pkg.fs.writeFile(info_fn, JSON.stringify(v), function (err) {
+							if (err) cbk({status:'error'});
 							else cbk(v);
 						});
 					} else {
