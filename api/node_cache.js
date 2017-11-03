@@ -97,7 +97,7 @@ function streamVideo(req, res) {
 	pkg.fs.stat(fn, function(err, data) {
 	    if (err) {
 		res.writeHead(404);
-		res.write('Stream does not exist');
+		res.write('Stream does not exist or ' + err.message);
 		res.end();
 	    } else {	
 	      var total = data.size;
