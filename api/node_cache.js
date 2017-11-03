@@ -144,12 +144,12 @@ CP.serial(
 			//  var d = parseInt(new Date().getTime() * 0.001) - parseInt(data.ctimeMs * 0.001);  
 			//  if (data.size < CP.data.I1 && d < 30) {
 			 if (data.size < CP.data.I1) {	  
-				 if (channel > 10) {
+				 if (channel > 15) {
 					 res.send('Error! timeout');
 				 } else {
 					 setTimeout(function() {
 						res.redirect(req.url + '&channel=' + (channel+1));
-					 }, Math.floor(Math.random() * (1000)));
+					 }, 1000 + Math.floor(Math.random() * (1000)));
 				 }	 
 			  } else {
 				streamVideo(req, res);
