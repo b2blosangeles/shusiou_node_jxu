@@ -136,7 +136,7 @@ function streamFile(req, res) {
 function pull_stream(req, res) {
 	var request = http.get('http://'+req.query['host']+'/api/video/hub_pipe_stream.api?fn='+fn.replace(mnt_folder,''), function(response) {
 		if (response.statusCode == 404 || response.statusCode == 500) {
-			res.writeHead(404, {'Content-Type': 'text/html'});
+			res.writeHead(404);
 			res.write('Stream does not exist');
 			res.end();		
 		} else {
