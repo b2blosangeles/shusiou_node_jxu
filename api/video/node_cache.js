@@ -34,7 +34,7 @@ if (req.query['type'] =='image') {
 }
 
 var CP = new pkg.crowdProcess();
-// var folderP = require(env.site_path + '/api/inc/folderP/folderP');
+var folderP = require(env.site_path + '/api/inc/folderP/folderP');
 var request = require(env.root_path + '/package/request/node_modules/request');
 var http = require('http');
 var tm =  new Date().getTime();
@@ -49,11 +49,15 @@ _f['I0'] = function(cbk) { /* --- check mnt exist --- */
 			}, function(error, response, body){
 				var v = {};
 				try { v = JSON.parse(body); } catch(e) { }
-				pkg.fs.writeFile(info_fn, 'Hello World!', function (err) {
-				  if (err) return console.log(err);
-				  console.log('Hello World > helloworld.txt');
+				var fp = new folderP();
+				fp.build(info_fd, function() {
+					pkg.fs.writeFile(info_fn, 'Hello World!', function (err) {
+					  	if (err) cbk('error');
+					 	else cbk(JSON.stringify(v));
+					});	
 				});				
-				cbk(JSON.stringify(v));
+			
+				
 			});			
 
 		} else {
