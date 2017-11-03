@@ -148,7 +148,7 @@ CP.serial(
 			pull_stream(req, res);
 		    } else {
 			  streamVideo(req, res);
-			    return true;
+			  return true;
 			   /* 
 			  var d = parseInt(new Date().getTime() * 0.001) - parseInt(data.ctimeMs * 0.001);  
 			  if (!data.size && d < 30) {
