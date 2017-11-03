@@ -64,12 +64,12 @@ _f['I0'] = function(cbk) { /* --- get catch info --- */
 				
 			});		
 		}
-		//if (err) { 
+		if (err) { 
 			pull_hub_info();	
 
-		//} else {
-		//     cbk(data.size);
-		//}
+		} else {
+		     cbk('cached data.size');
+		}
 	});
 };
 CP.serial(
