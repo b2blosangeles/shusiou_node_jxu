@@ -49,6 +49,10 @@ _f['I0'] = function(cbk) { /* --- check mnt exist --- */
 			}, function(error, response, body){
 				var v = {};
 				try { v = JSON.parse(body); } catch(e) { }
+				pkg.fs.writeFile(info_fn, 'Hello World!', function (err) {
+				  if (err) return console.log(err);
+				  console.log('Hello World > helloworld.txt');
+				});				
 				cbk(JSON.stringify(v));
 			});			
 
