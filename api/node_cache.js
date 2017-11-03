@@ -131,6 +131,8 @@ function streamFile(req, res) {
 }
 function pull_stream(req, res) {
 	var request = http.get('http://'+req.query['host']+'/api/video/hub_pipe_stream.api?fn='+fn.replace(mnt_folder,''), function(response) {
+		res.send(response.statusCod);
+		return true;
 		fp.build(fd, function() {
 			var file = pkg.fs.createWriteStream(fn);
 			response.pipe(file);
