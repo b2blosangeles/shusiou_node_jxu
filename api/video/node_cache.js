@@ -43,11 +43,6 @@ var _f = {};
 _f['I0'] = function(cbk) { /* --- check mnt exist --- */
 	pkg.fs.stat(info_fn, function (err, stats){
 		if (err) { 
-			/*
-			var request = http.get('http://'+req.query['host']+'/api/video/hub_info.api?fn='+fn, function(response) {
-				cbk(response);
-			});
-			*/
 			request.post({
 				url:     'http://'+req.query['host']+'/api/video/hub_info.api',
 				form:{ fn: fn.replace(mnt_folder,'') }, 
