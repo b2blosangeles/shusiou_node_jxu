@@ -51,10 +51,14 @@ _f['I0'] = function(cbk) { /* --- get catch info --- */
 				try { v = JSON.parse(body); } catch(e) { }
 				var fp = new folderP();
 				fp.build(info_fd, function() {
-					pkg.fs.writeFile(info_fn, 'Hello World!', function (err) {
-					  	if (err) cbk('error');
-					 	else cbk(JSON.stringify(v));
-					});	
+					if (v.status == 'success' && v.size > 0) {
+						pkg.fs.writeFile(info_fn, 'Hello World!', function (err) {
+							if (err) cbk({});
+							else cbk(v);
+						});
+					} else {
+						cbk({status:'error'});
+					}
 				});				
 			
 				
