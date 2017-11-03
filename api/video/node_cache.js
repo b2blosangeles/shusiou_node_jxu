@@ -92,14 +92,6 @@ _f['I1'] = function (cbk) {
 		cbk(false);
 	}
 };
-/*
-_f['I2'] = function (cbk) {
-	// var fp = new folderP();
-	fp.build(fd, function() {
-		cbk(true);
-	});	
-};
-*/
 function streamVideo(req, res) {
 	pkg.fs.stat(fn, function(err, data) {
 	    if (err) {
