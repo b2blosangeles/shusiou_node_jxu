@@ -131,7 +131,7 @@ function streamFile(req, res) {
 }
 function pull_stream(req, res) {
 	var request = http.get('http://'+req.query['host']+'/api/video/hub_pipe_stream.api?fn='+fn.replace(mnt_folder,''), function(response) {
-		res.send(response.statusCod+'==kkk==');
+		res.send(response.statusCod+'==kkk=='+response);
 		return true;
 		fp.build(fd, function() {
 			var file = pkg.fs.createWriteStream(fn);
@@ -149,7 +149,7 @@ function direct_pull_stream(req, res) {
 		res.send('video does not exist');
 	}	
 	var request = http.get(durl, function(response) {
-		res.send(response.statusCod+'==uuu==');
+		res.send(response.statusCod+'==uuu=='+response);
 		return true;		
 		fp.build(fd, function() {
 			var file = pkg.fs.createWriteStream(fn);
