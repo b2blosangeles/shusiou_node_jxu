@@ -149,7 +149,7 @@ function direct_pull_stream(req, res) {
 		res.send('video does not exist');
 	}	
 	var request = http.get(durl, function(response) {
-		res.send(response.statusCode+'==uuud==');
+		res.send(response.statusCode+'==888==');
 		return true;		
 		fp.build(fd, function() {
 			var file = pkg.fs.createWriteStream(fn);
