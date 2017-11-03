@@ -184,7 +184,8 @@ CP.serial(
 					 }, 1000 + Math.floor(Math.random() * (1000)));
 				 }	 
 			  } else {
-				streamVideo(req, res);
+				if (req.query['type'] =='image') streamFile(req, res);
+				else streamVideo(req, res);
 			  }
 		    }
 		});		
