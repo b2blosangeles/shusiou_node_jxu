@@ -155,7 +155,7 @@ function pull_stream(req, res) {
 function direct_pull_stream(req, res) {
 	if (!durl) {
 		res.writeHead(404);
-		res.write('Stream does not exist');
+		res.write('Stream does not exist --');
 		res.end();		
 	}	
 	var request = http.get(durl, function(response) {
