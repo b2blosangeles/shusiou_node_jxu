@@ -1,6 +1,7 @@
 if (['video', 'section','image'].indexOf(req.query['type']) === -1) { res.send('type error '); return true; }
 if (isNaN(req.query['vid']) || !parseInt(req.query['vid'])) { res.send('wrong vid'); return true; }
 if (!req.query['host']) { res.send('missing host'); return true; }
+var channel = (req.query['channel'])?parseInt(req.query['channel']):0;
 
 var vid = req.query['vid'];
 
@@ -140,12 +141,9 @@ CP.serial(
 		    if (err) {
 			pull_stream(req, res);
 		    } else {
-			  streamVideo(req, res);
-			  return true;
-			   /* 
 			  var d = parseInt(new Date().getTime() * 0.001) - parseInt(data.ctimeMs * 0.001);  
-			  if (!data.size && d < 30) {
-				 if (channel > 3) {
+			  if (data.size < CP.data.I1 && d < 30) {
+				 if (channel > 10) {
 					 res.send('Error! timeout');
 				 } else {
 					 setTimeout(function() {
@@ -155,7 +153,6 @@ CP.serial(
 			  } else {
 				streamVideo(req, res);
 			  }
-			  */
 		    }
 		});		
 		
