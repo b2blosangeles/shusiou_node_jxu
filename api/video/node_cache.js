@@ -94,6 +94,13 @@ _f['I1'] = function (cbk) {
 	}
 };
 
+_f['I2'] = function (cbk) {
+	var fp = new folderP();
+	fp.build(fd, function() {
+		cbk(true);
+	});	
+};
+
 function streamVideo(req, res) {
 	pkg.fs.stat(fn, function(err, data) {
 	    if (err) {
@@ -128,7 +135,7 @@ function pull_stream(req, res) {
 	var request = http.get('http://shusiou.com/api/video/test_pipe.api?vid=1', function(response) {
 		var file = pkg.fs.createWriteStream(fn);
 		// var fp1 = new folderP();
-		res.send('--nn2--'+fd);
+		res.send('--nnr--'+fd);
 				return true;
 		fp1.build(fd, function() {
 			
