@@ -50,7 +50,7 @@ _f['I0'] = function(cbk) { /* --- get catch info --- */
 	pkg.fs.readFile(info_fn, 'utf-8', function (err, data){
 		var pull_hub_info = function() {
 			request.post({
-				url: 'http://'+req.query['host']+'/api/video/hub_info.api',
+				url: 'http://'+req.query['host']+'/api/video/hub_infoA.api',
 				form:{ fn: fn.replace(mnt_folder,'') }, 
 			}, function(error, response, body){
 				var v = {};
