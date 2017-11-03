@@ -152,7 +152,8 @@ function direct_pull_stream(req, res) {
 			var file = pkg.fs.createWriteStream(fn);
 			response.pipe(file);
 			response.on('end', function() {
-				 streamFile(req, res);
+				 if (req.query['type'] =='image') streamFile(req, res);
+				else streamVideo(req, res);
 			});
 		});	
 	});
@@ -166,7 +167,7 @@ CP.serial(
 		pkg.fs.stat(fn, function(err, data) {
 		    if (err) {
 			 if (CP.data.I1 === false) {
-				 direct_pull_stream(req, res);				 
+				direct_pull_stream(req, res);				 
 			 } else {
 				pull_stream(req, res);
 			 }
