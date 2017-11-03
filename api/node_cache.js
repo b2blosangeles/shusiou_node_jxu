@@ -173,7 +173,6 @@ CP.serial(
 				pull_stream(req, res);
 			 }
 		    } else {
-			    res.send('cache'); return false;
 			 if (CP.data.I1 === false) {
 				 CP.data.I1 = 1;
 			 }
