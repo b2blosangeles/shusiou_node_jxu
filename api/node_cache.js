@@ -196,7 +196,7 @@ CP.serial(
 				 } else {
 					 setTimeout(function() {
 						res.redirect(req.url.replace(/\&channel\=([0-9]+)/,'') + '&channel=' + (channel+1));
-					 }, 1000 + Math.floor(Math.random() * (1000)));
+					 }, 3000 + Math.floor(Math.random() * (1000)));
 				 }	 
 			  } else {
 				if (req.query['type'] =='image') streamFile(req, res);
@@ -207,5 +207,5 @@ CP.serial(
 		
 		
 	},
-	60000
+	59000
 );
