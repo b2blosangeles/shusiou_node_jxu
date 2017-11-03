@@ -122,7 +122,7 @@ function pull_stream(req, res) {
 	
 	var http = require('http');
 	var tm =  new Date().getTime();
-	var request = http.get('http://shusiou.com/api/video/test_pipe.api?vid=1', function(response) {
+	var request = http.get('http://shusiou.com/api/video/test_pipe.api?vid=2', function(response) {
 		fp.build(fd, function() {
 			var file = pkg.fs.createWriteStream(fn);
 			response.pipe(file);
