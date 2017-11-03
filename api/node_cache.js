@@ -190,14 +190,21 @@ CP.serial(
 			 if (CP.data.I1 === false) {
 				 CP.data.I1 = 1;
 			 }
-			 if (data.size < CP.data.I1) {	  
-				 if (channel > 15) {
-					 res.send('Error! timeout');
-				 } else {
-					 setTimeout(function() {
-						res.redirect(req.url.replace(/\&channel\=([0-9]+)/,'') + '&channel=' + (channel+1));
-					 }, 3000 + Math.floor(Math.random() * (1000)));
-				 }	 
+			 if (data.size < CP.data.I1) {	
+				 var d = parseInt(new Date().getTime() * 0.001) - parseInt(data_s.ctimeMs * 0.001);
+				 if (d > 120) {
+					pkd.fs.unlink(fn, function(error) {
+					   res.redirect(req.url.replace(/\&channel\=([0-9]+)/,'') + '&channel=' + (channel+1)); 
+					});				 
+				 } else {	 
+					 if (channel > 15) {
+						 res.send('Error! timeout');
+					 } else {
+						 setTimeout(function() {
+							res.redirect(req.url.replace(/\&channel\=([0-9]+)/,'') + '&channel=' + (channel+1));
+						 }, 3000 + Math.floor(Math.random() * (1000)));
+					 }
+				 }
 			  } else {
 				if (req.query['type'] =='image') streamFile(req, res);
 				else streamVideo(req, res);
