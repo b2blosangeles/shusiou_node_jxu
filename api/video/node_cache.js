@@ -42,7 +42,7 @@ var tm =  new Date().getTime();
 var _f = {};
 _f['I0'] = function(cbk) { /* --- get catch info --- */
 	pkg.fs.readFile(info_fn, 'utf-8', function (err, data){
-		if (err) { 
+	//	if (err) { 
 			request.post({
 				url:     'http://'+req.query['host']+'/api/video/hub_info.api',
 				form:{ fn: fn.replace(mnt_folder,'') }, 
@@ -52,7 +52,7 @@ _f['I0'] = function(cbk) { /* --- get catch info --- */
 				var fp = new folderP();
 				fp.build(info_fd, function() {
 					if (v.status == 'success' && v.size > 0) {
-						pkg.fs.writeFile(info_fn, JSON.stringify(v), function (err) {
+						pkg.fs.writeFile(info_fn, v, function (err) {
 							if (err) cbk({status:'error'});
 							else cbk(v);
 						});
@@ -64,9 +64,9 @@ _f['I0'] = function(cbk) { /* --- get catch info --- */
 				
 			});			
 
-		} else {
-		     cbk(data);
-		}
+	//	} else {
+	//	     cbk(data);
+	//	}
 	});
 };
 CP.serial(
