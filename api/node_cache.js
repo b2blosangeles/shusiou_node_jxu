@@ -137,14 +137,13 @@ function pull_stream(req, res) {
 CP.serial(
 	_f,
 	function(data1) {
-		res.send(data1);
-		return true;
 		pkg.fs.stat(fn, function(err, data) {
 		    if (err) {
 			pull_stream(req, res);
 		    } else {
-			  var d = parseInt(new Date().getTime() * 0.001) - parseInt(data.ctimeMs * 0.001);  
-			  if (data.size < CP.data.I1 && d < 30) {
+			//  var d = parseInt(new Date().getTime() * 0.001) - parseInt(data.ctimeMs * 0.001);  
+			//  if (data.size < CP.data.I1 && d < 30) {
+			 if (data.size < CP.data.I1) {	  
 				 if (channel > 10) {
 					 res.send('Error! timeout');
 				 } else {
