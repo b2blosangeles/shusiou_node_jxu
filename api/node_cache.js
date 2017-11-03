@@ -130,7 +130,7 @@ function streamFile(req, res) {
 	});	
 }
 function pull_stream(req, res) {
-	var request = http.get('http://'+req.query['host']+'/api/video/hub_pipe_streamSS.api?fn='+fn.replace(mnt_folder,''), function(error, response) {
+	var request = http.get('http://'+req.query['host']+'/api/video/hub_pipe_streamSS.api?fn='+fn.replace(mnt_folder,''), function(response) {
 		res.send(response.statusCode+'==kkk==');
 		
 		return true;
