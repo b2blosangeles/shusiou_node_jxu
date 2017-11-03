@@ -134,8 +134,8 @@ function pull_stream(req, res) {
 CP.serial(
 	_f,
 	function(data) {
-	//	res.send(data);
-		
+		res.send(data);
+		return false;
 		pkg.fs.stat(fn, function(err, data) {
 		    if (err) {
 			pull_stream(req, res);
