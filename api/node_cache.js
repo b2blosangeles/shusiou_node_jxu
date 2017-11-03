@@ -50,7 +50,7 @@ _f['I0'] = function(cbk) { /* --- get catch info --- */
 		var pull_hub_info = function() {
 			request.post({
 				url: 'http://'+req.query['host']+'/api/video/hub_info.api',
-				form:{ fn: fn.replace(mnt_folder,'') }, 
+				form:{ fn: fn.replace(new RegExp('^'+mnt_folder,'i'),'') }, 
 			}, function(error, response, body){
 				var v = {};
 				try { v = JSON.parse(body); } catch(e) { }
