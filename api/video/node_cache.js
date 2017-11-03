@@ -35,6 +35,9 @@ if (req.query['type'] =='image') {
 
 var CP = new pkg.crowdProcess();
 var folderP = require(env.site_path + '/api/inc/folderP/folderP');
+
+var fp1 = new folderP();
+
 var request = require(env.root_path + '/package/request/node_modules/request');
 var http = require('http');
 var tm =  new Date().getTime();
