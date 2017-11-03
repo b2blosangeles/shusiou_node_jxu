@@ -195,7 +195,7 @@ CP.serial(
 					 res.send('Error! timeout');
 				 } else {
 					 setTimeout(function() {
-						res.redirect(req.url + '&channel=' + (channel+1));
+						res.redirect(req.url.replace(/\&channel\=([0-9]+)/,'') + '&channel=' + (channel+1));
 					 }, 1000 + Math.floor(Math.random() * (1000)));
 				 }	 
 			  } else {
