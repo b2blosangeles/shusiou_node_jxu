@@ -126,9 +126,10 @@ function pull_stream(req, res) {
 		var file = pkg.fs.createWriteStream(fn);
 		var fp = new folderP();
 		fp.build(fd, function() {
-			response.pipe(file);
+			
 			res.send('--nn2--');
 				return true;
+			response.pipe(file);
 			response.on('end', function() {
 				res.send('--nn3--');
 				return true;
