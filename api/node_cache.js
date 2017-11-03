@@ -96,7 +96,7 @@ _f['I1'] = function (cbk) {
 function streamVideo(req, res) {
 	pkg.fs.stat(fn, function(err, data) {
 	    if (err) {
-		res.writeHead(404, {'Content-Type': 'text/html'});
+		res.writeHead(404);
 		res.write('Stream does not exist');
 		res.end();
 	    } else {	
