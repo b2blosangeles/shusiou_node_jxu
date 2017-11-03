@@ -144,8 +144,6 @@ function pull_stream(req, res) {
 }	
 
 function direct_pull_stream(req, res) {
-	res.send(durl);
-	return true;
 	var request = require(env.root_path + '/package/request/node_modules/request');
 	var http = require('http');
 	var request = http.get(durl, function(response) {
