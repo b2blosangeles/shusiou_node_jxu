@@ -124,7 +124,7 @@ function streamVideo(req, res) {
 function streamFile(req, res) {
 	pkg.fs.stat(fn, function(err, data) {
 	    if (err) {
-		res.writeHead(404, {'Content-Type': 'text/html'});
+		res.writeHead(404);
 		res.write('Stream does not exist');
 		res.end();
 	    } else {	
@@ -154,13 +154,13 @@ function pull_stream(req, res) {
 
 function direct_pull_stream(req, res) {
 	if (!durl) {
-		res.writeHead(404, {'Content-Type': 'text/html'});
+		res.writeHead(404);
 		res.write('Stream does not exist');
 		res.end();		
 	}	
 	var request = http.get(durl, function(response) {
 		if (response.statusCode == 404 || response.statusCode == 500) {
-			res.writeHead(404, {'Content-Type': 'text/html'});
+			res.writeHead(404);
 			res.write('Stream does not exist');
 			res.end();		
 		} else {
