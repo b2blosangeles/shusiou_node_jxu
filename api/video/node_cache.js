@@ -39,6 +39,9 @@ var request = require(env.root_path + '/package/request/node_modules/request');
 var http = require('http');
 var tm =  new Date().getTime();
 
+
+
+
 var _f = {};
 _f['I0'] = function(cbk) { /* --- get catch info --- */
 	pkg.fs.readFile(info_fn, 'utf-8', function (err, data){
@@ -80,16 +83,82 @@ _f['I0'] = function(cbk) { /* --- get catch info --- */
 };
 
 _f['I1'] = function (cbk) {
+	
 	if (CP.data.I0.status == 'success' && CP.data.I0.size > 0) {
 		cbk(CP.data.I0.size);
 	} else {
 		cbk(false);
 	}
 };
+
+function streamVideo(req, res) {
+	pkg.fs.stat(fn, function(err, data) {
+	    if (err) {
+	      res.send('Video does not exist');
+	    } else {	
+	      var total = data.size;
+	      var range = req.headers.range;
+	      if (range) {
+			var parts = range.replace(/bytes=/, "").split("-");
+			var partialstart = parts[0]; var partialend;
+			  partialend =  parts[1];
+			var start = parseInt(partialstart, 10);
+			var end = partialend ? parseInt(partialend, 10) : total-1;
+			var chunksize = (end-start)+1;
+			var file = pkg.fs.createReadStream(fn, {start:start, end:end});
+
+			res.writeHead(206, {'Content-Range': 'bytes ' + start + '-' + end + '/' + total, 
+				'Accept-Ranges': 'bytes', 'Content-Length': chunksize, 'Content-Type': 'video/mp4' });
+		       file.pipe(res);
+		} else {
+			res.send('Need streaming player');
+		}
+	    }
+	});	
+}
+function pull_stream(req, res) {
+	var request = require(env.root_path + '/package/request/node_modules/request');
+	var file = pkg.fs.createWriteStream(fn);
+	var http = require('http');
+	var tm =  new Date().getTime();
+	var request = http.get('http://shusiou.com/api/video/test_pipe.api?vid='+req.query['vid'], function(response) {
+		response.pipe(file);
+		response.on('end', function() {
+			 streamVideo(req, res);
+		});
+	});
+}
+
+
 CP.serial(
 	_f,
 	function(data) {
-		res.send(data);
+	//	res.send(data);
+		
+		pkg.fs.stat(fn, function(err, data) {
+		    if (err) {
+			pull_stream(req, res);
+		    } else {
+			  streamVideo(req, res);
+			    return true;
+			   /* 
+			  var d = parseInt(new Date().getTime() * 0.001) - parseInt(data.ctimeMs * 0.001);  
+			  if (!data.size && d < 30) {
+				 if (channel > 3) {
+					 res.send('Error! timeout');
+				 } else {
+					 setTimeout(function() {
+						res.redirect(req.url + '&channel=' + (channel+1));
+					 }, Math.floor(Math.random() * (1000)));
+				 }	 
+			  } else {
+				streamVideo(req, res);
+			  }
+			  */
+		    }
+		});		
+		
+		
 	},
 	6000
 );
