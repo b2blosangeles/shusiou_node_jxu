@@ -73,11 +73,11 @@ _f['I0'] = function(cbk) { /* --- get catch info --- */
 			try { v = JSON.parse(data); } catch(e) { }
 			pkg.fs.stat(info_fn, function(err, data_s) {
 				if (v.status == 'success' && v.size > 0) {
-					v.cache = true; cbk(v);
+					cbk(v);
 				} else {
 					var d = parseInt(new Date().getTime() * 0.001) - parseInt(data_s.ctimeMs * 0.001);
 					if (d < 10) {
-						v.cache = true; cbk(v);
+						cbk(v);
 					} else {
 						pull_hub_info();
 					}
