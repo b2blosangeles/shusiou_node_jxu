@@ -6,13 +6,14 @@ var channel = (req.query['channel'])?parseInt(req.query['channel']):0;
 var vid = req.query['vid'];
 
 var mnt_folder = '/var/shusiou-video/', 
-    fn, fd, info_fn, info_fd;
+    fn, fd, info_fn, info_fd, durl;
 
 if (req.query['type'] =='video') {
     fd = mnt_folder + 'videos/' + vid + '/video/';
     info_fd = mnt_folder + 'info/' + vid + '/video/';
     fn = fd + 'video.mp4';
-    info_fn = info_fd + 'video.json'
+    info_fn = info_fd + 'video.json';
+   	
 }
 
 if (req.query['type'] =='section') {
@@ -28,7 +29,8 @@ if (req.query['type'] =='image') {
     if (['FULL', '90', '180', '480'].indexOf(req.query['w']) === -1) { res.send('wrong w'); return true; }
     if (isNaN(req.query['s']) || !parseInt(req.query['s'])) { res.send('wrong s'); return true; }
     fd = mnt_folder + 'videos/' + vid + '/images/';
-    info_fd = mnt_folder + 'info/' + vid + '/images/';     
+    info_fd = mnt_folder + 'info/' + vid + '/images/';
+    durl = 'http://'+req.query['host']+'/api/video/video_image.api?vid='+vid+'&s='+req.query['s']+'&w='+req.query['w'];			
     
     fn = fd+req.query['w']+'_'+req.query['s']+'.png';
     info_fn = info_fd +req.query['w']+'_'+req.query['s']+'.json'
@@ -133,13 +135,11 @@ function pull_stream(req, res) {
 }	
 
 function direct_pull_stream(req, res) {
-	 res.send(req.query['type'] + '--' + fn);
-	/*
 	var request = require(env.root_path + '/package/request/node_modules/request');
 	
 	var http = require('http');
 	var tm =  new Date().getTime();
-	var request = http.get('http://'+req.query['host']+'/api/video/hub_pipe_stream.api?fn='+fn.replace(mnt_folder,''), function(response) {
+	var request = http.get(durl, function(response) {
 		fp.build(fd, function() {
 			var file = pkg.fs.createWriteStream(fn);
 			response.pipe(file);
@@ -148,7 +148,6 @@ function direct_pull_stream(req, res) {
 			});
 		});	
 	});
-	*/
 }
 
 CP.serial(
