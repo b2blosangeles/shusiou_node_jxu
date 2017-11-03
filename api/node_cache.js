@@ -150,12 +150,14 @@ function direct_pull_stream(req, res) {
 	var http = require('http');
 	var request = http.get(durl, function(response) {
 		fp.build(fd, function() {
+		fp.build(fd, function() {
 			var file = pkg.fs.createWriteStream(fn);
 			response.pipe(file);
 			response.on('end', function() {
 				 if (req.query['type'] =='image') streamFile(req, res);
 				else streamVideo(req, res);
 			});
+		});	
 		});	
 	});
 }
