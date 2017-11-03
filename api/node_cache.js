@@ -56,14 +56,10 @@ _f['I0'] = function(cbk) { /* --- get catch info --- */
 				var v = {};
 				try { v = JSON.parse(body); } catch(e) { }
 				fp.build(info_fd, function() {
-					//if (v.status == 'success' && v.size > 0) {
-						pkg.fs.writeFile(info_fn, JSON.stringify(v), function (err) {
-							if (err) cbk({status:'error'});
-							else cbk(v);
-						});
-					//} else {
-					//	cbk({status:'error'});
-					//}
+					pkg.fs.writeFile(info_fn, JSON.stringify(v), function (err) {
+						if (err) cbk({status:'error'});
+						else cbk(v);
+					});
 				});				
 			
 				
