@@ -68,7 +68,9 @@ _f['I0'] = function(cbk) { /* --- get catch info --- */
 			pull_hub_info();	
 
 		} else {
-		     cbk('cached data.size');
+			var v = {};
+			try { v = JSON.parse(data); } catch(e) { }
+		     	cbk(v);
 		}
 	});
 };
