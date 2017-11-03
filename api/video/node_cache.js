@@ -35,8 +35,7 @@ if (req.query['type'] =='image') {
 
 var CP = new pkg.crowdProcess();
 var folderP = require(env.site_path + '/api/inc/folderP/folderP');
-
-var fp1 = new folderP();
+var fp = new folderP();
 
 var request = require(env.root_path + '/package/request/node_modules/request');
 var http = require('http');
@@ -55,7 +54,7 @@ _f['I0'] = function(cbk) { /* --- get catch info --- */
 			}, function(error, response, body){
 				var v = {};
 				try { v = JSON.parse(body); } catch(e) { }
-				var fp = new folderP();
+				// var fp = new folderP();
 				fp.build(info_fd, function() {
 					if (v.status == 'success' && v.size > 0) {
 						pkg.fs.writeFile(info_fn, JSON.stringify(v), function (err) {
@@ -95,7 +94,7 @@ _f['I1'] = function (cbk) {
 };
 
 _f['I2'] = function (cbk) {
-	var fp = new folderP();
+	// var fp = new folderP();
 	fp.build(fd, function() {
 		cbk(true);
 	});	
