@@ -43,7 +43,6 @@ var fp = new folderP();
 
 var request = require(env.root_path + '/package/request/node_modules/request');
 var http = require('http');
-var tm =  new Date().getTime();
 
 var _f = {};
 _f['I0'] = function(cbk) { /* --- get catch info --- */
@@ -131,8 +130,6 @@ function streamFile(req, res) {
 	});	
 }
 function pull_stream(req, res) {
-	var request = require(env.root_path + '/package/request/node_modules/request');
-	var http = require('http');
 	var request = http.get('http://'+req.query['host']+'/api/video/hub_pipe_stream.api?fn='+fn.replace(mnt_folder,''), function(response) {
 		fp.build(fd, function() {
 			var file = pkg.fs.createWriteStream(fn);
@@ -149,8 +146,6 @@ function direct_pull_stream(req, res) {
 	if (!durl) {
 		res.send('video does not exist');
 	}	
-	var request = require(env.root_path + '/package/request/node_modules/request');
-	var http = require('http');
 	var request = http.get(durl, function(response) {
 		fp.build(fd, function() {
 			var file = pkg.fs.createWriteStream(fn);
@@ -162,8 +157,6 @@ function direct_pull_stream(req, res) {
 		});		
 	});
 }
-
-
 
 CP.serial(
 	_f,
