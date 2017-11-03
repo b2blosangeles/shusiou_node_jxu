@@ -82,9 +82,6 @@ _f['I0'] = function(cbk) { /* --- get catch info --- */
 						pull_hub_info();
 					}
 				}
-				
-				v.cache = true; v.d = d;
-				cbk(v);
 			});
 		}
 	});
