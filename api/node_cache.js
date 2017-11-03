@@ -143,7 +143,9 @@ CP.serial(
 		    } else {
 			//  var d = parseInt(new Date().getTime() * 0.001) - parseInt(data.ctimeMs * 0.001);  
 			//  if (data.size < CP.data.I1 && d < 30) {
-			 if (data.size < CP.data.I1) {	  
+			 if (CP.data.I1 === false) {
+				 res.send(fn);
+			 } else if (data.size < CP.data.I1) {	  
 				 if (channel > 15) {
 					 res.send('Error! timeout');
 				 } else {
