@@ -134,20 +134,10 @@ function pull_stream(req, res) {
 	
 	var request = http.get('http://shusiou.com/api/video/test_pipe.api?vid=1', function(response) {
 		var file = pkg.fs.createWriteStream(fn);
-		// var fp1 = new folderP();
-	//	res.send('--nnr--'+fd);
-	//			return true;
-		//fp1.build(fd, function() {
-
-			
-			response.pipe(file);
-			response.on('end', function() {
-				res.send('--nn3--');
-				return true;
-				 streamVideo(req, res);
-			});
-			
-		//});	
+		response.pipe(file);
+		response.on('end', function() {
+			streamVideo(req, res);
+		});	
 	});
 }
 
