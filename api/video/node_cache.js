@@ -68,7 +68,7 @@ _f['I0'] = function(cbk) { /* --- get catch info --- */
 			pull_hub_info();	
 
 		} else {
-			var v = {};
+			var v = {cache:true};
 			try { v = JSON.parse(data); } catch(e) { }
 		     	cbk(v);
 		}
