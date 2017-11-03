@@ -141,7 +141,7 @@ function pull_stream(req, res) {
 			res.write('Stream does not exist or size too small --E-.');
 			res.end();*/
 			res.writeHead(404);
-			res.write('Stream does not exist or size too small DD.' + request.text);
+			res.write('Stream does not exist or size too small DD.body ' + request.body);
 			res.end();		
 		} else {
 			fp.build(fd, function() {
