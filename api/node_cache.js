@@ -138,7 +138,8 @@ function pull_stream(req, res) {
 			var file = pkg.fs.createWriteStream(fn);
 			response.pipe(file);
 			response.on('end', function() {
-				 streamVideo(req, res);
+				 if (req.query['type'] =='image') streamFile(req, res);
+				else streamVideo(req, res);
 			});
 		});	
 	});
