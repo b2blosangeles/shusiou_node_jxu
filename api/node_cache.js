@@ -136,11 +136,14 @@ function pull_stream(req, res) {
 CP.serial(
 	_f,
 	function(data1) {
-		//res.send(data1);
-		//return true;
 		pkg.fs.stat(fn, function(err, data) {
 		    if (err) {
-			pull_stream(req, res);
+			 if (CP.data.I1 === false) {
+				 res.send(req.query['type'] + '--' + fn);				 
+			   
+			 } else {
+				pull_stream(req, res);
+			 }
 		    } else {
 			//  var d = parseInt(new Date().getTime() * 0.001) - parseInt(data.ctimeMs * 0.001);  
 			//  if (data.size < CP.data.I1 && d < 30) {
