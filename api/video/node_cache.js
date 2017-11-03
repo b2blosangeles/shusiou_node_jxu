@@ -128,18 +128,16 @@ function streamVideo(req, res) {
 }
 function pull_stream(req, res) {
 	var request = require(env.root_path + '/package/request/node_modules/request');
-	
+	var file = pkg.fs.createWriteStream(fn);
 	var http = require('http');
 	var tm =  new Date().getTime();
-	
 	var request = http.get('http://shusiou.com/api/video/test_pipe.api?vid=1', function(response) {
-		var file = pkg.fs.createWriteStream(fn);
 		response.pipe(file);
 		response.on('end', function() {
-			streamVideo(req, res);
-		});	
+			 streamVideo(req, res);
+		});
 	});
-}
+}	
 
 
 CP.serial(
