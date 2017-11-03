@@ -70,8 +70,11 @@ _f['I0'] = function(cbk) { /* --- get catch info --- */
 		} else {
 			var v = {};
 			try { v = JSON.parse(data); } catch(e) { }
-			v.cache = true;
-		     	cbk(v);
+			if (v.status == 'success' && v.size > 0) {
+				v.cache = true; cbk(v);
+			} else {
+				pull_hub_info();
+			}
 		}
 	});
 };
