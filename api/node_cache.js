@@ -74,12 +74,12 @@ _f['I0'] = function(cbk) { /* --- get catch info --- */
 
 		} else {
 			var v = {};
-			var d = parseInt(new Date().getTime() * 0.001) - parseInt(data.ctimeMs * 0.001); 
 			try { v = JSON.parse(data); } catch(e) { }
-			
-			v.cache = true; v.d = d;
-			cbk(v);
-			
+			pkg.fs.stat(info_fn, function(err, data_s) {
+				var d = parseInt(new Date().getTime() * 0.001) - parseInt(data_s.ctimeMs * 0.001);
+				v.cache = true; v.d = data;
+				cbk(v);
+			});
 			return true;
 			if (v.status == 'success' && v.size > 0) {
 				v.cache = true; cbk(v);
