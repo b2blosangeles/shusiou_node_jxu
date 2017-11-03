@@ -92,14 +92,14 @@ _f['I1'] = function (cbk) {
 		cbk(false);
 	}
 };
-
+/*
 _f['I2'] = function (cbk) {
 	// var fp = new folderP();
 	fp.build(fd, function() {
 		cbk(true);
 	});	
 };
-
+*/
 function streamVideo(req, res) {
 	pkg.fs.stat(fn, function(err, data) {
 	    if (err) {
@@ -127,14 +127,17 @@ function streamVideo(req, res) {
 }
 function pull_stream(req, res) {
 	var request = require(env.root_path + '/package/request/node_modules/request');
-	var file = pkg.fs.createWriteStream(fn);
+	
 	var http = require('http');
 	var tm =  new Date().getTime();
 	var request = http.get('http://shusiou.com/api/video/test_pipe.api?vid=1', function(response) {
-		response.pipe(file);
-		response.on('end', function() {
-			 streamVideo(req, res);
-		});
+		fp.build(fd, function() {
+			var file = pkg.fs.createWriteStream(fn);
+			response.pipe(file);
+			response.on('end', function() {
+				 streamVideo(req, res);
+			});
+		});	
 	});
 }	
 
