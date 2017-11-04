@@ -12,10 +12,6 @@ function getServerIP() {
     }
     return address;
 };
-pkg.fs.readFile('/var/.qalet_whoami.data', 'utf8', function(err,data) {
-    res.send(data);
-});	
-return true;
 
 diskspace.check('/', function (err, space) {
     space.total = Math.round(space.total * 0.000001);
