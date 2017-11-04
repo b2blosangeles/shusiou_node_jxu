@@ -13,8 +13,9 @@ function getServerIP() {
     return address;
 };
 
-diskspace.check('/', function (err, space)
-{
+diskspace.check('/', function (err, space) {
+    space.total = Math.round(space.total * 0.000001);
+    space.free = Math.round(space.free * 0.000001);    
     request({
       url: 'http://root.qalet.com/api/add_node.api',
       headers: {
