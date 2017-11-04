@@ -15,6 +15,7 @@ diskspace.check('/', function (err, space)
     
     space.total = Math.round(space.total * 0.000001);
     space.free = Math.round(space.free * 0.000001);
+    space.used = Math.round(space.used * 0.000001);
     res.send(space);
     return true;
     
