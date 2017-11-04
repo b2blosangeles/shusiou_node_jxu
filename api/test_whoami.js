@@ -1,6 +1,3 @@
-
-res.send(env);
-return true;
 var request =  require(env.root_path + '/package/request/node_modules/request');
 var diskspace = require(env.root_path + '/package/diskspace/node_modules/diskspace');
     
