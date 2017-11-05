@@ -10,7 +10,7 @@ switch(opt) {
 			if ((err) || !data) {
 				cbk(false);		
 			} else {
-				res.send(data);
+				cbk(data);
 			}
 		    });
 		};
