@@ -1,4 +1,6 @@
 var opt = req.query['opt'];
+var channel = require(env.site_path + '/cfg/channel.json');
+res.send(channel);
 switch(opt) {
 	case 'status':
 		var CP = new pkg.crowdProcess();
