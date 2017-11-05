@@ -1,6 +1,4 @@
-var diskspace = require(env.root_path + '/package/diskspace/node_modules/diskspace');
 var opt = req.query['opt'];
-
 switch(opt) {
 	case 'status':
 		var CP = new pkg.crowdProcess();
@@ -15,6 +13,7 @@ switch(opt) {
 		    });
 		};
 		_f['P1'] = function(cbk) {
+			var diskspace = require(env.root_path + '/package/diskspace/node_modules/diskspace');
 			diskspace.check('/', function (err, space) {
 			    space.total = Math.round(space.total * 0.000001);
 			    space.free = Math.round(space.free * 0.000001);
@@ -26,7 +25,7 @@ switch(opt) {
 		CP.serial(
 			_f,
 			function(data) {
-				res.send({status:'success',ip:data.results.P0, space:space});
+				res.send({status:'success',ip:data.results.P0, space:data.results.P1});
 			},
 			500
 		);		
