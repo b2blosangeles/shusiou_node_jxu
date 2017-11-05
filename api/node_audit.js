@@ -8,7 +8,7 @@ switch(opt) {
 		_f['P0'] = function(cbk) {
 		    pkg.fs.readFile('/var/.qalet_whoami.data', 'utf8', function(err,data) {
 			if ((err) || !data) {
-				res.send('error');		
+				cbk(false);		
 			} else {
 				res.send(data);
 			}
