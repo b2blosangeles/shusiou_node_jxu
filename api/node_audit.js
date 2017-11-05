@@ -25,7 +25,8 @@ switch(opt) {
 		CP.serial(
 			_f,
 			function(data) {
-				res.send({status:'success',ip:data.results.P0, space:data.results.P1});
+				if (data.results.P0) res.send({status:'success',ip:data.results.P0, space:data.results.P1});
+				else res.send({status:'failure'});
 			},
 			500
 		);		
