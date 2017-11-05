@@ -1,3 +1,4 @@
+var diskspace = require(env.root_path + '/package/diskspace/node_modules/diskspace');
 var opt = req.query['opt'];
 
 switch(opt) {
@@ -13,14 +14,22 @@ switch(opt) {
 			}
 		    });
 		};
+		_f['P1'] = function(cbk) {
+			diskspace.check('/', function (err, space) {
+			    space.total = Math.round(space.total * 0.000001);
+			    space.free = Math.round(space.free * 0.000001);
+			    space.used = Math.round(space.used * 0.000001); 
+			    space.free_rate =  Math.floor(space.free  * 100 /  space.total); 
+			    cbk(space);
+			});	
+		};
 		CP.serial(
 			_f,
 			function(data) {
-				res.send({status:'success',ip:data.results.P0});
+				res.send({status:'success',ip:data.results.P0, space:space});
 			},
-			1000
+			500
 		);		
-		
 		break;
 	default:
 		res.send({status:'error', message:'Wrong opt value!'});
