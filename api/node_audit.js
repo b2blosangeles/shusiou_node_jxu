@@ -20,7 +20,7 @@ switch(opt) {
 			    space.free = Math.round(space.free * 0.000001);
 			    space.used = Math.round(space.used * 0.000001); 
 			    space.free_rate =  Math.floor(space.free  * 100 /  space.total); 
-			    space.channel = channel;
+			    space.channel = channel.channel;
 			    cbk(space);
 			});	
 		};
