@@ -16,6 +16,7 @@ switch(opt) {
 			var diskspace = require(env.root_path + '/package/diskspace/node_modules/diskspace');
 			diskspace.check('/', function (err, space) {
 			    space.total = Math.round(space.total * 0.000001);
+				space.total = 7777;
 			    space.free = Math.round(space.free * 0.000001);
 			    space.used = Math.round(space.used * 0.000001); 
 			    space.free_rate =  Math.floor(space.free  * 100 /  space.total); 
