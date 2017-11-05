@@ -1,5 +1,4 @@
 var opt = req.query['opt'];
-delete require.cache[env.site_path + '/api/cfg/channel.json'];
 var channel = require(env.site_path + '/api/cfg/channel.json');
 switch(opt) {
 	case 'status':
