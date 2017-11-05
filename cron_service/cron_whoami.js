@@ -3,7 +3,9 @@ var env = {root_path:path.join(__dirname, '../..')};
 env.site_path = env.root_path + '/site';
 var request =  require(env.root_path + '/package/request/node_modules/request');
 var diskspace = require(env.root_path + '/package/diskspace/node_modules/diskspace');
-    
+
+var channel = require(env.site_path + '/api/cfg/channel.json');
+
 function getServerIP() {
     var ifaces = require('os').networkInterfaces(), address=[];
     for (var dev in ifaces) {
@@ -18,6 +20,7 @@ diskspace.check('/', function (err, space) {
     space.free = Math.round(space.free * 0.000001);
     space.used = Math.round(space.used * 0.000001); 
     space.free_rate =  Math.floor(space.free  * 100 /  space.total); 
+    space.channel = channel.channel;
     request({
       url: 'http://root.qalet.com/api/add_node.api',
       headers: {
