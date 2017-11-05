@@ -8,7 +8,7 @@ switch(opt) {
 			if ((err) || !data) {
 				cbk(false);		
 			} else {
-				cbk(data);
+				cbk(data.replace(/(?:(?:^|\n)\s+|\s+(?:$|\n))/g,'').replace(/\s+/g,' '));
 			}
 		    });
 		};
