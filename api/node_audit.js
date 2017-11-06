@@ -50,7 +50,11 @@ switch(opt) {
 				return function(cbk) {
 					var fn = mnt_folder + 'videos/' + list[i] + '/video/video.mp4';
 					pkg.fs.stat(fn, function(err, st) {
-						cbk((((st) && (st.size))?st.size:'')+'');
+						if (err) {
+							cbk('');
+						} else {
+							cbk(st.size);
+						}	
 					});
 				}
 			})(i);
