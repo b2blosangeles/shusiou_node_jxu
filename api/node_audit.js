@@ -57,7 +57,13 @@ switch(opt) {
 		CP.parallel(
 			_f,
 			function(data) {
-				res.send(data.results);
+				var v1 = [];
+				for (var i = 0; i < list.length; i++) {
+					if (CP.data.['V_' + i]) {
+						v1[v1.length] = CP.data.['V_' + i];
+					}
+				}
+				res.send({v:CP.data.I0 ,v1:v1});
 			},
 			3000
 		);			
