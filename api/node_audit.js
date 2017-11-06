@@ -45,7 +45,7 @@ switch(opt) {
 					pkg.fs.stat(fn, function(err, st) {
 						var v = {};
 						try { v = JSON.parse(st); } catch (e) {}
-						cbk(st);
+						cbk(typeof st);
 					});
 				}
 			})(i);
