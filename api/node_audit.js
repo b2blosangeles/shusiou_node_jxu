@@ -63,7 +63,8 @@ switch(opt) {
 						v1[v1.length] = CP.data.['V_' + i];
 					}
 				}
-				res.send({v:CP.data.I0 ,v1:v1});
+				var diff = v.filter(x => v1.indexOf(x) < 0 );
+				res.send({diff:diff});
 			},
 			3000
 		);			
