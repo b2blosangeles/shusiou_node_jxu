@@ -39,7 +39,7 @@ switch(opt) {
 		CP.serial(
 			_f,
 			function(data) {
-				res.send(data);
+				res.send(JSON.stringify(data));
 			},
 			500
 		);		
