@@ -45,7 +45,7 @@ switch(opt) {
 		};
 
 		for (var i = 0; i < list.length; i++) {
-			_f[list[i]] = (function(i) {
+			_f['V_'+list[i]] = (function(i) {
 				return function(cbk) {
 					var fn = mnt_folder + 'videos/' + list[i] + '/video/video.mp4';
 					pkg.fs.stat(fn, function(err, st) {
