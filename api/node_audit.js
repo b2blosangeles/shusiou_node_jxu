@@ -37,6 +37,12 @@ switch(opt) {
 		var CP = new pkg.crowdProcess();
 		var _f = {}, list = req.body.list;
 		var mnt_folder = '/var/shusiou-video/';
+		
+		_f[I0] = function() {
+			fs.readdir(mnt_folder + 'videos/', function(err, files) {
+				cbk(files);
+			});		
+		};
 
 		for (var i = 0; i < list.length; i++) {
 			_f[list[i]] = (function(i) {
