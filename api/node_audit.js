@@ -43,15 +43,15 @@ switch(opt) {
 				return function(cbk) {
 					var fn = mnt_folder + 'videos/' + list[i] + '/video/video.mp4';
 					pkg.fs.stat(fn, function(err, st) {
-						cbk(mnt_folder + 'videos/' + list[i] + '/video/video.mp4');
-					}
+						cbk(st);
+					});
 				}
 			})(i);
 		}
 		CP.serial(
 			_f,
 			function(data) {
-				res.send(JSON.stringify(data));
+				res.send(data);
 			},
 			500
 		);		
