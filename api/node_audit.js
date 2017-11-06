@@ -35,11 +35,18 @@ switch(opt) {
 		break;
 	case 'files_status':
 		var CP = new pkg.crowdProcess();
-		var _f = {};
+		var _f = {}, list = req.body.list;
+		for (var i = 0; i < list.length; i++) {
+			_f['D_'+i] = function(i) {
+				return function(cbk) {
+					cbk(i);
+				}
+			};
+		}
 		CP.serial(
 			_f,
 			function(data) {
-				res.send(JSON.stringify(data));
+				res.send(data);
 			},
 			500
 		);		
