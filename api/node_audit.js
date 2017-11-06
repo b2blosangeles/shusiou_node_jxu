@@ -34,7 +34,7 @@ switch(opt) {
 		);		
 		break;
 	case 'files_status':
-		res.send('req.body');		
+		res.send(req.body);		
 		break;		
 	default:
 		res.send({status:'error', message:'Wrong opt value!'});
