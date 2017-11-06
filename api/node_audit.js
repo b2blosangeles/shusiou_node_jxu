@@ -38,7 +38,7 @@ switch(opt) {
 		var _f = {}, list = req.body.list;
 		var mnt_folder = '/var/shusiou-video/';
 		
-		_f[I0] = function() {
+		_f[I0] = function(cbk) {
 			fs.readdir(mnt_folder + 'videos/', function(err, files) {
 				cbk(files);
 			});		
