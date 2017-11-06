@@ -51,11 +51,10 @@ switch(opt) {
 		CP.parallel(
 			_f,
 			function(data) {
-				res.send(data);
+				res.send(data.results);
 			},
 			3000
-		);		
-	//	res.send(req.body.list.join(','));		
+		);			
 		break;		
 	default:
 		res.send({status:'error', message:'Wrong opt value!'});
