@@ -51,9 +51,9 @@ switch(opt) {
 		CP.serial(
 			_f,
 			function(data) {
-				res.send(data);
+				res.send(data.result);
 			},
-			500
+			3000
 		);		
 	//	res.send(req.body.list.join(','));		
 		break;		
