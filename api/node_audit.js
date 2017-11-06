@@ -36,7 +36,7 @@ switch(opt) {
 	case 'files_status':
 		var CP = new pkg.crowdProcess();
 		var _f = {}, list = req.body.list;
-		var mnt_folder = '/mnt/shusiou-video/';
+		var mnt_folder = '/var/shusiou-video/';
 
 		for (var i = 0; i < list.length; i++) {
 			_f['D_'+i] = (function(i) {
