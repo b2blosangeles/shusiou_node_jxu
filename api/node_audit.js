@@ -34,7 +34,16 @@ switch(opt) {
 		);		
 		break;
 	case 'files_status':
-		res.send(req.body.list.join(','));		
+		var CP = new pkg.crowdProcess();
+		var _f = {};
+		CP.serial(
+			_f,
+			function(data) {
+				res.send(data);
+			},
+			500
+		);		
+	//	res.send(req.body.list.join(','));		
 		break;		
 	default:
 		res.send({status:'error', message:'Wrong opt value!'});
