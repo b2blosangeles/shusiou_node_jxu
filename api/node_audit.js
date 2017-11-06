@@ -48,7 +48,7 @@ switch(opt) {
 				}
 			})(i);
 		}
-		CP.serial(
+		CP.parallel(
 			_f,
 			function(data) {
 				res.send(data.result);
