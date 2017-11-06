@@ -40,7 +40,8 @@ switch(opt) {
 		
 		_f['I0'] = function(cbk) {
 			pkg.fs.readdir(mnt_folder + 'videos/', function(err, files) {
-				cbk(files);
+				if (err) cbk([]);
+				else cbk(files);
 			});		
 		};
 
