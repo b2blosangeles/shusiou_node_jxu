@@ -37,11 +37,11 @@ switch(opt) {
 		var CP = new pkg.crowdProcess();
 		var _f = {}, list = req.body.list;
 		for (var i = 0; i < list.length; i++) {
-			_f['D_'+i] = function(i) {
+			_f['D_'+i] = (function(i) {
 				return function(cbk) {
 					cbk(i);
 				}
-			};
+			})(i);
 		}
 		CP.serial(
 			_f,
