@@ -33,6 +33,9 @@ switch(opt) {
 			500
 		);		
 		break;
+	case 'files_status':
+		rs.send(req.body);		
+		break;		
 	default:
 		res.send({status:'error', message:'Wrong opt value!'});
 }
