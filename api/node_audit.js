@@ -38,6 +38,10 @@ switch(opt) {
 		var _f = {}, list = req.body.list;
 		var mnt_folder = '/var/shusiou-video/';
 		
+		_f['H0'] = function(cbk) {
+			cbk(list);		
+		};
+		
 		_f['I0'] = function(cbk) {
 			pkg.fs.readdir(mnt_folder + 'videos/', function(err, files) {
 				if (err) cbk([]);
