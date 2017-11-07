@@ -65,7 +65,7 @@ switch(opt) {
 				
 				var v1 = [];
 				for (var i = 0; i < list.length; i++) {
-					v1[v1.length] = list[i];
+					v1[v1.length] = CP.data['V_'+list[i]];
 				}
 				/*
 				
