@@ -51,7 +51,7 @@ switch(opt) {
 					var fn = mnt_folder + 'videos/' + list[i] + '/video/video.mp4';
 					pkg.fs.stat(fn, function(err, st) {
 						if (err) {
-							cbk('');
+							cbk(false);
 						} else {
 							cbk((st)?st.size:'');
 						}	
@@ -69,7 +69,8 @@ switch(opt) {
 					}
 				}
 				var diff = CP.data.I0.filter(x => v1.indexOf(x) < 0 );
-				res.send({diff:diff, v:CP.data.I0, v1:v1});
+				// res.send({diff:diff, v1:v1});
+				res.send(data.result);
 			},
 			3000
 		);			
