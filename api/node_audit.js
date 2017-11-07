@@ -73,7 +73,7 @@ switch(opt) {
 					//}
 				}
 				var diff = CP.data.I0.filter(x => v1.indexOf(x) < 0 );
-				res.send({diff:diff, v:CP.data.I0, v1:v1});
+				res.send({l:CP.data.H0, diff:diff, v:CP.data.I0, v1:v1});
 			},
 			3000
 		);			
