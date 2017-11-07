@@ -38,10 +38,6 @@ switch(opt) {
 		var _f = {}, list = req.body.list;
 		var mnt_folder = '/var/shusiou-video/';
 		
-		_f['H0'] = function(cbk) {
-			cbk(list);		
-		};
-		
 		_f['I0'] = function(cbk) {
 			pkg.fs.readdir(mnt_folder + 'videos/', function(err, files) {
 				if (err) cbk([]);
@@ -73,7 +69,7 @@ switch(opt) {
 					//}
 				}
 				var diff = CP.data.I0.filter(x => v1.indexOf(x) < 0 );
-				res.send({l:CP.data.H0, diff:diff, v:CP.data.I0, v1:v1});
+				res.send({diff:diff, v:CP.data.I0, v1:v1});
 			},
 			3000
 		);			
