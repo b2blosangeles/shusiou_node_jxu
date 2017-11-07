@@ -69,7 +69,7 @@ switch(opt) {
 				var v1 = [];
 				for (var i = 0; i < list.length; i++) {
 					//if (CP.data['V_' + i]) {
-						v1[v1.length] = CP.data['V_' + i];
+						v1[v1.length] = CP.data['V_'+list[i]];
 					//}
 				}
 				var diff = CP.data.I0.filter(x => v1.indexOf(x) < 0 );
