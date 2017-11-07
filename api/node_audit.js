@@ -67,11 +67,13 @@ switch(opt) {
 				for (var i = 0; i < list.length; i++) {
 					v1[v1.length] = list[i];
 				}
-				// var diff = CP.data.I0.filter(x => v1.indexOf(x) < 0 );
+				
 				
 				// res.send({diff:diff, v1:v1});
 				*/
-				res.send({flist:CP.data.I0, list:list});
+				var diff = CP.data.I0.filter(x => list.indexOf(x) < 0 );
+				
+				res.send({flist:CP.data.I0, list:list, diff:diff});
 			},
 			3000
 		);			
