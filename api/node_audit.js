@@ -62,17 +62,14 @@ switch(opt) {
 		CP.parallel(
 			_f,
 			function(data) {
-				/*
 				var v1 = [];
 				for (var i = 0; i < list.length; i++) {
-					if (CP.data['V_' + list[i]]) {
-						v1[v1.length] = list[i];
-					}
+					v1[v1.length] = list[i];
 				}
-				var diff = CP.data.I0.filter(x => v1.indexOf(x) < 0 );
-				*/
+				// var diff = CP.data.I0.filter(x => v1.indexOf(x) < 0 );
+				
 				// res.send({diff:diff, v1:v1});
-				res.send(data.results);
+				res.send(flist:CP.data.I0, list:list);
 			},
 			3000
 		);			
