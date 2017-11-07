@@ -63,18 +63,14 @@ switch(opt) {
 			_f,
 			function(data) {
 				
-				var v1 = {};
+				var f_size = {};
 				for (var i = 0; i < list.length; i++) {
-					if (CP.data['V_'+list[i]]) v1[list[i]] = CP.data['V_'+list[i]];
+					if (CP.data['V_'+list[i]]) f_size[list[i]] = CP.data['V_'+list[i]];
 				}
-				/*
+				var diff = CP.data.I0.filter(x => list.indexOf(x) < 0 );
 				
-				// res.send({diff:diff, v1:v1});
-				*/
-				// var diff = CP.data.I0.filter(x => list.indexOf(x) < 0 );
-				var diff = list.filter(x => CP.data.I0.indexOf(x) < 0 );
+				res.send({flist:CP.data.I0, list:list, diff:diff, f_size:f_size});
 				
-				res.send({flist:CP.data.I0, list:list, diff:diff, v1:v1});
 			},
 			3000
 		);			
