@@ -71,7 +71,7 @@ switch(opt) {
 				
 				// res.send({diff:diff, v1:v1});
 				*/
-				res.send(flist:CP.data.I0, list:list);
+				res.send({flist:CP.data.I0, list:list});
 			},
 			3000
 		);			
