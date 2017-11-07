@@ -71,7 +71,8 @@ switch(opt) {
 				
 				// res.send({diff:diff, v1:v1});
 				*/
-				var diff = CP.data.I0.filter(x => list.indexOf(x) < 0 );
+				// var diff = CP.data.I0.filter(x => list.indexOf(x) < 0 );
+				var diff = list.filter(x => CP.data.I0.indexOf(x) < 0 );
 				
 				res.send({flist:CP.data.I0, list:list, diff:diff});
 			},
