@@ -57,7 +57,7 @@ switch(opt) {
 						if (err) {
 							cbk(fn);
 						} else {
-							cbk(fn);
+							cbk((st)?st.time:'');
 						}	
 					});
 				}
