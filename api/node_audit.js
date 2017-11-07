@@ -53,7 +53,7 @@ switch(opt) {
 						if (err) {
 							cbk('');
 						} else {
-							cbk((st)?st.time:'');
+							cbk((st)?st.size:'');
 						}	
 					});
 				}
