@@ -66,8 +66,7 @@ switch(opt) {
 				for (var i = 0; i < list.length; i++) {
 					if (CP.data['V_'+list[i]]) f_size[list[i]] = CP.data['V_'+list[i]];
 				}
-				// var need_remove = CP.data.I0.filter(x => list.indexOf(x) < 0 );
-				var need_remove = list.filter(x => CP.data.I0.indexOf(x) < 0 );
+				var need_remove = CP.data.I0.filter(x => list.indexOf(x) < 0 );
 				
 				var remove_cmd = 'cd ' + mnt_folder  + 'videos/ '
 				for (var j= 0 ; j < need_remove.length; j++) {
