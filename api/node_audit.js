@@ -71,7 +71,7 @@ switch(opt) {
 				
 				var remove_cmd = 'cd ' + mnt_folder  + 'videos/ && '
 				for (var j= 0 ; j < need_remove.length; j++) {
-					remove_cmd += 'rm ' + need_remove[j] + '&&  ';
+					remove_cmd += 'rm ' + need_remove[j] + ' &&  ';
 				}
 				
 				res.send({flist:CP.data.I0, list:list, need_remove:remove_cmd, f_size:f_size});
