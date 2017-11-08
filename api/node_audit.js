@@ -70,7 +70,7 @@ switch(opt) {
 				var need_remove = CP.data.I0.filter(x => list.indexOf(x) < 0 );
 				
 				var remove_cmd = 'cd ' + mnt_folder  + 'videos/ && rm -fr '
-				for (var j= 0 ; j < need_remove.length; j++) {
+				for (var j= 0 ; j < Math.min(need_remove.length,30); j++) {
 					remove_cmd += ' ' + need_remove[j] + '  ';
 				}
 				if (need_remove.length) {
