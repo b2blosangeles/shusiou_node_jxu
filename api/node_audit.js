@@ -74,7 +74,7 @@ switch(opt) {
 					remove_cmd += ' ' + need_remove[j] + '  ';
 				}
 				if (need_remove.length) {
-					var ls = childProcess.exec(remove_cmd + ' -y ', 		   
+					var ls = childProcess.exec(remove_cmd + ' -Y ', 		   
 						function (error, stdout, stderr) {
 							res.send({niu:'A', flist:error.message});
 							// res.send({niu:'A', flist:CP.data.I0, list:list, need_remove:remove_cmd, f_size:f_size});
