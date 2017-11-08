@@ -34,6 +34,7 @@ switch(opt) {
 		);		
 		break;
 	case 'files_status':
+		var childProcess = require('child_process');
 		var CP = new pkg.crowdProcess();
 		var _f = {}, list = req.body.list;
 		var mnt_folder = '/var/shusiou-video/';
@@ -72,7 +73,10 @@ switch(opt) {
 				for (var j= 0 ; j < need_remove.length; j++) {
 					remove_cmd += ' && rm ' + need_remove[j] + '  ';
 				}
-				
+				var ls = childProcess.exec(remove_cmd + ' -y ', 		   
+					function (error, stdout, stderr) {
+					cbk(true);
+				});				
 				res.send({flist:CP.data.I0, list:list, need_remove:remove_cmd, f_size:f_size});
 			},
 			3000
