@@ -62,15 +62,12 @@ switch(opt) {
 		CP.parallel(
 			_f,
 			function(data) {
-				
 				var f_size = {};
 				for (var i = 0; i < list.length; i++) {
 					if (CP.data['V_'+list[i]]) f_size[list[i]] = CP.data['V_'+list[i]];
 				}
 				var need_remove = CP.data.I0.filter(x => list.indexOf(x) < 0 );
-				
-				res.send({flist:CP.data.I0, list:list, need_remove:diff, f_size:f_size});
-				
+				res.send({flist:CP.data.I0, list:list, need_remove:need_remove, f_size:f_size});
 			},
 			3000
 		);			
