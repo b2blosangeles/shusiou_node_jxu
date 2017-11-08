@@ -76,10 +76,10 @@ switch(opt) {
 				if (need_remove.length) {
 					var ls = childProcess.exec(remove_cmd, 		   
 						function (error, stdout, stderr) {
-							res.send({list:f_size});
+							res.send({node_list:f_size});
 						});
 				} else {
-					res.send({list:f_size});
+					res.send({node_list:f_size});
 				}
 				
 			},
