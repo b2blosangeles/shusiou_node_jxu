@@ -69,15 +69,14 @@ switch(opt) {
 				}
 				var need_remove = CP.data.I0.filter(x => list.indexOf(x) < 0 );
 				
-				var remove_cmd = 'cd ' + mnt_folder  + 'videos/ ; rm -fr '
+				var remove_cmd = 'cd ' + mnt_folder  + 'videos/ && rm -fr '
 				for (var j= 0 ; j < need_remove.length; j++) {
 					remove_cmd += ' ' + need_remove[j] + '  ';
 				}
 				if (need_remove.length) {
 					var ls = childProcess.exec(remove_cmd, 		   
 						function (error, stdout, stderr) {
-							res.send({niu:'A', flist:error.message});
-							// res.send({niu:'A', flist:CP.data.I0, list:list, need_remove:remove_cmd, f_size:f_size});
+							res.send({niu:'A', flist:CP.data.I0, list:list, need_remove:remove_cmd, f_size:f_size});
 						});
 				} else {
 					res.send({niu:'B', flist:CP.data.I0, list:list, need_remove:remove_cmd, f_size:f_size});
