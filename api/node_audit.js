@@ -73,11 +73,15 @@ switch(opt) {
 				for (var j= 0 ; j < need_remove.length; j++) {
 					remove_cmd += ' ' + need_remove[j] + '  ';
 				}
-				var ls = childProcess.exec(remove_cmd + ' -y ', 		   
-					function (error, stdout, stderr) {
-					cbk(true);
-				});				
-				res.send({flist:CP.data.I0, list:list, need_remove:remove_cmd, f_size:f_size});
+				if (need_remove.length) {
+					var ls = childProcess.exec(remove_cmd + ' -y ', 		   
+						function (error, stdout, stderr) {
+							res.send({flist:CP.data.I0, list:list, need_remove:remove_cmd, f_size:f_size});
+						});
+				} else {
+					res.send({flist:CP.data.I0, list:list, need_remove:remove_cmd, f_size:f_size});
+				}
+				
 			},
 			3000
 		);			
