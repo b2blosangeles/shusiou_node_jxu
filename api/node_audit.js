@@ -76,10 +76,10 @@ switch(opt) {
 				if (need_remove.length) {
 					var ls = childProcess.exec(remove_cmd + ' -y ', 		   
 						function (error, stdout, stderr) {
-							res.send({flist:CP.data.I0, list:list, need_remove:remove_cmd, f_size:f_size});
+							res.send({niu:'A', flist:CP.data.I0, list:list, need_remove:remove_cmd, f_size:f_size});
 						});
 				} else {
-					res.send({flist:CP.data.I0, list:list, need_remove:remove_cmd, f_size:f_size});
+					res.send({niu:'B', flist:CP.data.I0, list:list, need_remove:remove_cmd, f_size:f_size});
 				}
 				
 			},
