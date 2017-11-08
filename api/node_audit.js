@@ -69,9 +69,9 @@ switch(opt) {
 				// var need_remove = CP.data.I0.filter(x => list.indexOf(x) < 0 );
 				var need_remove = list.filter(x => CP.data.I0.indexOf(x) < 0 );
 				
-				var remove_cmd = 'cd ' + mnt_folder  + 'videos/ && '
+				var remove_cmd = 'cd ' + mnt_folder  + 'videos/ '
 				for (var j= 0 ; j < need_remove.length; j++) {
-					remove_cmd += 'rm ' + need_remove[j] + ' &&  ';
+					remove_cmd += ' && rm ' + need_remove[j] + '  ';
 				}
 				
 				res.send({flist:CP.data.I0, list:list, need_remove:remove_cmd, f_size:f_size});
