@@ -48,9 +48,20 @@ switch(type) {
 			fp.build(folder_image, function() { cbk(true);});
 		};
 
+		_f['S2'] = function(cbk) {
+			pkg.fs.stat(fn, function(err, stat) {
+				if(!err) { cbk(fn);
+				} else {
+					 cbk('fn---2');
+				}
+			});
+		};		
+		
 		CP.serial(
 			_f,
 			function(data) {
+				res.send(data);
+				return true;
 				if (CP.data.S0 !== true) {
 					res.send('CP.data.S0');
 					return true;
