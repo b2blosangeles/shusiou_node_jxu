@@ -29,8 +29,10 @@ switch(type) {
 
 		var CP = new pkg.crowdProcess();
 		var _f = {};
-
+			
 		_f['S0'] = function(cbk) { 
+			cbk(true);
+			return true;
 			pkg.fs.stat(mnt_folder, function (err, stats){
 				if (err) { cbk({status:'failure', message:err.message});  CP.exit = 1; }
 				else if (!stats.isDirectory()){ cbk({status:'failure', message:err.message});  CP.exit = 1; }
