@@ -96,7 +96,7 @@ switch(type) {
 				
 		_f['S0'] = function(cbk) { 
 			var fp = new folderP();
-			fp.build(video_folder, function() { cbk(true);});
+			fp.build(video_folder + 'video/', function() { cbk(true);});
 		};
 		_f['S1'] = function(cbk) { 
 			var fp = new folderP();
@@ -104,7 +104,7 @@ switch(type) {
 		};
 		
 		_f['S2'] = function(cbk) {
-			cbk({fn:fn,folder_section:folder_section, video_folder:video_folder});
+			cbk({fn:fn,folder_section:folder_section, video_folder:video_folder + 'video/'});
 			return true;
 			pkg.fs.stat(fn, function(err, stat) {
 				if(!err) { cbk(fn);
