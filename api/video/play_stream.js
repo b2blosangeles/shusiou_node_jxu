@@ -10,4 +10,4 @@ var patt = /([?&]server)=([^#&]*)/i;
 if (!type || !vid || !server) {  write404('vid or type error '); return true; }
 
 var url = 'http://'+ server + req.url.replace(patt, '');
-res.send(url);
+res.redirect(url);
