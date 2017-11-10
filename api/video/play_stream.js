@@ -13,7 +13,7 @@ var url = 'http://'+ server + req.url.replace(patt, '');
 
 // 
 
-var mnt_folder = '/mnt/shusiou-video/',  
+var mnt_folder = '/var/shusiou-video/',  
     video_folder = mnt_folder  + 'videos/' + vid + '/', 
     file_video =  video_folder + 'video/video.mp4',
     folder_image = video_folder + 'images/',
