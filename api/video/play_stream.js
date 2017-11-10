@@ -101,8 +101,6 @@ switch(type) {
 		};
 		
 		_f['S2'] = function(cbk) {
-			//cbk({fn:fn,folder_section:folder_section, video_folder:video_folder + 'video/'});
-			//return true;
 			pkg.fs.stat(fn, function(err, stat) {
 				if(!err) { cbk(fn);
 				} else {
