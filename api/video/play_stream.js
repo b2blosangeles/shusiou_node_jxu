@@ -5,5 +5,9 @@ function write404(msg) {
 }
 
 var type= req.query['type'], vid = req.query['vid'], server = req.query['server'];
-if (!type || !vid) {  write404('vid or type error '); return true; }
-res.send(req.url);
+var patt = /([?&]server)=([^#&]*)/i;
+
+if (!type || !vid || !server) {  write404('vid or type error '); return true; }
+
+var url = req.url.replace(patt, '');
+res.send(url);
