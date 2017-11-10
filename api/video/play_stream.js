@@ -101,21 +101,35 @@ switch(type) {
 			var fp = new folderP();
 			fp.build(folder_section, function() { cbk(true);});
 		};
-		/*
+		
 		_f['S2'] = function(cbk) {
-
+			cbk(fn);
+			return true;
 			pkg.fs.stat(fn, function(err, stat) {
 				if(!err) { cbk(fn);
 				} else {
-					var childProcess = require('child_process');
-					var ls = childProcess.exec('ffmpeg  -i ' + file_video + ' -ss '+ s + ' -t ' + l + ' -c copy ' + fn +' -y ', 		   
-						function (error, stdout, stderr) {
-							cbk(true);
-						});
+					var request = http.get(url, function(response) {
+						if (response.statusCode == 404 || response.statusCode == 500) {
+							response.on('data', function(str) {
+								res.writeHead(404);
+								res.write('Stream does not exist or size too small::' + str);
+								res.end();				
+							});		
+						} else {
+							fp.build(folder_image, function() {
+								var file = pkg.fs.createWriteStream(fn);
+								response.pipe(file);
+								response.on('end', function() {
+									 cbk(fn);
+								});
+							});
+						}	
+					});					
+
 				}
 			});
 		};
-		*/
+		
 		CP.serial(
 			_f,
 			function(data) {
