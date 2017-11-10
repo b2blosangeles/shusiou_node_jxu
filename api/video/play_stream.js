@@ -63,17 +63,13 @@ switch(type) {
 								res.end();				
 							});		
 						} else {
-							cbk(url + '=niu=' + fn + ' --- ' + folder_image);
-							/*
 							fp.build(folder_image, function() {
 								var file = pkg.fs.createWriteStream(fn);
 								response.pipe(file);
 								response.on('end', function() {
-									 if (req.query['type'] =='image') streamFile(req, res);
-									else streamVideo(req, res);
+									 cbk(fn);
 								});
 							});
-							*/
 						}	
 					});					
 					
