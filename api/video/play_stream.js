@@ -106,7 +106,7 @@ switch(type) {
 			pkg.fs.stat(fn, function(err, stat) {
 				if(!err) { cbk(fn);
 				} else {
-					var request = http.get(url + '&cache_only = 1', function(response) {
+					var request = http.get(url + '&cache_only=1', function(response) {
 						if (response.statusCode == 404 || response.statusCode == 500) {
 							response.on('data', function(str) {
 								res.writeHead(404);
