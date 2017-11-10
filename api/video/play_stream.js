@@ -79,8 +79,6 @@ switch(type) {
 		CP.serial(
 			_f,
 			function(data) {
-				res.send(data);
-				return true;
 				if (CP.data.S0 !== true) {
 					res.send('CP.data.S0');
 					return true;
