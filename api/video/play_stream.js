@@ -11,7 +11,8 @@ if (!type || !vid || !server) {  write404('vid or type error '); return true; }
 
 var url = 'http://'+ server + req.url.replace(patt, '');
 
-// 
+//
+var http = require('http');
 
 var mnt_folder = '/var/shusiou-video/',  
     video_folder = mnt_folder  + 'videos/' + vid + '/', 
