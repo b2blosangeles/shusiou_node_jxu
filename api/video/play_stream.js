@@ -53,7 +53,29 @@ switch(type) {
 				if(!err) { cbk(fn);
 				} else {
 				//	var durl = 'http://'+req.query['host']+'/api/video/video_image.api?vid='+vid+'&s='+req.query['s']+'&w='+req.query['w'];
-					 cbk(url);
+					 
+					var request = http.get(url, function(response) {
+						if (response.statusCode == 404 || response.statusCode == 500) {
+							response.on('data', function(str) {
+								res.writeHead(404);
+								res.write('Stream does not exist or size too small::' + str);
+								res.end();				
+							});		
+						} else {
+							cbk(url + '=niu=');
+							/*
+							fp.build(folder_image, function() {
+								var file = pkg.fs.createWriteStream(fn);
+								response.pipe(file);
+								response.on('end', function() {
+									 if (req.query['type'] =='image') streamFile(req, res);
+									else streamVideo(req, res);
+								});
+							});
+							*/
+						}	
+					});					
+					
 				}
 			});
 		};		
