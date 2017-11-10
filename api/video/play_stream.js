@@ -11,9 +11,6 @@ if (!type || !vid || !server) {  write404('vid or type error '); return true; }
 
 var url = 'http://'+ server + req.url.replace(patt, '');
 
-//
-var http = require('http');
-
 var mnt_folder = '/var/shusiou-video/',  
     video_folder = mnt_folder  + 'videos/' + vid + '/', 
     file_video =  video_folder + 'video/video.mp4',
@@ -21,6 +18,8 @@ var mnt_folder = '/var/shusiou-video/',
     folder_section =   video_folder + 'sections/';
 
 var folderP = require(env.site_path + '/api/inc/folderP/folderP');
+var fp = new folderP(),
+    http = require('http');
 
 switch(type) {
 	case 'image':
