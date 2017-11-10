@@ -63,7 +63,7 @@ switch(type) {
 								res.end();				
 							});		
 						} else {
-							cbk(url + '=niu=');
+							cbk(url + '=niu=' + fn + ' --- ' + folder_image);
 							/*
 							fp.build(folder_image, function() {
 								var file = pkg.fs.createWriteStream(fn);
