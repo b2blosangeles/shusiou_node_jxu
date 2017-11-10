@@ -19,7 +19,6 @@ var mnt_folder = '/var/shusiou-video/',
 
 var folderP = require(env.site_path + '/api/inc/folderP/folderP');
 var fp = new folderP(),
-    request = require(env.root_path + '/package/request/node_modules/request'),
     http = require('http');
 
 switch(type) {
