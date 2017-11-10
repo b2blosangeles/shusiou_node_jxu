@@ -52,8 +52,8 @@ switch(type) {
 			pkg.fs.stat(fn, function(err, stat) {
 				if(!err) { cbk(fn);
 				} else {
-					var durl = 'http://'+req.query['host']+'/api/video/video_image.api?vid='+vid+'&s='+req.query['s']+'&w='+req.query['w'];
-					 cbk(durl);
+				//	var durl = 'http://'+req.query['host']+'/api/video/video_image.api?vid='+vid+'&s='+req.query['s']+'&w='+req.query['w'];
+					 cbk(url);
 				}
 			});
 		};		
