@@ -47,12 +47,10 @@ switch(type) {
 								res.end();				
 							});		
 						} else {
-							fp.build(folder_image, function() {
-								var file = pkg.fs.createWriteStream(fn);
-								response.pipe(file);
-								response.on('end', function() {
-									 cbk(fn);
-								});
+							var file = pkg.fs.createWriteStream(fn);
+							response.pipe(file);
+							response.on('end', function() {
+								 cbk(fn);
 							});
 						}	
 					});					
@@ -109,16 +107,21 @@ switch(type) {
 			pkg.fs.stat(fn, function(err, stat) {
 				if(!err) { cbk(fn);
 				} else {
-					request.post({
-						url: url,
-						form:{ cache_only:true }, 
-					}, function(error, response, body){
-						var file = pkg.fs.createWriteStream(fn);
-						response.pipe(file);
-						response.on('end', function() {
-							 cbk(fn);
-						});				
-					});						
+					var request = http.get(url + '&cache_only = 1', function(response) {
+						if (response.statusCode == 404 || response.statusCode == 500) {
+							response.on('data', function(str) {
+								res.writeHead(404);
+								res.write('Stream does not exist or size too small::' + str);
+								res.end();				
+							});		
+						} else {
+							var file = pkg.fs.createWriteStream(fn);
+							response.pipe(file);
+							response.on('end', function() {
+								 cbk(fn);
+							});
+						}	
+					});							
 
 				}
 			});
