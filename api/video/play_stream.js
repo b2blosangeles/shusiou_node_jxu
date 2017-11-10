@@ -19,6 +19,7 @@ var mnt_folder = '/var/shusiou-video/',
 
 var folderP = require(env.site_path + '/api/inc/folderP/folderP');
 var fp = new folderP(),
+    request = require(env.root_path + '/package/request/node_modules/request'),
     http = require('http');
 
 switch(type) {
@@ -109,16 +110,13 @@ switch(type) {
 				if(!err) { cbk(fn);
 				} else {
 					request.post({
-						url: 'http://'+req.query['host']+'/api/video/hub_info.api',
-						form:{ fn: fn.replace(new RegExp('^'+mnt_folder,'i'),'') }, 
+						url: url,
+						form:{ cache_only:true }, 
 					}, function(error, response, body){
-						var v = {};
-						try { v = JSON.parse(body); } catch(e) { }
-						fp.build(info_fd, function() {
-							pkg.fs.writeFile(info_fn, JSON.stringify(v), function (err) {
-								if (err) cbk({status:'error'});
-								else cbk(v);
-							});
+						var file = pkg.fs.createWriteStream(fn);
+						response.pipe(file);
+						response.on('end', function() {
+							 cbk(fn);
 						});				
 					});						
 
