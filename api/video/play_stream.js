@@ -28,23 +28,7 @@ switch(type) {
 		var fn = folder_image + w + '_' + s + '.png';
 
 		var CP = new pkg.crowdProcess();
-		var _f = {};
-			
-		_f['S0'] = function(cbk) { 
-			cbk(true);
-			return true;
-			pkg.fs.stat(mnt_folder, function (err, stats){
-				if (err) { cbk({status:'failure', message:err.message});  CP.exit = 1; }
-				else if (!stats.isDirectory()){ cbk({status:'failure', message:err.message});  CP.exit = 1; }
-				else {
-				      pkg.fs.stat(file_video, function(err, stat) {
-					 if(err) { cbk({status:'failure', message:err.message});  CP.exit = 1; }
-					 else cbk(true);
-				      });
-				}
-			});
-		};		
-		
+		var _f = {};		
 		_f['S1'] = function(cbk) { 
 			var fp = new folderP();
 			fp.build(folder_image, function() { cbk(true);});
@@ -79,11 +63,6 @@ switch(type) {
 		CP.serial(
 			_f,
 			function(data) {
-				if (CP.data.S0 !== true) {
-					res.send('CP.data.S0');
-					return true;
-				}
-				
 				pkg.fs.stat(fn, function(err, data1) {
 					if (err) {  res.send(url); }
 					else {
@@ -103,33 +82,26 @@ switch(type) {
 		);    
 		break;
 	case 'section':
-		var l = req.query['l'], s = req.query['s'];
-		if (!s || !l) { write404('wrong s or l'); return true; }
-		var fn = folder_section + s + '_' + l + '.mp4';
-
+	case 'video':
+		if (type == 'section') {
+			var l = req.query['l'], s = req.query['s'];
+			if (!s || !l) { write404('wrong s or l'); return true; }
+			var fn = folder_section + s + '_' + l + '.mp4';
+		} else {
+			var fn = file_video;
+		}
 		var CP = new pkg.crowdProcess();
 		var _f = {};
-		
+				
 		_f['S0'] = function(cbk) { 
-			cbk(true);
-			return true;			
-			pkg.fs.stat(mnt_folder, function (err, stats){
-				if (err) { cbk({status:'failure', message:err.message});  CP.exit = 1; }
-				else if (!stats.isDirectory()){ cbk({status:'failure', message:err.message});  CP.exit = 1; }
-				else {
-				      pkg.fs.stat(file_video, function(err, stat) {
-					 if(err) { cbk({status:'failure', message:err.message});  CP.exit = 1; }
-					 else cbk(true);
-				      });
-				}
-			});
-		};		
-		
+			var fp = new folderP();
+			fp.build(video_folder, function() { cbk(true);});
+		};
 		_f['S1'] = function(cbk) { 
 			var fp = new folderP();
 			fp.build(folder_section, function() { cbk(true);});
 		};
-
+		/*
 		_f['S2'] = function(cbk) {
 
 			pkg.fs.stat(fn, function(err, stat) {
@@ -143,13 +115,12 @@ switch(type) {
 				}
 			});
 		};
+		*/
 		CP.serial(
 			_f,
 			function(data) {
-				if (CP.data.S0 !== true) {
-					res.send(CP.data.S0);
-					return true;
-				}				
+				res.send(data);
+				return true;
 				pkg.fs.stat(fn, function(err, data1) {
 					if (err) {  write404(fn + ' does not exist'); }
 					else {
@@ -174,29 +145,6 @@ switch(type) {
 			},
 			30000
 		);    
-		break;	
-	case 'video':				
-		pkg.fs.stat(file_video, function(err, data1) {
-			if (err) {  write404(file_video + ' does not exist'); }
-			else {
-			      var total = data1.size;
-			      var range = req.headers.range;
-			      if (range) {
-					var parts = range.replace(/bytes=/, "").split("-");
-					var partialstart = parts[0]; var partialend;
-					  partialend =  parts[1];
-					var start = parseInt(partialstart, 10);
-					var end = partialend ? parseInt(partialend, 10) : total-1;
-					var chunksize = (end-start)+1;
-					var file = pkg.fs.createReadStream(file_video, {start:start, end:end});
-					res.writeHead(206, {'Content-Range': 'bytes ' + start + '-' + end + '/' + total, 
-						'Accept-Ranges': 'bytes', 'Content-Length': chunksize, 'Content-Type': 'video/mp4' });
-				       file.pipe(res);
-				} else {
-					res.send('Need streaming player');
-				}
-			}
-		});
 		break;			
 	default:
 		 write404('type error');  
