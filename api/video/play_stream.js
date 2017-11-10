@@ -57,7 +57,7 @@ switch(type) {
 				}
 				
 				pkg.fs.stat(fn, function(err, data1) {
-					if (err) {  res.redirect(url); }
+					if (err) {  res.send(url); }
 					else {
 						res.writeHead(200); 
 						var file = pkg.fs.createReadStream(fn);
