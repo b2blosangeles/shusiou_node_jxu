@@ -54,8 +54,6 @@ switch(type) {
 			pkg.fs.stat(fn, function(err, stat) {
 				if(!err) { cbk(fn);
 				} else {
-				//	var durl = 'http://'+req.query['host']+'/api/video/video_image.api?vid='+vid+'&s='+req.query['s']+'&w='+req.query['w'];
-					 
 					var request = http.get(url, function(response) {
 						if (response.statusCode == 404 || response.statusCode == 500) {
 							response.on('data', function(str) {
@@ -113,6 +111,8 @@ switch(type) {
 		var _f = {};
 		
 		_f['S0'] = function(cbk) { 
+			cbk(true);
+			return true;			
 			pkg.fs.stat(mnt_folder, function (err, stats){
 				if (err) { cbk({status:'failure', message:err.message});  CP.exit = 1; }
 				else if (!stats.isDirectory()){ cbk({status:'failure', message:err.message});  CP.exit = 1; }
