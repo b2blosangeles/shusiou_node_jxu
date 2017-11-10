@@ -103,28 +103,24 @@ switch(type) {
 		};
 		
 		_f['S2'] = function(cbk) {
-			cbk({fn:fn,folder_section:folder_section, video_folder:video_folder);
+			cbk({fn:fn,folder_section:folder_section, video_folder:video_folder});
 			return true;
 			pkg.fs.stat(fn, function(err, stat) {
 				if(!err) { cbk(fn);
 				} else {
-					var request = http.get(url, function(response) {
-						if (response.statusCode == 404 || response.statusCode == 500) {
-							response.on('data', function(str) {
-								res.writeHead(404);
-								res.write('Stream does not exist or size too small::' + str);
-								res.end();				
-							});		
-						} else {
-							fp.build(folder_image, function() {
-								var file = pkg.fs.createWriteStream(fn);
-								response.pipe(file);
-								response.on('end', function() {
-									 cbk(fn);
-								});
+					request.post({
+						url: 'http://'+req.query['host']+'/api/video/hub_info.api',
+						form:{ fn: fn.replace(new RegExp('^'+mnt_folder,'i'),'') }, 
+					}, function(error, response, body){
+						var v = {};
+						try { v = JSON.parse(body); } catch(e) { }
+						fp.build(info_fd, function() {
+							pkg.fs.writeFile(info_fn, JSON.stringify(v), function (err) {
+								if (err) cbk({status:'error'});
+								else cbk(v);
 							});
-						}	
-					});					
+						});				
+					});						
 
 				}
 			});
