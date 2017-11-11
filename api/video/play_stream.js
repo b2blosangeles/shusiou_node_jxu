@@ -26,7 +26,8 @@ var mnt_folder = '/var/shusiou-video/',
 
 var folderP = require(env.site_path + '/api/inc/folderP/folderP');
 var fp = new folderP(),
-    http = require('http');
+    http = require('http'),
+    request = require(env.root_path + '/package/request/node_modules/request');
 
 switch(type) {
 	case 'image':
@@ -44,7 +45,7 @@ switch(type) {
 
 		_f['V1'] = function(cbk) { 
 			var pull_hub_info = function(url, fn, cbk) {
-				pkg.request.post({
+				request.post({
 					url: url,
 					form:{ fn: fn }, 
 				}, function(error, response, body){
