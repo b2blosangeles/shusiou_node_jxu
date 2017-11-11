@@ -29,11 +29,15 @@ switch(type) {
 
 		var CP = new pkg.crowdProcess();
 		var _f = {};		
-		_f['S1'] = function(cbk) { 
+		_f['S0'] = function(cbk) { 
 			var fp = new folderP();
 			fp.build(folder_image, function() { cbk(true);});
 		};
 
+		_f['S1'] = function(cbk) { 
+			cbk(true);
+		};		
+		
 		_f['S2'] = function(cbk) {
 			pkg.fs.stat(fn, function(err, stat) {
 				if(!err) { cbk(fn);
