@@ -59,7 +59,7 @@ switch(type) {
 					});				
 				});		
 			}			
-			pkg.fs.readFile(info_fn,   'utf-8',  function(err, stat) {
+			pkg.fs.readFile(info_fn,   'utf-8',  function(err, data) {
 				if(err) { 
 					pull_hub_info('http://'+ server +'/api/video/hub_info.api', fn.replace(new RegExp('^'+mnt_folder,'i'),''), cbk);
 				} else {
