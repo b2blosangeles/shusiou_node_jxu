@@ -44,7 +44,7 @@ switch(type) {
 
 		_f['V1'] = function(cbk) { 
 			var pull_hub_info = function(url, fn, cbk) {
-				request.post({
+				pkg.request.post({
 					url: url,
 					form:{ fn: fn }, 
 				}, function(error, response, body){
