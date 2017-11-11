@@ -33,7 +33,7 @@ switch(type) {
 		var w = req.query['w'], s = req.query['s'];
 		if (!s || ['90', '180', '480', 'FULL'].indexOf(w) === -1) { write404('wrong s or w'); return true; }
 		var fn = folder_image + w + '_' + s + '.png',
-		info_fn = info_fd +req.query['w']+'_'+req.query['s']+'.json';
+		info_fn = info_image + req.query['w']+'_'+req.query['s']+'.json';
 
 		var CP = new pkg.crowdProcess();
 		var _f = {};		
