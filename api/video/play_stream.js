@@ -60,7 +60,7 @@ switch(type) {
 			}			
 			pkg.fs.stat(info_fn,   'utf-8',  function(err, stat) {
 				if(err) { 
-					cbk('http://'+req.query['host']+'/api/video/hub_info.api');
+					cbk('http://'+ server +'/api/video/hub_info.api');
 				} else {
 					var v = {};
 					try { v = JSON.parse(data); } catch(e) { }
