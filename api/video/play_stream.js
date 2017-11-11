@@ -43,7 +43,12 @@ switch(type) {
 		};
 
 		_f['V1'] = function(cbk) { 
-			cbk(fn);
+			pkg.fs.stat(fn, function(err, stat) {
+				if(!err) { cbk(err.messagr);
+				} else {
+					cbk(info_fn);
+				}
+			});	
 		};		
 		
 		_f['S2'] = function(cbk) {
