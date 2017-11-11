@@ -35,7 +35,7 @@ switch(type) {
 		};
 
 		_f['V1'] = function(cbk) { 
-			cbk(true);
+			cbk(fn);
 		};		
 		
 		_f['S2'] = function(cbk) {
