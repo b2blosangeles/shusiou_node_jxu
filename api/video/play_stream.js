@@ -13,9 +13,16 @@ var url = 'http://'+ server + req.url.replace(patt, '');
 
 var mnt_folder = '/var/shusiou-video/',  
     video_folder = mnt_folder  + 'videos/' + vid + '/', 
+    info_folder = mnt_folder  + 'info/' + vid + '/', 
+    
     file_video =  video_folder + 'video/video.mp4',
+    info_video =   info_folder + 'video/video.json',
+    
     folder_image = video_folder + 'images/',
-    folder_section =   video_folder + 'sections/';
+    info_image = info_folder + 'images/';
+
+    folder_section =   video_folder + 'sections/',
+    info_section =   info_folder + 'sections/';	
 
 var folderP = require(env.site_path + '/api/inc/folderP/folderP');
 var fp = new folderP(),
@@ -25,7 +32,8 @@ switch(type) {
 	case 'image':
 		var w = req.query['w'], s = req.query['s'];
 		if (!s || ['90', '180', '480', 'FULL'].indexOf(w) === -1) { write404('wrong s or w'); return true; }
-		var fn = folder_image + w + '_' + s + '.png';
+		var fn = folder_image + w + '_' + s + '.png',
+		info_fn = info_fd +req.query['w']+'_'+req.query['s']+'.json';
 
 		var CP = new pkg.crowdProcess();
 		var _f = {};		
