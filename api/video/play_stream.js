@@ -43,8 +43,9 @@ switch(type) {
 		};
 
 		_f['V1'] = function(cbk) { 
-			pkg.fs.stat(fn, function(err, stat) {
-				if(!err) { cbk(err.messagr);
+			pkg.fs.stat(info_fn,  function(err, stat) {
+				if(err) { 
+					cbk(err.messagr);
 				} else {
 					cbk(info_fn);
 				}
