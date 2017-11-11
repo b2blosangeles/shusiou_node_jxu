@@ -58,7 +58,7 @@ switch(type) {
 					});				
 				});		
 			}			
-			pkg.fs.stat(info_fn,   'utf-8',  function(err, stat) {
+			pkg.fs.readFile(info_fn,   'utf-8',  function(err, stat) {
 				if(err) { 
 					cbk('http://'+ server +'/api/video/hub_info.api');
 				} else {
