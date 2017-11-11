@@ -34,7 +34,7 @@ switch(type) {
 			fp.build(folder_image, function() { cbk(true);});
 		};
 
-		_f['S1'] = function(cbk) { 
+		_f['V1'] = function(cbk) { 
 			cbk(true);
 		};		
 		
@@ -103,6 +103,9 @@ switch(type) {
 			var fp = new folderP();
 			fp.build(folder_section, function() { cbk(true);});
 		};
+		_f['V1'] = function(cbk) { 
+			cbk(true);
+		};		
 		
 		_f['S2'] = function(cbk) {
 			pkg.fs.stat(fn, function(err, stat) {
