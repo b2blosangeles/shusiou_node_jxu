@@ -65,6 +65,7 @@ switch(type) {
 				} else {
 					var v = {};
 					try { v = JSON.parse(data); } catch(e) { }
+					v.cache = 1;
 					cbk(v);
 				}
 			});	
