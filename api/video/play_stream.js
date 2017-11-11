@@ -51,8 +51,8 @@ switch(type) {
 				}, function(error, response, body){
 					var v = {};
 					try { v = JSON.parse(body); } catch(e) { }
-					fp.build(info_fd, function() {
-						pkg.fs.writeFile( video_folder, JSON.stringify(v), function (err) {
+					fp.build(info_image, function() {
+						pkg.fs.writeFile( info_fn, JSON.stringify(v), function (err) {
 							if (err) cbk({status:'error'});
 							else cbk(v);
 						});
