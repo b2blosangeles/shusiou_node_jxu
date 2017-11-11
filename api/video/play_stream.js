@@ -43,10 +43,10 @@ switch(type) {
 		};
 
 		_f['V1'] = function(cbk) { 
-			var pull_hub_info = function() {
+			var pull_hub_info = function(url, fn, cbk) {
 				request.post({
-					url: 'http://'+req.query['host']+'/api/video/hub_info.api',
-					form:{ fn: fn.replace(new RegExp('^'+mnt_folder,'i'),'') }, 
+					url: url,
+					form:{ fn: fn }, 
 				}, function(error, response, body){
 					var v = {};
 					try { v = JSON.parse(body); } catch(e) { }
@@ -60,7 +60,7 @@ switch(type) {
 			}			
 			pkg.fs.readFile(info_fn,   'utf-8',  function(err, stat) {
 				if(err) { 
-					cbk('http://'+ server +'/api/video/hub_info.api');
+					pull_hub_info('http://'+ server +'/api/video/hub_info.api', fn.replace(new RegExp('^'+mnt_folder,'i'),''), cbk);
 				} else {
 					var v = {};
 					try { v = JSON.parse(data); } catch(e) { }
