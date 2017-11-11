@@ -43,11 +43,28 @@ switch(type) {
 		};
 
 		_f['V1'] = function(cbk) { 
-			pkg.fs.stat(info_fn,  function(err, stat) {
+			var pull_hub_info = function() {
+				request.post({
+					url: 'http://'+req.query['host']+'/api/video/hub_info.api',
+					form:{ fn: fn.replace(new RegExp('^'+mnt_folder,'i'),'') }, 
+				}, function(error, response, body){
+					var v = {};
+					try { v = JSON.parse(body); } catch(e) { }
+					fp.build(info_fd, function() {
+						pkg.fs.writeFile(info_fn, JSON.stringify(v), function (err) {
+							if (err) cbk({status:'error'});
+							else cbk(v);
+						});
+					});				
+				});		
+			}			
+			pkg.fs.stat(info_fn,   'utf-8',  function(err, stat) {
 				if(err) { 
-					cbk(err.message + '--' + info_fn);
+					cbk('http://'+req.query['host']+'/api/video/hub_info.api');
 				} else {
-					cbk(info_fn);
+					var v = {};
+					try { v = JSON.parse(data); } catch(e) { }
+					cbk(v);
 				}
 			});	
 		};		
