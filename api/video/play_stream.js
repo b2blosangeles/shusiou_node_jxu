@@ -80,7 +80,9 @@ switch(type) {
 		
 		_f['S2'] = function(cbk) {
 			pkg.fs.stat(fn, function(err, stat) {
-				if(!err) { cbk(fn);
+				if(!err) { 
+					cbk(stat.size);
+					// cbk(fn);
 				} else {
 					var request = http.get(url, function(response) {
 						if (response.statusCode == 404 || response.statusCode == 500) {
@@ -152,8 +154,8 @@ switch(type) {
 		_f['S2'] = function(cbk) {
 			pkg.fs.stat(fn, function(err, stat) {
 				if(!err) { 
-					cbk(stat.size);
-					// cbk(fn);
+				
+					cbk(fn);
 				} else {
 					var request = http.get(url + '&cache_only=1', function(response) {
 						if (response.statusCode == 404 || response.statusCode == 500) {
