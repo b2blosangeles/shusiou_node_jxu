@@ -81,17 +81,18 @@ switch(type) {
 		_f['S2'] = function(cbk) {
 			pkg.fs.stat(fn, function(err, stat) {
 				if(!err) { 
-					var dt = new Date().getTime() - new Date(stat.birthtime).getTime();
-					if (CP.data.V1.size == stat.size) cbk(dt);
-					else cbk(stat);
+					if (CP.data.V1.size == stat.size) cbk(fn); 
+					else {
+						var dt = new Date().getTime() - new Date(stat.birthtime).getTime();
+						if (dt > 60000) {
+						
+						}
+						cbk(false);
+					}
 				} else {
 					var request = http.get(url, function(response) {
 						if (response.statusCode == 404 || response.statusCode == 500) {
-							response.on('data', function(str) {
-								res.writeHead(404);
-								res.write('Stream does not exist or size too small::' + str);
-								res.end();				
-							});		
+							cbk(false);		
 						} else {
 							var file = pkg.fs.createWriteStream(fn);
 							response.pipe(file);
@@ -108,8 +109,10 @@ switch(type) {
 		CP.serial(
 			_f,
 			function(data) {
-				res.send(data);
-				return true;
+				if (!CP.data.S2) {
+					write404('timeout');
+					return true;
+				}
 				pkg.fs.stat(fn, function(err, data1) {
 					if (err) {  res.send(url); }
 					else {
