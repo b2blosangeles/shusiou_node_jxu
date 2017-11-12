@@ -81,7 +81,7 @@ switch(type) {
 		_f['S2'] = function(cbk) {
 			pkg.fs.stat(fn, function(err, stat) {
 				if(!err) { 
-					if (CP.data.V1.size == stat.size) cbk(fn);
+					if (CP.data.V1.size == stat.size) cbk(stat);
 					else cbk(stat);
 				} else {
 					var request = http.get(url, function(response) {
