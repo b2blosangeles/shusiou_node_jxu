@@ -110,11 +110,11 @@ switch(type) {
 			_f,
 			function(data) {
 				if (!CP.data.S2) {
-					write404('timeout');
+					res.send(url);
 					return true;
 				}
 				pkg.fs.stat(fn, function(err, data1) {
-					if (err) {  res.send(url); }
+					if (err) { res.send(url);  }
 					else {
 						res.writeHead(200); 
 						var file = pkg.fs.createReadStream(fn);
@@ -227,11 +227,11 @@ switch(type) {
 			_f,
 			function(data) {
 				if (!CP.data.S2) {
-					write404('timeout--');
+					res.send(url);
 					return true;
 				}				
 				pkg.fs.stat(fn, function(err, data1) {
-					if (err) {  write404(fn + ' does not exist'); }
+					if (err) { res.send(url); }
 					else {
 					      var total = data1.size;
 					      var range = req.headers.range;
