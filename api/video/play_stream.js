@@ -81,7 +81,7 @@ switch(type) {
 		_f['S2'] = function(cbk) {
 			pkg.fs.stat(fn, function(err, stat) {
 				if(!err) { 
-					var dt = new Data().getTime() - new Data(stat.birthtime).getTime();
+					var dt = new Date().getTime() - new Date(stat.birthtime).getTime();
 					if (CP.data.V1.size == stat.size) cbk(dt);
 					else cbk(stat);
 				} else {
