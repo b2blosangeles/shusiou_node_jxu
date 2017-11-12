@@ -137,10 +137,12 @@ switch(type) {
 			var l = req.query['l'], s = req.query['s'];
 			if (!s || !l) { write404('wrong s or l'); return true; }
 			var fn = folder_section + s + '_' + l + '.mp4';
-			info_fn = info_section + req.query['w']+'_'+req.query['s']+'.json';
+			var info_fn = info_section +  s + '_' + l +'.json';
+			var info_fd = info_section;
 		} else {
 			var fn = file_video;
 			var info_fn = info_video;
+			var info_fd = info_folder + 'video/';
 		}
 		var CP = new pkg.crowdProcess();
 		var _f = {};
@@ -167,7 +169,7 @@ switch(type) {
 						if ((v.status !='success' || ! v.size)) {
 							cbk({status:'failure', message:v.message}); CP.exit = 1;
 						} else {
-							fp.build(info_image, function() {
+							fp.build(info_fd, function() {
 								pkg.fs.writeFile( info_fn, JSON.stringify(v), function (err) {
 									if (err) cbk({status:'error'});
 									else cbk(v);
