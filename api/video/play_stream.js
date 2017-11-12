@@ -137,8 +137,10 @@ switch(type) {
 			var l = req.query['l'], s = req.query['s'];
 			if (!s || !l) { write404('wrong s or l'); return true; }
 			var fn = folder_section + s + '_' + l + '.mp4';
+			info_fn = info_section + req.query['w']+'_'+req.query['s']+'.json';
 		} else {
 			var fn = file_video;
+			var info_fn = info_video;
 		}
 		var CP = new pkg.crowdProcess();
 		var _f = {};
@@ -151,15 +153,53 @@ switch(type) {
 			var fp = new folderP();
 			fp.build(folder_section, function() { cbk(true);});
 		};
+
 		_f['V1'] = function(cbk) { 
-			cbk(true);
-		};		
+			var pull_hub_info = function(url, fn, cbk) {
+				request.post({
+					url: url,
+					form:{ fn: fn }, 
+				}, function(error, response, body){
+					if (error) {
+						cbk({status:'failure', message:error.message}); CP.exit = 1;
+					} else {	
+						var v = {}; try { v = JSON.parse(body); } catch(e) { }
+						if ((v.status !='success' || ! v.size)) {
+							cbk({status:'failure', message:v.message}); CP.exit = 1;
+						} else {
+							fp.build(info_image, function() {
+								pkg.fs.writeFile( info_fn, JSON.stringify(v), function (err) {
+									if (err) cbk({status:'error'});
+									else cbk(v);
+								});
+							});
+						}
+					}
+				});		
+			}			
+			pkg.fs.readFile(info_fn,   'utf-8',  function(err, data) {
+				if(err) { 
+					pull_hub_info('http://'+ server +'/api/video/hub_info.api', fn.replace(new RegExp('^'+mnt_folder,'i'),''), cbk);
+				} else {
+					var v = {};
+					try { v = JSON.parse(data); } catch(e) { }
+					v.cache = 1;
+					cbk(v);
+				}
+			});	
+		};	
 		
 		_f['S2'] = function(cbk) {
 			pkg.fs.stat(fn, function(err, stat) {
 				if(!err) { 
-				
-					cbk(fn);
+					if (CP.data.V1.size == stat.size) cbk(fn); 
+					else {
+						var dt = new Date().getTime() - new Date(stat.birthtime).getTime();
+						if (dt > 60000) {
+						
+						}
+						cbk(false);
+					}
 				} else {
 					var request = http.get(url + '&cache_only=1', function(response) {
 						if (response.statusCode == 404 || response.statusCode == 500) {
@@ -184,6 +224,10 @@ switch(type) {
 		CP.serial(
 			_f,
 			function(data) {
+				if (!CP.data.S2) {
+					write404('timeout');
+					return true;
+				}				
 				pkg.fs.stat(fn, function(err, data1) {
 					if (err) {  write404(fn + ' does not exist'); }
 					else {
