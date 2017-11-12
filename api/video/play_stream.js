@@ -82,7 +82,7 @@ switch(type) {
 			pkg.fs.stat(fn, function(err, stat) {
 				if(!err) { 
 					if (CP.data.V1.size == stat.size) cbk(fn);
-					else cbk(false);
+					else cbk(stat);
 				} else {
 					var request = http.get(url, function(response) {
 						if (response.statusCode == 404 || response.statusCode == 500) {
