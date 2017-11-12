@@ -110,11 +110,11 @@ switch(type) {
 			_f,
 			function(data) {
 				if (!CP.data.S2) {
-					res.send(url);
+					res.redirect(url);
 					return true;
 				}
 				pkg.fs.stat(fn, function(err, data1) {
-					if (err) { res.send(url);  }
+					if (err) { res.redirect(url);  }
 					else {
 						res.writeHead(200); 
 						var file = pkg.fs.createReadStream(fn);
@@ -227,11 +227,11 @@ switch(type) {
 			_f,
 			function(data) {
 				if (!CP.data.S2) {
-					res.send(url);
+					res.redirect(url);
 					return true;
 				}				
 				pkg.fs.stat(fn, function(err, data1) {
-					if (err) { res.send(url); }
+					if (err) { res.redirect(url); }
 					else {
 					      var total = data1.size;
 					      var range = req.headers.range;
