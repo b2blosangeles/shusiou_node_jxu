@@ -49,14 +49,18 @@ switch(type) {
 					url: 'ggg'+url+'asdasd',
 					form:{ fn: fn }, 
 				}, function(error, response, body){
-					var v = {};
-					try { v = JSON.parse(body); } catch(e) { }
-					fp.build(info_image, function() {
-						pkg.fs.writeFile( info_fn, JSON.stringify(v), function (err) {
-							if (err) cbk({status:'error'});
-							else cbk(v);
-						});
-					});				
+					if (error) {
+						cbk(error.message); CP.exit = 1;
+					} else {	
+						var v = {};
+						try { v = JSON.parse(body); } catch(e) { }
+						fp.build(info_image, function() {
+							pkg.fs.writeFile( info_fn, JSON.stringify(v), function (err) {
+								if (err) cbk({status:'error'});
+								else cbk(v);
+							});
+						});	
+					}
 				});		
 			}			
 			pkg.fs.readFile(info_fn,   'utf-8',  function(err, data) {
