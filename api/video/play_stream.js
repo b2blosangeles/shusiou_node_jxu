@@ -205,11 +205,7 @@ switch(type) {
 				} else {
 					var request = http.get(url + '&cache_only=1', function(response) {
 						if (response.statusCode == 404 || response.statusCode == 500) {
-							response.on('data', function(str) {
-								res.writeHead(404);
-								res.write('Stream does not exist or size too small::' + str);
-								res.end();				
-							});		
+							cbk(false);		
 						} else {
 							var file = pkg.fs.createWriteStream(fn);
 							response.pipe(file);
