@@ -81,8 +81,8 @@ switch(type) {
 		_f['S2'] = function(cbk) {
 			pkg.fs.stat(fn, function(err, stat) {
 				if(!err) { 
-					cbk(stat.size);
-					// cbk(fn);
+					if (CP.data.V1.size == stat.size) cbk(fn);
+					else cbk(false);
 				} else {
 					var request = http.get(url, function(response) {
 						if (response.statusCode == 404 || response.statusCode == 500) {
