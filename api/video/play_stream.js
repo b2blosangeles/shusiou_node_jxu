@@ -90,7 +90,7 @@ switch(type) {
 						cbk(false);
 					}
 				} else {
-					var request = http.get(url, function(response) {
+					var request = http.get(url + '&cache_only=1&ip='+req.headers.host, function(response) {
 						if (response.statusCode == 404 || response.statusCode == 500) {
 							cbk(false);		
 						} else {
@@ -203,7 +203,7 @@ switch(type) {
 						cbk(false);
 					}
 				} else {
-					var request = http.get(url + '&cache_only=1', function(response) {
+					var request = http.get(url + '&cache_only=1&ip='+req.headers.host, function(response) {
 						if (response.statusCode == 404 || response.statusCode == 500) {
 							cbk(false);		
 						} else {
