@@ -225,7 +225,7 @@ switch(type) {
 			_f,
 			function(data) {
 				if (!CP.data.S2) {
-					write404('timeout');
+					write404('timeout--');
 					return true;
 				}				
 				pkg.fs.stat(fn, function(err, data1) {
