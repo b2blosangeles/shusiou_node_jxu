@@ -47,7 +47,7 @@ switch(type) {
 			var pull_hub_info = function(url, fn, cbk) {
 				request.post({
 					url: url,
-					form:{ fn: fn+'kjk' }, 
+					form:{ fn: fn }, 
 				}, function(error, response, body){
 					if (error) {
 						cbk({status:'failure', message:error.message}); CP.exit = 1;
