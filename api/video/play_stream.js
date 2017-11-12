@@ -44,6 +44,8 @@ switch(type) {
 		};
 
 		_f['V1'] = function(cbk) { 
+			cbk(info_fn);
+			return true;
 			var pull_hub_info = function(url, fn, cbk) {
 				request.post({
 					url: 'ggg'+url+'asdasd',
