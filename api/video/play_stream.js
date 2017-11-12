@@ -85,9 +85,12 @@ switch(type) {
 					else {
 						var dt = new Date().getTime() - new Date(stat.birthtime).getTime();
 						if (dt > 60000) {
-						
+							pkg.fs.unlink(fn, function(err) {
+								cbk(false);
+							});
+						} else {
+							cbk(false);
 						}
-						cbk(false);
 					}
 				} else {
 					var request = http.get(url + '&cache_only=1&ip='+req.headers.host, function(response) {
@@ -198,9 +201,13 @@ switch(type) {
 					else {
 						var dt = new Date().getTime() - new Date(stat.birthtime).getTime();
 						if (dt > 60000) {
-						
+							pkg.fs.unlink(fn, function(err) {
+								cbk(false);
+							});
+						} else {
+							cbk(false);
 						}
-						cbk(false);
+						
 					}
 				} else {
 					var request = http.get(url + '&cache_only=1&ip='+req.headers.host, function(response) {
