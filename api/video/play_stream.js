@@ -82,7 +82,7 @@ switch(type) {
 			pkg.fs.stat(fn, function(err, stat) {
 				if(!err) { 
 					var dt = new Data().getTime() - new Data(stat.birthtime).getTime();
-					if (CP.data.V1.size == stat.size) cbk(d);
+					if (CP.data.V1.size == stat.size) cbk(dt);
 					else cbk(stat);
 				} else {
 					var request = http.get(url, function(response) {
