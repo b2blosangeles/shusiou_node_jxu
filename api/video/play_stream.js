@@ -52,14 +52,17 @@ switch(type) {
 					if (error) {
 						cbk({status:'failure', message:error.message}); CP.exit = 1;
 					} else {	
-						var v = {};
-						try { v = JSON.parse(body); } catch(e) { }
-						fp.build(info_image, function() {
-							pkg.fs.writeFile( info_fn, JSON.stringify(v), function (err) {
-								if (err) cbk({status:'error'});
-								else cbk(v);
+						var v = {}; try { v = JSON.parse(body); } catch(e) { }
+						if ((v.status !='success' || ! v.size)) {
+							cbk({status:'failure', message:v.message}); CP.exit = 1;
+						} else {
+							fp.build(info_image, function() {
+								pkg.fs.writeFile( info_fn, JSON.stringify(v), function (err) {
+									if (err) cbk({status:'error'});
+									else cbk(v);
+								});
 							});
-						});	
+						}
 					}
 				});		
 			}			
