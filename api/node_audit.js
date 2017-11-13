@@ -78,6 +78,8 @@ switch(opt) {
 					remove_cmd += ' ' + need_remove[j] + '  ';
 				}
 				if (need_remove.length) {
+					console.log('remove_cmd===>');
+					console.log(remove_cmd);
 					var ls = childProcess.exec(remove_cmd, 		   
 						function (error, stdout, stderr) {
 							res.send({node_list:f_size});
