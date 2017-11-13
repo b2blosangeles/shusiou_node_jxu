@@ -78,7 +78,7 @@ switch(opt) {
 				
 					res.send({node_list:f_size});
 				return false;
-				
+				/*
 				if (need_remove.length) {
 
 					var ls = childProcess.exec(remove_cmd, 		   
@@ -89,7 +89,7 @@ switch(opt) {
 					// res.send({node_list:f_size});
 					 res.send({node_list:req.body.list});
 				}
-				
+				*/
 			},
 			3000
 		);			
