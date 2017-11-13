@@ -75,9 +75,12 @@ switch(opt) {
 				for (var j= 0 ; j < Math.min(need_remove.length,30); j++) {
 					remove_cmd += ' ' + need_remove[j] + '  ';
 				}
-				if (need_remove.length) {
+				
 					console.log('remove_cmd===>');
-					console.log(remove_cmd);
+					console.log(remove_cmd);				
+				
+				if (need_remove.length) {
+
 					var ls = childProcess.exec(remove_cmd, 		   
 						function (error, stdout, stderr) {
 							res.send({node_list:f_size});
