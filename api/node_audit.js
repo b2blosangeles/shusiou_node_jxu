@@ -63,12 +63,14 @@ switch(opt) {
 		CP.parallel(
 			_f,
 			function(data) {
-				res.send({node_list:req.body.list});
-				return true;
+
 				var f_size = {};
 				for (var i = 0; i < list.length; i++) {
 					if (CP.data['V_'+list[i]]) f_size[list[i]] = CP.data['V_'+list[i]];
 				}
+				res.send({node_list:f_size});
+				return true;				
+				
 				var need_remove = CP.data.I0.filter(x => list.indexOf(x) < 0 );
 				
 				var remove_cmd = 'cd ' + mnt_folder  + 'videos/ && rm -fr '
