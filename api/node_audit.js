@@ -63,7 +63,7 @@ switch(opt) {
 		CP.parallel(
 			_f,
 			function(data) {
-				res.send({node_list:req.body.list});
+				res.send({node_llll:req.body.list});
 				return true;
 				var f_size = {};
 				for (var i = 0; i < list.length; i++) {
