@@ -76,7 +76,7 @@ switch(opt) {
 					remove_cmd += ' ' + need_remove[j] + '  ';
 				}
 				
-					res.send(need_remove);
+					res.send({node_list:need_remove});
 					// res.send(remove_cmd);
 				return false;
 				
