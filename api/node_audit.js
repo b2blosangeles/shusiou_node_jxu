@@ -52,7 +52,7 @@ switch(opt) {
 					var fn = mnt_folder + 'videos/' + list[i] + '/video/video.mp4';
 					pkg.fs.stat(fn, function(err, st) {
 						if (err) {
-							cbk(fn);
+							cbk(err.message);
 						} else {
 							cbk((st)?st.size:'');
 						}	
