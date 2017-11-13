@@ -79,7 +79,8 @@ switch(opt) {
 							res.send({node_list:f_size});
 						});
 				} else {
-					res.send({node_list:f_size});
+					// res.send({node_list:f_size});
+					 res.send({node_list:req.body.list});
 				}
 				
 			},
