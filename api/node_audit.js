@@ -67,9 +67,7 @@ switch(opt) {
 				var f_size = {};
 				for (var i = 0; i < list.length; i++) {
 					if (CP.data['V_'+list[i]]) f_size[list[i]] = CP.data['V_'+list[i]];
-				}
-				res.send({node_list:f_size});
-				return true;				
+				}			
 				
 				var need_remove = CP.data.I0.filter(x => list.indexOf(x) < 0 );
 				
