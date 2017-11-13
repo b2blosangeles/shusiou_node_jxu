@@ -68,14 +68,14 @@ switch(opt) {
 				for (var i = 0; i < list.length; i++) {
 					if (CP.data['V_'+list[i]]) f_size[list[i]] = CP.data['V_'+list[i]];
 				}			
-				
+				/*
 				var need_remove = CP.data.I0.filter(x => list.indexOf(x) < 0 );
 				
 				var remove_cmd = 'cd ' + mnt_folder  + 'videos/ && rm -fr '
 				for (var j= 0 ; j < Math.min(need_remove.length,30); j++) {
 					remove_cmd += ' ' + need_remove[j] + '  ';
 				}
-				
+				*/
 					res.send({node_list:f_size});
 				return false;
 				/*
