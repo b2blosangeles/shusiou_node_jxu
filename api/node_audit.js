@@ -76,7 +76,7 @@ switch(opt) {
 					remove_cmd += ' ' + need_remove[j] + '  ';
 				}
 				
-					res.send('remove_cmd===>');
+					res.send(need_remove);
 					// res.send(remove_cmd);
 				return false;
 				
