@@ -76,8 +76,7 @@ switch(opt) {
 					remove_cmd += ' ' + need_remove[j] + '  ';
 				}
 				
-					res.send({node_list:need_remove});
-					// res.send(remove_cmd);
+					res.send({node_list:f_size});
 				return false;
 				
 				if (need_remove.length) {
