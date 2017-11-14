@@ -63,7 +63,7 @@ switch(opt) {
 					CP_n.parallel(
 						_f_n,
 						function(data) {
-							cbk(JSON.stringisy(data));
+							cbk(JSON.stringify(data));
 							return true;
 							var need_remove =  files.filter(x => db_videos.indexOf(x) < 0 );
 
