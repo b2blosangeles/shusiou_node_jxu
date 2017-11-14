@@ -47,7 +47,7 @@ switch(opt) {
 		};
 		
 		for (var o in list) {
-			_f['V_'+ o] (function(o) {
+			_f['V_'+ o] = (function(o) {
 				return function(cbk) {
 					var fn = mnt_folder + 'videos/' + o + '/video/video.mp4';
 					pkg.fs.stat(fn, function(err, st) {
