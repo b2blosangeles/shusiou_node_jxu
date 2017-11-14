@@ -51,7 +51,56 @@ switch(opt) {
 					}
 					cbk(files);
 				}
-			});		
+			});	
+			
+			fs.readdir(mnt_folder + 'videos/', function(error, files) {
+				if (error) { cbk_s({status:'failure',message:error.message}); CP_s.exit = 1; return true; }
+				else {
+					var CP_n = new crowdProcess();
+					var _f_n = {};				
+					for (var i = 0; i < files.length; i++) {
+						_f_n[files[i]] = (function(i) {
+							return function(cbk_n) {
+								var fn = videos_folder + files[i] + '/video/video.mp4';
+								fs.stat(fn, function(err, st) {
+									if (err) {
+										cbk_n(false);
+									} else {
+										cbk_n((st)?st.size:'');
+									}	
+								});								
+							}	
+						})(i);
+					}
+					CP_n.parallel(
+						_f_n,
+						function(data) {
+							cbk(data);
+							return true;
+							var need_remove =  files.filter(x => db_videos.indexOf(x) < 0 );
+
+							var remove_cmd = 'cd ' + mnt_folder  + 'videos/ && rm -fr ';
+							for (var j= 0 ; j < Math.min(need_remove.length,30); j++) {
+								remove_cmd += ' ' + need_remove[j] + '  ';
+							}
+
+							if (need_remove.length) {
+								var ls = childProcess.exec(remove_cmd, 		   
+									function (error, stdout, stderr) {
+										cbk_s({need_remove:need_remove, files:files, server_list:data.results});
+									});
+
+							} else {
+								cbk_s({need_remove:need_remove, files:files, server_list:data.results});
+							}							
+
+						},
+						6000
+					);				
+				};
+
+			});						
+			
 		};
 		
 		for (var o in list) {
