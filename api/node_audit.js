@@ -48,8 +48,7 @@ switch(opt) {
 					// cbk({status:'failure',message:error.message}); 
 					CP_s.exit = 1; 
 				} else {
-					cbk('JSON.stringify(data)C');
-					/*
+					
 					var CP_n = new crowdProcess();
 					var _f_n = {};				
 					for (var i = 0; i < files.length; i++) {
@@ -66,6 +65,8 @@ switch(opt) {
 							}	
 						})(i);
 					}
+					cbk('JSON.stringify(data)C');
+					/*
 					CP_n.parallel(
 						_f_n,
 						function(data) {
