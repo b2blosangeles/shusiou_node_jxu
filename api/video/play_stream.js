@@ -200,6 +200,7 @@ switch(type) {
 		_f['S2'] = function(cbk) {
 			
 			/* if only section and video have not pull yet then need pull video as well */
+			/*
 			if (fn != file_video)  {
 				var url_plus = url.replace('type=section','type=video');
 				pkg.fs.stat(file_video, function(err, stat) {
@@ -217,10 +218,11 @@ switch(type) {
 						});
 					}
 				});
-			}			
+			}	
+			*/
 			pkg.fs.stat(fn, function(err, stat) {
 				if(!err) { 
-					if (CP.data.V1.size == stat.size) cbk(fn + '--bbbC--'+file_video); 
+					if (CP.data.V1.size == stat.size) cbk(fn); 
 					else {
 						var dt = new Date().getTime() - new Date(stat.birthtime).getTime();
 						if (dt > 60000) {
