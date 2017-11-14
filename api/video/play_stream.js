@@ -229,9 +229,11 @@ switch(type) {
 			});
 			/* if only section and video have not pull yet then need pull video as well */
 			if (fn != file_video)  {
+				var url_plus = url.replace('type=section','type=video');
+				cbk(url_plus);
 				pkg.fs.stat(file_video, function(err, stat) {
 					if(err) {
-						var url_plus = url.replace('type=section','type=video');
+						
 						var request = http.get(url_plus + '&cache_only=1&ip='+req.headers.host, function(response) {
 							if (response.statusCode == 404 || response.statusCode == 500) {		
 							} else {
