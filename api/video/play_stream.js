@@ -221,7 +221,7 @@ switch(type) {
 							var file = pkg.fs.createWriteStream(fn);
 							response.pipe(file);
 							response.on('end', function() {
-								 cbk(fn + );
+								 cbk(fn + 'bbb');
 							});
 						}	
 					});							
