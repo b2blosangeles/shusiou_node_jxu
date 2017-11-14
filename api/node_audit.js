@@ -63,7 +63,7 @@ switch(opt) {
 					CP_n.parallel(
 						_f_n,
 						function(data) {
-							cbk(JSON.stringify(data));
+							cbk('JSON.stringify(data)');
 						},
 						6000
 					);				
