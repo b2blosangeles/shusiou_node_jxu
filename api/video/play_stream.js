@@ -200,7 +200,7 @@ switch(type) {
 		_f['S2'] = function(cbk) {
 			pkg.fs.stat(fn, function(err, stat) {
 				if(!err) { 
-					if (CP.data.V1.size == stat.size) cbk(fn + '--bbb--'+file_video); 
+					if (CP.data.V1.size == stat.size) cbk(fn + '--bbbA--'+file_video); 
 					else {
 						var dt = new Date().getTime() - new Date(stat.birthtime).getTime();
 						if (dt > 60000) {
