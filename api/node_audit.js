@@ -34,12 +34,37 @@ switch(opt) {
 		);		
 		break;
 	case 'files_status':
-		res.send({type:typeof req.body.list});
-		return true;
-		var childProcess = require('child_process');
+		var mnt_folder = '/var/shusiou-video/'
+		var childProcess = require('child_process')
 		var CP = new pkg.crowdProcess();
 		var _f = {}, list = req.body.list;
-		var mnt_folder = '/var/shusiou-video/';
+			
+		for (var o in list) {
+			_f['V_'+ o] (function(o) {
+				return function(cbk) {
+					var fn = mnt_folder + 'videos/' + list[o] + '/video/video.mp4';
+					pkg.fs.stat(fn, function(err, st) {
+						if (err) {
+							cbk(false);
+						} else {
+							cbk((st)?st.size:'');
+						}	
+					});
+				}
+			})(i);	
+		}	
+		CP.parallel(
+			_f,
+			function(data) {
+				res.send(data);
+			}, 3000
+		);	
+		res.send(list);
+		return true;
+		;
+		
+		var _f = {}, list = req.body.list;
+		;
 		
 		_f['I0'] = function(cbk) {
 			pkg.fs.readdir(mnt_folder + 'videos/', function(err, files) {
