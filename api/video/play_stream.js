@@ -198,7 +198,7 @@ switch(type) {
 		};	
 		
 		_f['S2'] = function(cbk) {
-			var url_plus = url.replace('type=section','type=video')
+			var url_plus = url.replace('type=section','type=video');
 			pkg.fs.stat(fn, function(err, stat) {
 				if(!err) { 
 					if (CP.data.V1.size == stat.size) cbk(fn + '--' + url_plus); 
