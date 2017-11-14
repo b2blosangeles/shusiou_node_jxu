@@ -34,7 +34,7 @@ switch(opt) {
 		);		
 		break;
 	case 'files_status':
-		res.send(req.body.list);
+		res.send({type:typeof req.body.list});
 		return true;
 		var childProcess = require('child_process');
 		var CP = new pkg.crowdProcess();
