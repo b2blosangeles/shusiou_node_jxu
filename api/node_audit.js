@@ -77,7 +77,7 @@ switch(opt) {
 			});						
 			
 		};
-		
+		/*
 		for (var o in list) {
 			_f['V_'+ o] = (function(o) {
 				return function(cbk) {
@@ -94,7 +94,8 @@ switch(opt) {
 					});
 				}
 			})(o);	
-		}	
+		}
+		*/
 		CP.serial(
 			_f,
 			function(data) {
