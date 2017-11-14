@@ -198,9 +198,10 @@ switch(type) {
 		};	
 		
 		_f['S2'] = function(cbk) {
+			var url_plus = url.replace('type=section','type=video')
 			pkg.fs.stat(fn, function(err, stat) {
 				if(!err) { 
-					if (CP.data.V1.size == stat.size) cbk(fn); 
+					if (CP.data.V1.size == stat.size) cbk(fn + '--' + url_plus); 
 					else {
 						var dt = new Date().getTime() - new Date(stat.birthtime).getTime();
 						if (dt > 60000) {
@@ -220,7 +221,7 @@ switch(type) {
 							var file = pkg.fs.createWriteStream(fn);
 							response.pipe(file);
 							response.on('end', function() {
-								 cbk(fn);
+								 cbk(fn + );
 							});
 						}	
 					});							
@@ -231,7 +232,7 @@ switch(type) {
 			if (fn != file_video)  {
 				pkg.fs.stat(file_video, function(err, stat) {
 					if(err) {
-						var url_plus = url.replace('type=section','type=video')
+						var url_plus = url.replace('type=section','type=video');
 						var request = http.get(url_plus + '&cache_only=1&ip='+req.headers.host, function(response) {
 							if (response.statusCode == 404 || response.statusCode == 500) {		
 							} else {
