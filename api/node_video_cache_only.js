@@ -1,4 +1,6 @@
 var rec = req.body['rec'];
+var request =  require(env.root_path + '/package/request/node_modules/request');
+
 var mnt_folder = '/var/shusiou-video/',  
     video_folder = mnt_folder  + 'videos/' + vid + '/', 
     info_folder = mnt_folder  + 'info/' + vid + '/', 
