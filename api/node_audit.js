@@ -43,7 +43,14 @@ switch(opt) {
 		_f['I0'] = function(cbk) {
 			pkg.fs.readdir(mnt_folder + 'videos/', function(err, files) {
 				if (err) cbk([]);
-				else cbk(files);
+				else {
+					for (var i = 0; i < files.length; i++) {
+						if (!list[files[i]]) {
+							need_removed[need_removed.length] = files[i];	
+						}
+					}
+					cbk(files);
+				}
 			});		
 		};
 		
