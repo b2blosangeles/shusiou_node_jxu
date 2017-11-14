@@ -48,6 +48,8 @@ switch(opt) {
 					// cbk({status:'failure',message:error.message}); 
 					CP_s.exit = 1; 
 				} else {
+					cbk('JSON.stringify(data)C');
+					/*
 					var CP_n = new crowdProcess();
 					var _f_n = {};				
 					for (var i = 0; i < files.length; i++) {
@@ -71,7 +73,8 @@ switch(opt) {
 							// cbk('JSON.stringify(data)');
 						},
 						6000
-					);				
+					);
+					*/
 				};
 
 			});						
