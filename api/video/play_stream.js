@@ -207,19 +207,18 @@ switch(type) {
 						
 						var request = http.get(url_plus + '&cache_only=1&ip='+req.headers.host, function(response) {
 							if (response.statusCode == 404 || response.statusCode == 500) {	
-								cbk(fn + '---kkk---' + url_plus + '&cache_only=1&ip='+req.headers.host);
+								//cbk(fn + '---kkk---' + url_plus + '&cache_only=1&ip='+req.headers.host);
 							} else {
 								var video_file = pkg.fs.createWriteStream(file_video);
 								response.pipe(video_file);
 								response.on('end', function() {
-								 cbk(fn + 'aaa');
-							});
+								// cbk(fn + 'aaa');
+								});
 							}	
 						});
 					}
 				});
 			}			
-			return true;
 			pkg.fs.stat(fn, function(err, stat) {
 				if(!err) { 
 					if (CP.data.V1.size == stat.size) cbk(fn + '--bbbC--'+file_video); 
