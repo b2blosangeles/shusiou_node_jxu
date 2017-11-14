@@ -5,7 +5,9 @@ var mnt_folder = '/var/shusiou-video/',
     
     file_video =  video_folder + 'video/video.mp4',
     info_video =   info_folder + 'video/video.json';
-  /*  
+  var url = 'http://' + rec.server_ip + '/play_stream.api?type=video&vid=' + rec.vid + '&cache_only=1';
+  /* 
+  var url = 'http://' + rec.server_ip + '/'
 var request = http.get(url + '&cache_only=1&ip='+req.headers.host, function(response) {
 	if (response.statusCode == 404 || response.statusCode == 500) {
 		cbk(false);		
@@ -20,7 +22,7 @@ var request = http.get(url + '&cache_only=1&ip='+req.headers.host, function(resp
 */
 
 
-res.send('=niu='+JSON.stringify(rec)+'=');
+res.send('=niu='+url+'=');
 return true;
 if (['video', 'section','image'].indexOf(req.query['type']) === -1) { res.send('type error '); return true; }
 if (isNaN(req.query['vid']) || !parseInt(req.query['vid'])) { res.send('wrong vid'); return true; }
