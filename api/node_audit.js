@@ -111,7 +111,7 @@ switch(opt) {
 		CP.parallel(
 			_f,
 			function(data) {
-				res.send({data:data, cached_files:cached_files});
+				res.send(JSON.stringify({data:data, cached_files:cached_files}));
 			}, 3000
 		);	
 		return true;
