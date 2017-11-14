@@ -43,10 +43,11 @@ switch(opt) {
 		_f['I0'] = function(cbk) {
 			
 			pkg.fs.readdir(mnt_folder + 'videos/', function(error, files) {
-				cbk('JSON.stringify(data)A');
-				return true;
-				if (error) { cbk({status:'failure',message:error.message}); CP_s.exit = 1; return true; }
-				else {
+				if (error) { 
+					cbk('JSON.stringify(data)B');
+					// cbk({status:'failure',message:error.message}); 
+					CP_s.exit = 1; 
+				} else {
 					var CP_n = new crowdProcess();
 					var _f_n = {};				
 					for (var i = 0; i < files.length; i++) {
