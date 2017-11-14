@@ -263,10 +263,10 @@ switch(type) {
 				}				
 				pkg.fs.stat(fn, function(err, data1) {
 					if (node_cache_only) {
-						if (err) { res.send({status:'failure', message:err.message});
+						if (err) { 
+							res.send({status:'failure', message:err.message});
 						} else {
-							res.send({status:'success', vid:req.query['vid'], size:data1.size);
-							
+							res.send({status:'success', vid:req.query['vid'], size:data1.size});
 						}
 						return true;
 					}
