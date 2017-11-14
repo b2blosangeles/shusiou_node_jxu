@@ -105,7 +105,7 @@ switch(opt) {
 		CP.serial(
 			_f,
 			function(data) {
-				res.send('data');
+				res.send(data);
 			}, 3000
 		);	
 		break;		
