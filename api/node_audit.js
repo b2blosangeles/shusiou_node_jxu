@@ -48,10 +48,11 @@ switch(opt) {
 					// cbk({status:'failure',message:error.message}); 
 					CP_s.exit = 1; 
 				} else {
-					
+					cbk('JSON.stringify(data)D');
+					return true;
 					var CP_n = new crowdProcess();
 					var _f_n = {};	
-					cbk('JSON.stringify(data)D');
+					
 					/*
 					for (var i = 0; i < files.length; i++) {
 						_f_n[files[i]] = (function(i) {
