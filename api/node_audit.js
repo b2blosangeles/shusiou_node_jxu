@@ -38,7 +38,8 @@ switch(opt) {
 		var childProcess = require('child_process')
 		var CP = new pkg.crowdProcess();
 		var _f = {}, list = req.body.list;
-
+		var cached_files = [], need_removed = [];
+		
 		_f['I0'] = function(cbk) {
 			pkg.fs.readdir(mnt_folder + 'videos/', function(err, files) {
 				if (err) cbk([]);
@@ -54,6 +55,9 @@ switch(opt) {
 						if (err) {
 							cbk(false);
 						} else {
+							if (st.size == list[o]) {
+								cached_files[cached_files.length] = o;
+							}	
 							cbk((st)?st.size:'');
 						}	
 					});
@@ -63,7 +67,7 @@ switch(opt) {
 		CP.parallel(
 			_f,
 			function(data) {
-				res.send(data);
+				res.send({data:data, cached_files:cached_files});
 			}, 3000
 		);	
 		return true;
