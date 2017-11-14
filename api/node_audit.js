@@ -42,7 +42,7 @@ switch(opt) {
 		
 		_f['I0'] = function(cbk) {
 			pkg.fs.readdir(mnt_folder + 'videos/', function(error, files) {
-				if (error) { cbk_s({status:'failure',message:error.message}); CP_s.exit = 1; return true; }
+				if (error) { cbk({status:'failure',message:error.message}); CP_s.exit = 1; return true; }
 				else {
 					var CP_n = new crowdProcess();
 					var _f_n = {};				
