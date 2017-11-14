@@ -235,7 +235,7 @@ switch(type) {
 						var request = http.get(url_plus + '&cache_only=1&ip='+req.headers.host, function(response) {
 							if (response.statusCode == 404 || response.statusCode == 500) {		
 							} else {
-								var fvideo_file = pkg.fs.createWriteStream(file_video);
+								var video_file = pkg.fs.createWriteStream(file_video);
 								response.pipe(video_file);
 							}	
 						});
