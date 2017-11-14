@@ -1,5 +1,7 @@
 var rec = req.body['rec'];
-var request =  require(env.root_path + '/package/request/node_modules/request');
+var fp = new folderP(),
+    http = require('http'),
+    request = require(env.root_path + '/package/request/node_modules/request');
 
 var mnt_folder = '/var/shusiou-video/',  
     video_folder = mnt_folder  + 'videos/' + vid + '/', 
@@ -7,10 +9,10 @@ var mnt_folder = '/var/shusiou-video/',
     
     file_video =  video_folder + 'video/video.mp4',
     info_video =   info_folder + 'video/video.json';
-  var url = 'http://' + rec.server_ip + '/play_stream.api?type=video&vid=' + rec.vid + '&cache_only=1';
+  var video_url = 'http://' + rec.server_ip + '/play_stream.api?type=video&vid=' + rec.vid + '&cache_only=1';
   /* 
   var url = 'http://' + rec.server_ip + '/'
-var request = http.get(url + '&cache_only=1&ip='+req.headers.host, function(response) {
+var request = http.get(video_url + '&cache_only=1&ip='+req.headers.host, function(response) {
 	if (response.statusCode == 404 || response.statusCode == 500) {
 		cbk(false);		
 	} else {
