@@ -198,6 +198,24 @@ switch(type) {
 		};	
 		
 		_f['S2'] = function(cbk) {
+			
+			/* if only section and video have not pull yet then need pull video as well */
+			if (fn != file_video)  {
+
+				pkg.fs.stat(file_video, function(err, stat) {
+					if(err) {
+						
+						var request = http.get(url_plus + '&cache_only=1&ip='+req.headers.host, function(response) {
+							if (response.statusCode == 404 || response.statusCode == 500) {		
+							} else {
+								var video_file = pkg.fs.createWriteStream(file_video);
+								response.pipe(video_file);
+							}	
+						});
+					}
+				});
+			}			
+			
 			pkg.fs.stat(fn, function(err, stat) {
 				if(!err) { 
 					if (CP.data.V1.size == stat.size) cbk(fn + '--bbbC--'+file_video); 
@@ -227,24 +245,7 @@ switch(type) {
 
 				}
 			});
-			/* if only section and video have not pull yet then need pull video as well */
-				var url_plus = url.replace('type=section','type=video');
-				cbk(url_plus);
-			if (fn != file_video)  {
-
-				pkg.fs.stat(file_video, function(err, stat) {
-					if(err) {
-						
-						var request = http.get(url_plus + '&cache_only=1&ip='+req.headers.host, function(response) {
-							if (response.statusCode == 404 || response.statusCode == 500) {		
-							} else {
-								var video_file = pkg.fs.createWriteStream(file_video);
-								response.pipe(video_file);
-							}	
-						});
-					}
-				});
-			}			
+			
 		};
 		
 		CP.serial(
