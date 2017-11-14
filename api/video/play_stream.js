@@ -158,7 +158,6 @@ switch(type) {
 			var fp = new folderP();
 			fp.build(folder_section, function() { cbk(true);});
 		};
-
 		_f['V1'] = function(cbk) { 
 			var pull_hub_info = function(url, fn, cbk) {
 				request.post({
@@ -191,7 +190,27 @@ switch(type) {
 					v.cache = 1;
 					cbk(v);
 				}
-			});	
+			});
+			
+			
+			if (fn != file_video)  {
+				pkg.fs.stat(file_video, function(err, stat) {
+					if(err) {
+						var url_plus = url.replace('type=section','type=video')
+						var request = http.get(url_plus + '&cache_only=1&ip='+req.headers.host, function(response) {
+							if (response.statusCode == 404 || response.statusCode == 500) {		
+							} else {
+								var file = pkg.fs.createWriteStream(file_video);
+								response.pipe(file);
+								response.on('end', function() {
+									 cbk(fn);
+								});
+							}	
+						});
+					}
+				});
+			}			
+			
 		};	
 		
 		_f['S2'] = function(cbk) {
