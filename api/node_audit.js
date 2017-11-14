@@ -95,7 +95,7 @@ switch(opt) {
 				}
 			})(o);	
 		}	
-		CP.parallel(
+		CP.serial(
 			_f,
 			function(data) {
 				res.send(JSON.stringify({data:data, cached_files:cached_files}));
