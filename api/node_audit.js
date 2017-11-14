@@ -41,19 +41,7 @@ switch(opt) {
 		var cached_files = [], need_removed = [];
 		
 		_f['I0'] = function(cbk) {
-			pkg.fs.readdir(mnt_folder + 'videos/', function(err, files) {
-				if (err) cbk([]);
-				else {
-					for (var i = 0; i < files.length; i++) {
-						if (!list[files[i]]) {
-							need_removed[need_removed.length] = files[i];	
-						}
-					}
-					cbk(files);
-				}
-			});	
-			
-			fs.readdir(mnt_folder + 'videos/', function(error, files) {
+			pkg.fs.readdir(mnt_folder + 'videos/', function(error, files) {
 				if (error) { cbk_s({status:'failure',message:error.message}); CP_s.exit = 1; return true; }
 				else {
 					var CP_n = new crowdProcess();
@@ -62,7 +50,7 @@ switch(opt) {
 						_f_n[files[i]] = (function(i) {
 							return function(cbk_n) {
 								var fn = videos_folder + files[i] + '/video/video.mp4';
-								fs.stat(fn, function(err, st) {
+								pkg.fs.stat(fn, function(err, st) {
 									if (err) {
 										cbk_n(false);
 									} else {
