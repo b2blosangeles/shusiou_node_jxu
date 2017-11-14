@@ -11,6 +11,8 @@ if (!type || !vid || !server) {  write404('vid or type error '); return true; }
 
 var url = 'http://'+ server + req.url.replace(patt, '');
 
+var node_cache_only = (req.query['node_cache_only'])?true:false;
+    
 var mnt_folder = '/var/shusiou-video/',  
     video_folder = mnt_folder  + 'videos/' + vid + '/', 
     info_folder = mnt_folder  + 'info/' + vid + '/', 
@@ -260,8 +262,14 @@ switch(type) {
 					return true;
 				}				
 				pkg.fs.stat(fn, function(err, data1) {
+					if (node_cache_only) {
+						res.send('node_cache_only' + req.query['server']);
+						return true;
+					}
+					
 					if (err) { res.redirect(url); }
 					else {
+						
 					      var total = data1.size;
 					      var range = req.headers.range;
 					      if (range) {
