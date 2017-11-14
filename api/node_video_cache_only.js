@@ -1,4 +1,26 @@
-res.send('=niu='+req.body['vid']+'=');
+var rec = req.body['rec'];
+var mnt_folder = '/var/shusiou-video/',  
+    video_folder = mnt_folder  + 'videos/' + vid + '/', 
+    info_folder = mnt_folder  + 'info/' + vid + '/', 
+    
+    file_video =  video_folder + 'video/video.mp4',
+    info_video =   info_folder + 'video/video.json';
+  /*  
+var request = http.get(url + '&cache_only=1&ip='+req.headers.host, function(response) {
+	if (response.statusCode == 404 || response.statusCode == 500) {
+		cbk(false);		
+	} else {
+		var file = pkg.fs.createWriteStream(file_video);
+		response.pipe(file);
+		response.on('end', function() {
+			 cbk(file_video + 'Done');
+		});
+	}	
+});	
+*/
+
+
+res.send('=niu='+JSON.stringify(rec)+'=');
 return true;
 if (['video', 'section','image'].indexOf(req.query['type']) === -1) { res.send('type error '); return true; }
 if (isNaN(req.query['vid']) || !parseInt(req.query['vid'])) { res.send('wrong vid'); return true; }
