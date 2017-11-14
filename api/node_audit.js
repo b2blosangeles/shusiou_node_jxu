@@ -41,9 +41,10 @@ switch(opt) {
 		var cached_files = [], need_removed = [];
 		
 		_f['I0'] = function(cbk) {
-			cbk('JSON.stringify(data)');
-			return true;
+			
 			pkg.fs.readdir(mnt_folder + 'videos/', function(error, files) {
+				cbk('JSON.stringify(data)A');
+				return true;
 				if (error) { cbk({status:'failure',message:error.message}); CP_s.exit = 1; return true; }
 				else {
 					var CP_n = new crowdProcess();
