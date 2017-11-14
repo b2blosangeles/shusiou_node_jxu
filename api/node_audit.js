@@ -99,7 +99,7 @@ switch(opt) {
 		CP.serial(
 			_f,
 			function(data) {
-				res.send(JSON.stringify({data:data, cached_files:cached_files}));
+				res.send(data);
 			}, 3000
 		);	
 		return true;
