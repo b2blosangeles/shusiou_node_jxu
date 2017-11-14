@@ -1,4 +1,4 @@
-res.send('=niu='+req.query['vid']+'=');
+res.send('=niu='+req.body['vid']+'=');
 return true;
 if (['video', 'section','image'].indexOf(req.query['type']) === -1) { res.send('type error '); return true; }
 if (isNaN(req.query['vid']) || !parseInt(req.query['vid'])) { res.send('wrong vid'); return true; }
