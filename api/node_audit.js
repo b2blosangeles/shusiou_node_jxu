@@ -51,7 +51,7 @@ switch(opt) {
 						}	
 					});
 				}
-			})(i);	
+			})(o);	
 		}	
 		CP.parallel(
 			_f,
