@@ -48,12 +48,10 @@ switch(opt) {
 					// cbk({status:'failure',message:error.message}); 
 					CP_s.exit = 1; 
 				} else {
-					cbk('JSON.stringify(data)D');
-					return true;
-					var CP_n = new crowdProcess();
-					var _f_n = {};	
 					
-					/*
+					var CP_n = new pkg.crowdProcess();
+					var _f_n = {};	
+				
 					for (var i = 0; i < files.length; i++) {
 						_f_n[files[i]] = (function(i) {
 							return function(cbk_n) {
@@ -68,8 +66,8 @@ switch(opt) {
 							}	
 						})(i);
 					}
-					*/
-				//	cbk('JSON.stringify(data)C');
+					
+					cbk('JSON.stringify(data)C');
 					/*
 					CP_n.parallel(
 						_f_n,
