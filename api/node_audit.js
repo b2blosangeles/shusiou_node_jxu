@@ -39,7 +39,7 @@ switch(opt) {
 		var CP = new pkg.crowdProcess();
 		var _f = {}, list = req.body.list;
 		var cached_files = [], need_removed = [];
-		
+		/*
 		_f['I0'] = function(cbk) {
 			pkg.fs.readdir(mnt_folder + 'videos/', function(error, files) {
 				if (error) { cbk_s({status:'failure',message:error.message}); CP_s.exit = 1; return true; }
@@ -90,7 +90,7 @@ switch(opt) {
 			});						
 			
 		};
-		
+		*/
 		for (var o in list) {
 			_f['V_'+ o] = (function(o) {
 				return function(cbk) {
