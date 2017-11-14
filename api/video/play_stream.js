@@ -268,7 +268,7 @@ switch(type) {
 								'Accept-Ranges': 'bytes', 'Content-Length': chunksize, 'Content-Type': 'video/mp4' });
 						       file.pipe(res);
 						} else {
-							res.send('Need streaming player');
+							res.send('Need streaming player 2');
 						}
 					}
 				});
