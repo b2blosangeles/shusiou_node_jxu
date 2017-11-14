@@ -38,7 +38,14 @@ switch(opt) {
 		var childProcess = require('child_process')
 		var CP = new pkg.crowdProcess();
 		var _f = {}, list = req.body.list;
-			
+
+		_f['I0'] = function(cbk) {
+			pkg.fs.readdir(mnt_folder + 'videos/', function(err, files) {
+				if (err) cbk([]);
+				else cbk(files);
+			});		
+		};
+		
 		for (var o in list) {
 			_f['V_'+ o] (function(o) {
 				return function(cbk) {
@@ -59,68 +66,7 @@ switch(opt) {
 				res.send(data);
 			}, 3000
 		);	
-		res.send(list);
 		return true;
-		;
-		
-		var _f = {}, list = req.body.list;
-		;
-		
-		_f['I0'] = function(cbk) {
-			pkg.fs.readdir(mnt_folder + 'videos/', function(err, files) {
-				if (err) cbk([]);
-				else cbk(files);
-			});		
-		};
-
-		for (var i = 0; i < list.length; i++) {
-			_f['V_'+list[i]] = (function(i) {
-				return function(cbk) {
-					var fn = mnt_folder + 'videos/' + list[i] + '/video/video.mp4';
-					pkg.fs.stat(fn, function(err, st) {
-						if (err) {
-							cbk(false);
-						} else {
-							cbk((st)?st.size:'');
-						}	
-					});
-				}
-			})(i);
-		}
-		CP.parallel(
-			_f,
-			function(data) {
-
-				var f_size = {};
-				for (var i = 0; i < list.length; i++) {
-					// if (CP.data['V_'+list[i]]) 
-						f_size[list[i]] = CP.data['V_'+list[i]];
-				}			
-				/*
-				var need_remove = CP.data.I0.filter(x => list.indexOf(x) < 0 );
-				
-				var remove_cmd = 'cd ' + mnt_folder  + 'videos/ && rm -fr '
-				for (var j= 0 ; j < Math.min(need_remove.length,30); j++) {
-					remove_cmd += ' ' + need_remove[j] + '  ';
-				}
-				*/
-					res.send({node_list:f_size});
-				return false;
-				/*
-				if (need_remove.length) {
-
-					var ls = childProcess.exec(remove_cmd, 		   
-						function (error, stdout, stderr) {
-							res.send({node_list:f_size});
-						});
-				} else {
-					// res.send({node_list:f_size});
-					 res.send({node_list:req.body.list});
-				}
-				*/
-			},
-			3000
-		);			
 		break;		
 	default:
 		res.send({status:'error', message:'Wrong opt value!'});
