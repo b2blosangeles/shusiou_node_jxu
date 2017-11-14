@@ -201,7 +201,7 @@ switch(type) {
 			
 			/* if only section and video have not pull yet then need pull video as well */
 			if (fn != file_video)  {
-
+				var url_plus = url.replace('type=section','type=video');
 				pkg.fs.stat(file_video, function(err, stat) {
 					if(err) {
 						
