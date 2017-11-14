@@ -207,7 +207,7 @@ switch(type) {
 						
 						var request = http.get(url_plus + '&cache_only=1&ip='+req.headers.host, function(response) {
 							if (response.statusCode == 404 || response.statusCode == 500) {	
-								cbk(fn + 'kkk');
+								cbk(fn + '---kkk---' + url_plus + '&cache_only=1&ip='+req.headers.host);
 							} else {
 								var video_file = pkg.fs.createWriteStream(file_video);
 								response.pipe(video_file);
