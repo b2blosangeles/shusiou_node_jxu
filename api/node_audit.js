@@ -66,18 +66,14 @@ switch(opt) {
 							}	
 						})(i);
 					}
-					
-					cbk('JSON.stringify(data)C');
-					/*
+
 					CP_n.parallel(
 						_f_n,
 						function(data) {
-							cbk('JSON.stringify(data)C');
-							// cbk('JSON.stringify(data)');
+							cbk(data);
 						},
 						6000
 					);
-					*/
 				};
 
 			});						
