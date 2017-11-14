@@ -263,7 +263,7 @@ switch(type) {
 				}				
 				pkg.fs.stat(fn, function(err, data1) {
 					if (node_cache_only) {
-						res.send('node_cache_only' + req.query['server']);
+						res.send({vid:req.query['vid'], size:data1.size);
 						return true;
 					}
 					
