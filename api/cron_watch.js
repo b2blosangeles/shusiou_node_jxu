@@ -8,8 +8,12 @@ pkg.fs.readFile('/var/.qalet_cron_watch.data', 'utf8', function(err,data) {
       res.send('skip!');
     } else if ((watch.prev) && (watch.now)) {
       delete watch.start;
-      watch.prev = watch.now;
-      watch.now = new Date();
+      var prev = new Date(watch.prev).getTime(), now = new Date(watch.now).getTime(), d = now - prev;
+      if (d > 60000) {
+        res.send('need reboot');
+      } else {
+        res.send('normal');
+      }
       res.send(watch);
     } else {
       res.send('watch error!!');
