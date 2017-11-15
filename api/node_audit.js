@@ -66,7 +66,6 @@ switch(opt) {
 										} else {
 											var d_time =  new Date().getTime() - new Date(st.ctime).getTime();
 											if (d_time < 60000) {
-												uncached_files[uncached_files.length] =  files[i];
 												cbk(false);	
 											} else {
 												uncached_files[uncached_files.length] =  files[i];
@@ -87,6 +86,13 @@ switch(opt) {
 					_f,
 					function(data) {
 						var remove_cmd = 'cd ' + mnt_folder  + 'videos/ && rm -fr ';
+						
+						for (var o in list) {
+							if (cached_files.indexOf(o) == -1) {
+								uncached_files[uncached_files.length] = o;
+							}
+						}
+						
 						for (var j= 0 ; j < Math.min(need_remove.length,30); j++) {
 							remove_cmd += ' ' + need_remove[j] + '  ';
 						}
