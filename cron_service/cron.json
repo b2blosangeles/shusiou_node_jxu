@@ -1,5 +1,5 @@
 [
 	{"id":"_git_service","schedule":"11 * * * * *", "script":"git_service.js"},
-	{"id":"_cron_watch","schedule":"55 * * * * *", "script":"cron_watch.js"},
-	{"id":"_cron_whoami.js","schedule":"1 */3 * * * *", "script":"cron_whoami.js"}
+	{"id":"_cron_whoami.js","schedule":"1 */3 * * * *", "script":"cron_whoami.js"},
+	{"id":"_cron_watch","schedule":"55 * * * * *", "script":"cron_watch.js"}
 ]
