@@ -67,8 +67,8 @@ switch(opt) {
 							}	
 						})(i);
 					}
-					cbk('JSON(stringify(data))H');
-					return true;
+				//	cbk('JSON(stringify(data))H');
+				//	return true;
 					CP_n.parallel(
 						_f_n,
 						function(data) {
@@ -104,7 +104,7 @@ switch(opt) {
 			_f,
 			function(data) {
 				res.send(data);
-			}, 3000
+			}, 10000
 		);	
 		break;		
 	default:
