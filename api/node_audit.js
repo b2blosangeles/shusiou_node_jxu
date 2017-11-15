@@ -66,6 +66,7 @@ switch(opt) {
 										} else {
 											var d_time =  new Date().getTime() - new Date(st.ctime).getTime();
 											if (d_time < 60000) {
+												uncached_files[uncached_files.length] =  files[i];
 												cbk(false);	
 											} else {
 												uncached_files[uncached_files.length] =  files[i];
