@@ -73,7 +73,7 @@ switch(opt) {
 					})(i);
 				}
 
-				CP_n.parallel(
+				CP.parallel(
 					_f,
 					function(data) {
 						res.send({data:data.results,cached_files:cached_files,need_removed:need_removed});
