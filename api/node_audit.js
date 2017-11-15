@@ -74,7 +74,7 @@ switch(opt) {
 		CP_n.parallel(
 			_f,
 			function(data) {
-				res.send({data.results,cached_files:cached_files,need_removed:need_removed);
+				res.send({data:data.results,cached_files:cached_files,need_removed:need_removed);
 			},
 			6000
 		);						
