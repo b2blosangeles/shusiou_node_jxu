@@ -83,10 +83,10 @@ switch(opt) {
 						if (need_remove.length) {
 							var ls = childProcess.exec(remove_cmd, 		   
 								function (error, stdout, stderr) {
-									res.send({cached_files:cached_files,need_remove:need_remove});
+									res.send({statuc:'success',cached_files:cached_files});
 								});
 						} else {
-							res.send({cached_files:cached_files,need_remove:need_remove});
+							res.send({statuc:'success', cached_files:cached_files});
 						}						
 
 					},
