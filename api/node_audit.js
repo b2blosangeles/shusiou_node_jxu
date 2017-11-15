@@ -42,7 +42,7 @@ switch(opt) {
 		var childProcess = require('child_process')
 		var CP = new pkg.crowdProcess();
 		var _f = {}, list = req.body.list;
-		var cached_files = [], need_remove = [];
+		var cached_files = [], need_remove = [], uncached_files = [];
 		
 		if (!list || !Object.keys(list).length) {
 			res.send({status:'failure',message:'Missing list'}); return true; 
@@ -55,23 +55,28 @@ switch(opt) {
 						return function(cbk) {
 							var fn = mnt_folder + 'videos/' + files[i] + '/video/video.mp4';
 							pkg.fs.stat(fn, function(err, st) {
-								if (err) {
-									need_remove[need_remove.length] =  files[i];
-									cbk(false);
-								} else {
-									if ((st.size) && list[files[i]] == st.size) {
-										cached_files[cached_files.length] = files[i];
-										cbk(true);
+								if (list[files[i]]) {
+									if (err) {
+										uncached_files[uncached_files.length] =  files[i];
+										cbk(false);
 									} else {
-										var d_time =  new Date().getTime() - new Date(st.ctime).getTime();
-										if (d_time < 60000) {
-											cbk(false);	
+										if ((st.size) && list[files[i]] == st.size) {
+											cached_files[cached_files.length] = files[i];
+											cbk(true);
 										} else {
-											need_remove[need_remove.length] =  files[i];
-											cbk(false);
-										}
-									}	
-								}	
+											var d_time =  new Date().getTime() - new Date(st.ctime).getTime();
+											if (d_time < 60000) {
+												cbk(false);	
+											} else {
+												uncached_files[uncached_files.length] =  files[i];
+												cbk(false);
+											}
+										}	
+									}								
+								} else {
+									need_remove[need_remove.length] =  files[i];
+								}
+	
 							});								
 						}	
 					})(i);
