@@ -51,7 +51,9 @@ switch(opt) {
 					
 					var CP_n = new pkg.crowdProcess();
 					var _f_n = {};	
-				
+					
+					cbk('JSON(stringify(data))G');
+					
 					for (var i = 0; i < files.length; i++) {
 						_f_n[files[i]] = (function(i) {
 							return function(cbk_n) {
