@@ -38,7 +38,7 @@ switch(opt) {
 		var childProcess = require('child_process')
 		var CP = new pkg.crowdProcess();
 		var _f = {}, list = req.body.list;
-		var cached_files = [], need_removed = [];
+		var cached_files = [], need_remove = [];
 		
 		if (!list || !Object.keys(list).length) {
 			res.send({status:'failure',message:'Missing list'}); return true; 
@@ -52,7 +52,7 @@ switch(opt) {
 							var fn = mnt_folder + 'videos/' + files[i] + '/video/video.mp4';
 							pkg.fs.stat(fn, function(err, st) {
 								if (err) {
-									need_removed[need_removed.length] =  files[i];
+									need_remove[need_remove.length] =  files[i];
 									cbk(false);
 								} else {
 									if ((st.size) && list[files[i]] == st.size) {
@@ -63,7 +63,7 @@ switch(opt) {
 										if (d_time < 60000) {
 											cbk(false);	
 										} else {
-											need_removed[need_removed.length] =  files[i];
+											need_remove[need_remove.length] =  files[i];
 											cbk(false);
 										}
 									}	
@@ -76,7 +76,19 @@ switch(opt) {
 				CP.parallel(
 					_f,
 					function(data) {
-						res.send({data:data.results,cached_files:cached_files,need_removed:need_removed});
+						var remove_cmd = 'cd ' + mnt_folder  + 'videos/ && rm -fr ';
+						for (var j= 0 ; j < Math.min(need_remove.length,30); j++) {
+							remove_cmd += ' ' + need_remove[j] + '  ';
+						}
+						if (need_remove.length) {
+							var ls = childProcess.exec(remove_cmd, 		   
+								function (error, stdout, stderr) {
+									res.send({cached_files:cached_files,need_remove:need_remove});
+								});
+						} else {
+							res.send({cached_files:cached_files,need_remove:need_remove});
+						}						
+
 					},
 					6000
 				);
