@@ -58,8 +58,8 @@ switch(opt) {
 									if (err) {
 										cbk_n(false);
 									} else {
-										
-										cbk_n(st);
+										var d_time =  new Date() - new Date(st.ctime);
+										cbk_n(d_time);
 										// cbk_n((st)?st.size:'' );
 									}	
 								});								
