@@ -56,9 +56,11 @@ switch(opt) {
 					for (var i = 0; i < files.length; i++) {
 						_f_n[files[i]] = (function(i) {
 							return function(cbk_n) {
+								cbk_n('fn');
+								return true;
 								var fn = videos_folder + files[i] + '/video/video.mp4';
 								cbk_n(fn);
-								return true;
+								
 								pkg.fs.stat(fn, function(err, st) {
 									if (err) {
 										cbk_n(false);
