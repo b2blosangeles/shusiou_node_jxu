@@ -58,7 +58,8 @@ switch(opt) {
 									if (err) {
 										cbk_n(false);
 									} else {
-										cbk_n(st.size + '---' + files[i]);
+										
+										cbk_n(st);
 										// cbk_n((st)?st.size:'' );
 									}	
 								});								
