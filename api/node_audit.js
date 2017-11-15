@@ -52,8 +52,7 @@ switch(opt) {
 					var CP_n = new pkg.crowdProcess();
 					var _f_n = {};	
 					
-					cbk('JSON(stringify(data))G');
-					return true;
+					
 					for (var i = 0; i < files.length; i++) {
 						_f_n[files[i]] = (function(i) {
 							return function(cbk_n) {
@@ -68,7 +67,8 @@ switch(opt) {
 							}	
 						})(i);
 					}
-
+					cbk('JSON(stringify(data))H');
+					return true;
 					CP_n.parallel(
 						_f_n,
 						function(data) {
