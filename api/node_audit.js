@@ -67,8 +67,8 @@ switch(opt) {
 							}	
 						})(i);
 					}
-				//	cbk('JSON(stringify(data))H');
-				//	return true;
+					cbk(files);
+					return true;
 					CP_n.parallel(
 						_f_n,
 						function(data) {
