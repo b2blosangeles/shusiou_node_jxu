@@ -57,7 +57,7 @@ switch(opt) {
 							pkg.fs.stat(fn, function(err, st) {
 								if (list[files[i]]) {
 									if (err) {
-										uncached_files[uncached_files.length] =  files[i];
+										need_remove[need_remove.length] =  files[i];
 										cbk(false);
 									} else {
 										if ((st.size) && list[files[i]] == st.size) {
@@ -68,7 +68,7 @@ switch(opt) {
 											if (d_time < 60000) {
 												cbk(false);	
 											} else {
-												uncached_files[uncached_files.length] =  files[i];
+												need_remove[need_remove.length] =  files[i];
 												cbk(false);
 											}
 										}	
