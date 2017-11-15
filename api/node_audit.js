@@ -38,13 +38,10 @@ switch(opt) {
 		var childProcess = require('child_process')
 		var CP = new pkg.crowdProcess();
 		var _f = {}, list = req.body.list;
-		var cached_files = [], need_removed = [];
-		
-		var CP = new pkg.crowdProcess();
-		var _f = {};	
+		var cached_files = [], need_removed = [];	
 
-		fs.readdir(mnt_folder + 'videos/', function(error, files) {
-			if (error) { cbk_s({status:'failure',message:error.message}); CP_s.exit = 1; return true; }
+		pkg.fs.readdir(mnt_folder + 'videos/', function(error, files) {
+			if (error) { cbk({status:'failure',message:error.message}); CP.exit = 1; return true; }
 			else {
 				for (var i = 0; i < files.length; i++) {
 					_f[files[i]] = (function(i) {
