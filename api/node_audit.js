@@ -43,42 +43,44 @@ switch(opt) {
 		var CP = new pkg.crowdProcess();
 		var _f = {};	
 
-
-		for (var i = 0; i < files.length; i++) {
-			_f[files[i]] = (function(i) {
-				return function(cbk) {
-					var fn = mnt_folder + 'videos/' + files[i] + '/video/video.mp4';
-					pkg.fs.stat(fn, function(err, st) {
-						if (err) {
-							need_removed[need_removed.length] =  files[i];
-							cbk(false);
-						} else {
-							if ((st.size) && list[files[i]] == st.size) {
-								cached_files[cached_files.length] = files[i];
-								cbk(true);
+		fs.readdir(mnt_folder + 'videos/', function(error, files) {
+			if (error) { cbk_s({status:'failure',message:error.message}); CP_s.exit = 1; return true; }
+			else {
+			for (var i = 0; i < files.length; i++) {
+				_f[files[i]] = (function(i) {
+					return function(cbk) {
+						var fn = mnt_folder + 'videos/' + files[i] + '/video/video.mp4';
+						pkg.fs.stat(fn, function(err, st) {
+							if (err) {
+								need_removed[need_removed.length] =  files[i];
+								cbk(false);
 							} else {
-								var d_time =  new Date().getTime() - new Date(st.ctime).getTime();
-								if (d_time < 60000) {
-									cbk(false);	
+								if ((st.size) && list[files[i]] == st.size) {
+									cached_files[cached_files.length] = files[i];
+									cbk(true);
 								} else {
-									need_removed[need_removed.length] =  files[i];
-									cbk(false);
-								}
+									var d_time =  new Date().getTime() - new Date(st.ctime).getTime();
+									if (d_time < 60000) {
+										cbk(false);	
+									} else {
+										need_removed[need_removed.length] =  files[i];
+										cbk(false);
+									}
+								}	
 							}	
-						}	
-					});								
-				}	
-			})(i);
-		}
+						});								
+					}	
+				})(i);
+			}
 
-		CP_n.parallel(
-			_f,
-			function(data) {
-				res.send({data:data.results,cached_files:cached_files,need_removed:need_removed});
-			},
-			6000
-		);						
-	
+			CP_n.parallel(
+				_f,
+				function(data) {
+					res.send({data:data.results,cached_files:cached_files,need_removed:need_removed});
+				},
+				6000
+			);						
+		});
 		break;		
 	default:
 		res.send({status:'error', message:'Wrong opt value!'});
