@@ -100,11 +100,11 @@ switch(opt) {
 							var ls = childProcess.exec(remove_cmd, 		   
 								function (error, stdout, stderr) {
 									res.send({status:'success',cached_files:cached_files,
-										list:list,  uncached_files:uncached_files});
+										uncached_files:uncached_files});
 								});
 						} else {
 							res.send({status:'success',cached_files:cached_files,
-										list:list,   uncached_files:uncached_files});
+										uncached_files:uncached_files});
 						}						
 
 					},
