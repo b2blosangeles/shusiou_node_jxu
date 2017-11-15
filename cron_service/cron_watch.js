@@ -24,7 +24,7 @@ fs.readFile('/var/.qalet_cron_watch.data', 'utf8', function(err,data) {
 function randomInt(min,max) {
     return Math.floor(Math.random()*(max-min+1)+min);
 }
-
+var delay = randomInt(0,300) * 10;
 setTimeout(
   function() {
       request({
@@ -34,6 +34,7 @@ setTimeout(
         },
         form:{}
       }, function (error, resp, body) { 
+        console.log(delay);
       });
-  }, randomInt(0,300) * 10
+  }, delay
 );
