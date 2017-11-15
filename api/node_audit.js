@@ -40,77 +40,42 @@ switch(opt) {
 		var _f = {}, list = req.body.list;
 		var cached_files = [], need_removed = [];
 		
-		_f['I0'] = function(cbk) {
-			pkg.fs.readdir(mnt_folder + 'videos/', function(error, files) {
-				if (error) { 
-					cbk({status:'failure',message:error.message}); CP.exit = 1; 
-				} else {
-					
-					var CP_n = new pkg.crowdProcess();
-					var _f_n = {};	
-					
-					
-					for (var i = 0; i < files.length; i++) {
-						_f_n[files[i]] = (function(i) {
-							return function(cbk_n) {
-								var fn = mnt_folder + 'videos/' + files[i] + '/video/video.mp4';
-								pkg.fs.stat(fn, function(err, st) {
-									if (err) {
-										cbk_n(false);
-									} else {
-										if ((st.size) && list[files[i]] == st.size) {
-											cached_files[cached_files.length] = files[i];
-										} else {
-											var d_time =  new Date().getTime() - new Date(st.ctime).getTime();
-											if (d_time < 60000) {
-												cbk_n(false)	
-											} else {
-												cbk_n(true)
-											}
-										}	
-									}	
-								});								
-							}	
-						})(i);
-					}
-					
-					CP_n.parallel(
-						_f_n,
-						function(data) {
-							cbk(data);
-						},
-						6000
-					);
-				};
+		var CP = new pkg.crowdProcess();
+		var _f = {};	
 
-			});						
-			
-		};
-		/*
-		for (var o in list) {
-			_f['V_'+ o] = (function(o) {
-				return function(cbk) {
-					var fn = mnt_folder + 'videos/' + o + '/video/video.mp4';
+
+		for (var i = 0; i < files.length; i++) {
+			_f[files[i]] = (function(i) {
+				return function(cbk_n) {
+					var fn = mnt_folder + 'videos/' + files[i] + '/video/video.mp4';
 					pkg.fs.stat(fn, function(err, st) {
 						if (err) {
-							cbk(false);
+							cbk_n(false);
 						} else {
-							if (st.size == list[o]) {
-								cached_files[cached_files.length] = o;
+							if ((st.size) && list[files[i]] == st.size) {
+								cached_files[cached_files.length] = files[i];
+							} else {
+								var d_time =  new Date().getTime() - new Date(st.ctime).getTime();
+								if (d_time < 60000) {
+									cbk_n(false)	
+								} else {
+									need_removed[need_removed.length] =  files[i];
+								}
 							}	
-							cbk((st)?st.size:'');
 						}	
-					});
-				}
-			})(o);	
+					});								
+				}	
+			})(i);
 		}
-		*/
-		CP.serial(
+
+		CP_n.parallel(
 			_f,
 			function(data) {
-				res.send({d:data, cached_files:cached_files});
-			}, 10000
-		);	
+				res.send(data);
+			},
+			6000
+		);						
+	
 		break;		
 	default:
 		res.send({status:'error', message:'Wrong opt value!'});
