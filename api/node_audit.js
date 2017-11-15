@@ -57,6 +57,8 @@ switch(opt) {
 						_f_n[files[i]] = (function(i) {
 							return function(cbk_n) {
 								var fn = videos_folder + files[i] + '/video/video.mp4';
+								cbk_n(fn);
+								return true;
 								pkg.fs.stat(fn, function(err, st) {
 									if (err) {
 										cbk_n(false);
@@ -67,8 +69,7 @@ switch(opt) {
 							}	
 						})(i);
 					}
-					cbk('files');
-					return true;
+					
 					CP_n.parallel(
 						_f_n,
 						function(data) {
