@@ -7,9 +7,7 @@ var fs = require('fs');
 var watch0 = {start:new Date(), prev:new Date(), now:new Date()};
 fs.readFile('/var/.qalet_cron_watch.data', 'utf8', function(err,data) {
   if (err){
-      fs.writeFile('/var/.qalet_cron_watch.data', JSON.stringify(watch0), function (err) {
-          console.log(watch);
-      });
+      fs.writeFile('/var/.qalet_cron_watch.data', JSON.stringify(watch0), function (err) {});
   } else {
     var watch = {};
     try { watch = JSON.parse(data);} catch (e) {}
