@@ -37,7 +37,7 @@ switch(opt) {
 		var mnt_folder = '/var/shusiou-video/'
 		var childProcess = require('child_process')
 		var CP = new pkg.crowdProcess();
-		var _f = {}, list = req.body.list;
+		var _f = {}, list = req.body.lista;
 		var cached_files = [], need_removed = [];
 		
 		if (!list || !Object.keys(list).length) {
