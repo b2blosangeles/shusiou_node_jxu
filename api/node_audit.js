@@ -67,7 +67,7 @@ switch(opt) {
 							}	
 						})(i);
 					}
-					cbk(files);
+					cbk('files');
 					return true;
 					CP_n.parallel(
 						_f_n,
