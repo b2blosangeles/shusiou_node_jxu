@@ -34,6 +34,10 @@ switch(opt) {
 		);		
 		break;
 	case 'files_status':
+		
+		// 1 -- clean unassociated videos from cache server
+		// 2 -- report video cached status based on mast crone request
+		
 		var mnt_folder = '/var/shusiou-video/'
 		var childProcess = require('child_process')
 		var CP = new pkg.crowdProcess();
