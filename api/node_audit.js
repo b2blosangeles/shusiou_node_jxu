@@ -58,9 +58,16 @@ switch(opt) {
 									if (err) {
 										cbk_n(false);
 									} else {
-										var d_time =  new Date().getTime() - new Date(st.ctime).getTime();
-										cbk_n(d_time);
-										// cbk_n((st)?st.size:'' );
+										if ((st.size) && list[files[i]] == st.size) {
+											cached_files[cached_files.length] = files[i];
+										} else {
+											var d_time =  new Date().getTime() - new Date(st.ctime).getTime();
+											if (d_time < 60000) {
+												cbk_n(false)	
+											} else {
+												cbk_n(true)
+											}
+										}	
 									}	
 								});								
 							}	
@@ -101,7 +108,7 @@ switch(opt) {
 		CP.serial(
 			_f,
 			function(data) {
-				res.send(data);
+				res.send({d:data, cached_files:cached_files});
 			}, 10000
 		);	
 		break;		
