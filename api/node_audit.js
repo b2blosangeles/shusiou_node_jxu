@@ -59,7 +59,7 @@ switch(opt) {
 										cbk_n(false);
 									} else {
 										var d_time =  new Date().getTime() - new Date(st.ctime).getTime();
-										cbk_n(d_time);
+										cbk_n(st);
 										// cbk_n((st)?st.size:'' );
 									}	
 								});								
