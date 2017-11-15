@@ -46,20 +46,23 @@ switch(opt) {
 
 		for (var i = 0; i < files.length; i++) {
 			_f[files[i]] = (function(i) {
-				return function(cbk_n) {
+				return function(cbk) {
 					var fn = mnt_folder + 'videos/' + files[i] + '/video/video.mp4';
 					pkg.fs.stat(fn, function(err, st) {
 						if (err) {
-							cbk_n(false);
+							need_removed[need_removed.length] =  files[i];
+							cbk(false);
 						} else {
 							if ((st.size) && list[files[i]] == st.size) {
 								cached_files[cached_files.length] = files[i];
+								cbk(true);
 							} else {
 								var d_time =  new Date().getTime() - new Date(st.ctime).getTime();
 								if (d_time < 60000) {
-									cbk_n(false)	
+									cbk(false);	
 								} else {
 									need_removed[need_removed.length] =  files[i];
+									cbk(false);
 								}
 							}	
 						}	
@@ -71,7 +74,7 @@ switch(opt) {
 		CP_n.parallel(
 			_f,
 			function(data) {
-				res.send(data);
+				res.send({data.results,cached_files:cached_files,need_removed:need_removed);
 			},
 			6000
 		);						
