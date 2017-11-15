@@ -41,12 +41,9 @@ switch(opt) {
 		var cached_files = [], need_removed = [];
 		
 		_f['I0'] = function(cbk) {
-			
 			pkg.fs.readdir(mnt_folder + 'videos/', function(error, files) {
 				if (error) { 
-					cbk('JSON.stringify(data)B');
-					// cbk({status:'failure',message:error.message}); 
-					CP_s.exit = 1; 
+					cbk({status:'failure',message:error.message}); CP.exit = 1; 
 				} else {
 					
 					var CP_n = new pkg.crowdProcess();
@@ -61,7 +58,8 @@ switch(opt) {
 									if (err) {
 										cbk_n(false);
 									} else {
-										cbk_n((st)?st.size:'');
+										cbk_n(st.size + '---' + files[i]);
+										// cbk_n((st)?st.size:'' );
 									}	
 								});								
 							}	
