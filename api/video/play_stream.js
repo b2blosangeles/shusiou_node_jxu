@@ -31,6 +31,24 @@ var fp = new folderP(),
     http = require('http'),
     request = require(env.root_path + '/package/request/node_modules/request');
 
+function IsMasterVideoReady(cbk){
+	pkg.fs.stat(info_video, function(err, stat) {
+		if(!err) {
+			pkg.fs.stat(file_video, function(err1, stat1) {
+				if(!err1) {
+					cbk({status:'success'});
+				} else {
+					cbk({status:'error', message:err1.message});
+				}
+			});
+			
+		} else {
+			cbk({status:'error', message:err.message});
+		}
+	})
+}
+
+
 switch(type) {
 	case 'image':
 		var w = req.query['w'], s = req.query['s'];
