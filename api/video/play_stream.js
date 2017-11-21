@@ -57,7 +57,16 @@ switch(type) {
 		info_fn = info_image + req.query['w']+'_'+req.query['s']+'.json';
 
 		var CP = new pkg.crowdProcess();
-		var _f = {};		
+		var _f = {};
+		/*
+		_f['IsMasterVideoReady'] = function(cbk) { 
+			 IsMasterVideoReady(
+			 	function() {
+				}
+			 
+			 );
+		};		
+		*/
 		_f['S0'] = function(cbk) { 
 			var fp = new folderP();
 			fp.build(folder_image, function() { cbk(true);});
