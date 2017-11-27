@@ -60,15 +60,11 @@ switch(type) {
 
 		var CP = new pkg.crowdProcess();
 		var _f = {};
-		/*
+		
 		_f['IsMasterVideoReady'] = function(cbk) { 
-			 IsMasterVideoReady(
-			 	function() {
-				}
-			 
-			 );
+			 IsMasterVideoReady(cbk, CP);
 		};		
-		*/
+		
 		_f['S0'] = function(cbk) { 
 			var fp = new folderP();
 			fp.build(folder_image, function() { cbk(true);});
@@ -180,7 +176,11 @@ switch(type) {
 		}
 		var CP = new pkg.crowdProcess();
 		var _f = {};
-				
+			
+		_f['IsMasterVideoReady'] = function(cbk) { 
+			 IsMasterVideoReady(cbk, CP);
+		};
+		
 		_f['S0'] = function(cbk) { 
 			var fp = new folderP();
 			fp.build(video_folder + 'video/', function() { cbk(true);});
