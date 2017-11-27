@@ -268,6 +268,8 @@ switch(type) {
 		CP.serial(
 			_f,
 			function(data) {
+				res.send(data);
+				return true;
 				if (CP.data.IsMasterVideoReady.status != 'success') {
 					res.redirect(url);
 					return true;
