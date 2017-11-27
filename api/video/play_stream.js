@@ -264,7 +264,7 @@ switch(type) {
 		CP.serial(
 			_f,
 			function(data) {
-				res.send(data);
+				res.send(url);
 				return true;
 				if (!CP.data.S2) {
 					res.redirect(url);
