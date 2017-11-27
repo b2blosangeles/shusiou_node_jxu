@@ -31,7 +31,7 @@ var fp = new folderP(),
     http = require('http'),
     request = require(env.root_path + '/package/request/node_modules/request');
 
-function IsMasterVideoReady(cbk){
+function IsMasterVideoReady(cbk, CP){
 	pkg.fs.stat(info_video, function(err, stat) {
 		if(!err) {
 			pkg.fs.stat(file_video, function(err1, stat1) {
@@ -39,11 +39,13 @@ function IsMasterVideoReady(cbk){
 					cbk({status:'success'});
 				} else {
 					cbk({status:'error', message:err1.message});
+					CP.exit = 1;
 				}
 			});
 			
 		} else {
 			cbk({status:'error', message:err.message});
+			CP.exit = 1;
 		}
 	})
 }
