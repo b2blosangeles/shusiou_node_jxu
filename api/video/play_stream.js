@@ -183,9 +183,9 @@ switch(type) {
 		var CP = new pkg.crowdProcess();
 		var _f = {};
 			
-		_f['IsMasterVideoReady'] = function(cbk) { 
-			 IsMasterVideoReady(cbk, CP);
-		};
+		//_f['IsMasterVideoReady'] = function(cbk) { 
+		//	 IsMasterVideoReady(cbk, CP);
+		//};
 		
 		_f['S0'] = function(cbk) { 
 			var fp = new folderP();
@@ -279,6 +279,7 @@ switch(type) {
 					return true;
 				}				
 				pkg.fs.stat(fn, function(err, data1) {
+					/*
 					if (node_cache_only) {
 						if (err) { 
 							res.send({status:'failure', message:err.message});
@@ -287,7 +288,7 @@ switch(type) {
 						}
 						return true;
 					}
-					
+					*/
 					if (err) { res.redirect(url); }
 					else {
 						
