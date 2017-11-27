@@ -33,7 +33,9 @@ var fp = new folderP(),
 
 function IsMasterVideoReady(cbk, CP){
 	pkg.fs.readFile(info_video, 'utf8', function(err, data) {
-		cbk(data);
+		var v = {};
+		try { v = JSON.parse(data); } catch (e) {}; 
+		cbk(v);
 		return true;
 		if(!err) {
 			pkg.fs.stat(file_video, function(err1, stat1) {
