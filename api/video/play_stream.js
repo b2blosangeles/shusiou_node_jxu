@@ -139,6 +139,10 @@ switch(type) {
 		CP.serial(
 			_f,
 			function(data) {
+				if (CP.IsMasterVideoReady.status != 'success') {
+					res.send(url);
+					return true;
+				}					
 				if (!CP.data.S2) {
 					res.redirect(url);
 					return true;
@@ -264,8 +268,10 @@ switch(type) {
 		CP.serial(
 			_f,
 			function(data) {
-				res.send(url);
-				return true;
+				if (CP.IsMasterVideoReady.status != 'success') {
+					res.send(url);
+					return true;
+				}	
 				if (!CP.data.S2) {
 					res.redirect(url);
 					return true;
