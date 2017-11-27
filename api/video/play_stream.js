@@ -270,16 +270,18 @@ switch(type) {
 		CP.serial(
 			_f,
 			function(data) {
+				/*
 				if (CP.data.IsMasterVideoReady.status != 'success') {
 					res.redirect(url);
 					return true;
-				}	
+				}
+				*/
 				if (!CP.data.S2) {
 					res.redirect(url);
 					return true;
 				}				
 				pkg.fs.stat(fn, function(err, data1) {
-					/*
+					
 					if (node_cache_only) {
 						if (err) { 
 							res.send({status:'failure', message:err.message});
@@ -288,7 +290,7 @@ switch(type) {
 						}
 						return true;
 					}
-					*/
+					
 					if (err) { res.redirect(url); }
 					else {
 						
