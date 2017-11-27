@@ -32,6 +32,9 @@ var fp = new folderP(),
     request = require(env.root_path + '/package/request/node_modules/request');
 
 function IsMasterVideoReady(cbk, CP){
+	if (node_cache_only) {
+		cbk(true); return true;
+	}
 	pkg.fs.readFile(info_video, 'utf8', function(err, data) {
 		var v = {};
 		try { v = JSON.parse(data); } catch (e) {}; 
@@ -141,7 +144,7 @@ switch(type) {
 		CP.serial(
 			_f,
 			function(data) {
-				if (CP.data.IsMasterVideoReady.status != 'success') {
+				if (!node_cache_only && CP.data.IsMasterVideoReady.status != 'success') {
 					res.redirect(url);
 					return true;
 				}					
@@ -270,12 +273,10 @@ switch(type) {
 		CP.serial(
 			_f,
 			function(data) {
-				/*
-				if (CP.data.IsMasterVideoReady.status != 'success') {
+				if (!node_cache_only && CP.data.IsMasterVideoReady.status != 'success')
 					res.redirect(url);
 					return true;
 				}
-				*/
 				if (!CP.data.S2) {
 					res.redirect(url);
 					return true;
