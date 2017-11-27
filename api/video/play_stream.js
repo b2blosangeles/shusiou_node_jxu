@@ -35,12 +35,10 @@ function IsMasterVideoReady(cbk, CP){
 	pkg.fs.readFile(info_video, 'utf8', function(err, data) {
 		var v = {};
 		try { v = JSON.parse(data); } catch (e) {}; 
-		cbk(v);
-		return true;
 		if(!err) {
 			pkg.fs.stat(file_video, function(err1, stat1) {
-				if(!err1) {
-					cbk({status:'success'});
+				if(!err1 && v.size == stat1.size) {
+					cbk({status:'success', size:stat1.size});
 				} else {
 					cbk({status:'error', message:err1.message});
 					CP.exit = 1;
