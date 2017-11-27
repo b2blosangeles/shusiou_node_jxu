@@ -38,7 +38,7 @@ function IsMasterVideoReady(cbk, CP){
 		if(!err) {
 			pkg.fs.stat(file_video, function(err1, stat1) {
 				if(!err1 && (v.size) && v.size == stat1.size) {
-					cbk({status:'successa', size:stat1.size});
+					cbk({status:'success', size:stat1.size});
 				} else {
 					cbk({status:'error', message:err1.message});
 					CP.exit = 1;
@@ -270,8 +270,6 @@ switch(type) {
 		CP.serial(
 			_f,
 			function(data) {
-				res.send(data);
-				return true;
 				if (CP.data.IsMasterVideoReady.status != 'success') {
 					res.redirect(url);
 					return true;
