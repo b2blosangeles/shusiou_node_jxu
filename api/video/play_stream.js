@@ -32,7 +32,9 @@ var fp = new folderP(),
     request = require(env.root_path + '/package/request/node_modules/request');
 
 function IsMasterVideoReady(cbk, CP){
-	pkg.fs.stat(info_video, function(err, stat) {
+	pkg.fs.readFile(info_video, function(err, data) {
+		cbk(data);
+		return true;
 		if(!err) {
 			pkg.fs.stat(file_video, function(err1, stat1) {
 				if(!err1) {
