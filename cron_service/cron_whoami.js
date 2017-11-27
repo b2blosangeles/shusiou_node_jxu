@@ -74,7 +74,9 @@ diskspace.check('/', function (err, space) {
               },
               form:{}
             }, function (error, resp, body) { 
-              console.log(delay + '--' + body);
+                console.log('');
+                console.log(delay + '--' + body);
+                console.log('');
             });
         }, delay
       );
