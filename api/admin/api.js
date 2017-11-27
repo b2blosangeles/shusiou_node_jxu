@@ -12,7 +12,7 @@ switch(req.query['opt']) {
 		
     case 'git_site_pull':
 	pkg.exec('cd ' + env.site_path + '&& git pull', function(error, stdout, stderr) {
-		 res.send('stdout-->');
+		 res.send(stdout');
 	});
         break;	
 		
