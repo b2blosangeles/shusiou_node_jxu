@@ -186,9 +186,9 @@ switch(type) {
 		var CP = new pkg.crowdProcess();
 		var _f = {};
 			
-		//_f['IsMasterVideoReady'] = function(cbk) { 
-		//	 IsMasterVideoReady(cbk, CP);
-		//};
+		_f['IsMasterVideoReady'] = function(cbk) { 
+			 IsMasterVideoReady(cbk, CP);
+		};
 		
 		_f['S0'] = function(cbk) { 
 			var fp = new folderP();
