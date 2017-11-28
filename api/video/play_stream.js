@@ -314,7 +314,7 @@ switch(type) {
 					}
 				});
 			},
-			50000
+			500000
 		);    
 		break;			
 	default:
