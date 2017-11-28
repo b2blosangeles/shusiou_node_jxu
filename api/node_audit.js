@@ -48,8 +48,10 @@ switch(opt) {
 			res.send({status:'failure',message:'Missing list'}); return true; 
 		}
 		pkg.fs.readdir(mnt_folder + 'videos/', function(error, files) {
-			if (error) { es.send({status:'failure',message:error.message}); return true; }
-			else {
+			if (error) { 
+				// res.send({status:'failure',message:error.message}); return true; 
+				res.send({status:'success',uncached_files:Object.keys(list)}); return true; 
+			} else {
 				for (var i = 0; i < files.length; i++) {
 					_f[files[i]] = (function(i) {
 						return function(cbk) {
