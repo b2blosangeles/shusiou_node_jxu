@@ -50,7 +50,7 @@ switch(opt) {
 		pkg.fs.readdir(mnt_folder + 'videos/', function(error, files) {
 			if (error) { 
 				// res.send({status:'failure',message:error.message}); return true; 
-				res.send({status:'success',uncached_files:Object.keys(list)}); return true; 
+				res.send({status:'success', cached_files:[], uncached_files:Object.keys(list)}); return true; 
 			} else {
 				for (var i = 0; i < files.length; i++) {
 					_f[files[i]] = (function(i) {
