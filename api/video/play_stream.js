@@ -304,7 +304,7 @@ switch(type) {
 							var start = parseInt(partialstart, 10);
 							var end = partialend ? parseInt(partialend, 10) : total-1;
 							var chunksize = (end-start)+1;
-							var maxChunk = 1024 * 1024; // 1MB at a time
+							var maxChunk = 1024 * 512; // 1MB at a time
 							if (chunksize > maxChunk) {
 							  end = start + maxChunk - 1;
 							  chunksize = (end - start) + 1;
