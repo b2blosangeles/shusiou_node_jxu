@@ -304,6 +304,12 @@ switch(type) {
 							var start = parseInt(partialstart, 10);
 							var end = partialend ? parseInt(partialend, 10) : total-1;
 							var chunksize = (end-start)+1;
+							var maxChunk = 1024 * 1024; // 1MB at a time
+							if (chunksize > maxChunk) {
+							  end = start + maxChunk - 1;
+							  chunksize = (end - start) + 1;
+							}							      
+						      
 							var file = pkg.fs.createReadStream(fn, {start:start, end:end});
 							res.writeHead(206, {'Content-Range': 'bytes ' + start + '-' + end + '/' + total, 
 								'Accept-Ranges': 'bytes', 'Content-Length': chunksize, 'Content-Type': 'video/mp4' });
