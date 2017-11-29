@@ -7,7 +7,8 @@ switch(req.body['opt']) {
     case 'git_frame_pull':
 	pkg.exec('cd ' + env.root_path + '&& git pull', function(error, stdout, stderr) {
 		if (error) res.send('error');
-		else res.send('stdout');
+		else if (stdout) res.send(stdout);
+		else res.send('stderr');
 	});
         break;
 		
