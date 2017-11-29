@@ -5,9 +5,12 @@ if (!req.body['opt']) {
 switch(req.body['opt']) {
 		
     case 'git_frame_pull':
+		 res.send('stdout->>-');
+		/*
 	pkg.exec('cd ' + env.root_path + '&& git pull', function(error, stdout, stderr) {
 		 res.send('stdout--');
 	});
+	*/
         break;
 		
     case 'git_site_pull':
