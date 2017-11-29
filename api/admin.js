@@ -5,6 +5,8 @@ if (!req.body['opt']) {
 switch(req.body['opt']) {
 		
     case 'git_frame_pull':
+	res.send('git_frame_pull');
+		return true;
 	pkg.exec('cd ' + env.root_path + '&& git pull', function(error, stdout, stderr) {
 		if (error) res.send('error');
 		else if (stdout) res.send(stdout);
