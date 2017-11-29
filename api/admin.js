@@ -1,5 +1,5 @@
 if (!req.body['opt']) {
-	res.send('Missing opt!!');
+	res.send('Missing optA!!');
 	return true;
 }
 switch(req.body['opt']) {
