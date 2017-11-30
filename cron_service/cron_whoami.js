@@ -27,7 +27,7 @@ diskspace.check('/', function (err, space) {
     space.free_rate =  Math.floor(space.free  * 100 /  space.total); 
     space.channel = channel.channel;
     request({
-      url: 'http://' + env.confog_path + '/api/add_node.api',
+      url: 'http://' + env.config_path + '/api/add_node.api',
       headers: {
         "content-type": "application/json"
       },
@@ -71,7 +71,7 @@ diskspace.check('/', function (err, space) {
       setTimeout(
         function() {
             request({
-              url: 'http://'+ env.confog_path +'/api/cron_watch.api',
+              url: 'http://'+ env.config_path +'/api/cron_watch.api',
               headers: {
                 "content-type": "application/json"
               },
