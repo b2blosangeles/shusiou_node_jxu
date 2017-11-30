@@ -4,7 +4,7 @@ var path = require('path');
 var env = {root_path:path.join(__dirname, '../..')};
 
 env.site_path = env.root_path + '/site';
-env.confog_path = '/var/qalet_config';
+env.config_path = '/var/qalet_config';
 
 var request =  require(env.root_path + '/package/request/node_modules/request');
 var diskspace = require(env.root_path + '/package/diskspace/node_modules/diskspace');
