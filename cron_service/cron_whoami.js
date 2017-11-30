@@ -79,7 +79,7 @@ diskspace.check('/', function (err, space) {
               },
               form:{}
             }, function (error, resp, body) { 
-                console.log('---body--');
+                console.log('---body--http://' + env.config_path + '/api/add_node.api');
                  console.log(body);
                 console.log('');
                 console.log(delay + '--' + body);
