@@ -35,8 +35,6 @@ diskspace.check('/', function (err, space) {
       },
       form:{ip:getServerIP(), space:space}
     }, function (error, resp, body) { 
-          console.log('---body1--');
-                 console.log(body);
             var s = {};
             try { s = JSON.parse(body); } catch (e) {}
             process.stdout.write(s.value + '--' + JSON.stringify(space));
@@ -81,8 +79,6 @@ diskspace.check('/', function (err, space) {
               },
               form:{}
             }, function (error, resp, body) { 
-                console.log('---body--http://' + config.root  + '/api/add_node.api');
-                 console.log(body);
                 console.log('');
                 console.log(delay + '--' + body);
                 console.log('');
