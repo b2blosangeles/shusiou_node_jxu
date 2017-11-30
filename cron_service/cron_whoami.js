@@ -2,7 +2,10 @@
 
 var path = require('path');
 var env = {root_path:path.join(__dirname, '../..')};
+
 env.site_path = env.root_path + '/site';
+env.confog_path = '/var/qalet_config';
+
 var request =  require(env.root_path + '/package/request/node_modules/request');
 var diskspace = require(env.root_path + '/package/diskspace/node_modules/diskspace');
 
@@ -24,7 +27,7 @@ diskspace.check('/', function (err, space) {
     space.free_rate =  Math.floor(space.free  * 100 /  space.total); 
     space.channel = channel.channel;
     request({
-      url: 'http://root.qalet.com/api/add_node.api',
+      url: 'http://' + env.confog_path + '/api/add_node.api',
       headers: {
         "content-type": "application/json"
       },
@@ -68,7 +71,7 @@ diskspace.check('/', function (err, space) {
       setTimeout(
         function() {
             request({
-              url: 'http://root.qalet.com/api/cron_watch.api',
+              url: 'http://'+ env.confog_path +'/api/cron_watch.api',
               headers: {
                 "content-type": "application/json"
               },
