@@ -7,7 +7,7 @@ function write404(msg) {
 var type= req.query['type'], vid = req.query['vid'], server = req.query['server'];
 var patt = /([?&]server)=([^#&]*)/i;
 
-if (!type || !vid || !server) {  write404('vid or type error '); return true; }
+if (!type || !vid || !server) {  write404('vid, type or server error '); return true; }
 
 var url = 'http://'+ server + req.url.replace(patt, '');
 
