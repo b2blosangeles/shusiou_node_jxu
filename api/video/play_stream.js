@@ -33,7 +33,7 @@ var fp = new folderP(),
 
 function IsMasterVideoReady(cbk, CP){
 	if (node_cache_only) {
-		cbk(true); return true;
+		cbk({status:'success'}); return true;
 	}
 	pkg.fs.readFile(info_video, 'utf8', function(err, data) {
 		var v = {};
