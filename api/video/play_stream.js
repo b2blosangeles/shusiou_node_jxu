@@ -278,11 +278,12 @@ switch(type) {
 					res.redirect(url);
 					return true;
 				}
-				*/
+				
 				if (!CP.data.S2) {
 					res.redirect(url);
 					return true;
-				}				
+				}
+				*/
 				pkg.fs.stat(fn, function(err, data1) {
 					
 					if (node_cache_only) {
