@@ -273,6 +273,8 @@ switch(type) {
 		CP.serial(
 			_f,
 			function(data) {
+				res.send(data);
+				return true;
 				/*
 				if (!node_cache_only && CP.data.IsMasterVideoReady.status != 'success') {
 					res.redirect(url);
@@ -318,7 +320,7 @@ switch(type) {
 								'Accept-Ranges': 'bytes', 'Content-Length': chunksize, 'Content-Type': 'video/mp4' });
 						       file.pipe(res);
 						} else {
-							res.send('Need streaming player --' + node_cache_only);
+							res.send('Need streaming player');
 						}
 					}
 				});
