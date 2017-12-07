@@ -284,6 +284,9 @@ switch(type) {
 					return true;
 				}
 				*/
+					res.send(url);
+				//	res.redirect(url);
+					return true;
 				pkg.fs.stat(fn, function(err, data1) {
 					
 					if (node_cache_only) {
