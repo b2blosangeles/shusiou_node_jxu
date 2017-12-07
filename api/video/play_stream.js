@@ -274,19 +274,13 @@ switch(type) {
 			_f,
 			function(data) {
 				if (!node_cache_only && CP.data.IsMasterVideoReady.status != 'success') {
-					res.send(url);
-				//	res.redirect(url);
+					res.redirect(url);
 					return true;
 				}
-				/*
 				if (!CP.data.S2) {
 					res.redirect(url);
 					return true;
 				}
-				*/
-					res.send(url);
-				//	res.redirect(url);
-					return true;
 				pkg.fs.stat(fn, function(err, data1) {
 					
 					if (node_cache_only) {
