@@ -273,14 +273,12 @@ switch(type) {
 		CP.serial(
 			_f,
 			function(data) {
-				res.send(data);
-				return true;
-				/*
 				if (!node_cache_only && CP.data.IsMasterVideoReady.status != 'success') {
-					res.redirect(url);
+					res.send(url);
+				//	res.redirect(url);
 					return true;
 				}
-				
+				/*
 				if (!CP.data.S2) {
 					res.redirect(url);
 					return true;
