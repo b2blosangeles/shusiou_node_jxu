@@ -33,7 +33,7 @@ var fp = new folderP(),
 
 function IsMasterVideoReady(cbk, CP){
 	if (node_cache_only) {
-		cbk({status:'success'}); return true;
+		cbk(true); return true;
 	}
 	pkg.fs.readFile(info_video, 'utf8', function(err, data) {
 		var v = {};
@@ -273,10 +273,12 @@ switch(type) {
 		CP.serial(
 			_f,
 			function(data) {
+				/*
 				if (!node_cache_only && CP.data.IsMasterVideoReady.status != 'success') {
 					res.redirect(url);
 					return true;
 				}
+				*/
 				if (!CP.data.S2) {
 					res.redirect(url);
 					return true;
