@@ -31,6 +31,12 @@ switch(req.body['opt']) {
 	});
 	break;
 		
+    case 'clean_cache':	
+	pkg.exec('rm -fr /var/shusiou-video', function(error, stdout, stderr) {
+	 	res.send('clean node cache!');
+	});
+	break;
+		
     default:
 	res.send('Wrong opt parpmeter!!');
 	return true;
