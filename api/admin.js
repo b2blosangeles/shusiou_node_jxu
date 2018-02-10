@@ -19,7 +19,7 @@ switch(req.body['opt']) {
         break;	
 
     case 'git_all_pull':
-	var cmd = 'cd ' + env.site_path + '&& git pull && cd ' + env.root_path + '&& git pull'; 	
+	var cmd = 'cd ' + env.site_path + '&& git pull && cd ' + env.root_path + '&& git pull && cd /var/cert/ && git pull'; 	
 	pkg.exec(cmd, function(error, stdout, stderr) {
 		 res.send(stdout);
 	});
