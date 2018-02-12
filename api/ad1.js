@@ -1,5 +1,3 @@
-res.send(env);
-return true;
 
 pkg.fs.exists('/var/cert/', function(exists) {
 		let cmd_plus = (exists)?' && cd /var/cert/ && git pull ':'';
