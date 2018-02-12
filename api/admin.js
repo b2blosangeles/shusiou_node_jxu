@@ -19,9 +19,13 @@ switch(req.body['opt']) {
         break;	
 
     case 'git_all_pull':
-	var cmd = 'cd ' + env.site_path + '&& git pull && cd ' + env.root_path + '&& git pull'; 	
-	pkg.exec(cmd, function(error, stdout, stderr) {
-		 res.send(stdout);
+	pkg.fs.exists('/var/cert/', function(exists) {
+		let cmd_plu = (exists)?' && cd /var/cert/ && git pull ':'';
+		if (exists) {
+		var cmd = 'cd ' + env.site_path + '&& git pull && cd ' + env.root_path + '&& git pull'+ cmd_plu; 	
+		pkg.exec(cmd, function(error, stdout, stderr) {
+			res.send(stdout);
+		});
 	});
         break;			
 		
