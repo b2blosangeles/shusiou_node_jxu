@@ -8,8 +8,7 @@ _f['xaa'] = function(cbk) {
 	pkg.request('http://198.199.120.18/api/video/test_niu.api?file=xaa', 
 		function (error, response, body) {
 	}).on('data', function(data) {
-		d = Buffer.concat([d, data]);
-	//	d+=data;
+		d = Buffer.concat([d,  Buffer.from(data)]);
 	}).on('end', function() {
 		cbk(d);
 	});	
@@ -19,7 +18,7 @@ _f['xab'] = function(cbk) {
 	pkg.request('http://198.199.120.18/api/video/test_niu.api?file=xab', 
 		function (error, response, body) {
 	}).on('data', function(data) {
-		d = Buffer.concat([d, data]);
+		d = Buffer.concat([d,  Buffer.from(data)]);
 	}).on('end', function() {
 		cbk(d);
 	});	
