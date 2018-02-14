@@ -26,9 +26,9 @@ _f['xab'] = function(cbk) {
 CP.parallel(
 	_f,
 	function(data) {
-		//a.write(CP.data.xaa);
-		//a.write(CP.data.xab);
-		a.end('niu');
+		a.write(CP.data.xaa);
+		a.write(CP.data.xab);
+		a.end();
 	},
 	30000
 );
