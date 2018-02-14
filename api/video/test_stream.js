@@ -4,27 +4,31 @@ a.pipe(res);
 var CP = new pkg.crowdProcess();
 var _f = {};
 _f['xaa'] = function(cbk) {
+	let d;
 	pkg.request('http://198.199.120.18/api/video/test_niu.api?file=xaa', 
 		function (error, response, body) {
 	}).on('data', function(data) {
-		a.write(data);
-	}).on('end', function(data) {
-		cbk(true)
+		d+=data;
+	}).on('end', function() {
+		cbk(d)
 	});	
 }
 _f['xab'] = function(cbk) {
+	let d;
 	pkg.request('http://198.199.120.18/api/video/test_niu.api?file=xab', 
 		function (error, response, body) {
 	}).on('data', function(data) {
-		a.write(data);
-	}).on('end', function(data) {
-		cbk(true)
+		d+=data;
+	}).on('end', function() {
+		cbk(d)
 	});	
 }
-CP.serial(
+CP.parallel(
 	_f,
 	function(data) {
-		a.end();
+		//a.write(CP.data.xaa);
+		//a.write(CP.data.xab);
+		a.end('niu');
 	},
 	30000
 );
