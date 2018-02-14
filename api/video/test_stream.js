@@ -5,7 +5,8 @@ let g = pkg.request('https://images.pexels.com/photos/33109/fall-autumn-red-seas
 	function (error, response, body) {
 });
 g.on('data', function(data) {
-	a.write(new Buffer(data, 'binary'));
+	a.write(data);
+	//a.write(new Buffer(data, 'binary'));
 });
 g.on('end', function(data) {
 	a.end()
