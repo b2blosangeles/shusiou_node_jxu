@@ -9,7 +9,7 @@ let g = pkg.request('https://www.w3schools.com/howto/img_fjords.jpg',
 	//a.end()
 });
 g.on('data', function() {
-	res.sned('--end--');
+	res.send('--end--');
 });
 //.pipe(res);
 //pkg.request(req.url).pipe(res);
