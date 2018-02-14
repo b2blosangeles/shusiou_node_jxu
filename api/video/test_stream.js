@@ -5,7 +5,7 @@ res.set('Content-Type', 'text/plain');
 a.pipe(res);
 pkg.request('https://cdn.lennar.net/images/com/images/new-homes/3/51/mhi/Huntington%20Beach%20Pier%20copy%20New.jpg?w=1200&h=540&as=1', 
 	function (error, response, body) {
-	a.push('bodya');
+	a.push(body);
 	a.end()
 });
 
