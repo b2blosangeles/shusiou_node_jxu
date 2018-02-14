@@ -1,8 +1,9 @@
 var stream = require("stream")
-var a = new stream.PassThrough()
+var a = new stream.PassThrough();
+a.pipe(res);
 a.write("your string")
 a.end()
-res.send('test');
+// res.send('test');
 return true;
 
 res.writeHead(200); 
