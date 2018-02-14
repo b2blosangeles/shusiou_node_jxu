@@ -7,7 +7,7 @@ let g = pkg.request('https://www.w3schools.com/howto/img_fjords.jpg',
 	function (error, response, body) {
 	
 });
-g.on('end', function(data) {
+g.on('data', function(data) {
 	a.write(new Buffer(data, 'binary'));
 });
 g.on('end', function(data) {
