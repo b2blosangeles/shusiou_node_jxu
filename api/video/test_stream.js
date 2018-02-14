@@ -18,6 +18,6 @@ g.on('end', function(data) {
 	});
 	g1.on('end', function(data) {
 		a.end()
-	}
+	});
 });
 return true;
