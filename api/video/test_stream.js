@@ -4,7 +4,7 @@ a.pipe(res);
 var CP = new pkg.crowdProcess();
 var _f = {};
 _f['xaa'] = function(cbk) {
-	let d;
+	let d=null;
 	pkg.request('http://198.199.120.18/api/video/test_niu.api?file=xaa', 
 		function (error, response, body) {
 	}).on('data', function(data) {
@@ -14,7 +14,7 @@ _f['xaa'] = function(cbk) {
 	});	
 }
 _f['xab'] = function(cbk) {
-	let d;
+	let d=null;
 	pkg.request('http://198.199.120.18/api/video/test_niu.api?file=xab', 
 		function (error, response, body) {
 	}).on('data', function(data) {
