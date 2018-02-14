@@ -2,6 +2,7 @@ var stream = require("stream")
 var a = new stream.PassThrough();
 a.pipe(res);
 a.write("your string")
+a.write(" is really bad")
 a.end()
 // res.send('test');
 return true;
