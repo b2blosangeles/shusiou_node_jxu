@@ -5,9 +5,10 @@ var a = new stream.PassThrough();
  a.pipe(res);
 pkg.request('https://www.w3schools.com/howto/img_fjords.jpg', 
 	function (error, response, body) {
-	//a.write(new Buffer(body, 'binary'));
-	//a.end()
-}).pipe(res);
+	a.write(new Buffer(body, 'binary'));
+	a.end()
+});
+//.pipe(res);
 //pkg.request(req.url).pipe(res);
 // res.send('test');
 return true;
