@@ -1,6 +1,3 @@
-res.writeHead(200, {'Content-Type': 'image/jpeg'});
-
-return true;
 var stream = require("stream")
 var a = new stream.PassThrough();
 res.set('Content-Type', 'image/png');
