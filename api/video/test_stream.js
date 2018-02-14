@@ -10,7 +10,7 @@ pkg.request('https://cdn.lennar.net/images/com/images/new-homes/3/51/mhi/Hunting
 	//a.write(typeof body);
 	//a.end()
 }).pipe(res);
-pkg.request(req.url).pipe(res);
+//pkg.request(req.url).pipe(res);
 // res.send('test');
 return true;
 
