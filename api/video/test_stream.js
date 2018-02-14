@@ -2,13 +2,13 @@ var stream = require("stream")
 var a = new stream.PassThrough();
 // res.set('Content-Type', 'image/png');
 // res.set('Content-Type', 'text/plain');
- a.pipe(res);
+// a.pipe(res);
 let g = pkg.request('https://www.w3schools.com/howto/img_fjords.jpg', 
 	function (error, response, body) {
 	//a.write(new Buffer(body, 'binary'));
 	//a.end()
 });
-g.on('end', function() {
+g.on('data', function() {
 	res.sned('--end--');
 });
 //.pipe(res);
