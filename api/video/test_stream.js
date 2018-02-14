@@ -10,7 +10,7 @@ _f['xaa'] = function(cbk) {
 	}).on('data', function(data) {
 		d+=data;
 	}).on('end', function() {
-		cbk('xaa');
+		cbk(d);
 	});	
 }
 _f['xab'] = function(cbk) {
@@ -20,7 +20,7 @@ _f['xab'] = function(cbk) {
 	}).on('data', function(data) {
 		d+=data;
 	}).on('end', function() {
-		cbk('xab');
+		cbk(d);
 	});	
 }
 CP.parallel(
