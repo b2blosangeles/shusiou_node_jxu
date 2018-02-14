@@ -1,14 +1,12 @@
 var stream = require("stream")
 var a = new stream.PassThrough();
-// res.set('Content-Type', 'image/png');
+ res.set('Content-Type', 'image/png');
 // res.set('Content-Type', 'text/plain');
-// a.pipe(res);
+ a.pipe(res);
 pkg.request('https://cdn.lennar.net/images/com/images/new-homes/3/51/mhi/Huntington%20Beach%20Pier%20copy%20New.jpg?w=1200&h=540&as=1', 
 	function (error, response, body) {
-	res.set('Content-Type', 'image/png');
-       res.send(new Buffer(body, 'binary'));
-	//a.write(typeof body);
-	//a.end()
+	a.write(new Buffer(body, 'binary'));
+	a.end()
 });
 //.pipe(res);
 //pkg.request(req.url).pipe(res);
