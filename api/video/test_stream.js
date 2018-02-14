@@ -8,8 +8,8 @@ let g = pkg.request('https://www.w3schools.com/howto/img_fjords.jpg',
 	//a.write(new Buffer(body, 'binary'));
 	//a.end()
 });
-g.on('data', function() {
-	res.send('--end--');
+g.on('end', function() {
+	res.send('--done--');
 });
 //.pipe(res);
 //pkg.request(req.url).pipe(res);
