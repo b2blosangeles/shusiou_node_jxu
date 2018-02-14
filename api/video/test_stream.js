@@ -5,7 +5,7 @@ a.pipe(res);
 pkg.fs.readdir('/var/img', (err, files) => {
 	var f = [];
 	files.forEach(file => {
-		f[f.length] = file;
+		if (/x([a-z]+)/.test(file)) f[f.length] = file;
 	});
 	res.send(f);
 })
