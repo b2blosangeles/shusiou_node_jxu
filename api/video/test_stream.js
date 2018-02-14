@@ -27,10 +27,10 @@ _f['xab'] = function(cbk) {
 CP.parallel(
 	_f,
 	function(data) {
-		res.send(data);
-		//a.write(CP.data.xaa);
-		//a.write(CP.data.xab);
-		//a.end();
+		//res.send(data);
+		a.write(CP.data.xaa);
+		a.write(CP.data.xab);
+		a.end();
 	},
 	30000
 );
