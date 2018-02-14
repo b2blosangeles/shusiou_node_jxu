@@ -2,6 +2,7 @@ pkg.request('https://cdn.lennar.net/images/com/images/new-homes/3/51/mhi/Hunting
 	function (error, response, body) {
 	res.send('body');
 });
+return true;
 var stream = require("stream")
 var a = new stream.PassThrough();
 a.pipe(res);
