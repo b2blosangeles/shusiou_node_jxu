@@ -1,1 +1,1 @@
-res.send('/var/img/xaa');
+res.sendFile('/var/img/xaa');
