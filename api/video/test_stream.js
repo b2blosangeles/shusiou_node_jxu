@@ -1,15 +1,16 @@
 res.writeHead(200, {'Content-Type': 'image/jpeg'});
-pkg.request('https://cdn.lennar.net/images/com/images/new-homes/3/51/mhi/Huntington%20Beach%20Pier%20copy%20New.jpg?w=1200&h=540&as=1', 
-	function (error, response, body) {
-	res.send(body);
-});
+
 return true;
 var stream = require("stream")
 var a = new stream.PassThrough();
 a.pipe(res);
-a.write("your string")
-a.write(" is really bad")
-a.end()
+a.writeHead(200, {'Content-Type': 'image/jpeg'});
+pkg.request('https://cdn.lennar.net/images/com/images/new-homes/3/51/mhi/Huntington%20Beach%20Pier%20copy%20New.jpg?w=1200&h=540&as=1', 
+	function (error, response, body) {
+	a.write(body);
+	a.end()
+});
+
 // res.send('test');
 return true;
 
