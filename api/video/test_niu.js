@@ -1,1 +1,1 @@
-res.sendFile('/var/img/xaa');
+res.sendFile('/var/img/' + req.param('file'));
