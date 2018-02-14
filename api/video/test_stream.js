@@ -11,15 +11,17 @@ pkg.fs.readdir('/var/img', (err, files) => {
 		if (/x([a-z]+)/.test(file)) f[f.length] = file;
 	});
 	for (var i = 0; i < f.length; i++) {
-		_f['P_' + i] = (function(i) { return function(cbk) {
-			let d = Buffer.from('');
-			pkg.request('http://198.199.120.18/api/video/test_niu.api?file=' + f[i], 
-				function (error, response, body) {
-			}).on('data', function(data) {
-				d = Buffer.concat([d,  Buffer.from(data)]);
-			}).on('end', function() {
-				cbk(d);
-			});			
+		_f['P_' + i] = (function(i) { 
+			return function(cbk) {
+				let d = Buffer.from('');
+				pkg.request('http://198.199.120.18/api/video/test_niu.api?file=' + f[i], 
+					function (error, response, body) {
+				}).on('data', function(data) {
+					d = Buffer.concat([d,  Buffer.from(data)]);
+				}).on('end', function() {
+					cbk(d);
+				});
+			}
 		})(i)
 	}
 	CP.parallel(
