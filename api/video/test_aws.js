@@ -11,27 +11,36 @@ pkg.fs.readdir('/var/img/x/', (err, files) => {
 		// if (/x([a-z]+)/.test(file)) 
 		f[f.length] = file;
 	});
-	res.send(f);
+	var CP = new pkg.crowdProcess();
+	var _f = {}; 
+	for (var i = 0; i < f.length; i++) {
+		_f['P_' + i] = (function(i) { 
+			return function(cbk) {
+				pkg.fs.readFile('/var/img/x/' + f[i], function (err, data0) {
+				  if (err) { throw err; }
+				     var base64data = new Buffer(data0, 'binary');
+				     var params = {
+					 Body: base64data,
+					 Bucket: "shusiou1",
+					 Key: f[i],
+					 ContentType: 'image/jpg',
+					 ACL: 'public-read'
+				     };
+				     s3.putObject(params, function(err, data) {
+					 if (err) cbk(err.message);
+					 else    cbk(data);
+				     }); 
+				}); 
+			}
+		})(i)
+	}	
+	CP.parallel(
+		_f,
+		function(results) {
+			res.send(results);
+		},
+		30000
+	);	
+	
 });  
 return true;
-pkg.fs.readFile('/var/img/x/xab', function (err, data0) {
-  if (err) { throw err; }
-     var base64data = new Buffer(data0, 'binary');
-     //Configure client for use with Spaces
-
-                  // Add a file to a Space
-     var params = {
-         Body: base64data,
-         Bucket: "shusiou1",
-         Key: "xab",
-         ContentType: 'image/jpg',
-  //      ContentLength: res.headers['content-length'],
-         ACL: 'public-read'
-     };
-
-     s3.putObject(params, function(err, data) {
-         if (err) res.send(err.message);
-         else     res.send(data);
-     }); 
-}); 
-
