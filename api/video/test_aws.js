@@ -8,7 +8,8 @@ const s3 = new AWS.S3({
 pkg.fs.readdir('/var/img/x/', (err, files) => {
 	var f = [];
 	files.forEach(file => {
-		if (/x([a-z]+)/.test(file)) f[f.length] = file;
+		// if (/x([a-z]+)/.test(file)) 
+		f[f.length] = file;
 	});
 	res.send(f);
 });  
