@@ -1,6 +1,6 @@
 const AWS = require(env.site_path + '/api/inc/aws-sdk/node_modules/aws-sdk')
 
-pkg.fs.readFile('/var/img/xaa', function (err, data0) {
+pkg.fs.readFile('/var/img/xab', function (err, data0) {
   if (err) { throw err; }
 
    var base64data = new Buffer(data0, 'binary');
@@ -15,7 +15,7 @@ pkg.fs.readFile('/var/img/xaa', function (err, data0) {
    var params = {
        Body: base64data,
        Bucket: "shusiou1",
-       Key: "xaa",
+       Key: "xab",
            ContentType: 'image/jpg',
    //      ContentLength: res.headers['content-length'],
            ACL: 'public-read'
