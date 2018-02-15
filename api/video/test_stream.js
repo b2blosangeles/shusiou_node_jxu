@@ -15,7 +15,7 @@ pkg.fs.readdir('/var/img/x/', (err, files) => {
 				pkg.request('https://shusiou1.nyc3.digitaloceanspaces.com/'+ f[i], 
 					function (error, response, body) {
 				}).on('data', function(data) {
-					a.write(d);
+					a.write(data);
 					// d = Buffer.concat([d,  Buffer.from(data)]);
 				}).on('end', function() {
 					cbk(true);
