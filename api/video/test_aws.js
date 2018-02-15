@@ -10,8 +10,8 @@ pkg.fs.readdir('/var/img/x/', (err, files) => {
 	files.forEach(file => {
 		if (/x([a-z]+)/.test(file)) f[f.length] = file;
 	});
+	res.send(f);
 });  
-res.send(f);
 return true;
 pkg.fs.readFile('/var/img/x/xab', function (err, data0) {
   if (err) { throw err; }
