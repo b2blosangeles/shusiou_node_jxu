@@ -1,6 +1,4 @@
-res.send(env);
-return true;
-const AWS = require('/var/qalet/site/api/inc/aws-sdk/node_modules/aws-sdk')
+const AWS = require(env.site_path + '/api/inc/aws-sdk/node_modules/aws-sdk')
 
 
 //Configure client for use with Spaces
@@ -21,6 +19,6 @@ var params = {
 };
 
 s3.putObject(params, function(err, data) {
-    if (err) console.log(err, err.message);
-    else     console.log(data);
+    if (err) res.send(err.message);
+    else     res.send(data);
 });
