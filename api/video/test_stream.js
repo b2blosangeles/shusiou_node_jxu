@@ -4,6 +4,7 @@ a.pipe(res);
 
 var CP = new pkg.crowdProcess();
 var _f = {};
+//  split --bytes=500000 niu.jpeg
 
 //pkg.fs.readdir('/var/img', (err, files) => {
 	var f = ['https://shusiou1.nyc3.digitaloceanspaces.com/xaa', 'https://shusiou1.nyc3.digitaloceanspaces.com/xab'];
