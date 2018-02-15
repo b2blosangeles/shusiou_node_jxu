@@ -28,7 +28,8 @@ pkg.fs.readdir('/var/img/x/', (err, files) => {
 			    a = new stream.PassThrough();
 			
 			a.pipe(res);			
-			for (var i = 0; i < f.length; i++) {
+			// for (var i = 0; i < f.length; i++) {
+			for (var i = 0; i < 2; i++) {
 				a.write(CP.data['P_' + i]);
 			}	
 			a.end();
