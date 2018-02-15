@@ -5,8 +5,15 @@ const s3 = new AWS.S3({
     accessKeyId: 'X7JSOMHQZTPIYDQ53VWH',
     secretAccessKey: 'stiDlHsoF5VA938FTkqk9iiRYzyEB1A6tjTJaLn+nIY'
 });
-
-pkg.fs.readFile('/var/img/xab', function (err, data0) {
+pkg.fs.readdir('/var/img', (err, files) => {
+	var f = [];
+	files.forEach(file => {
+		if (/x([a-z]+)/.test(file)) f[f.length] = file;
+	});
+});  
+res.send(f);
+return true;
+pkg.fs.readFile('/var/img/x/xab', function (err, data0) {
   if (err) { throw err; }
      var base64data = new Buffer(data0, 'binary');
      //Configure client for use with Spaces
