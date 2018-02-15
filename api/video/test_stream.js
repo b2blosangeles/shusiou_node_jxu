@@ -7,6 +7,8 @@ var _f = {};
 
 //pkg.fs.readdir('/var/img', (err, files) => {
 	var f = ['https://shusiou1.nyc3.digitaloceanspaces.com/img1/xaa', 'https://shusiou1.nyc3.digitaloceanspaces.com/img1/xab'];
+res.send(f);
+return true;
 	/*
 	files.forEach(file => {
 		if (/x([a-z]+)/.test(file)) f[f.length] = file;
