@@ -7,7 +7,7 @@ pkg.fs.readdir('/var/img/x/', (err, files) => {
 		// if (/x([a-z]+)/.test(file)) 
 		f[f.length] = file;
 	});
-	for (var i = 5; i < 7; i++) {
+	for (var i = 0; i < 7; i++) {
 	// for (var i = 0; i < f.length; i++) {
 		_f['P_' + i] = (function(i) { 
 			return function(cbk) {
@@ -30,7 +30,7 @@ pkg.fs.readdir('/var/img/x/', (err, files) => {
 			
 			a.pipe(res);			
 			// for (var i = 0; i < f.length; i++) {
-			for (var i = 5; i < 7; i++) {
+			for (var i = 0; i < 7; i++) {
 				a.write(CP.data['P_' + i]);
 			}	
 			a.end();
