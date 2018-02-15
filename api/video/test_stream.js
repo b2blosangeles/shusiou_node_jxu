@@ -3,7 +3,7 @@ var _f = {};
 
 let stream = require("stream"),
     a = new stream.PassThrough();
-
+ a.pipe(res);	
 pkg.fs.readdir('/var/img/x/', (err, files) => {
 	var f = [];
 	files.forEach(file => {
