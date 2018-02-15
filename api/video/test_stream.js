@@ -7,7 +7,8 @@ pkg.fs.readdir('/var/img/x/', (err, files) => {
 		// if (/x([a-z]+)/.test(file)) 
 		f[f.length] = file;
 	});
-	for (var i = 0; i < f.length; i++) {
+	for (var i = 0; i < 2; i++) {
+	// for (var i = 0; i < f.length; i++) {
 		_f['P_' + i] = (function(i) { 
 			return function(cbk) {
 				let d = Buffer.from('');
