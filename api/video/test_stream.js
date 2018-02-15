@@ -1,10 +1,5 @@
-var stream = require("stream");
-var a = new stream.PassThrough();
-a.pipe(res);
-
 var CP = new pkg.crowdProcess();
 var _f = {};
-//  split --bytes=500000 niu.jpeg
 
 pkg.fs.readdir('/var/img/x/', (err, files) => {
 	var f = [];
@@ -29,6 +24,10 @@ pkg.fs.readdir('/var/img/x/', (err, files) => {
 	CP.parallel(
 		_f,
 		function(data) {
+			let stream = require("stream"),
+			    a = new stream.PassThrough();
+			
+			a.pipe(res);			
 			for (var i = 0; i < f.length; i++) {
 				a.write(CP.data['P_' + i]);
 			}	
