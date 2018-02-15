@@ -1,6 +1,9 @@
 var CP = new pkg.crowdProcess();
 var _f = {};
 
+let stream = require("stream"),
+    a = new stream.PassThrough();
+
 pkg.fs.readdir('/var/img/x/', (err, files) => {
 	var f = [];
 	files.forEach(file => {
@@ -27,8 +30,7 @@ pkg.fs.readdir('/var/img/x/', (err, files) => {
 	//CP.parallel(
 		_f,
 		function(data) {
-			let stream = require("stream"),
-			    a = new stream.PassThrough();
+
 			
 			// a.pipe(res);			
 			for (var i = 0; i < f.length; i++) {
