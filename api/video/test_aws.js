@@ -23,7 +23,7 @@ pkg.fs.readdir('/var/img/x/', (err, files) => {
 					 Body: base64data,
 					 Bucket: "shusiou1",
 					 Key: f[i],
-					 ContentType: 'image/jpg',
+				//	 ContentType: 'image/jpg',
 					 ACL: 'public-read'
 				     };
 				     s3.putObject(params, function(err, data) {
