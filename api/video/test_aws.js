@@ -1,6 +1,6 @@
 const AWS = require(env.site_path + '/api/inc/aws-sdk/node_modules/aws-sdk')
 
-fs.readFile('/var/img/niu.jpeg', function (err, data0) {
+pkg.fs.readFile('/var/img/niu.jpeg', function (err, data0) {
   if (err) { throw err; }
 
    var base64data = new Buffer(data0, 'binary');
