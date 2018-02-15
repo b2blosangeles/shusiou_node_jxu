@@ -6,20 +6,17 @@ var CP = new pkg.crowdProcess();
 var _f = {};
 //  split --bytes=500000 niu.jpeg
 
-//pkg.fs.readdir('/var/img', (err, files) => {
-	var f = ['https://shusiou1.nyc3.digitaloceanspaces.com/xaa', 'https://shusiou1.nyc3.digitaloceanspaces.com/xab'];
- // res.send(f);
- // return true;
-	/*
+pkg.fs.readdir('/var/img/x/', (err, files) => {
+	var f = [];
 	files.forEach(file => {
-		if (/x([a-z]+)/.test(file)) f[f.length] = file;
+		// if (/x([a-z]+)/.test(file)) 
+		f[f.length] = file;
 	});
-	*/
 	for (var i = 0; i < f.length; i++) {
 		_f['P_' + i] = (function(i) { 
 			return function(cbk) {
 				let d = Buffer.from('');
-				pkg.request(f[i], 
+				pkg.request('https://shusiou1.nyc3.digitaloceanspaces.com/'+ f[i], 
 					function (error, response, body) {
 				}).on('data', function(data) {
 					d = Buffer.concat([d,  Buffer.from(data)]);
@@ -39,5 +36,5 @@ var _f = {};
 		},
 		30000
 	);
-//})
+})
 return true;
