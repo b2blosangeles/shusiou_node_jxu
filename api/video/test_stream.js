@@ -5,16 +5,18 @@ a.pipe(res);
 var CP = new pkg.crowdProcess();
 var _f = {};
 
-pkg.fs.readdir('/var/img', (err, files) => {
-	var f = [];
+//pkg.fs.readdir('/var/img', (err, files) => {
+	var f = ['https://shusiou1.nyc3.digitaloceanspaces.com/img1/xaa', 'https://shusiou1.nyc3.digitaloceanspaces.com/img1/xab'];
+	/*
 	files.forEach(file => {
 		if (/x([a-z]+)/.test(file)) f[f.length] = file;
 	});
+	*/
 	for (var i = 0; i < f.length; i++) {
 		_f['P_' + i] = (function(i) { 
 			return function(cbk) {
 				let d = Buffer.from('');
-				pkg.request('http://198.199.120.18/api/video/test_niu.api?file=' + f[i], 
+				pkg.request(f[i], 
 					function (error, response, body) {
 				}).on('data', function(data) {
 					d = Buffer.concat([d,  Buffer.from(data)]);
@@ -34,7 +36,7 @@ pkg.fs.readdir('/var/img', (err, files) => {
 		},
 		30000
 	);
-})
+//})
 return true;
 var CP = new pkg.crowdProcess();
 var _f = {};
