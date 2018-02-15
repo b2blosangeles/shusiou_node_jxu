@@ -5,7 +5,7 @@ const s3 = new AWS.S3({
     accessKeyId: 'X7JSOMHQZTPIYDQ53VWH',
     secretAccessKey: 'stiDlHsoF5VA938FTkqk9iiRYzyEB1A6tjTJaLn+nIY'
 });
-pkg.fs.readdir('/var/img', (err, files) => {
+pkg.fs.readdir('/var/img/x/', (err, files) => {
 	var f = [];
 	files.forEach(file => {
 		if (/x([a-z]+)/.test(file)) f[f.length] = file;
