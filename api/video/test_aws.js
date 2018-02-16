@@ -9,7 +9,8 @@ const s3 = new AWS.S3({
 function removeFolder(s3, bucketName, folder, callback){
 	var params = {
 		Bucket: bucketName,
-		Delimiter: 'img1/'
+		Prefix: 'img1',
+		Delimiter: '/'
 		//,
 		//Delimiter: folder + '/'
 	};
