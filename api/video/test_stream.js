@@ -9,7 +9,7 @@ let stream = require("stream"),
 
 var range = req.headers.range;
 if (range) {
-	res.send(range);
+	res.send('range--->');
 	return true;
 }
 
