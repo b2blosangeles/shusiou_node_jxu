@@ -5,6 +5,17 @@ const s3 = new AWS.S3({
     accessKeyId: 'X7JSOMHQZTPIYDQ53VWH',
     secretAccessKey: 'stiDlHsoF5VA938FTkqk9iiRYzyEB1A6tjTJaLn+nIY'
 });
+
+var params_d = {
+	Bucket: "shusiou1",
+	Key: 'niu/'
+};	
+s3.deleteObject(params_d, function(err, data) {
+	if (err) res.send(err.message + '-b-');
+	else    res.send(data);
+});
+return true;
+
 pkg.fs.readdir('/var/img/x/', (err, files) => {
 	var f = [];
 	files.forEach(file => {
