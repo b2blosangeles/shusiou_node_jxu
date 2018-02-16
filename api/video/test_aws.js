@@ -27,10 +27,11 @@ function removeFolder(s3, bucketName, folder, callback){
 		});	
 	});
 }
-
+/*
 removeFolder(s3, 'shusiou001', 'niu/a/b/ad', function(data) {
 	res.send(data);
 });
+*/
 return true;
 
 pkg.fs.readdir('/var/img/x/', (err, files) => {
