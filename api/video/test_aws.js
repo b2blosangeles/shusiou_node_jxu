@@ -9,7 +9,7 @@ let img_path = '/var/img/';
 
 let buff = new Buffer(100);
 pkg.fs.open(img_path + 'video.mp4', 'r', function(err, fd) {
-  pkg.fs.read(img_path + 'video.mp4', buff, 0, 100, 0, function(err, bytesRead, buffer) {
+  pkg.fs.read(fd, buff, 0, 100, 0, function(err, bytesRead, buffer) {
     var start = buffer.indexOf(new Buffer('mvhd')) + 17;
     var timeScale = buffer.readUInt32BE(start, 4);
     var duration = buffer.readUInt32BE(start + 4, 4);
