@@ -5,7 +5,39 @@ const s3 = new AWS.S3({
     accessKeyId: 'X7JSOMHQZTPIYDQ53VWH',
     secretAccessKey: 'stiDlHsoF5VA938FTkqk9iiRYzyEB1A6tjTJaLn+nIY'
 });
+ 
+function removeFolder(s3, bucketName, folder, callback){
+	var params = {
+		Bucket: bucketName,
+		Key: folder
+	};
 
+	s3.listObjects(params, function(err, data) {
+		callback(data);
+		return true;
+		
+		if (err) return callback(err);
+		if (data.Contents.length == 0) callback();
+
+		params = {Bucket: bucketName};
+		params.Delete = {Objects:[]};
+
+		data.Contents.forEach(function(content) {
+			params.Delete.Objects.push({Key: content.Key});
+		});
+
+		s3.deleteObjects(params, function(err, data) {
+			if (err) return callback(err);
+			if(data.Contents.length == 1000) removeFolder(bucketName, forder + '/' + data, callback);
+			else callback(data);
+		});
+	});
+}
+
+removeFolder(s3, 'shusiou1', 'niu', function(data) {
+	res.send(data);
+})
+return true;
 var params_d = {
 	Bucket: "shusiou1",
 	Key: 'niu/'
