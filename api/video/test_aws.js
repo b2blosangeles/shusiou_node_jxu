@@ -13,7 +13,7 @@ function removeFolder(s3, bucketName, folder, callback){
 	};
 	s3.listObjects(params, function(err, data) {
 		if (err) return callback(err);
-		if (data.Contents.length == 0) callback('nothing');
+		if (data.Contents.length == 0) callback({"Deleted":[],"Errors":[]});
 		var params = {
 			Bucket: bucketName
 		};		
@@ -21,7 +21,6 @@ function removeFolder(s3, bucketName, folder, callback){
 		data.Contents.forEach(function(content) {
 			params.Delete.Objects.push({Key: content.Key});
 		});
-		// callback(params);
 		s3.deleteObjects(params, function(err, d) {
 			if (err) return callback(err);
 			else callback(d);
@@ -29,22 +28,11 @@ function removeFolder(s3, bucketName, folder, callback){
 	});
 }
 
-removeFolder(s3, 'shusiou1', 'niu/a/b/ac', function(data) {
+removeFolder(s3, 'shusiou1', 'niu/a/b/ad', function(data) {
 	res.send(data);
 });
 return true;
 
-/*
-var params_d = {
-	Bucket: "shusiou1",
-	Key: 'niu/'
-};	
-s3.deleteObject(params_d, function(err, data) {
-	if (err) res.send(err.message + '-b-');
-	else    res.send(data);
-});
-return true;
-*/
 pkg.fs.readdir('/var/img/x/', (err, files) => {
 	var f = [];
 	files.forEach(file => {
