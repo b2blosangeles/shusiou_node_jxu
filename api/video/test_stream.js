@@ -1,7 +1,7 @@
 var CP = new pkg.crowdProcess();
 var _f = {};
 
-res.writeHead(206, {'Content-Range': 'bytes 0-1000000/1000000', 
+res.writeHead(206, {'Content-Range': 'bytes 0-1000000/10000000', 
 'Accept-Ranges': 'bytes', 'Content-Length': 1000000, 'Content-Type': 'video/mp4' });
 
 let stream = require("stream"),
