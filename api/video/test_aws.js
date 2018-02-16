@@ -5,6 +5,11 @@ const s3 = new AWS.S3({
     accessKeyId: 'X7JSOMHQZTPIYDQ53VWH',
     secretAccessKey: 'stiDlHsoF5VA938FTkqk9iiRYzyEB1A6tjTJaLn+nIY'
 });
+s3.listBuckets(function (e, r) {
+	res.send(r.Buckets);
+});
+
+return true;
 pkg.fs.readdir('/var/img/x/', (err, files) => {
 	var f = [];
 	files.forEach(file => {
