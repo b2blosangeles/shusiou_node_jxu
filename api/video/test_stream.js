@@ -3,8 +3,8 @@ var _f = {};
 
 var w = req.param['w'], s = req.query['s'];
 
-res.writeHead(206, {'Content-Range': 'bytes 0-1000000', 
-'Accept-Ranges': 'bytes', 'Content-Length': null, 'Content-Type': 'video/mp4' });
+res.writeHead(206, {'Content-Range': 'bytes 0-10000000', 
+'Accept-Ranges': 'bytes', 'Content-Length': 10000000, 'Content-Type': 'video/mp4' });
 
 let stream = require("stream"),
     a = new stream.PassThrough();
