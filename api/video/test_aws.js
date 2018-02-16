@@ -2,8 +2,8 @@ const AWS = require(env.site_path + '/api/inc/aws-sdk/node_modules/aws-sdk')
 const spacesEndpoint = new AWS.Endpoint('nyc3.digitaloceanspaces.com');
 const s3 = new AWS.S3({
     endpoint: spacesEndpoint,
-    accessKeyId: 'X7JSOMHQZTPIYDQ53VWH',
-    secretAccessKey: 'stiDlHsoF5VA938FTkqk9iiRYzyEB1A6tjTJaLn+nIY'
+    accessKeyId: 'I7F32YN3VOECILTSWUGR',
+    secretAccessKey: '/8zmAOfrgHaq4eKYjWflIhCuyU5RCclnkG8FEJcDNH4'
 });
  
 function removeFolder(s3, bucketName, folder, callback){
@@ -28,7 +28,7 @@ function removeFolder(s3, bucketName, folder, callback){
 	});
 }
 
-removeFolder(s3, 'shusiou1', 'niu/a/b/ad', function(data) {
+removeFolder(s3, 'shusiou001', 'niu/a/b/ad', function(data) {
 	res.send(data);
 });
 return true;
