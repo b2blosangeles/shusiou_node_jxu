@@ -8,9 +8,7 @@ pkg.fs.open('/var/img/x/aa', 'r', function(err, fd) {
     var duration = buffer.readUInt32BE(start + 4, 4);
     var movieLength = Math.floor(duration/timeScale);
     
-    res.send('time scale: ' + timeScale);
- //   console.log('duration: ' + duration);
- //   console.log('movie length: ' + movieLength + ' seconds');
+    res.send('time scale: ' + timeScale + 'duration: ' + duration + 'movie length: ' + movieLength + ' seconds');
   });
 });
 
