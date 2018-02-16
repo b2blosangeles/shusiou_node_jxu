@@ -15,8 +15,8 @@ if (range) {
 	  partialend =  parts[1];
 	var start = parseInt(partialstart, 10);
 	if (start) {
-		a.write(Buffer.from('range--->' + start));
-		a.end();
+		// a.write(Buffer.from('range--->' + start));
+		res.end('range--->' + start);
 		return true;	
 	}
 	var end = partialend ? parseInt(partialend, 10) : total-1;
