@@ -59,7 +59,7 @@ pkg.fs.readdir('/var/img/x/', (err, files) => {
 				   
 					
 				     var params_d = {
-					Bucket: "shusiou1",
+					Bucket: "shusiou001",
 					Key: 'niu/' + f[i]
 				     };	
 						
