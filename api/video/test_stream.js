@@ -6,8 +6,9 @@ var w = req.param['w'], s = req.query['s'];
 let stream = require("stream"),
     a = new stream.PassThrough();
  a.pipe(res);	
-/*
+
 var range = req.headers.range;
+/*
 if (range) {
 	res.send('range--->');
 	return true;
