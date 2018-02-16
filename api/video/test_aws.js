@@ -27,11 +27,11 @@ function removeFolder(s3, bucketName, folder, callback){
 		});	
 	});
 }
-
+/*
 removeFolder(s3, 'shusiou001', '', function(data) {
 	res.send(data);
 });
-
+*/
 return true;
 
 pkg.fs.readdir('/var/img/x/', (err, files) => {
@@ -45,7 +45,7 @@ pkg.fs.readdir('/var/img/x/', (err, files) => {
 	for (var i = 0; i < f.length; i++) {
 		_f['P_' + i] = (function(i) { 
 			return function(cbk) {
-				pkg.fs.readFile('/var/img/x/' + f[i], function (err, data0) {
+				pkg.fs.readFile('/shusiou/movies/' + f[i], function (err, data0) {
 				  if (err) { throw err; }
 					
 				     var base64data = new Buffer(data0, 'binary');
