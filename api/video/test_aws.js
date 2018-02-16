@@ -31,11 +31,13 @@ function removeFolder(s3, bucketName, folder, callback){
 		});	
 	});
 }
-
+/*
 removeFolder(s3, 'shusiou1', '', function(data) {
 	res.send(data);
 });
 return true;
+*/
+/*
 var params_d = {
 	Bucket: "shusiou1",
 	Key: 'niu/'
@@ -45,7 +47,7 @@ s3.deleteObject(params_d, function(err, data) {
 	else    res.send(data);
 });
 return true;
-
+*/
 pkg.fs.readdir('/var/img/x/', (err, files) => {
 	var f = [];
 	files.forEach(file => {
