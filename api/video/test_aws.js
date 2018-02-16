@@ -43,7 +43,7 @@ pkg.fs.readdir('/var/img/x/', (err, files) => {
 				     });	*/				
 				     s3.deleteObject(params, function(err, data) {
 					 if (err) cbk(err.message + '-b-');
-					 else    cbk(data+'--');
+					 else    cbk('data');
 				     }); 
 				}); 
 			}
