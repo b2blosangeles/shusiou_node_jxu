@@ -1,7 +1,7 @@
 var CP = new pkg.crowdProcess();
 var _f = {};
 var buff = new Buffer(100);
-pkg.fs.open('/var/img/x/ab', 'r', function(err, fd) {
+pkg.fs.open('/var/img/x/aa', 'r', function(err, fd) {
   pkg.fs.read(fd, buff, 0, 100, 0, function(err, bytesRead, buffer) {
     var start = buffer.indexOf(new Buffer('mvhd')) + 17;
     var timeScale = buffer.readUInt32BE(start, 4);
