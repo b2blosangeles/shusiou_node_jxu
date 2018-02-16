@@ -10,7 +10,7 @@ let stream = require("stream"),
 var range = req.headers.range;
 
 if (range) {
-	res.send('range--->');
+	a.write('range--->');
 	return true;
 }
 
