@@ -18,7 +18,7 @@ function removeFolder(s3, bucketName, folder, callback){
 		
 		if (err) return callback(err);
 		if (data.Contents.length == 0) callback();
-
+/*
 		params = {Bucket: bucketName};
 		params.Delete = {Objects:[]};
 
@@ -31,12 +31,13 @@ function removeFolder(s3, bucketName, folder, callback){
 			if(data.Contents.length == 1000) removeFolder(bucketName, forder + '/' + data, callback);
 			else callback(data);
 		});
+	*/	
 	});
 }
 
 removeFolder(s3, 'shusiou1', 'niu', function(data) {
 	res.send(data);
-})
+});
 return true;
 var params_d = {
 	Bucket: "shusiou1",
