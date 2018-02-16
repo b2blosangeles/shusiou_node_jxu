@@ -32,7 +32,7 @@ removeFolder(s3, 'shusiou001', '', function(data) {
 	res.send(data);
 });
 */
-return true;
+// return true;
 
 pkg.fs.readdir('/var/img/x/', (err, files) => {
 	var f = [];
