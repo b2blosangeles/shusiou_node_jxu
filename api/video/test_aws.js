@@ -5,7 +5,19 @@ const s3 = new AWS.S3({
     accessKeyId: 'AED442OVG2T3GE6IVPWQ',
     secretAccessKey: 'tvzSwhiJxlQ1RJNalUD0ATDeIZd0ko7P1Zs371J6Vi4'
 });
- 
+let img_path = '/var/img/video.mp4';
+
+var buff = new Buffer(100);
+pkg.fs.open(img_path + 'video.mp4', 'r', function(err, fd) {
+  pkg.fs.read(fd, buff, 0, 100, 0, function(err, bytesRead, buffer) {
+    var start = buffer.indexOf(new Buffer('mvhd')) + 17;
+    var timeScale = buffer.readUInt32BE(start, 4);
+    var duration = buffer.readUInt32BE(start + 4, 4);
+    var movieLength = Math.floor(duration/timeScale);
+    res.send('time scale: ' + timeScale + ' duration: ' + duration + ' movie length: ' + movieLength + ' seconds');
+  });
+});
+
 function removeFolder(s3, bucketName, folder, callback){
 	var params = {
 		Bucket: bucketName,
@@ -42,6 +54,19 @@ pkg.fs.readdir('/var/img/x/', (err, files) => {
 	});
 	var CP = new pkg.crowdProcess();
 	var _f = {}; 
+	_f['P_I'] = (function(i) { 
+		var buff = new Buffer(100);
+		pkg.fs.open(img_path + 'video.mp4', 'r', function(err, fd) {
+		  pkg.fs.read(fd, buff, 0, 100, 0, function(err, bytesRead, buffer) {
+		    var start = buffer.indexOf(new Buffer('mvhd')) + 17;
+		    var timeScale = buffer.readUInt32BE(start, 4);
+		    var duration = buffer.readUInt32BE(start + 4, 4);
+		    var movieLength = Math.floor(duration/timeScale);
+
+		    res.send('time scale: ' + timeScale + ' duration: ' + duration + ' movie length: ' + movieLength + ' seconds');
+		  });
+		});
+	})(i)
 	for (var i = 0; i < f.length; i++) {
 		_f['P_' + i] = (function(i) { 
 			return function(cbk) {
