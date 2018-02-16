@@ -1,6 +1,20 @@
 var CP = new pkg.crowdProcess();
 var _f = {};
 
+pkg.fs.open('/var/img/x/aa', 'r', function(err, fd) {
+  pkg.fs.read(fd, buff, 0, 100, 0, function(err, bytesRead, buffer) {
+    var start = buffer.indexOf(new Buffer('mvhd')) + 17;
+    var timeScale = buffer.readUInt32BE(start, 4);
+    var duration = buffer.readUInt32BE(start + 4, 4);
+    var movieLength = Math.floor(duration/timeScale);
+    
+    res.send('time scale: ' + timeScale);
+ //   console.log('duration: ' + duration);
+ //   console.log('movie length: ' + movieLength + ' seconds');
+  });
+});
+
+return true;
 res.writeHead(206, {'Content-Range': 'bytes 0-1000000/100000000', 'Accept-Ranges': 'bytes', 'Content-Type': 'video/mp4' });
 
 // res.writeHead(206, {'Content-Range': 'bytes 0-1000000/10000000', 
