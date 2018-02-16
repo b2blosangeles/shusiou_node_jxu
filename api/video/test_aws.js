@@ -63,7 +63,7 @@ pkg.fs.readdir('/var/img/x/', (err, files) => {
 			}
 		})(i)
 	}
-	CP.parallel(
+	//CP.parallel(
 	CP.serial(
 		_f,
 		function(results) {
