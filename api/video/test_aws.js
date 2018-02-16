@@ -81,7 +81,7 @@ pkg.fs.readdir('/var/img/x/', (err, files) => {
 		function(results) {
 			res.send(results);
 		},
-		30000
+		60000
 	);	
 	
 });  
