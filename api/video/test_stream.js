@@ -8,12 +8,12 @@ let stream = require("stream"),
  a.pipe(res);	
 
 var range = req.headers.range;
-/*
+
 if (range) {
 	res.send('range--->');
 	return true;
 }
-*/
+
 pkg.fs.readdir('/var/img/x/', (err, files) => {
 	var f = [];
 	files.forEach(file => {
