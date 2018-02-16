@@ -30,7 +30,7 @@ pkg.fs.readdir('/var/img/x/', (err, files) => {
 				     */
 				     var params = {
 					 Bucket: "shusiou1",
-					 Delete {
+					 Delete: {
 				     		Objects:[
 					     		{Key: 'niu/' + f[i]}
 					     	]
