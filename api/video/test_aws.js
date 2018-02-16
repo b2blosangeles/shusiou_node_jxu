@@ -2,8 +2,8 @@ const AWS = require(env.site_path + '/api/inc/aws-sdk/node_modules/aws-sdk')
 const spacesEndpoint = new AWS.Endpoint('nyc3.digitaloceanspaces.com');
 const s3 = new AWS.S3({
     endpoint: spacesEndpoint,
-    accessKeyId: 'I7F32YN3VOECILTSWUGR',
-    secretAccessKey: '/8zmAOfrgHaq4eKYjWflIhCuyU5RCclnkG8FEJcDNH4'
+    accessKeyId: 'AED442OVG2T3GE6IVPWQ',
+    secretAccessKey: 'tvzSwhiJxlQ1RJNalUD0ATDeIZd0ko7P1Zs371J6Vi4'
 });
  
 function removeFolder(s3, bucketName, folder, callback){
