@@ -45,14 +45,14 @@ pkg.fs.readdir('/var/img/x/', (err, files) => {
 	for (var i = 0; i < f.length; i++) {
 		_f['P_' + i] = (function(i) { 
 			return function(cbk) {
-				pkg.fs.readFile('/shusiou/movies/' + f[i], function (err, data0) {
+				pkg.fs.readFile('/var/img/x/' + f[i], function (err, data0) {
 				  if (err) { throw err; }
 					
 				     var base64data = new Buffer(data0, 'binary');
 				     var params = {
 					 Body: base64data,
 					 Bucket: "shusiou001",
-					 Key: 'niu/a/b/' + f[i],
+					 Key: '/shusiou/movies/' + f[i],
 					 ContentType: 'video/mp4',
 					 ACL: 'public-read'
 				     };	
