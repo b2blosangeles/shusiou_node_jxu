@@ -23,10 +23,6 @@ function removeFolder(s3, bucketName, folder, callback){
 		data.Contents.forEach(function(content) {
 			params.Delete.Objects.push({Key: content.Key});
 		});
-		
-		//callback(params);
-		//return true;
-		
 		s3.deleteObjects(params, function(err, d) {
 			if (err) return callback(err);
 			else callback(d);
@@ -34,7 +30,7 @@ function removeFolder(s3, bucketName, folder, callback){
 	});
 }
 
-removeFolder(s3, 'shusiou1', 'niu', function(data) {
+removeFolder(s3, 'shusiou1', '', function(data) {
 	res.send(data);
 });
 return true;
