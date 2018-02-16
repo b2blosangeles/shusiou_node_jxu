@@ -9,7 +9,7 @@ const s3 = new AWS.S3({
 function removeFolder(s3, bucketName, folder, callback){
 	var params = {
 		Bucket: bucketName,
-		Prefix: ''
+		Prefix: folder
 	};
 
 	s3.listObjects(params, function(err, data) {
@@ -23,13 +23,11 @@ function removeFolder(s3, bucketName, folder, callback){
 			params.Delete.Objects.push({Key: content.Key});
 		});
 		res.send(params);
-/*
 		s3.deleteObjects(params, function(err, data) {
 			if (err) return callback(err);
 			if(data.Contents.length == 1000) removeFolder(bucketName, forder + '/' + data, callback);
 			else callback(data);
-		});
-	*/	
+		});	
 	});
 }
 
