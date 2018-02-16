@@ -47,7 +47,6 @@ pkg.fs.readdir('/var/img/x/', (err, files) => {
 			return function(cbk) {
 				pkg.fs.readFile('/var/img/x/' + f[i], function (err, data0) {
 				  if (err) { throw err; }
-					
 				     var base64data = new Buffer(data0, 'binary');
 				     var params = {
 					 Body: base64data,
@@ -64,8 +63,8 @@ pkg.fs.readdir('/var/img/x/', (err, files) => {
 			}
 		})(i)
 	}
-	// CP.serial(
 	CP.parallel(
+	CP.serial(
 		_f,
 		function(results) {
 			res.send(results);
