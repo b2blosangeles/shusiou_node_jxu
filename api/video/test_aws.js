@@ -14,7 +14,7 @@ function removeFolder(s3, bucketName, folder, callback){
 
 	s3.listObjects(params, function(err, data) {
 		if (err) return callback(err);
-		if (data.Contents.length == 0) callback();
+		if (data.Contents.length == 0) callback('nothing');
 		
 		params.Delete = {Objects:[]};
 
