@@ -1,11 +1,20 @@
 var CP = new pkg.crowdProcess();
 var _f = {};
 
+var w = req.param['w'], s = req.query['s'];
+
 let stream = require("stream"),
     a = new stream.PassThrough();
  a.pipe(res);	
 pkg.fs.readdir('/var/img/x/', (err, files) => {
 	var f = [];
+	
+	var range = req.headers.range;
+	if (range) {
+		res.send(range);
+		return true;
+	}
+	
 	files.forEach(file => {
 		// if (/x([a-z]+)/.test(file)) 
 		f[f.length] = file;
