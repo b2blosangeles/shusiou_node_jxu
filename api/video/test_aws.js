@@ -31,7 +31,7 @@ function removeFolder(s3, bucketName, folder, callback){
 	});
 }
 
-removeFolder(s3, 'shusiou1', 'niu/a/', function(data) {
+removeFolder(s3, 'shusiou1', 'niu', function(data) {
 	res.send(data);
 });
 return true;
