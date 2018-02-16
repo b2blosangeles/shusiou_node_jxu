@@ -14,7 +14,7 @@ function removeFolder(s3, bucketName, folder, callback){
 
 	s3.listObjects(params, function(err, data) {
 		if (err) return callback(err);
-		if (data.Contents.length == 0) callback();
+	//	if (data.Contents.length == 0) callback();
 
 		params = {Bucket: bucketName};
 		params.Delete = {Objects:[]};
@@ -22,7 +22,7 @@ function removeFolder(s3, bucketName, folder, callback){
 		data.forEach(function(content) {
 			params.Delete.Objects.push({Key: content.Key});
 		});
-		console.log(params);
+		res.send(params);
 /*
 		s3.deleteObjects(params, function(err, data) {
 			if (err) return callback(err);
