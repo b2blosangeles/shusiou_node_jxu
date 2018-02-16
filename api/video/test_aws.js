@@ -13,15 +13,13 @@ function removeFolder(s3, bucketName, folder, callback){
 	};
 
 	s3.listObjects(params, function(err, data) {
-		res.send(data);
-		return true;
 		if (err) return callback(err);
-	//	if (data.Contents.length == 0) callback();
+		if (data.Contents.length == 0) callback();
 
 		params = {Bucket: bucketName};
 		params.Delete = {Objects:[]};
 
-		data.forEach(function(content) {
+		data.Contents.forEach(function(content) {
 			params.Delete.Objects.push({Key: content.Key});
 		});
 		res.send(params);
