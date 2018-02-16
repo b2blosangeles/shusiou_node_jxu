@@ -11,10 +11,10 @@ function removeFolder(s3, bucketName, folder, callback){
 		Bucket: bucketName,
 		Key: folder
 	};
-
-	s3.listObjects(params, function(err, data) {
-		callback(data);
+		callback('data-->');
 		return true;
+	s3.listObjects(params, function(err, data) {
+
 		
 		if (err) return callback(err);
 		if (data.Contents.length == 0) callback();
