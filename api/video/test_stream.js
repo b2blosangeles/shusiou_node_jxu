@@ -9,8 +9,8 @@ let stream = require("stream"),
 
 var range = req.headers.range;
 if (range) {
-	a.write('range--->');
-	return true;
+//	a.write('range--->');
+//	return true;
 }
 
 pkg.fs.readdir('/var/img/x/', (err, files) => {
