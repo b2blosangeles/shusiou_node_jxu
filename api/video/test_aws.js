@@ -52,7 +52,7 @@ pkg.fs.readdir('/var/img/x/', (err, files) => {
 				     var params = {
 					 Body: base64data,
 					 Bucket: "shusiou01",
-					 Key: '/shusiou/movies/' + f[i],
+					 Key: 'shusiou/movies/' + f[i],
 					 ContentType: 'video/mp4',
 					 ACL: 'public-read'
 				     };	
