@@ -28,12 +28,12 @@ function removeFolder(s3, bucketName, folder, callback){
 		});	
 	});
 }
-
+/*
 removeFolder(s3, 'shusiou1', 'u1', function(data) {
 	res.send(data);
 });
 return true;
-
+*/
 /*
 var params_d = {
 	Bucket: "shusiou1",
