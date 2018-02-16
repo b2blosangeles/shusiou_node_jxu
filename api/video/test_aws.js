@@ -5,9 +5,6 @@ const s3 = new AWS.S3({
     accessKeyId: 'X7JSOMHQZTPIYDQ53VWH',
     secretAccessKey: 'stiDlHsoF5VA938FTkqk9iiRYzyEB1A6tjTJaLn+nIY'
 });
-s3.listBuckets(function (e, r) {
-	res.send(r.Buckets);
-});
 
 return true;
 pkg.fs.readdir('/var/img/x/', (err, files) => {
@@ -27,7 +24,7 @@ pkg.fs.readdir('/var/img/x/', (err, files) => {
 				     var params = {
 					 Body: base64data,
 					 Bucket: "shusiou1",
-					 Key: f[i],
+					 Key: 'niu/' + f[i],
 					 ContentType: 'video/mp4',
 					 ACL: 'public-read'
 				     };
