@@ -18,7 +18,7 @@ pkg.fs.readdir('/var/img/x/', (err, files) => {
 			return function(cbk) {
 				pkg.fs.readFile('/var/img/x/' + f[i], function (err, data0) {
 				  if (err) { throw err; }
-					/*
+					
 				     var base64data = new Buffer(data0, 'binary');
 				     var params = {
 					 Body: base64data,
@@ -27,20 +27,22 @@ pkg.fs.readdir('/var/img/x/', (err, files) => {
 					 ContentType: 'video/mp4',
 					 ACL: 'public-read'
 				     };
-				     */
-				     var params = {
+				   
+					
+				     var params_d = {
 					Bucket: "shusiou1",
 					Key: 'niu/' + f[i]
 				     };	
-						/*
+						
 				     s3.putObject(params, function(err, data) {
 					 if (err) cbk(err.message);
 					 else    cbk(data);
-				     });	*/				
-				     s3.deleteObject(params, function(err, data) {
+				     });
+					/*
+				     s3.deleteObject(params_d, function(err, data) {
 					 if (err) cbk(err.message + '-b-');
 					 else    cbk(data);
-				     }); 
+				     }); */
 				}); 
 			}
 		})(i)
