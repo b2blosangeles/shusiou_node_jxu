@@ -29,14 +29,8 @@ pkg.fs.readdir('/var/img/x/', (err, files) => {
 				     };
 				     */
 				     var params = {
-					 Bucket: "shusiou1",
-					// Delete: {
-				     	//	Objects:[
-					//     		{
-					     Key: 'niu/' + f[i]
-				     //}
-					  //   	]
-				     	// }
+					Bucket: "shusiou1",
+					Key: 'niu/' + f[i]
 				     };	
 						/*
 				     s3.putObject(params, function(err, data) {
