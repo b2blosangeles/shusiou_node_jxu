@@ -5,7 +5,7 @@ const s3 = new AWS.S3({
     accessKeyId: 'AED442OVG2T3GE6IVPWQ',
     secretAccessKey: 'tvzSwhiJxlQ1RJNalUD0ATDeIZd0ko7P1Zs371J6Vi4'
 });
-let img_path = '/var/img/4';
+let img_path = '/var/img/';
 
 var buff = new Buffer(100);
 pkg.fs.open(img_path + 'video.mp4', 'r', function(err, fd) {
