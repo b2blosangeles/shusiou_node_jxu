@@ -10,8 +10,22 @@ let stream = require("stream"),
 var range = req.headers.range;
 
 if (range) {
-	res.send('range--->');
-	return true;
+	var parts = range.replace(/bytes=/, "").split("-");
+	var partialstart = parts[0]; var partialend;
+	  partialend =  parts[1];
+	var start = parseInt(partialstart, 10);
+	if (start) {
+		res.send('range--->' + start);
+		return true;	
+	}
+	var end = partialend ? parseInt(partialend, 10) : total-1;
+	var chunksize = (end-start)+1;
+	var maxChunk = 1024 * 1024; // 1MB at a time
+	if (chunksize > maxChunk) {
+	  end = start + maxChunk - 1;
+	  chunksize = (end - start) + 1;
+							}	
+
 }
 
 pkg.fs.readdir('/var/img/x/', (err, files) => {
