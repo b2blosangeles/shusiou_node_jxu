@@ -39,7 +39,7 @@ pkg.fs.readdir('/var/img/x/', (err, files) => {
 	CP.parallel(
 		_f,
 		function(data) {
-			a.pipe(res);			
+						
 			// for (var i = 0; i < f.length; i++) {
 			for (var i = 0; i < 17; i+=1) {
 				a.write(CP.data['P_' + i]);
