@@ -92,7 +92,7 @@ pkg.fs.readdir( tmp_folder, (err, files) => {
 						var duration = buffer.readUInt32BE(start + 4, 4);
 						var movieLength = Math.floor(duration/timeScale);
 						var v = {filesize:stat.size,time_scale:timeScale, 
-							duration: duration, length:movieLength, x:[]};
+							duration: duration, length:movieLength, x:[], status:0};
 						writeInfo(v, cbk);
 					});
 				});
@@ -129,6 +129,9 @@ pkg.fs.readdir( tmp_folder, (err, files) => {
 							 else {
 								 let v = CP.data['P_I1'];
 								 v.x[v.x.length] = f[i];
+								 if (i === (f.length - 1)) {
+								 	v.status = 1;
+								 }
 								 writeInfo(v, cbk1);
 								 // cbk1(data);
 							 }	 
