@@ -96,6 +96,13 @@ pkg.fs.readdir( tmp_folder, (err, files) => {
 			});
 			
 		} 
+	};
+	_f['P_I2'] = function(cbk) { 
+		if (CP.data['P_I1'] !== false) {
+			cbk(CP.data['P_I1']);
+		} else {
+			cbk(false)
+		}
 	};	
 	/*
 	for (var i = 0; i < f.length; i++) {
