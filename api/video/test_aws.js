@@ -54,7 +54,8 @@ pkg.fs.readdir('/var/img/x/', (err, files) => {
 					var movieLength = Math.floor(duration/timeScale);
 					
 				     var params = {
-					 Body: {fsize:stat.size,time_scale:timeScale, duration: duration, length:movieLength},
+					 Body: JSON.stringify({fsize:stat.size,time_scale:timeScale, 
+							       duration: duration, length:movieLength}),
 					 Bucket: "shusiou01",
 					 Key: 'shusiou/movies/_info.txt',
 					 ContentType: 'text/plain',
