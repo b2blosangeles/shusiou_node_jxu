@@ -47,7 +47,8 @@ pkg.fs.readdir( tmp_folder, (err, files) => {
 	var CP = new pkg.crowdProcess();
 	var _f = {}; 
 	_f['P_I0'] = function(cbk) { 
-		env.request('https://shusiou01.nyc3.digitaloceanspaces.com/shusiou/movies/_info.txt', { json: true }, (err, res, body) => {
+		env.request('https://shusiou01.nyc3.digitaloceanspaces.com/shusiou/movies/_info.txt', { json: true }, 
+		function (err, res, body) {
 		  	if (err) { 
 				cbk(err.message); 
 			} else {
