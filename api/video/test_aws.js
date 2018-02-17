@@ -59,14 +59,10 @@ pkg.fs.readdir( tmp_folder, (err, files) => {
 	};	
 	
 	_f['P_I1'] = function(cbk) { 
-		if (CP.data['P_I0'] !== flase) {
+		if (CP.data['P_I0'] !== false) {
 			cbk(CP.data['P_I0']);
 		} else {
-			cbk(true);
-			// return true;
-			/*
 			let buff = new Buffer(100);
-			
 			pkg.fs.stat(south_file, function(err, stat) {
 				pkg.fs.open(south_file, 'r', function(err, fd) {
 					pkg.fs.read(fd, buff, 0, 100, 0, function(err, bytesRead, buffer) {
@@ -90,7 +86,7 @@ pkg.fs.readdir( tmp_folder, (err, files) => {
 					});
 				});
 			});
-			*/
+			
 		} 
 	};	
 	/*
