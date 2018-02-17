@@ -99,12 +99,15 @@ pkg.fs.readdir( tmp_folder, (err, files) => {
 	};
 	_f['P_I2'] = function(cbk) { 
 		if (CP.data['P_I1'] !== false) {
-			// cbk(CP.data['P_I1']);
+			var x = CP.data['P_I1'].x;
 			var CP1 = new pkg.crowdProcess();
 			var _f1 = {};
 			for (var i = 0; i < Math.min(f.length,10); i++) {
 				_f1['P_' + i] = (function(i) { 
 					return function(cbk1) {
+						if (x.indexOf(f[i]) !==-1) {
+							cbk1('skip'); return true;
+						}
 						pkg.fs.readFile( tmp_folder + f[i], function (err, data0) {
 						  if (err) { throw err; }
 						     var base64data = new Buffer(data0, 'binary');
