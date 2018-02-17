@@ -105,7 +105,7 @@ pkg.fs.readdir( tmp_folder, (err, files) => {
 			var x = CP.data['P_I1'].x;
 			var CP1 = new pkg.crowdProcess();
 			var _f1 = {};
-			for (var i = 0; i < Math.min(f.length,10); i++) {
+			for (var i = 0; i < f.length; i++) {
 				_f1['P_' + i] = (function(i) { 
 					return function(cbk1) {
 						if (new Date().getTime() - tm > 8000) {
