@@ -134,30 +134,6 @@ pkg.fs.readdir( tmp_folder, (err, files) => {
 			cbk(false)
 		}
 	};	
-	/*
-	for (var i = 0; i < f.length; i++) {
-		_f['P_' + i] = (function(i) { 
-			return function(cbk) {
-				pkg.fs.readFile( tmp_folder + f[i], function (err, data0) {
-				  if (err) { throw err; }
-				     var base64data = new Buffer(data0, 'binary');
-				     var params = {
-					 Body: base64data,
-					 Bucket: "shusiou01",
-					 Key: space_dir + f[i],
-					 ContentType: 'video/mp4',
-					 ACL: 'public-read'
-				     };	
-				     s3.putObject(params, function(err, data) {
-					 if (err) cbk(err.message);
-					 else    cbk(data);
-				     });
-				}); 
-			}
-		})(i)
-	}
-	*/
-	//CP.parallel(
 	CP.serial(
 		_f,
 		function(results) {
