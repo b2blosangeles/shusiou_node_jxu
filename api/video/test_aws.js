@@ -7,7 +7,8 @@ const s3 = new AWS.S3({
 });
 let source_path = '/var/img/',
     south_file = source_path + 'video.mp4',
-    tmp_folder = '/var/img/x/';
+    tmp_folder = '/var/img/x/',
+    space_dir = 'shusiou/movies/';
 function removeFolder(s3, bucketName, folder, callback){
 	var params = {
 		Bucket: bucketName,
@@ -58,7 +59,7 @@ pkg.fs.readdir( tmp_folder, (err, files) => {
 					 Body: JSON.stringify({fsize:stat.size,time_scale:timeScale, 
 							       duration: duration, length:movieLength, x:[]}),
 					 Bucket: "shusiou01",
-					 Key: 'shusiou/movies/_info.txt',
+					 Key: space_dir + '_info.txt',
 					 ContentType: 'text/plain',
 					 ACL: 'public-read'
 				     };	
@@ -84,7 +85,7 @@ pkg.fs.readdir( tmp_folder, (err, files) => {
 					 Body: JSON.stringify({fsize:stat.size,time_scale:timeScale, 
 							       duration: duration, length:movieLength, x:[]}),
 					 Bucket: "shusiou01",
-					 Key: 'shusiou/movies/_info.txt',
+					 Key: space_dir + '_info.txt',
 					 ContentType: 'text/plain',
 					 ACL: 'public-read'
 				     };	
@@ -105,7 +106,7 @@ pkg.fs.readdir( tmp_folder, (err, files) => {
 				     var params = {
 					 Body: base64data,
 					 Bucket: "shusiou01",
-					 Key: 'shusiou/movies/' + f[i],
+					 Key: space_dir + f[i],
 					 ContentType: 'video/mp4',
 					 ACL: 'public-read'
 				     };	
