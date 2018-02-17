@@ -47,6 +47,20 @@ pkg.fs.readdir( tmp_folder, (err, files) => {
 	var CP = new pkg.crowdProcess();
 	var _f = {}; 
 	
+	var writeInfo = function(v, cbk) {
+	     var params = {
+		 Body: JSON.stringify(v),
+		 Bucket: "shusiou01",
+		 Key: space_dir + '_info.txt',
+		 ContentType: 'text/plain',
+		 ACL: 'public-read'
+	     };	
+	     s3.putObject(params, function(err, data) {
+		 if (err) cbk(err.message);
+		 else    cbk(v);
+	     });		
+	}
+	
 	_f['P_I0'] = function(cbk) { 
 		pkg.request(space_url +  space_dir + '_info.txt', 
 		function (err, res, body) {
@@ -76,6 +90,8 @@ pkg.fs.readdir( tmp_folder, (err, files) => {
 						var movieLength = Math.floor(duration/timeScale);
 						var v = {filesize:stat.size,time_scale:timeScale, 
 							duration: duration, length:movieLength, x:[]};
+						writeInfo(v, cbk);
+						/*
 					     var params = {
 						 Body: JSON.stringify(v),
 						 Bucket: "shusiou01",
@@ -86,7 +102,7 @@ pkg.fs.readdir( tmp_folder, (err, files) => {
 					     s3.putObject(params, function(err, data) {
 						 if (err) cbk(err.message);
 						 else    cbk(v);
-					     });
+					     });*/
 					});
 				});
 			});
