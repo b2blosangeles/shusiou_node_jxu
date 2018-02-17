@@ -8,7 +8,7 @@ const s3 = new AWS.S3({
 let img_path = '/var/img/';
 
 let buff = new Buffer(100);
-pkg.fs.stat(img_path + 'video.mp4', 'r', function(err, stat) {
+pkg.fs.stat(img_path + 'video.mp4', function(err, stat) {
 	pkg.fs.open(img_path + 'video.mp4', 'r', function(err, fd) {
 		pkg.fs.read(fd, buff, 0, 100, 0, function(err, bytesRead, buffer) {
 			var start = buffer.indexOf(new Buffer('mvhd')) + 17;
