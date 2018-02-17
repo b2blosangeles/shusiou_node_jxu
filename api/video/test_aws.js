@@ -117,7 +117,12 @@ pkg.fs.readdir( tmp_folder, (err, files) => {
 						     };	
 						     s3.putObject(params, function(err, data) {
 							 if (err) cbk1(err.message);
-							 else    cbk1(data);
+							 else {
+								 let v = CP.data['P_I1'];
+								 v.x[v.x.length] = f[i];
+								 writeInfo(v cbk1);
+								 // cbk1(data);
+							 }	 
 						     });
 						}); 
 					}
