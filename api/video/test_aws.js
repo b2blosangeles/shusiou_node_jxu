@@ -63,7 +63,7 @@ pkg.fs.readdir( tmp_folder, (err, files) => {
 			cbk(CP.data['P_I0']);
 		} else {
 			cbk(true);
-			return true;
+			// return true;
 			/*
 			let buff = new Buffer(100);
 			
