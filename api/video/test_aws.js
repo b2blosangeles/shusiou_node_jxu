@@ -55,7 +55,7 @@ pkg.fs.readdir( tmp_folder, (err, files) => {
 			} else {
 				let v = {};
 				try { 
-					v = JSON.parse(body) 
+					v = JSON.parse(body);
 				} catch (e) { v = false; }
 				cbk(v);
 			}
