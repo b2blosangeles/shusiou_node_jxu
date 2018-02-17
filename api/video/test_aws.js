@@ -5,7 +5,8 @@ const s3 = new AWS.S3({
     accessKeyId: 'AED442OVG2T3GE6IVPWQ',
     secretAccessKey: 'tvzSwhiJxlQ1RJNalUD0ATDeIZd0ko7P1Zs371J6Vi4'
 });
-let source_path = '/var/img/',
+let space_url = 'https://shusiou01.nyc3.digitaloceanspaces.com/',  
+    source_path = '/var/img/',
     south_file = source_path + 'video.mp4',
     tmp_folder = '/var/img/x/',
     space_dir = 'shusiou/movies/';
@@ -36,8 +37,6 @@ removeFolder(s3, 'shusiou001', '', function(data) {
 });
 */
 // return true;
-https://shusiou01.nyc3.digitaloceanspaces.com/shusiou/movies/_info.txt
-
 
 pkg.fs.readdir( tmp_folder, (err, files) => {
 	var f = [];
@@ -49,7 +48,7 @@ pkg.fs.readdir( tmp_folder, (err, files) => {
 	var _f = {}; 
 	
 	_f['P_I0'] = function(cbk) { 
-		pkg.request('https://shusiou01.nyc3.digitaloceanspaces.com/shusiou/movies/_info.txt', 
+		pkg.request(space_url +  space_dir + '_info.txt', 
 		function (err, res, body) {
 		  	if (err) { 
 				cbk(false); 
