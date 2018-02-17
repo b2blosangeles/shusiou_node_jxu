@@ -88,7 +88,7 @@ pkg.fs.readdir( tmp_folder, (err, files) => {
 		let buff = new Buffer(100);
 		cbk(true);
 	};	
-	
+	/*
 	for (var i = 0; i < f.length; i++) {
 		_f['P_' + i] = (function(i) { 
 			return function(cbk) {
@@ -110,6 +110,7 @@ pkg.fs.readdir( tmp_folder, (err, files) => {
 			}
 		})(i)
 	}
+	*/
 	//CP.parallel(
 	CP.serial(
 		_f,
