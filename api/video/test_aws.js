@@ -52,7 +52,7 @@ pkg.fs.readdir( tmp_folder, (err, files) => {
 		  	if (err) { 
 				cbk(err.message); 
 			} else {
-				cbk(JSON.parst(body));
+				cbk(JSON.parse(body));
 			}
 		});		
 	};	
