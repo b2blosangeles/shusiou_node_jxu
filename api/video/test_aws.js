@@ -36,6 +36,8 @@ removeFolder(s3, 'shusiou001', '', function(data) {
 });
 */
 // return true;
+https://shusiou01.nyc3.digitaloceanspaces.com/shusiou/movies/_info.txt
+
 
 pkg.fs.readdir( tmp_folder, (err, files) => {
 	var f = [];
@@ -46,6 +48,9 @@ pkg.fs.readdir( tmp_folder, (err, files) => {
 	var CP = new pkg.crowdProcess();
 	var _f = {}; 
 	_f['P_I0'] = function(cbk) { 
+
+	};	
+	_f['P_I1'] = function(cbk) { 
 		let buff = new Buffer(100);
 		pkg.fs.stat(south_file, function(err, stat) {
 			pkg.fs.open(south_file, 'r', function(err, fd) {
@@ -71,7 +76,7 @@ pkg.fs.readdir( tmp_folder, (err, files) => {
 			});
 		});
 	};
-	_f['P_I1'] = function(cbk) { 
+	_f['P_I2'] = function(cbk) { 
 		let buff = new Buffer(100);
 		cbk(true);
 	};	
