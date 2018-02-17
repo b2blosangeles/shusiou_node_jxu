@@ -46,6 +46,7 @@ pkg.fs.readdir( tmp_folder, (err, files) => {
 	});
 	var CP = new pkg.crowdProcess();
 	var _f = {}; 
+	
 	_f['P_I0'] = function(cbk) { 
 		pkg.request('https://shusiou01.nyc3.digitaloceanspaces.com/shusiou/movies/_info.txt', 
 		function (err, res, body) {
@@ -56,7 +57,7 @@ pkg.fs.readdir( tmp_folder, (err, files) => {
 			}
 		});		
 	};	
-	/*
+	
 	_f['P_I1'] = function(cbk) { 
 		let buff = new Buffer(100);
 		pkg.fs.stat(south_file, function(err, stat) {
@@ -68,7 +69,7 @@ pkg.fs.readdir( tmp_folder, (err, files) => {
 					var movieLength = Math.floor(duration/timeScale);
 					
 				     var params = {
-					 Body: JSON.stringify({fsize:stat.size,time_scale:timeScale, 
+					 Body: JSON.stringify({filesize:stat.size,time_scale:timeScale, 
 							       duration: duration, length:movieLength, x:[]}),
 					 Bucket: "shusiou01",
 					 Key: space_dir + '_info.txt',
@@ -87,7 +88,7 @@ pkg.fs.readdir( tmp_folder, (err, files) => {
 		let buff = new Buffer(100);
 		cbk(true);
 	};	
-	*/
+	
 	for (var i = 0; i < f.length; i++) {
 		_f['P_' + i] = (function(i) { 
 			return function(cbk) {
