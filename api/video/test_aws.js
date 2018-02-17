@@ -36,7 +36,7 @@ removeFolder(s3, 'shusiou001', '', function(data) {
 */
 // return true;
 
-pkg.fs.readdir('/var/img/x/', (err, files) => {
+pkg.fs.readdir( tmp_folder, (err, files) => {
 	var f = [];
 	files.forEach(file => {
 		// if (/$([a-z]+)/.test(file))
@@ -99,7 +99,7 @@ pkg.fs.readdir('/var/img/x/', (err, files) => {
 	for (var i = 0; i < f.length; i++) {
 		_f['P_' + i] = (function(i) { 
 			return function(cbk) {
-				pkg.fs.readFile('/var/img/x/' + f[i], function (err, data0) {
+				pkg.fs.readFile( tmp_folder + f[i], function (err, data0) {
 				  if (err) { throw err; }
 				     var base64data = new Buffer(data0, 'binary');
 				     var params = {
