@@ -51,7 +51,7 @@ pkg.fs.readdir( tmp_folder, (err, files) => {
 		pkg.request('https://shusiou01.nyc3.digitaloceanspaces.com/shusiou/movies/_info.txt', 
 		function (err, res, body) {
 		  	if (err) { 
-				cbk(err.message); 
+				cbk(false); 
 			} else {
 				cbk(JSON.parse(body));
 			}
@@ -67,10 +67,10 @@ pkg.fs.readdir( tmp_folder, (err, files) => {
 					var timeScale = buffer.readUInt32BE(start, 4);
 					var duration = buffer.readUInt32BE(start + 4, 4);
 					var movieLength = Math.floor(duration/timeScale);
-					
+					var v = {filesize:stat.size,time_scale:timeScale, 
+						duration: duration, length:movieLength, x:f};
 				     var params = {
-					 Body: JSON.stringify({filesize:stat.size,time_scale:timeScale, 
-							       duration: duration, length:movieLength, x:[]}),
+					 Body: JSON.stringify(v),
 					 Bucket: "shusiou01",
 					 Key: space_dir + '_info.txt',
 					 ContentType: 'text/plain',
@@ -78,7 +78,7 @@ pkg.fs.readdir( tmp_folder, (err, files) => {
 				     };	
 				     s3.putObject(params, function(err, data) {
 					 if (err) cbk(err.message);
-					 else    cbk(true);
+					 else    cbk(v);
 				     });
 				});
 			});
