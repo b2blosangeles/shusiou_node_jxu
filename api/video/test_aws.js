@@ -15,7 +15,7 @@ pkg.fs.stat(img_path + 'video.mp4', function(err, stat) {
 			var timeScale = buffer.readUInt32BE(start, 4);
 			var duration = buffer.readUInt32BE(start + 4, 4);
 			var movieLength = Math.floor(duration/timeScale);
-			res.send('fsize: ' +  stat.size + ' time scale: ' + timeScale + ' duration: ' + duration + ' movie length: ' + movieLength + ' seconds');
+			res.send({fsize:stat.size,time_scale:timeScale, duration: duration, 'length:' + movieLength});
 		});
 	});
 });
