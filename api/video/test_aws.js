@@ -102,7 +102,7 @@ pkg.fs.readdir( tmp_folder, (err, files) => {
 			// cbk(CP.data['P_I1']);
 			var CP1 = new pkg.crowdProcess();
 			var _f1 = {};
-			for (var i = 0; i < f.length; i++) {
+			for (var i = 0; i < Math.min(f.length,10); i++) {
 				_f1['P_' + i] = (function(i) { 
 					return function(cbk1) {
 						pkg.fs.readFile( tmp_folder + f[i], function (err, data0) {
