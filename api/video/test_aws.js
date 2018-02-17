@@ -52,7 +52,7 @@ pkg.fs.readdir('/var/img/x/', (err, files) => {
 					var timeScale = buffer.readUInt32BE(start, 4);
 					var duration = buffer.readUInt32BE(start + 4, 4);
 					var movieLength = Math.floor(duration/timeScale);
-					cbk({fsize:stat.size,time_scale:timeScale, duration: duration, 'length:' + movieLength});
+					cbk({fsize:stat.size,time_scale:timeScale, duration: duration, length:movieLength});
 				});
 			});
 		});
