@@ -52,7 +52,18 @@ pkg.fs.readdir('/var/img/x/', (err, files) => {
 					var timeScale = buffer.readUInt32BE(start, 4);
 					var duration = buffer.readUInt32BE(start + 4, 4);
 					var movieLength = Math.floor(duration/timeScale);
-					cbk({fsize:stat.size,time_scale:timeScale, duration: duration, length:movieLength});
+					
+				     var params = {
+					 Body: {fsize:stat.size,time_scale:timeScale, duration: duration, length:movieLength},
+					 Bucket: "shusiou01",
+					 Key: 'shusiou/movies/_info.txt',
+					 ContentType: 'text/plain',
+					 ACL: 'public-read'
+				     };	
+				     s3.putObject(params, function(err, data) {
+					 if (err) cbk(err.message);
+					 else    cbk(true);
+				     });
 				});
 			});
 		});
