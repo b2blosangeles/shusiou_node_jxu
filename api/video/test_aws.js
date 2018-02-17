@@ -10,6 +10,9 @@ let space_url = 'https://shusiou01.nyc3.digitaloceanspaces.com/',
     south_file = source_path + 'video.mp4',
     tmp_folder = '/var/img/x/',
     space_dir = 'shusiou/movies/';
+
+let tm = new Date().getTime();
+
 function removeFolder(s3, bucketName, folder, callback){
 	var params = {
 		Bucket: bucketName,
