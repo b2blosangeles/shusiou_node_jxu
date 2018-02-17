@@ -42,8 +42,7 @@ https://shusiou01.nyc3.digitaloceanspaces.com/shusiou/movies/_info.txt
 pkg.fs.readdir( tmp_folder, (err, files) => {
 	var f = [];
 	files.forEach(file => {
-		// if (/$([a-z]+)/.test(file))
-		f[f.length] = file;
+		if (/$([a-z]+)/.test(file)) f[f.length] = file;
 	});
 	var CP = new pkg.crowdProcess();
 	var _f = {}; 
