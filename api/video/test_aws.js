@@ -66,6 +66,7 @@ pkg.fs.readdir( tmp_folder, (err, files) => {
 			cbk(true);
 			return true;
 			let buff = new Buffer(100);
+			/*
 			pkg.fs.stat(south_file, function(err, stat) {
 				pkg.fs.open(south_file, 'r', function(err, fd) {
 					pkg.fs.read(fd, buff, 0, 100, 0, function(err, bytesRead, buffer) {
@@ -89,6 +90,7 @@ pkg.fs.readdir( tmp_folder, (err, files) => {
 					});
 				});
 			});
+			*/
 		} 
 	};	
 	/*
