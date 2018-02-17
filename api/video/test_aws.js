@@ -56,7 +56,7 @@ pkg.fs.readdir( tmp_folder, (err, files) => {
 		 ACL: 'public-read'
 	     };	
 	     s3.putObject(params, function(err, data) {
-		 if (err) cbk(err.message);
+		 if (err) cbk(false);
 		 else    cbk(v);
 	     });		
 	}
@@ -91,18 +91,6 @@ pkg.fs.readdir( tmp_folder, (err, files) => {
 						var v = {filesize:stat.size,time_scale:timeScale, 
 							duration: duration, length:movieLength, x:[]};
 						writeInfo(v, cbk);
-						/*
-					     var params = {
-						 Body: JSON.stringify(v),
-						 Bucket: "shusiou01",
-						 Key: space_dir + '_info.txt',
-						 ContentType: 'text/plain',
-						 ACL: 'public-read'
-					     };	
-					     s3.putObject(params, function(err, data) {
-						 if (err) cbk(err.message);
-						 else    cbk(v);
-					     });*/
 					});
 				});
 			});
