@@ -68,7 +68,7 @@ pkg.fs.readdir( tmp_folder, (err, files) => {
 					var duration = buffer.readUInt32BE(start + 4, 4);
 					var movieLength = Math.floor(duration/timeScale);
 					var v = {filesize:stat.size,time_scale:timeScale, 
-						duration: duration, length:movieLength, x:f};
+						duration: duration, length:movieLength, x:[]};
 				     var params = {
 					 Body: JSON.stringify(v),
 					 Bucket: "shusiou01",
@@ -83,10 +83,6 @@ pkg.fs.readdir( tmp_folder, (err, files) => {
 				});
 			});
 		});
-	};
-	_f['P_I2'] = function(cbk) { 
-		let buff = new Buffer(100);
-		cbk(true);
 	};	
 	/*
 	for (var i = 0; i < f.length; i++) {
