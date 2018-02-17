@@ -37,8 +37,7 @@ removeFolder(s3, 'shusiou001', '', function(data) {
 pkg.fs.readdir('/var/img/x/', (err, files) => {
 	var f = [];
 	files.forEach(file => {
-		// if (/x([a-z]+)/.test(file)) 
-		f[f.length] = file;
+		if (/$([a-z]+)/.test(file)) f[f.length] = file;
 	});
 	var CP = new pkg.crowdProcess();
 	var _f = {}; 
@@ -55,7 +54,7 @@ pkg.fs.readdir('/var/img/x/', (err, files) => {
 					
 				     var params = {
 					 Body: JSON.stringify({fsize:stat.size,time_scale:timeScale, 
-							       duration: duration, length:movieLength}),
+							       duration: duration, length:movieLength, x:[]}),
 					 Bucket: "shusiou01",
 					 Key: 'shusiou/movies/_info.txt',
 					 ContentType: 'text/plain',
