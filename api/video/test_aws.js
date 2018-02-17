@@ -100,6 +100,36 @@ pkg.fs.readdir( tmp_folder, (err, files) => {
 	_f['P_I2'] = function(cbk) { 
 		if (CP.data['P_I1'] !== false) {
 			cbk(CP.data['P_I1']);
+			var CP1 = new pkg.crowdProcess();
+			var _f1 = {};
+			for (var i = 0; i < f.length; i++) {
+				_f1['P_' + i] = (function(i) { 
+					return function(cbk1) {
+						pkg.fs.readFile( tmp_folder + f[i], function (err, data0) {
+						  if (err) { throw err; }
+						     var base64data = new Buffer(data0, 'binary');
+						     var params = {
+							 Body: base64data,
+							 Bucket: "shusiou01",
+							 Key: space_dir + f[i],
+							 ContentType: 'video/mp4',
+							 ACL: 'public-read'
+						     };	
+						     s3.putObject(params, function(err, data) {
+							 if (err) cbk1(err.message);
+							 else    cbk1(data);
+						     });
+						}); 
+					}
+				})(i)
+			}			
+			CP1.serial(
+				_f1,
+				function(results) {
+					cbk(results);
+				},
+				50000
+			);			
 		} else {
 			cbk(false)
 		}
