@@ -99,7 +99,7 @@ pkg.fs.readdir( tmp_folder, (err, files) => {
 	};
 	_f['P_I2'] = function(cbk) { 
 		if (CP.data['P_I1'] !== false) {
-			cbk(CP.data['P_I1']);
+			// cbk(CP.data['P_I1']);
 			var CP1 = new pkg.crowdProcess();
 			var _f1 = {};
 			for (var i = 0; i < f.length; i++) {
