@@ -120,7 +120,7 @@ pkg.fs.readdir( tmp_folder, (err, files) => {
 							 else {
 								 let v = CP.data['P_I1'];
 								 v.x[v.x.length] = f[i];
-								 writeInfo(v cbk1);
+								 writeInfo(v, cbk1);
 								 // cbk1(data);
 							 }	 
 						     });
