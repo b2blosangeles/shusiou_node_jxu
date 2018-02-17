@@ -6,7 +6,8 @@ const s3 = new AWS.S3({
     secretAccessKey: 'tvzSwhiJxlQ1RJNalUD0ATDeIZd0ko7P1Zs371J6Vi4'
 });
 let source_path = '/var/img/',
-    south_file = source_path + 'video.mp4';
+    south_file = source_path + 'video.mp4',
+    tmp_folder = '/var/img/x/';
 function removeFolder(s3, bucketName, folder, callback){
 	var params = {
 		Bucket: bucketName,
