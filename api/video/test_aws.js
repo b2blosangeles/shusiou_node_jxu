@@ -112,7 +112,7 @@ pkg.fs.readdir( tmp_folder, (err, files) => {
 							cbk1(true); return true;
 						}
 						if (x.indexOf(f[i]) !==-1) {
-							cbk1('skip'); return true;
+							cbk1('--skip--'); return true;
 						}
 						pkg.fs.readFile( tmp_folder + f[i], function (err, data0) {
 						  if (err) { throw err; }
