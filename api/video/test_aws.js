@@ -59,30 +59,34 @@ pkg.fs.readdir( tmp_folder, (err, files) => {
 	};	
 	
 	_f['P_I1'] = function(cbk) { 
-		let buff = new Buffer(100);
-		pkg.fs.stat(south_file, function(err, stat) {
-			pkg.fs.open(south_file, 'r', function(err, fd) {
-				pkg.fs.read(fd, buff, 0, 100, 0, function(err, bytesRead, buffer) {
-					var start = buffer.indexOf(new Buffer('mvhd')) + 17;
-					var timeScale = buffer.readUInt32BE(start, 4);
-					var duration = buffer.readUInt32BE(start + 4, 4);
-					var movieLength = Math.floor(duration/timeScale);
-					var v = {filesize:stat.size,time_scale:timeScale, 
-						duration: duration, length:movieLength, x:[]};
-				     var params = {
-					 Body: JSON.stringify(v),
-					 Bucket: "shusiou01",
-					 Key: space_dir + '_info.txt',
-					 ContentType: 'text/plain',
-					 ACL: 'public-read'
-				     };	
-				     s3.putObject(params, function(err, data) {
-					 if (err) cbk(err.message);
-					 else    cbk(v);
-				     });
+		if (CP.data['P_I0'] !== flase) {
+			cbk(CP.data['P_I0']);
+		} else {
+			let buff = new Buffer(100);
+			pkg.fs.stat(south_file, function(err, stat) {
+				pkg.fs.open(south_file, 'r', function(err, fd) {
+					pkg.fs.read(fd, buff, 0, 100, 0, function(err, bytesRead, buffer) {
+						var start = buffer.indexOf(new Buffer('mvhd')) + 17;
+						var timeScale = buffer.readUInt32BE(start, 4);
+						var duration = buffer.readUInt32BE(start + 4, 4);
+						var movieLength = Math.floor(duration/timeScale);
+						var v = {filesize:stat.size,time_scale:timeScale, 
+							duration: duration, length:movieLength, x:[]};
+					     var params = {
+						 Body: JSON.stringify(v),
+						 Bucket: "shusiou01",
+						 Key: space_dir + '_info.txt',
+						 ContentType: 'text/plain',
+						 ACL: 'public-read'
+					     };	
+					     s3.putObject(params, function(err, data) {
+						 if (err) cbk(err.message);
+						 else    cbk(v);
+					     });
+					});
 				});
 			});
-		});
+		}
 	};	
 	/*
 	for (var i = 0; i < f.length; i++) {
