@@ -48,12 +48,14 @@ pkg.fs.readdir( tmp_folder, (err, files) => {
 	var _f = {}; 
 	_f['P_I0'] = function(cbk) { 
 		env.request('https://shusiou01.nyc3.digitaloceanspaces.com/shusiou/movies/_info.txt', { json: true }, (err, res, body) => {
-		  	if (err) { cbk(err.message); }
-			else {
+		  	if (err) { 
+				cbk(err.message); 
+			} else {
 				cbk(body);
 			}
 		});		
 	};	
+	/*
 	_f['P_I1'] = function(cbk) { 
 		let buff = new Buffer(100);
 		pkg.fs.stat(south_file, function(err, stat) {
@@ -84,6 +86,7 @@ pkg.fs.readdir( tmp_folder, (err, files) => {
 		let buff = new Buffer(100);
 		cbk(true);
 	};	
+	*/
 	for (var i = 0; i < f.length; i++) {
 		_f['P_' + i] = (function(i) { 
 			return function(cbk) {
