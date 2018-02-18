@@ -29,8 +29,6 @@ CP.serial(
 	_f,
 	function(results) {
 		var cfg = CP.data.P_I0;
-		res.send('fn');
-		return true;
 		let stream = require("stream"),
 		a = new stream.PassThrough();
 		a.pipe(res);
@@ -54,7 +52,8 @@ CP.serial(
 		}
 		var sidx = Math.floor(start/1048576);
 		fn = [cfg.x[sidx], cfg.x[sidx+1], cfg.x[sidx+3]];
-		
+		res.send('fn1');
+		return true;		
 		start = sidx * 1048576; end = (sidx + 1) * 1048576 * 3;
 	
 		res.writeHead(206, {'Content-Range': 'bytes ' + start + '-' + end + '/' + cfg.filesize, 
