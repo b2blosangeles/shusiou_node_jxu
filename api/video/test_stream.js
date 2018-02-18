@@ -63,9 +63,6 @@ CP.serial(
 		res.writeHead(206, {'Content-Range': 'bytes ' + start + '-' + end + '/' + cfg.filesize, 
 		    'Accept-Ranges': 'bytes', 'Content-Type': 'video/mp4' });			
 		
-	//	res.send(fn);
-	//	return true;
-		
 		var CP1 = new pkg.crowdProcess();
 		var _f1 = {}; 
 		
@@ -92,7 +89,7 @@ CP.serial(
 				}	
 				a.end();
 			},
-			30000
+			6000
 		);
 		
 	},
