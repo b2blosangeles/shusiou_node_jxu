@@ -33,7 +33,19 @@ CP.serial(
 				    'Accept-Ranges': 'bytes', 'Content-Type': 'video/mp4' });
 		let stream = require("stream"),
 		a = new stream.PassThrough();
-		a.pipe(res);	
+		a.pipe(res);
+		let d = Buffer.from('');
+		pkg.request('https://shusiou01.nyc3.digitaloceanspaces.com/shusiou/movies1/aa', 
+			function (error, response, body) {
+		}).on('data', function(data) {
+			// a.write(data);
+			d = Buffer.concat([d,  Buffer.from(data)]);
+		}).on('end', function() {
+			a.write(d);
+			a.end();;
+		});		
+		
+		
 	//	res.send(cfg);
 	//	res.writeHead(206, {'Content-Range': 'bytes 0-1000000/100000000', 'Accept-Ranges': 'bytes', 'Content-Type': 'video/mp4' });
 	},
