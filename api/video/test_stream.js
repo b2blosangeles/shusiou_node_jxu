@@ -50,10 +50,10 @@ CP.serial(
 			  chunksize = (end - start) + 1;
 			} 
 		}
-		res.send(cfg);
-		return true;
+		//res.send(cfg);
+		//return true;
 		var sidx = Math.floor(start/1048575);
-		fn = cfg.z[sidx];
+		fn = cfg.x[sidx];
 		res.writeHead(206, {'Content-Range': 'bytes ' + start + '-' + (start + 1048575) + '/' + cfg.filesize, 
 		    'Accept-Ranges': 'bytes', 'Content-Type': 'video/mp4' });			
 
