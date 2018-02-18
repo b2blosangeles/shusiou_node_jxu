@@ -56,8 +56,8 @@ CP.serial(
 		
 		start = sidx * 1048576; end = (sidx + 1) * 1048576 * fn.length;
 	
-		res.writeHead(206, {'Content-Range': 'bytes ' + start + '-' + end + '/' + cfg.filesize, 
-		    'Accept-Ranges': 'bytes', 'Content-Type': 'video/mp4' });			
+		//res.writeHead(206, {'Content-Range': 'bytes ' + start + '-' + end + '/' + cfg.filesize, 
+		 //   'Accept-Ranges': 'bytes', 'Content-Type': 'video/mp4' });			
 		
 		res.send(fn);
 		return true;
