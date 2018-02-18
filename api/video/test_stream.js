@@ -74,7 +74,7 @@ CP.serial(
 					function (error, response, body) {})
 					.on('data', function(data) {
 						// let s_data = (i === 0) ? Buffer.from(data).readUInt32BE(deltas) : Buffer.from(data);
-						let s_data = (i === 0) ? Buffer.from(data) : Buffer.from(data);
+						let s_data = (i === 0) ? Buffer.from(data.substring(deltas)) : Buffer.from(data);
 						d = Buffer.concat([d,  s_data]);
 					}).on('end', function() {
 						cbk1(d);
