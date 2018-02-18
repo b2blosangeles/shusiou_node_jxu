@@ -29,7 +29,7 @@ CP.serial(
 	_f,
 	function(results) {
 		var cfg = CP.data.P_I0;
-		res.writeHead(206, {'Content-Range': 'bytes 0-1000000/' + cfg.filesize, 
+		res.writeHead(206, {'Content-Range': 'bytes 0-1048576/' + cfg.filesize, 
 				    'Accept-Ranges': 'bytes', 'Content-Type': 'video/mp4' });
 		let stream = require("stream"),
 		a = new stream.PassThrough();
