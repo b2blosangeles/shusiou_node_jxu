@@ -50,15 +50,11 @@ CP.serial(
 			  chunksize = (end - start) + 1;
 			} 
 		}
-		if (!start) {
-			fn = 'aa';
-			res.writeHead(206, {'Content-Range': 'bytes 0-1048575/' + cfg.filesize, 
+		var sidx = Math.floor(start/1048575);
+		fn = cfg.z[sidx];
+		res.writeHead(206, {'Content-Range': 'bytes ' + start + '-' + (start + 1048575) + '/' + cfg.filesize, 
 		    'Accept-Ranges': 'bytes', 'Content-Type': 'video/mp4' });			
-		} else {
-			fn = 'ab';
-			res.writeHead(206, {'Content-Range': 'bytes 1048576-2097150/' + cfg.filesize, 
-		    'Accept-Ranges': 'bytes', 'Content-Type': 'video/mp4' });			
-		}
+
 
 		pkg.request('https://shusiou01.nyc3.digitaloceanspaces.com/shusiou/movies1/' + fn, 
 			function (error, response, body) {
