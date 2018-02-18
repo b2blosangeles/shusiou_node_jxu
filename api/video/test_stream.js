@@ -33,7 +33,7 @@ CP.serial(
 		let stream = require("stream"),
 		a = new stream.PassThrough();
 		a.pipe(res);
-		let d = Buffer.from('');
+		
 		var fn = [];
 		var range = req.headers.range;
 	
@@ -57,8 +57,12 @@ CP.serial(
 		res.writeHead(206, {'Content-Range': 'bytes ' + start + '-' + end + '/' + cfg.filesize, 
 		    'Accept-Ranges': 'bytes', 'Content-Type': 'video/mp4' });			
 		
+		res.send(fn);
+		return true;
+		/*
 		var CP1 = new pkg.crowdProcess();
 		var _f1 = {}; 
+		let d = Buffer.from('');
 		for (var i = 0; i < fn.length; i++) {
 			_f1['P_' + i] = (function(i) {
 				return function(cbk) {
@@ -81,9 +85,8 @@ CP.serial(
 				a.end();
 			},
 			30000
-		);		
-	//	res.send(cfg);
-	//	res.writeHead(206, {'Content-Range': 'bytes 0-1000000/100000000', 'Accept-Ranges': 'bytes', 'Content-Type': 'video/mp4' });
+		);
+		*/
 	},
 	300000
 );
