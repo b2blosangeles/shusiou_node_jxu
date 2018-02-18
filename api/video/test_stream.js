@@ -69,16 +69,13 @@ CP.serial(
 		for (var i = 0; i < fn.length; i++) {
 			_f1['P_' + i] = (function(i) {
 				return function(cbk1) {
-					//let d = Buffer.from('');
-					let d = '';
+					let d = Buffer.from('');
 					pkg.request('https://shusiou01.nyc3.digitaloceanspaces.com/shusiou/movies1/' + fn[i], 
 					function (error, response, body) {})
 					.on('data', function(data) {
-						d += data;
-						//d = Buffer.concat([d,  Buffer.from(data)]);
+						d = Buffer.concat([d,  Buffer.from(data)]);
 					}).on('end', function() {
-						cbk1( Buffer.from(d));
-						// cbk1(d);
+						cbk1(d);
 					});
 				}
 			})(i);	
