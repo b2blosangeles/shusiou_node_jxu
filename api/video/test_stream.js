@@ -61,7 +61,7 @@ CP.serial(
 		
 		start = sidx * maxChunk; end = (sidx + 1) * maxChunk * fn.length;
 	
-		res.writeHead(206, {'Content-Range': 'bytes ' + start + '-' + end + '/' + cfg.filesize, 
+		res.writeHead(206, {'Content-Range': 'bytes ' + (start + deltas) + '-' + end + '/' + cfg.filesize, 
 		    'Accept-Ranges': 'bytes', 'Content-Type': 'video/mp4' });			
 		
 		var CP1 = new pkg.crowdProcess();
