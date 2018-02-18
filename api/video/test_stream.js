@@ -63,13 +63,13 @@ CP.serial(
 		
 		var CP1 = new pkg.crowdProcess();
 		var _f1 = {}; 
-		let d = Buffer.from('');
 		for (var i = 0; i < fn.length; i++) {
 			_f1['P_' + i] = (function(i) {
 				return function(cbk) {
+					let d = Buffer.from('');
 					pkg.request('https://shusiou01.nyc3.digitaloceanspaces.com/shusiou/movies1/' + fn[i], 
-						function (error, response, body) {
-					}).on('data', function(data) {
+					function (error, response, body) {})
+					.on('data', function(data) {
 						d = Buffer.concat([d,  Buffer.from(data)]);
 					}).on('end', function() {
 						cbk(d);
@@ -136,8 +136,8 @@ pkg.fs.readdir('/var/img/x/', (err, files) => {
 			return function(cbk) {
 				let d = Buffer.from('');
 				pkg.request('https://shusiou1.nyc3.digitaloceanspaces.com/'+ f[i], 
-					function (error, response, body) {
-				}).on('data', function(data) {
+				function (error, response, body) {})
+				.on('data', function(data) {
 					// a.write(data);
 					d = Buffer.concat([d,  Buffer.from(data)]);
 				}).on('end', function() {
