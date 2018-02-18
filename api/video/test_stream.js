@@ -52,9 +52,9 @@ CP.serial(
 		}
 		//res.send(cfg);
 		//return true;
-		var sidx = Math.floor(start/1048575);
+		var sidx = Math.floor(start/1048576);
 		fn = cfg.x[sidx];
-		res.writeHead(206, {'Content-Range': 'bytes ' + start + '-' + (start + 1048575) + '/' + cfg.filesize, 
+		res.writeHead(206, {'Content-Range': 'bytes ' + (start * 1048576) + '-' + ((start + 1) * 1048576 - 1048575) + '/' + cfg.filesize, 
 		    'Accept-Ranges': 'bytes', 'Content-Type': 'video/mp4' });			
 
 
