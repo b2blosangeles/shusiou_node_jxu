@@ -38,7 +38,6 @@ CP.serial(
 		var range = req.headers.range;
 	
 		if (range) {
-			fn = 'ab';
 			var parts = range.replace(/bytes=/, "").split("-");
 			var partialstart = parts[0]; var partialend;
 			  partialend =  parts[1];
@@ -49,7 +48,7 @@ CP.serial(
 			if (chunksize > maxChunk) {
 			  end = start + maxChunk - 1;
 			  chunksize = (end - start) + 1;
-			  
+			} 
 		}
 		if (!start) {
 			fn = 'aa';
