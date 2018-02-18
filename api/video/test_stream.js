@@ -38,6 +38,7 @@ CP.serial(
 		var range = req.headers.range;
 	
 		if (range) {
+			var total = cfg.filesize; 
 			var parts = range.replace(/bytes=/, "").split("-");
 			var partialstart = parts[0]; var partialend;
 			  partialend =  parts[1];
