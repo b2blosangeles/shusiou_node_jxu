@@ -57,7 +57,7 @@ CP.serial(
 		    'Accept-Ranges': 'bytes', 'Content-Type': 'video/mp4' });			
 		} else {
 			fn = 'ab';
-			res.writeHead(206, {'Content-Range': 'bytes 1048575-2097150/' + cfg.filesize, 
+			res.writeHead(206, {'Content-Range': 'bytes 1048576-2097150/' + cfg.filesize, 
 		    'Accept-Ranges': 'bytes', 'Content-Type': 'video/mp4' });			
 		}
 
