@@ -35,7 +35,7 @@ CP.serial(
 		
 		var fn = [];
 		var range = req.headers.range;
-		if (!start) var start = 0, end = 0;
+		if (!start) var start = 0, end = 0, maxChunk = 1024 * 1024, total = cfg.filesize;
 		if (range) {
 			var total = cfg.filesize; 
 			var parts = range.replace(/bytes=/, "").split("-");
@@ -44,21 +44,20 @@ CP.serial(
 			var start = parseInt(partialstart, 10);
 			var end = (partialend) ? parseInt(partialend, 10) : (total-1);
 			var chunksize = (end-start)+1;
-			var maxChunk = 1024 * 1024; // 1MB at a time
 			if (chunksize > maxChunk) {
 			  end = start + maxChunk - 1;
 			  chunksize = (end - start) + 1;
 			} 
 		}
 		
-		var sidx = Math.floor(start/1048576);
+		var sidx = Math.floor(start / maxChunk); 
 		for (var i=0; i < 3; i++) {
 			if (cfg.x[sidx + i]) {
 				fn.push(cfg.x[sidx + i]);
 			}	
 		}
 		
-		start = sidx * 1048576; end = (sidx + 1) * 1048576 * fn.length;
+		start = sidx * maxChunk; end = (sidx + 1) * maxChunk * fn.length;
 	
 		res.writeHead(206, {'Content-Range': 'bytes ' + start + '-' + end + '/' + cfg.filesize, 
 		    'Accept-Ranges': 'bytes', 'Content-Type': 'video/mp4' });			
