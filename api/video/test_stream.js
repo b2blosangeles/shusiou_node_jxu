@@ -53,12 +53,14 @@ CP.serial(
 		}
 		var sidx = Math.floor(start/1048576);
 		fn = [cfg.x[sidx], cfg.x[sidx+1], cfg.x[sidx+3]];
+		res.send(fn);
+		return true;		
 		start = sidx * 1048576; end = (sidx + 1) * 1048576 * 3;
+	
 		res.writeHead(206, {'Content-Range': 'bytes ' + start + '-' + end + '/' + cfg.filesize, 
 		    'Accept-Ranges': 'bytes', 'Content-Type': 'video/mp4' });			
 		
-		res.send(fn);
-		return true;
+
 		/*
 		var CP1 = new pkg.crowdProcess();
 		var _f1 = {}; 
