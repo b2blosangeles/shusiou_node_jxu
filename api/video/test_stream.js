@@ -53,15 +53,14 @@ CP.serial(
 		if (!start) var start = 0, end = 0;
 		var sidx = Math.floor(start/1048576);
 		fn = [cfg.x[sidx], cfg.x[sidx+1], cfg.x[sidx+3]];
-		res.send(fn);
-		return true;		
+		
 		start = sidx * 1048576; end = (sidx + 1) * 1048576 * 3;
 	
 		res.writeHead(206, {'Content-Range': 'bytes ' + start + '-' + end + '/' + cfg.filesize, 
 		    'Accept-Ranges': 'bytes', 'Content-Type': 'video/mp4' });			
 		
 
-		/*
+		
 		var CP1 = new pkg.crowdProcess();
 		var _f1 = {}; 
 		let d = Buffer.from('');
@@ -88,7 +87,7 @@ CP.serial(
 			},
 			30000
 		);
-		*/
+		
 	},
 	300000
 );
