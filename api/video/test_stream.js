@@ -1,6 +1,39 @@
 var CP = new pkg.crowdProcess();
 var _f = {};
 var buff = new Buffer(100);
+
+let space_url = 'https://shusiou01.nyc3.digitaloceanspaces.com/',  
+    source_path = '/var/img/',
+    south_file = source_path + 'video.mp4',
+    tmp_folder = '/var/img/x/',
+    space_dir = 'shusiou/movies1/';
+
+var CP = new pkg.crowdProcess();
+var _f = {}; 
+
+_f['P_I0'] = function(cbk) { 
+	pkg.request(space_url +  space_dir + '_info.txt', 
+	function (err, res, body) {
+		if (err) { 
+			cbk(false); 
+		} else {
+			let v = {};
+			try { 
+				v = JSON.parse(body);
+			} catch (e) { v = false; }
+			cbk(v);
+		}
+	});		
+};
+CP.serial(
+	_f,
+	function(results) {
+		res.send(results);
+	},
+	300000
+);
+return true;
+
 pkg.fs.open('/var/img/x/aa', 'r', function(err, fd) {
   pkg.fs.read(fd, buff, 0, 100, 0, function(err, bytesRead, buffer) {
     var start = buffer.indexOf(new Buffer('mvhd')) + 17;
