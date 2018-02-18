@@ -52,7 +52,11 @@ CP.serial(
 		}
 		
 		var sidx = Math.floor(start/1048576);
-		fn = [cfg.x[sidx]];
+		for (var i=0; i < 3; i++) {
+			if (cfg.x[sidx + i]) {
+				fn.push(cfg.x[sidx + i]);
+			}	
+		}
 		
 		start = sidx * 1048576; end = (sidx + 1) * 1048576 * fn.length;
 	
