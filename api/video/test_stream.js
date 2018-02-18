@@ -35,7 +35,7 @@ CP.serial(
 		
 		var fn = [];
 		var range = req.headers.range;
-	
+		if (!start) var start = 0, end = 0;
 		if (range) {
 			var total = cfg.filesize; 
 			var parts = range.replace(/bytes=/, "").split("-");
@@ -50,7 +50,7 @@ CP.serial(
 			  chunksize = (end - start) + 1;
 			} 
 		}
-		if (!start) var start = 0, end = 0;
+		
 		var sidx = Math.floor(start/1048576);
 		fn = [cfg.x[sidx]];
 		
