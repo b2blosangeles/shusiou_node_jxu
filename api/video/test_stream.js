@@ -34,7 +34,7 @@ CP.serial(
 		a = new stream.PassThrough();
 		a.pipe(res);
 		let d = Buffer.from('');
-		var fn = '';
+		var fn = [];
 		var range = req.headers.range;
 	
 		if (range) {
@@ -54,24 +54,36 @@ CP.serial(
 		//res.send(cfg);
 		//return true;
 		var sidx = Math.floor(start/1048576);
-		fn = cfg.x[sidx];
-		start = sidx * 1048576; end = (sidx + 1) * 1048576;
+		fn = [cfg.x[sidx], cfg.x[sidx+1], cfg.x[sidx+3]];
+		start = sidx * 1048576; end = (sidx + 1) * 1048576 * 3;
 		res.writeHead(206, {'Content-Range': 'bytes ' + start + '-' + end + '/' + cfg.filesize, 
 		    'Accept-Ranges': 'bytes', 'Content-Type': 'video/mp4' });			
-
-		//res.send(fn);
-		//return true;
-		pkg.request('https://shusiou01.nyc3.digitaloceanspaces.com/shusiou/movies1/' + fn, 
-			function (error, response, body) {
-		}).on('data', function(data) {
-			// a.write(data);
-			d = Buffer.concat([d,  Buffer.from(data)]);
-		}).on('end', function() {
-			a.write(d);
-			a.end();;
-		});		
 		
-		
+		var CP1 = new pkg.crowdProcess();
+		var _f1 = {}; 
+		for (var i = 0; i < fn.length; i++) {
+			_f1['P_' + i] = function(i) {
+				return function(cbk) {
+					pkg.request('https://shusiou01.nyc3.digitaloceanspaces.com/shusiou/movies1/' + fn, 
+						function (error, response, body) {
+					}).on('data', function(data) {
+						d = Buffer.concat([d,  Buffer.from(data)]);
+					}).on('end', function() {
+						cbk(d);;
+					});
+				}
+			}	
+		}
+		CP1.parallel(
+			_f1,
+			function(data) {
+				for (var i = 0; i <  i < fn.length, i++) {
+					a.write(CP.data['P_' + i]);
+				}	
+				a.end();
+			},
+			30000
+		);		
 	//	res.send(cfg);
 	//	res.writeHead(206, {'Content-Range': 'bytes 0-1000000/100000000', 'Accept-Ranges': 'bytes', 'Content-Type': 'video/mp4' });
 	},
