@@ -51,8 +51,6 @@ CP.serial(
 			  chunksize = (end - start) + 1;
 			} 
 		}
-		//res.send(cfg);
-		//return true;
 		var sidx = Math.floor(start/1048576);
 		fn = [cfg.x[sidx], cfg.x[sidx+1], cfg.x[sidx+3]];
 		start = sidx * 1048576; end = (sidx + 1) * 1048576 * 3;
@@ -62,9 +60,9 @@ CP.serial(
 		var CP1 = new pkg.crowdProcess();
 		var _f1 = {}; 
 		for (var i = 0; i < fn.length; i++) {
-			_f1['P_' + i] = function(i) {
+			_f1['P_' + i] = (function(i) {
 				return function(cbk) {
-					pkg.request('https://shusiou01.nyc3.digitaloceanspaces.com/shusiou/movies1/' + fn, 
+					pkg.request('https://shusiou01.nyc3.digitaloceanspaces.com/shusiou/movies1/' + fn[i], 
 						function (error, response, body) {
 					}).on('data', function(data) {
 						d = Buffer.concat([d,  Buffer.from(data)]);
@@ -72,13 +70,13 @@ CP.serial(
 						cbk(d);;
 					});
 				}
-			}	
+			})(i);	
 		}
 		CP1.parallel(
 			_f1,
 			function(data) {
 				for (var i = 0; i <  i < fn.length, i++) {
-					a.write(CP.data['P_' + i]);
+					a.write(CP1.data['P_' + i]);
 				}	
 				a.end();
 			},
