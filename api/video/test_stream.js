@@ -39,7 +39,7 @@ CP.serial(
 		var range = req.headers.range;
 
 		if (range) {
-			fn = 'an';
+			fn = 'ab';
 			var parts = range.replace(/bytes=/, "").split("-");
 			var partialstart = parts[0]; var partialend;
 			  partialend =  parts[1];
