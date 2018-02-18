@@ -56,15 +56,15 @@ CP.serial(
 		
 		start = sidx * 1048576; end = (sidx + 1) * 1048576 * fn.length;
 	
-		//res.writeHead(206, {'Content-Range': 'bytes ' + start + '-' + end + '/' + cfg.filesize, 
-		 //   'Accept-Ranges': 'bytes', 'Content-Type': 'video/mp4' });			
+		res.writeHead(206, {'Content-Range': 'bytes ' + start + '-' + end + '/' + cfg.filesize, 
+		    'Accept-Ranges': 'bytes', 'Content-Type': 'video/mp4' });			
 		
-		res.send(fn);
-		return true;
+	//	res.send(fn);
+	//	return true;
 		
 		var CP1 = new pkg.crowdProcess();
 		var _f1 = {}; 
-		/*
+		
 		for (var i = 0; i < fn.length; i++) {
 			_f1['P_' + i] = (function(i) {
 				return function(cbk1) {
@@ -83,14 +83,14 @@ CP.serial(
 		CP1.parallel(
 			_f1,
 			function(data) {
-				for (var i = 0; i <  i < fn.length; i++) {
+				for (var i = 0; i < fn.length; i++) {
 					a.write(CP1.data['P_' + i]);
 				}	
 				a.end();
 			},
 			30000
 		);
-		*/
+		
 	},
 	300000
 );
