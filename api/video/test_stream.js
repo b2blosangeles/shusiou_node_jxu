@@ -50,7 +50,7 @@ CP.serial(
 			  chunksize = (end - start) + 1;
 			} 
 		}
-		if (!start) let start = 0, end = 0;
+		if (!start) var start = 0, end = 0;
 		var sidx = Math.floor(start/1048576);
 		fn = [cfg.x[sidx], cfg.x[sidx+1], cfg.x[sidx+3]];
 		res.send(sidx+'---');
