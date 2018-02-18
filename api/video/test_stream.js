@@ -54,7 +54,7 @@ CP.serial(
 		//res.send(cfg);
 		//return true;
 		var sidx = Math.floor(start/1048576);
-		fn = 'aa'; //cfg.x[sidx];
+		fn = cfg.x[sidx];
 		res.writeHead(206, {'Content-Range': 'bytes ' + start + '-' + end + '/' + cfg.filesize, 
 		    'Accept-Ranges': 'bytes', 'Content-Type': 'video/mp4' });			
 
