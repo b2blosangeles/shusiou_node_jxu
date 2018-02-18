@@ -53,12 +53,12 @@ CP.serial(
 		//res.send(cfg);
 		//return true;
 		var sidx = Math.floor(start/1048576);
-		fn = cfg.x[sidx];
+		fn = 'aa'; //cfg.x[sidx];
 		res.writeHead(206, {'Content-Range': 'bytes ' + start + '-' + end + '/' + cfg.filesize, 
 		    'Accept-Ranges': 'bytes', 'Content-Type': 'video/mp4' });			
 
-		res.send(fn);
-		return true;
+		//res.send(fn);
+		//return true;
 		pkg.request('https://shusiou01.nyc3.digitaloceanspaces.com/shusiou/movies1/' + fn, 
 			function (error, response, body) {
 		}).on('data', function(data) {
