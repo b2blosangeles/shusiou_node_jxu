@@ -35,7 +35,31 @@ CP.serial(
 		a = new stream.PassThrough();
 		a.pipe(res);
 		let d = Buffer.from('');
-		pkg.request('https://shusiou01.nyc3.digitaloceanspaces.com/shusiou/movies1/aa', 
+		var fn = '';
+		var range = req.headers.range;
+
+		if (range) {
+			fn = 'an';
+			var parts = range.replace(/bytes=/, "").split("-");
+			var partialstart = parts[0]; var partialend;
+			  partialend =  parts[1];
+			var start = parseInt(partialstart, 10);
+			if (start) {
+				// a.write(Buffer.from('range--->' + start));
+				res.send('range--->' + start);
+				return true;	
+			}
+			var end = partialend ? parseInt(partialend, 10) : total-1;
+			var chunksize = (end-start)+1;
+			var maxChunk = 1024 * 1024; // 1MB at a time
+			if (chunksize > maxChunk) {
+			  end = start + maxChunk - 1;
+			  chunksize = (end - start) + 1;
+		} else {
+			fn = 'aa';
+		}
+		
+		pkg.request('https://shusiou01.nyc3.digitaloceanspaces.com/shusiou/movies1/' + fn, 
 			function (error, response, body) {
 		}).on('data', function(data) {
 			// a.write(data);
