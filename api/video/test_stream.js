@@ -72,7 +72,7 @@ CP.serial(
 					}).on('data', function(data) {
 						d = Buffer.concat([d,  Buffer.from(data)]);
 					}).on('end', function() {
-						cbk(d);;
+						cbk(d);
 					});
 				}
 			})(i);	
@@ -80,7 +80,7 @@ CP.serial(
 		CP1.parallel(
 			_f1,
 			function(data) {
-				for (var i = 0; i <  i < fn.length, i++) {
+				for (var i = 0; i <  i < fn.length; i++) {
 					a.write(CP1.data['P_' + i]);
 				}	
 				a.end();
