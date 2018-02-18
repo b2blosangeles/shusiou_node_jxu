@@ -28,7 +28,9 @@ _f['P_I0'] = function(cbk) {
 CP.serial(
 	_f,
 	function(results) {
-		res.send(results);
+		var cfg = CP.data.P_I0;
+		res.send(cfg);
+	//	res.writeHead(206, {'Content-Range': 'bytes 0-1000000/100000000', 'Accept-Ranges': 'bytes', 'Content-Type': 'video/mp4' });
 	},
 	300000
 );
