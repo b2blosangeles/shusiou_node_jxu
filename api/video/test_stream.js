@@ -29,8 +29,7 @@ CP.serial(
 	_f,
 	function(results) {
 		var cfg = CP.data.P_I0;
-		res.writeHead(206, {'Content-Range': 'bytes 0-1048576/' + cfg.filesize, 
-				    'Accept-Ranges': 'bytes', 'Content-Type': 'video/mp4' });
+
 		let stream = require("stream"),
 		a = new stream.PassThrough();
 		a.pipe(res);
@@ -40,6 +39,7 @@ CP.serial(
 
 		if (range) {
 			fn = 'ab';
+			/*
 			var parts = range.replace(/bytes=/, "").split("-");
 			var partialstart = parts[0]; var partialend;
 			  partialend =  parts[1];
@@ -55,10 +55,12 @@ CP.serial(
 			if (chunksize > maxChunk) {
 			  end = start + maxChunk - 1;
 			  chunksize = (end - start) + 1;
+			  */
 		} else {
 			fn = 'aa';
 		}
-		
+		res.writeHead(206, {'Content-Range': 'bytes 0-1048576/' + cfg.filesize, 
+		    'Accept-Ranges': 'bytes', 'Content-Type': 'video/mp4' });
 		pkg.request('https://shusiou01.nyc3.digitaloceanspaces.com/shusiou/movies1/' + fn, 
 			function (error, response, body) {
 		}).on('data', function(data) {
