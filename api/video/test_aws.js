@@ -53,8 +53,8 @@ var writeInfo = function(v, cbk) {
      });		
 }
 _f['P_A'] = function(cbk) {
-	cbk('niu');
-	//cbk('cd ' + source_path + '&& split --bytes=' + trunkSize + ' ' + source_file +  ' ' + tmp_folder);
+	cbk(('cd ' + source_path + '&& split --bytes=');
+//	cbk('cd ' + source_path + '&& split --bytes=' + trunkSize + ' ' + source_file +  ' ' + tmp_folder);
 	CP.exit = 1;
 	return true;
 	/*
