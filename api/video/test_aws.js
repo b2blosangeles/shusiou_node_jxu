@@ -56,6 +56,7 @@ _f['P_A'] = function(cbk) {
 	cbk('cd ' + source_path + '&& split --bytes=' + trunkSize + ' ' + source_file +  ' ' + tmp_folder);
 	CP.exit = 1;
 	return true;
+	/*
 	pkg.fs.exists(tmp_folder, function(exists) {
 		if (!exists) {
 			var folderP = require(env.site_path + '/api/inc/folderP/folderP');
@@ -74,7 +75,7 @@ _f['P_A'] = function(cbk) {
 			cbk(true)
 		}
 	});	
-
+	*/
 };
 _f['P_I'] = function(cbk) { 
 	pkg.fs.readdir( tmp_folder, (err, files) => {
