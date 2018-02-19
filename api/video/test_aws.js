@@ -63,8 +63,9 @@ _f['P_A'] = function(cbk) {
 		if (err && err.errno === 34) {
 			var folderP = require(env.site_path + '/api/inc/folderP/folderP');
 			var fp = new folderP();		
-			fp.build(info_image, (err, files) => {
-				pkg.exec('cd ' + source_path + '&& split --bytes=' + trunkSize + ' video.mp4 ' + tmp_folder, function(error, stdout, stderr) {
+			fp.build(info_image, () => {
+				pkg.exec('cd ' + source_path + '&& split --bytes=' + trunkSize + ' video.mp4 ' + tmp_folder, 
+				function(error, stdout, stderr) {
 					if (error) cbk(false);
 					else if (stdout) cbk(true);
 					else cbk(false);
