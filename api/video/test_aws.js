@@ -2,14 +2,15 @@ const AWS = require(env.site_path + '/api/inc/aws-sdk/node_modules/aws-sdk')
 const spacesEndpoint = new AWS.Endpoint('nyc3.digitaloceanspaces.com');
 const s3 = new AWS.S3({
     endpoint: spacesEndpoint,
-    accessKeyId: 'AED442OVG2T3GE6IVPWQ',
-    secretAccessKey: 'tvzSwhiJxlQ1RJNalUD0ATDeIZd0ko7P1Zs371J6Vi4'
+    accessKeyId: 'INQEJ6MDDDV4IFQO4EKU',
+    secretAccessKey: 'R+Z/dw1GbdGtARlmi26Zl3JZOHOrqZhfzgKJcGjVP/A'
 });
 let source_path = '/var/img/',
     source_file = 'video.mp4',
     tmp_folder = source_path + '_x/' + source_file + '/',
     
-    space_url = 'https://shusiou01.nyc3.digitaloceanspaces.com/', 
+    space_id = 'shusiou-d-01',
+    space_url = 'https://shusiou-d-01.nyc3.digitaloceanspaces.com/', 
     space_dir = 'shusiou/' + source_file + '/',
     trunkSize = 512 * 1024;
 
@@ -135,7 +136,7 @@ _f['P_I2'] = function(cbk) {
 					     var base64data = new Buffer(data0, 'binary');
 					     var params = {
 						 Body: base64data,
-						 Bucket: "shusiou01",
+						 Bucket: space_id,
 						 Key: space_dir + f[i],
 						 ContentType: 'video/mp4',
 						 ACL: 'public-read'
