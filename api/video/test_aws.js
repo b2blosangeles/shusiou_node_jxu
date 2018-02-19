@@ -107,7 +107,7 @@ _f['P_I2'] = function(cbk) {
 	if (CP.data['P_I1'] !== false) {
 		var x = CP.data['P_I1'].x;
 		var CP1 = new pkg.crowdProcess();
-		var _f1 = {};
+		var _f1 = {}, f = CP.data.P_I;
 		for (var i = 0; i < f.length; i++) {
 			_f1['P_' + i] = (function(i) { 
 				return function(cbk1) {
