@@ -59,18 +59,26 @@ var writeInfo = function(v, cbk) {
      });		
 }
 _f['P_A'] = function(cbk) {
-	pkg.exec('cd ' + source_path + '&& split --bytes=' + trunkSize + ' video.mp4 ' + tmp_folder, function(error, stdout, stderr) {
-		if (error) cbk(false);
-		else if (stdout) cbk(true);
-		else cbk(false);
-	});
+	pkg.fs.stat(tmp_folder, function(err, stats) {
+		if (err && err.errno === 34) {
+			pkg.fs.readdir(tmp_folder, (err, files) => {
+				pkg.exec('cd ' + source_path + '&& split --bytes=' + trunkSize + ' video.mp4 ' + tmp_folder, function(error, stdout, stderr) {
+					if (error) cbk(false);
+					else if (stdout) cbk(true);
+					else cbk(false);
+				});
+			});
+		} else {
+			cbk(true)
+		}
+	});	
+
 };
 _f['P_I'] = function(cbk) { 
 	pkg.fs.readdir( tmp_folder, (err, files) => {
 		var f = [];
 		files.forEach(file => {
-			// if (/$([a-z]+)/.test(file))
-				f[f.length] = file;
+			f[f.length] = file;
 		});
 		cbk(f);
 	});	
