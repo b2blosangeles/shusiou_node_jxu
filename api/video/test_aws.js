@@ -10,7 +10,7 @@ let space_url = 'https://shusiou01.nyc3.digitaloceanspaces.com/',
     south_file = source_path + 'video.mp4',
     tmp_folder = '/var/img/x/',
     space_dir = 'shusiou/movies1/',
-    trunkSize = '512k';
+    trunkSize = 512 * 1024;
 
 let tm = new Date().getTime();
 
