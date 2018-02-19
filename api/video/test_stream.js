@@ -51,7 +51,7 @@ CP.serial(
 		}
 		
 		var sidx = Math.floor(start / maxChunk); 
-		var deltas = start - sidx * maxChunk;
+	//	var deltas = start - sidx * maxChunk;
 		var eidx = Math.min(Math.ceil(end / maxChunk), sidx+1); 
 		start = sidx * maxChunk; end = eidx * maxChunk;
 		//deltas = 0;
@@ -59,7 +59,7 @@ CP.serial(
 			fn.push(cfg.x[i]);	
 		}
 		
-		res.writeHead(206, {'Content-Range': 'bytes ' + (start + deltas) + '-' + end + '/' + cfg.filesize, 
+		res.writeHead(206, {'Content-Range': 'bytes ' + start + '-' + end + '/' + cfg.filesize, 
 		    'Accept-Ranges': 'bytes', 'Content-Type': 'video/mp4' });			
 		
 		var CP1 = new pkg.crowdProcess();
