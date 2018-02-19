@@ -72,10 +72,7 @@ CP.serial(
 					pkg.request('https://shusiou01.nyc3.digitaloceanspaces.com/shusiou/movies1/' + fn[i], 
 					function (error, response, body) {})
 					.on('data', function(data) {
-						let s_data = (i === 0) ? Buffer.from(data, deltas) : Buffer.from(data);
-						//let s_data = (i === 0) ? Buffer.from(data).readUInt32BE(deltas) : Buffer.from(data);
-						// let s_data = (i === 0) ? Buffer.from(data.substring(deltas)) : Buffer.from(data);
-						d = Buffer.concat([d,  s_data]);
+						d = Buffer.concat([d, Buffer.from(data)]);
 					}).on('end', function() {
 						cbk1(d);
 					});
