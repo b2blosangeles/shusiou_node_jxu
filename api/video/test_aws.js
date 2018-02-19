@@ -9,7 +9,8 @@ let space_url = 'https://shusiou01.nyc3.digitaloceanspaces.com/',
     source_path = '/var/img/',
     south_file = source_path + 'video.mp4',
     tmp_folder = '/var/img/x/',
-    space_dir = 'shusiou/movies1/';
+    space_dir = 'shusiou/movies1/',
+    trunksize = '512k';
 
 let tm = new Date().getTime();
 
@@ -57,6 +58,13 @@ var writeInfo = function(v, cbk) {
 	 else    cbk(v);
      });		
 }
+_f['P_A'] = function(cbk) {
+	pkg.exec('cd ' + source_path + '&& split --bytes=' + trunksize + ' video.mp4 ' + tmp_folder, function(error, stdout, stderr) {
+		if (error) cbk(false);
+		else if (stdout) cbk(true);
+		else cbk(false);
+	});
+};
 _f['P_I'] = function(cbk) { 
 	pkg.fs.readdir( tmp_folder, (err, files) => {
 		var f = [];
