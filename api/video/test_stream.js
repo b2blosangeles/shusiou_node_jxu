@@ -35,7 +35,7 @@ CP.serial(
 		
 		var fn = [];
 		var range = req.headers.range;
-		if (!start) var start = 0, end = 0, maxChunk = 1024 * 1024, total = cfg.filesize;
+		if (!start) var start = 0, end = 0, maxChunk = 1024 * 1024 / 2, total = cfg.filesize;
 		if (range) {
 			var total = cfg.filesize; 
 			var parts = range.replace(/bytes=/, "").split("-");
