@@ -52,8 +52,8 @@ CP.serial(
 		
 		var sidx = Math.floor(start / maxChunk); 
 		var deltas = start - sidx * maxChunk;
-		var eidx = Math.min(Math.ceil(end / maxChunk), sidx+2); 
-		start = sidx * maxChunk; end = (eidx + 1) * maxChunk;
+		var eidx = Math.min(Math.ceil(end / maxChunk), sidx+1); 
+		start = sidx * maxChunk; end = eidx * maxChunk;
 		deltas = 0;
 		for (var i = sidx; i <= eidx; i++) {
 			fn.push(cfg.x[i]);	
