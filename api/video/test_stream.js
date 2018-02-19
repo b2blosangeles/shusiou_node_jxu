@@ -52,7 +52,7 @@ CP.serial(
 		
 		var sidx = Math.floor(start / maxChunk); 
 		var deltas = start - sidx * maxChunk;
-		var eidx = Math.min(Math.floor(end / maxChunk), sidx+2); 
+		var eidx = Math.min(Math.ceil(end / maxChunk), sidx+2); 
 		start = sidx * maxChunk; end = (eidx + 1) * maxChunk;
 		deltas = 0;
 		for (var i = sidx; i <= eidx; i++) {
