@@ -2,8 +2,8 @@ const AWS = require(env.site_path + '/api/inc/aws-sdk/node_modules/aws-sdk')
 const spacesEndpoint = new AWS.Endpoint('nyc3.digitaloceanspaces.com');
 const s3 = new AWS.S3({
     endpoint: spacesEndpoint,
-    accessKeyId: 'INQEJ6MDDDV4IFQO4EKU',
-    secretAccessKey: 'R+Z/dw1GbdGtARlmi26Zl3JZOHOrqZhfzgKJcGjVP/A'
+    accessKeyId: 'QYF3ENCI4TEDFDWFBS6N',
+    secretAccessKey: '7DJD8b9iAqD5qsLgRZH9OXfgOQMob/edWouwiqYeOwI'
 });
 let source_path = '/var/img/',
     source_file = 'video.mp4',
