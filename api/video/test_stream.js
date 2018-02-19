@@ -3,10 +3,10 @@ var _f = {};
 var buff = new Buffer(100);
 
 let source_path = '/var/img/',
-    south_file = 'video.mp4',
-    tmp_folder = source_path + '_x/' + south_file + '/',
+    source_file = 'video.mp4',
+    tmp_folder = source_path + '_x/' + source_file + '/',
     space_url = 'https://shusiou01.nyc3.digitaloceanspaces.com',  
-    space_dir = 'shusiou/' +  south_file + '/';
+    space_dir = 'shusiou/' + source_file + '/';
 
 var CP = new pkg.crowdProcess();
 var _f = {}; 
