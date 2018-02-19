@@ -60,11 +60,7 @@ var writeInfo = function(v, cbk) {
 }
 _f['P_A'] = function(cbk) {
 	pkg.fs.exists(tmp_folder, function(exists) {
-		cbk(exists);
-		CP.exit = 1;
-		return true;
-		
-		if (err && err.errno === 34) {
+		if (!exists) {
 			var folderP = require(env.site_path + '/api/inc/folderP/folderP');
 			var fp = new folderP();		
 			fp.build(tmp_folder, () => {
