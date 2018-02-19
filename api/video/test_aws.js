@@ -106,8 +106,8 @@ _f['P_I1'] = function(cbk) {
 		cbk(CP.data['P_I0']);
 	} else {
 		let buff = new Buffer(100);
-		pkg.fs.stat(south_file, function(err, stat) {
-			pkg.fs.open(south_file, 'r', function(err, fd) {
+		pkg.fs.stat(source_path + south_file, function(err, stat) {
+			pkg.fs.open(source_path + south_file, 'r', function(err, fd) {
 				pkg.fs.read(fd, buff, 0, 100, 0, function(err, bytesRead, buffer) {
 					var start = buffer.indexOf(new Buffer('mvhd')) + 17;
 					var timeScale = buffer.readUInt32BE(start, 4);
