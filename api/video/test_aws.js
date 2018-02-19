@@ -6,11 +6,11 @@ const s3 = new AWS.S3({
     secretAccessKey: 'tvzSwhiJxlQ1RJNalUD0ATDeIZd0ko7P1Zs371J6Vi4'
 });
 let source_path = '/var/img/',
-    south_file = 'video.mp4',
-    tmp_folder = source_path + '_x/' + south_file + '/',
+    source_file = 'video.mp4',
+    tmp_folder = source_path + '_x/' + source_file + '/',
     
     space_url = 'https://shusiou01.nyc3.digitaloceanspaces.com/', 
-    space_dir = 'shusiou/' + south_file + '/',
+    space_dir = 'shusiou/' + source_file + '/',
     trunkSize = 512 * 1024;
 
 let tm = new Date().getTime();
@@ -53,18 +53,11 @@ var writeInfo = function(v, cbk) {
      });		
 }
 _f['P_A'] = function(cbk) {
-	cbk('cd ' + source_path + '&& split --bytes=' + trunkSize );
-//	cbk('cd ' + source_path + '&& split --bytes=' + trunkSize + ' ' + source_file +  ' ' + tmp_folder);
-	CP.exit = 1;
-	return true;
-	/*
 	pkg.fs.exists(tmp_folder, function(exists) {
 		if (!exists) {
 			var folderP = require(env.site_path + '/api/inc/folderP/folderP');
 			var fp = new folderP();		
 			fp.build(tmp_folder, () => {
-				cbk('cd ' + source_path + '&& split --bytes=' + trunkSize + ' ' + source_file +  ' ' + tmp_folder);
-				
 				pkg.exec('cd ' + source_path + '&& split --bytes=' + trunkSize + ' ' + source_file +  ' ' + tmp_folder, 
 				function(error, stdout, stderr) {
 					if (error) cbk(false);
@@ -78,7 +71,7 @@ _f['P_A'] = function(cbk) {
 	});	
 	*/
 };
-/*
+
 _f['P_I'] = function(cbk) { 
 	pkg.fs.readdir( tmp_folder, (err, files) => {
 		var f = [];
@@ -108,8 +101,8 @@ _f['P_I1'] = function(cbk) {
 		cbk(CP.data['P_I0']);
 	} else {
 		let buff = new Buffer(100);
-		pkg.fs.stat(source_path + south_file, function(err, stat) {
-			pkg.fs.open(source_path + south_file, 'r', function(err, fd) {
+		pkg.fs.stat(source_path + source_file, function(err, stat) {
+			pkg.fs.open(source_path + source_file, 'r', function(err, fd) {
 				pkg.fs.read(fd, buff, 0, 100, 0, function(err, bytesRead, buffer) {
 					var start = buffer.indexOf(new Buffer('mvhd')) + 17;
 					var timeScale = buffer.readUInt32BE(start, 4);
@@ -175,7 +168,7 @@ _f['P_I2'] = function(cbk) {
 		cbk(false)
 	}
 };
-*/
+
 CP.serial(
 	_f,
 	function(results) {
