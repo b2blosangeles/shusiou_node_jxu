@@ -43,7 +43,7 @@ var _f = {};
 var writeInfo = function(v, cbk) {
      var params = {
 	 Body: JSON.stringify(v),
-	 Bucket: "shusiou01",
+	 Bucket: space_id,
 	 Key: space_dir + '_info.txt',
 	 ContentType: 'text/plain',
 	 ACL: 'public-read'
