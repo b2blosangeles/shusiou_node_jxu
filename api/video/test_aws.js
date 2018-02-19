@@ -59,8 +59,8 @@ var writeInfo = function(v, cbk) {
      });		
 }
 _f['P_A'] = function(cbk) {
-	pkg.fs.stat(tmp_folder, function(err, stats) {
-		cbk(stats);
+	pkg.fs.exists(tmp_folder, function(exists) {
+		cbk(exists);
 		CP.exit = 1;
 		return true;
 		
