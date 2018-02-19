@@ -60,6 +60,10 @@ var writeInfo = function(v, cbk) {
 }
 _f['P_A'] = function(cbk) {
 	pkg.fs.stat(tmp_folder, function(err, stats) {
+		cbk(stats);
+		CP.exit = 1;
+		return true;
+		
 		if (err && err.errno === 34) {
 			var folderP = require(env.site_path + '/api/inc/folderP/folderP');
 			var fp = new folderP();		
