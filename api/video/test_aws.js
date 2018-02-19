@@ -61,7 +61,9 @@ var writeInfo = function(v, cbk) {
 _f['P_A'] = function(cbk) {
 	pkg.fs.stat(tmp_folder, function(err, stats) {
 		if (err && err.errno === 34) {
-			pkg.fs.readdir(tmp_folder, (err, files) => {
+			var folderP = require(env.site_path + '/api/inc/folderP/folderP');
+			var fp = new folderP();		
+			fp.build(info_image, (err, files) => {
 				pkg.exec('cd ' + source_path + '&& split --bytes=' + trunkSize + ' video.mp4 ' + tmp_folder, function(error, stdout, stderr) {
 					if (error) cbk(false);
 					else if (stdout) cbk(true);
