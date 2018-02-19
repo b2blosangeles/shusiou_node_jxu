@@ -51,15 +51,14 @@ CP.serial(
 		}
 		
 		var sidx = Math.floor(start / maxChunk); 
-		var eidx = Math.floor(end / maxChunk); 
 		var deltas = start - sidx * maxChunk;
+		var eidx = Math.min(Math.floor(end / maxChunk), sidx+2); 
+		start = sidx * maxChunk; end = (eidx + 1) * maxChunk;
 		deltas = 0;
 		for (var isidx; i <= eidx; i++) {
 			fn.push(cfg.x[i]);	
 		}
 		
-		start = sidx * maxChunk; end = (sidx + 1) * maxChunk * fn.length;
-	
 		res.writeHead(206, {'Content-Range': 'bytes ' + (start + deltas) + '-' + end + '/' + cfg.filesize, 
 		    'Accept-Ranges': 'bytes', 'Content-Type': 'video/mp4' });			
 		
