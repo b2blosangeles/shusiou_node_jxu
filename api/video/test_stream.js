@@ -4,9 +4,9 @@ var buff = new Buffer(100);
 
 let space_url = 'https://shusiou01.nyc3.digitaloceanspaces.com',  
     source_path = '/var/img/',
-    south_file = source_path + 'video.mp4',
+    south_file = 'video.mp4',
     tmp_folder = '/var/img/x/',
-    space_dir = 'shusiou/movies1/';
+    space_dir = 'shusiou/' +  south_file + '/';
 
 var CP = new pkg.crowdProcess();
 var _f = {}; 
