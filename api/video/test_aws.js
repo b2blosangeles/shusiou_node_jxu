@@ -69,7 +69,6 @@ _f['P_A'] = function(cbk) {
 			cbk(true)
 		}
 	});	
-	*/
 };
 
 _f['P_I'] = function(cbk) { 
