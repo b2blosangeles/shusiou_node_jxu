@@ -7,9 +7,9 @@ const s3 = new AWS.S3({
 });
 let space_url = 'https://shusiou01.nyc3.digitaloceanspaces.com/',  
     source_path = '/var/img/',
-    south_file = source_path + 'video.mp4',
-    tmp_folder = '/var/img/x/',
-    space_dir = 'shusiou/movies1/',
+    south_file = 'video.mp4',
+    tmp_folder = source_path +'_x/' + south_file,
+    space_dir = 'shusiou/' + south_file + '/',
     trunkSize = 512 * 1024;
 
 let tm = new Date().getTime();
@@ -64,7 +64,7 @@ _f['P_A'] = function(cbk) {
 			var folderP = require(env.site_path + '/api/inc/folderP/folderP');
 			var fp = new folderP();		
 			fp.build(tmp_folder, () => {
-				pkg.exec('cd ' + source_path + '&& split --bytes=' + trunkSize + ' video.mp4 ' + tmp_folder, 
+				pkg.exec('cd ' + source_path + '&& split --bytes=' + trunkSize + ' ' + source_file +  + ' ' + tmp_folder, 
 				function(error, stdout, stderr) {
 					if (error) cbk(false);
 					else if (stdout) cbk(true);
