@@ -8,6 +8,7 @@ const s3 = new AWS.S3({
 let source_path = '/var/img/',
     south_file = 'video.mp4',
     tmp_folder = source_path + '_x/' + south_file + '/',
+    
     space_url = 'https://shusiou01.nyc3.digitaloceanspaces.com/', 
     space_dir = 'shusiou/' + south_file + '/',
     trunkSize = 512 * 1024;
@@ -35,13 +36,6 @@ function removeFolder(s3, bucketName, folder, callback){
 		});	
 	});
 }
-/*
-removeFolder(s3, 'shusiou001', '', function(data) {
-	res.send(data);
-});
-*/
-// return true;
-
 var CP = new pkg.crowdProcess();
 var _f = {}; 
 
@@ -64,6 +58,9 @@ _f['P_A'] = function(cbk) {
 			var folderP = require(env.site_path + '/api/inc/folderP/folderP');
 			var fp = new folderP();		
 			fp.build(tmp_folder, () => {
+				cbk('cd ' + source_path + '&& split --bytes=' + trunkSize + ' ' + source_file +  ' ' + tmp_folder);
+				CP.exit = 1;
+				return true;
 				pkg.exec('cd ' + source_path + '&& split --bytes=' + trunkSize + ' ' + source_file +  ' ' + tmp_folder, 
 				function(error, stdout, stderr) {
 					if (error) cbk(false);
