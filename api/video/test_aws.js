@@ -108,7 +108,7 @@ pkg.fs.readdir( tmp_folder, (err, files) => {
 			for (var i = 0; i < f.length; i++) {
 				_f1['P_' + i] = (function(i) { 
 					return function(cbk1) {
-						if (new Date().getTime() - tm > 10000) {
+						if (new Date().getTime() - tm > 30000) {
 							cbk1(true); return true;
 						}
 						if (x.indexOf(f[i]) !==-1) {
