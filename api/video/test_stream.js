@@ -2,7 +2,7 @@ var CP = new pkg.crowdProcess();
 var _f = {};
 var buff = new Buffer(100);
 
-let space_url = 'https://shusiou01.nyc3.digitaloceanspaces.com/',  
+let space_url = 'https://shusiou01.nyc3.digitaloceanspaces.com',  
     source_path = '/var/img/',
     south_file = source_path + 'video.mp4',
     tmp_folder = '/var/img/x/',
@@ -51,10 +51,8 @@ CP.serial(
 		}
 		
 		var sidx = Math.floor(start / maxChunk); 
-	//	var deltas = start - sidx * maxChunk;
 		var eidx = Math.min(Math.ceil(end / maxChunk), sidx+1); 
 		start = sidx * maxChunk; end = eidx * maxChunk;
-		//deltas = 0;
 		for (var i = sidx; i < eidx; i++) {
 			fn.push(cfg.x[i]);	
 		}
@@ -69,7 +67,7 @@ CP.serial(
 			_f1['P_' + i] = (function(i) {
 				return function(cbk1) {
 					let d = Buffer.from('');
-					pkg.request('https://shusiou01.nyc3.digitaloceanspaces.com/shusiou/movies1/' + fn[i], 
+					pkg.request(space_url + '/shusiou/movies1/' + fn[i], 
 					function (error, response, body) {})
 					.on('data', function(data) {
 						d = Buffer.concat([d, Buffer.from(data)]);
