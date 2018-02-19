@@ -41,123 +41,124 @@ removeFolder(s3, 'shusiou001', '', function(data) {
 */
 // return true;
 
-pkg.fs.readdir( tmp_folder, (err, files) => {
-	var f = [];
-	files.forEach(file => {
-		// if (/$([a-z]+)/.test(file))
-			f[f.length] = file;
-	});
-	var CP = new pkg.crowdProcess();
-	var _f = {}; 
-	
-	var writeInfo = function(v, cbk) {
-	     var params = {
-		 Body: JSON.stringify(v),
-		 Bucket: "shusiou01",
-		 Key: space_dir + '_info.txt',
-		 ContentType: 'text/plain',
-		 ACL: 'public-read'
-	     };	
-	     s3.putObject(params, function(err, data) {
-		 if (err) cbk(false);
-		 else    cbk(v);
-	     });		
-	}
-	
-	_f['P_I0'] = function(cbk) { 
-		pkg.request(space_url +  space_dir + '_info.txt', 
-		function (err, res, body) {
-		  	if (err) { 
-				cbk(false); 
-			} else {
-				let v = {};
-				try { 
-					v = JSON.parse(body);
-				} catch (e) { v = false; }
-				cbk(v);
-			}
-		});		
-	};	
-	
-	_f['P_I1'] = function(cbk) { 
-		if (CP.data['P_I0'] !== false) {
-			cbk(CP.data['P_I0']);
+var CP = new pkg.crowdProcess();
+var _f = {}; 
+
+var writeInfo = function(v, cbk) {
+     var params = {
+	 Body: JSON.stringify(v),
+	 Bucket: "shusiou01",
+	 Key: space_dir + '_info.txt',
+	 ContentType: 'text/plain',
+	 ACL: 'public-read'
+     };	
+     s3.putObject(params, function(err, data) {
+	 if (err) cbk(false);
+	 else    cbk(v);
+     });		
+}
+_f['P_I'] = function(cbk) { 
+	pkg.fs.readdir( tmp_folder, (err, files) => {
+		var f = [];
+		files.forEach(file => {
+			// if (/$([a-z]+)/.test(file))
+				f[f.length] = file;
+		});
+		cbk(f);
+	});	
+};	
+_f['P_I0'] = function(cbk) { 
+	pkg.request(space_url +  space_dir + '_info.txt', 
+	function (err, res, body) {
+		if (err) { 
+			cbk(false); 
 		} else {
-			let buff = new Buffer(100);
-			pkg.fs.stat(south_file, function(err, stat) {
-				pkg.fs.open(south_file, 'r', function(err, fd) {
-					pkg.fs.read(fd, buff, 0, 100, 0, function(err, bytesRead, buffer) {
-						var start = buffer.indexOf(new Buffer('mvhd')) + 17;
-						var timeScale = buffer.readUInt32BE(start, 4);
-						var duration = buffer.readUInt32BE(start + 4, 4);
-						var movieLength = Math.floor(duration/timeScale);
-						var v = {filesize:stat.size,time_scale:timeScale, 
-							duration: duration, length:movieLength, x:[], status:0};
-						writeInfo(v, cbk);
-					});
+			let v = {};
+			try { 
+				v = JSON.parse(body);
+			} catch (e) { v = false; }
+			cbk(v);
+		}
+	});		
+};	
+
+_f['P_I1'] = function(cbk) { 
+	if (CP.data['P_I0'] !== false) {
+		cbk(CP.data['P_I0']);
+	} else {
+		let buff = new Buffer(100);
+		pkg.fs.stat(south_file, function(err, stat) {
+			pkg.fs.open(south_file, 'r', function(err, fd) {
+				pkg.fs.read(fd, buff, 0, 100, 0, function(err, bytesRead, buffer) {
+					var start = buffer.indexOf(new Buffer('mvhd')) + 17;
+					var timeScale = buffer.readUInt32BE(start, 4);
+					var duration = buffer.readUInt32BE(start + 4, 4);
+					var movieLength = Math.floor(duration/timeScale);
+					var v = {filesize:stat.size,time_scale:timeScale, 
+						duration: duration, length:movieLength, x:[], status:0};
+					writeInfo(v, cbk);
 				});
 			});
-			
-		} 
-	};
-	_f['P_I2'] = function(cbk) { 
-		if (CP.data['P_I1'] !== false) {
-			var x = CP.data['P_I1'].x;
-			var CP1 = new pkg.crowdProcess();
-			var _f1 = {};
-			for (var i = 0; i < f.length; i++) {
-				_f1['P_' + i] = (function(i) { 
-					return function(cbk1) {
-						if (new Date().getTime() - tm > 30000) {
-							cbk1(true); return true;
-						}
-						if (x.indexOf(f[i]) !==-1) {
-							cbk1('--skip--'); return true;
-						}
-						pkg.fs.readFile( tmp_folder + f[i], function (err, data0) {
-						  if (err) { throw err; }
-						     var base64data = new Buffer(data0, 'binary');
-						     var params = {
-							 Body: base64data,
-							 Bucket: "shusiou01",
-							 Key: space_dir + f[i],
-							 ContentType: 'video/mp4',
-							 ACL: 'public-read'
-						     };	
-						     s3.putObject(params, function(err, data) {
-							 if (err) cbk1(err.message);
-							 else {
-								 let v = CP.data['P_I1'];
-								 v.x[v.x.length] = f[i];
-								 if (i === (f.length - 1)) {
-								 	v.status = 1;
-								 }
-								 writeInfo(v, cbk1);
-								 // cbk1(data);
-							 }	 
-						     });
-						}); 
+		});
+
+	} 
+};
+_f['P_I2'] = function(cbk) { 
+	if (CP.data['P_I1'] !== false) {
+		var x = CP.data['P_I1'].x;
+		var CP1 = new pkg.crowdProcess();
+		var _f1 = {};
+		for (var i = 0; i < f.length; i++) {
+			_f1['P_' + i] = (function(i) { 
+				return function(cbk1) {
+					if (new Date().getTime() - tm > 30000) {
+						cbk1(true); return true;
 					}
-				})(i)
-			}			
-			CP1.serial(
-				_f1,
-				function(results) {
-					cbk('results');
-				},
-				50000
-			);			
-		} else {
-			cbk(false)
-		}
-	};	
-	CP.serial(
-		_f,
-		function(results) {
-			res.send(results);
-		},
-		300000
-	);	
-	
-});  
+					if (x.indexOf(f[i]) !==-1) {
+						cbk1('--skip--'); return true;
+					}
+					pkg.fs.readFile( tmp_folder + f[i], function (err, data0) {
+					  if (err) { throw err; }
+					     var base64data = new Buffer(data0, 'binary');
+					     var params = {
+						 Body: base64data,
+						 Bucket: "shusiou01",
+						 Key: space_dir + f[i],
+						 ContentType: 'video/mp4',
+						 ACL: 'public-read'
+					     };	
+					     s3.putObject(params, function(err, data) {
+						 if (err) cbk1(err.message);
+						 else {
+							 let v = CP.data['P_I1'];
+							 v.x[v.x.length] = f[i];
+							 if (i === (f.length - 1)) {
+								v.status = 1;
+							 }
+							 writeInfo(v, cbk1);
+							 // cbk1(data);
+						 }	 
+					     });
+					}); 
+				}
+			})(i)
+		}			
+		CP1.serial(
+			_f1,
+			function(results) {
+				cbk('results');
+			},
+			50000
+		);			
+	} else {
+		cbk(false)
+	}
+};	
+CP.serial(
+	_f,
+	function(results) {
+		res.send(results);
+	},
+	300000
+);	
 return true;
