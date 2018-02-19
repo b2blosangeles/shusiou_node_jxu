@@ -2,10 +2,10 @@ var CP = new pkg.crowdProcess();
 var _f = {};
 var buff = new Buffer(100);
 
-let space_url = 'https://shusiou01.nyc3.digitaloceanspaces.com',  
-    source_path = '/var/img/',
+let source_path = '/var/img/',
     south_file = 'video.mp4',
-    tmp_folder = '/var/img/x/',
+    tmp_folder = source_path + '_x/' + south_file + '/',
+    space_url = 'https://shusiou01.nyc3.digitaloceanspaces.com',  
     space_dir = 'shusiou/' +  south_file + '/';
 
 var CP = new pkg.crowdProcess();
