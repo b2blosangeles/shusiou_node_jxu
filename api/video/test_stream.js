@@ -6,7 +6,7 @@ let source_path = '/var/img/',
     source_file = 'video.mp4',
     tmp_folder = source_path + '_x/' + source_file + '/',
     space_url = 'https://shusiou01.nyc3.digitaloceanspaces.com',  
-    space_dir = 'shusiou/' + source_file + '/';
+    space_dir = '/shusiou/' + source_file + '/';
 
 var CP = new pkg.crowdProcess();
 var _f = {}; 
