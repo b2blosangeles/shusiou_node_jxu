@@ -31,7 +31,6 @@ CP.serial(
 		var cfg = CP.data.P_I0;	
 		var CP1 = new pkg.crowdProcess();
 		var _f1 = {}; 
-		/*
 		for (var i = 0; i < cfg.x.length; i++) {
 			_f1['P_' + i] = (function(i) {
 				return function(cbk1) {
@@ -56,8 +55,8 @@ CP.serial(
 			},
 			6000
 		);
-		*/
-		res.send(space_url +  space_dir + '_info.txt');
+		
+		// res.send(space_url +  space_dir + '_info.txt');
 	},
 	300000
 );
