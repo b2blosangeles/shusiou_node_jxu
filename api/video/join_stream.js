@@ -34,7 +34,8 @@ CP.serial(
 		for (var i = 0; i < cfg.x.length; i++) {
 			_f1['P_' + i] = (function(i) {
 				return function(cbk1) {
-					let r = pkg.request(space_url + space_dir + cfg.x[i]).pipe(stream);
+					let r = pkg.request(space_url + space_dir + cfg.x[i]);
+					// .pipe(stream);
 					r.on('end', function() {
 						cbk1("END");
 					   });
