@@ -41,12 +41,8 @@ CP.serial(
 						//d = "Buffer.concat([d, Buffer.from(data)])";
 						response.pipe(stream)
 					}).on('end', function() {
-						stream.close(
-							function() {
-								cbk1(true);
-							}
-						);
-						
+
+						cbk(true);
 					});
 				}
 			})(i);	
@@ -55,7 +51,12 @@ CP.serial(
 		CP1.serial(
 			_f1,
 			function(result) {
-				res.send(result);
+				stream.close(
+					function() {
+						res.send(result);
+					}
+				);				
+				
 			},
 			6000
 		);
