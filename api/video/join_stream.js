@@ -12,7 +12,7 @@ let source_path = '/var/img/',
 
 var CP = new pkg.crowdProcess();
 var _f = {}; 
-var stream = pkg.fs.createWriteStream(source_path + "videoniu.mp4", {flags:'a'});
+
 _f['P_I0'] = function(cbk) { 
 	pkg.request(space_url +  space_dir + '_info.txt', 
 	function (err, res, body) {
@@ -36,12 +36,19 @@ CP.serial(
 		for (var i = 0; i < cfg.x.length; i++) {
 			_f1['P_' + i] = (function(i) {
 				return function(cbk1) {
-					
+					var stream = pkg.fs.createWriteStream(source_path + "videoniu.mp4", {flags:'a'});
 					http.get(space_url + space_dir + cfg.x[i], function(response) {
-					    response.pipe(stream);
-					}).on('end', function() {
-						cbk1("videoniu.mp4--");
+					    	response.pipe(stream);
+						stream.on('finish', function() {
+						    stream.close(
+						    	function() {
+								cbk1("videoniu.mp4--");
+							}
+						    );  // close() is async, call cb after close completes.
+						});
+						
 					   });
+					})
 					/*
 					let r = pkg.request(space_url + space_dir + cfg.x[i]);
 					// .pipe(stream);
