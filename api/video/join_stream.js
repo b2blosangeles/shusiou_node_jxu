@@ -11,7 +11,7 @@ a.pipe(res);
 var buff = new Buffer(100);
 var CP1 = new pkg.crowdProcess();
 var _f1 = {}; 
-var fn = ['aa', 'ab', 'ac'];
+var fn = ['aa', 'ab', 'ac', 'ba', 'bb', 'bc', 'bd'];
 
 
 for (var i = 0; i < fn.length; i++) {
