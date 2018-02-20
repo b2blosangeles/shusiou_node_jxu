@@ -34,16 +34,10 @@ CP.serial(
 		for (var i = 0; i < cfg.x.length; i++) {
 			_f1['P_' + i] = (function(i) {
 				return function(cbk1) {
-					let d = Buffer.from('');
-					pkg.request(space_url + space_dir + cfg.x[i], 
-					function (error, response, body) {})
-					.on('data', function(data) {
-						//d = "Buffer.concat([d, Buffer.from(data)])";
-						response.pipe(stream)
-					}).on('end', function() {
-
-						cbk(true);
-					});
+					let r = pkg.request(space_url + space_dir + cfg.x[i]).pipe(stream);
+					r.on('end', function() {
+						cbk1("END");
+					   });
 				}
 			})(i);	
 		}
