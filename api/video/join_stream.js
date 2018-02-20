@@ -63,7 +63,7 @@ CP.serial(
 				);				
 				
 			},
-			6000
+			60000
 		);
 		
 		// res.send(space_url +  space_dir + '_info.txt');
