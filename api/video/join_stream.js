@@ -44,18 +44,11 @@ CP.serial(
 						    	function() {
 								cbk1("videoniu.mp4--");
 							}
-						    );  // close() is async, call cb after close completes.
+						    );  
 						});
 						
 					   });
-					})
-					/*
-					let r = pkg.request(space_url + space_dir + cfg.x[i]);
-					// .pipe(stream);
-					r.on('end', function() {
-						cbk1("END");
-					   });
-					  */ 
+					});
 				}
 			})(i);	
 		}
