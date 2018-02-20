@@ -2,6 +2,8 @@ var CP = new pkg.crowdProcess();
 var _f = {};
 var buff = new Buffer(100);
 
+var http = require('http');
+
 let source_path = '/var/img/',
     source_file = 'video.mp4',
     space_id = 'shusiou-d-01',
@@ -34,7 +36,7 @@ CP.serial(
 		for (var i = 0; i < cfg.x.length; i++) {
 			_f1['P_' + i] = (function(i) {
 				return function(cbk1) {
-					var http = require('http');
+					
 					http.get(space_url + space_dir + cfg.x[i], function(response) {
 					    response.pipe(stream);
 					}).on('end', function() {
