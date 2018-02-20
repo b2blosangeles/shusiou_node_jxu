@@ -46,8 +46,6 @@ CP.serial(
 							}
 						    );  
 						});
-						
-					   });
 					});
 				}
 			})(i);	
@@ -56,12 +54,7 @@ CP.serial(
 		CP1.serial(
 			_f1,
 			function(result) {
-				stream.close(
-					function() {
-						res.send(result);
-					}
-				);				
-				
+				res.send(result);
 			},
 			60000
 		);
