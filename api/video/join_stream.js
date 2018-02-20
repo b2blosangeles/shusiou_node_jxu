@@ -5,6 +5,8 @@ var buff = new Buffer(100);
 var CP1 = new pkg.crowdProcess();
 var _f1 = {}; 
 var fn = ['aa'];
+res.send(fn);
+return true;
 for (var i = 0; i < fn.length; i++) {
 	_f1['P_' + i] = (function(i) {
 		return function(cbk1) {
