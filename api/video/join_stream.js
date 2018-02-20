@@ -4,14 +4,8 @@ var config = require(env.config_path + '/config.json');
 
 var folderP = require(env.site_path + '/api/inc/folderP/folderP');
 
-		var file = pkg.fs.createReadStream('/var/img/_x/video.aa');
-		file.pipe(res);
-		var t = new Date().getTime();
-		var had_error = '';
-		file.on('error', function(err){
-			had_error = '1';
-		});
-
-		file.on('close', function(){ 									
-		});	
+var file = pkg.fs.createReadStream('/var/img/_x/video.aa');
+file.pipe(res);
+file.on('close', function(){ 									
+});	
 
