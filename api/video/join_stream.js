@@ -57,7 +57,7 @@ CP.serial(
 			6000
 		);
 		*/
-		res.send(space_url + space_dir + cfg.x[i]);
+		res.send(space_url +  space_dir + '_info.txt');
 	},
 	300000
 );
