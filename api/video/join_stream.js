@@ -51,8 +51,8 @@ CP.serial(
 
 		CP1.serial(
 			_f1,
-			function(res) {
-				res.send(res);
+			function(result) {
+				res.send(result);
 			},
 			6000
 		);
