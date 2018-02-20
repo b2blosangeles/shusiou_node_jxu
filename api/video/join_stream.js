@@ -38,7 +38,7 @@ CP.serial(
 					http.get(space_url + space_dir + cfg.x[i], function(response) {
 					    response.pipe(stream);
 					}).on('end', function() {
-						cbk1("END");
+						cbk1(source_path + "videoniu.mp4--");
 					   });
 					/*
 					let r = pkg.request(space_url + space_dir + cfg.x[i]);
