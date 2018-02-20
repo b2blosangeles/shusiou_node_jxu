@@ -35,6 +35,8 @@ CP.serial(
 		for (var i = 0; i < cfg.x.length; i++) {
 			_f1['P_' + i] = (function(i) {
 				return function(cbk1) {
+					cbk1(space_url + space_dir + cfg.x[i]);
+					return true;
 					let d = Buffer.from('');
 					pkg.request(space_url + space_dir + cfg.x[i], 
 					function (error, response, body) {})
@@ -49,8 +51,8 @@ CP.serial(
 
 		CP1.serial(
 			_f1,
-			function(data) {
-				res.send('---niu---');
+			function(res) {
+				res.send(res);
 			},
 			6000
 		);
