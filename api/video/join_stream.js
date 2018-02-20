@@ -1,6 +1,7 @@
 let stream = require("stream"),
 a = new stream.PassThrough();
 a.pipe(res);
+var buff = new Buffer(100);
 var CP1 = new pkg.crowdProcess();
 var _f1 = {}; 
 var fn = ['aa', 'ab']
