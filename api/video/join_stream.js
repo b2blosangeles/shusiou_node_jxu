@@ -28,19 +28,7 @@ _f['P_I0'] = function(cbk) {
 CP.serial(
 	_f,
 	function(results) {
-		var cfg = CP.data.P_I0;
-		let stream = require("stream"),
-		a = new stream.PassThrough();
-		a.pipe(res);
-		
-		
-		for (var i = sidx; i < eidx; i++) {
-			fn.push(cfg.x[i]);	
-		}
-		
-		res.writeHead(206, {'Content-Range': 'bytes ' + start + '-' + end + '/' + cfg.filesize, 
-		    'Accept-Ranges': 'bytes', 'Content-Type': 'video/mp4' });			
-		
+		var cfg = CP.data.P_I0;	
 		var CP1 = new pkg.crowdProcess();
 		var _f1 = {}; 
 		
@@ -62,10 +50,7 @@ CP.serial(
 		CP1.serial(
 			_f1,
 			function(data) {
-				for (var i = 0; i < fn.length; i++) {
-					a.write(CP1.data['P_' + i]);
-				}	
-				a.end();
+				res.send('---niu---');
 			},
 			6000
 		);
