@@ -2,10 +2,9 @@ var CP = new pkg.crowdProcess();
 var _f = {};
 var buff = new Buffer(100);
 
-var http = require('http');
-
 let source_path = '/var/img/',
     source_file = 'video.mp4',
+    tmp_folder = source_path + '_x/' + source_file + '/',
     space_id = 'shusiou-d-01',
     space_url = 'https://shusiou-d-01.nyc3.digitaloceanspaces.com',  
     space_dir = '/shusiou/' + source_file + '/';
@@ -30,36 +29,67 @@ _f['P_I0'] = function(cbk) {
 CP.serial(
 	_f,
 	function(results) {
-		var cfg = CP.data.P_I0;	
+		var cfg = CP.data.P_I0;
+		let stream = require("stream"),
+		a = new stream.PassThrough();
+		a.pipe(res);
+		
+		var fn = [];
+		var range = req.headers.range;
+		if (!start) var start = 0, end = 0, maxChunk = cfg.trunksize, total = cfg.filesize;
+		if (range) {
+			var total = cfg.filesize; 
+			var parts = range.replace(/bytes=/, "").split("-");
+			var partialstart = parts[0]; var partialend;
+			  partialend =  parts[1];
+			var start = parseInt(partialstart, 10);
+			var end = (partialend) ? parseInt(partialend, 10) : (total-1);
+			var chunksize = (end-start)+1;
+			if (chunksize > maxChunk) {
+			  end = start + maxChunk - 1;
+			  chunksize = (end - start) + 1;
+			} 
+		}
+		
+		var sidx = Math.floor(start / maxChunk); 
+		var eidx = Math.min(Math.ceil(end / maxChunk), sidx+1); 
+		start = sidx * maxChunk; end = eidx * maxChunk;
+		for (var i = sidx; i < eidx; i++) {
+			fn.push(cfg.x[i]);	
+		}
+		
+	//	res.writeHead(206, {'Content-Range': 'bytes ' + start + '-' + end + '/' + cfg.filesize, 
+	//	    'Accept-Ranges': 'bytes', 'Content-Type': 'video/mp4' });			
+		
 		var CP1 = new pkg.crowdProcess();
 		var _f1 = {}; 
-		for (var i = 0; i < cfg.x.length; i++) {
+		
+		for (var i = 0; i < fn.length; i++) {
 			_f1['P_' + i] = (function(i) {
 				return function(cbk1) {
-					var stream = pkg.fs.createWriteStream(source_path + "videoniu.mp4", {flags:'a'});
-					http.get(space_url + space_dir + cfg.x[i], function(response) {
-					    	response.pipe(stream);
-						stream.on('finish', function() {
-						    stream.close(
-						    	function() {
-								cbk1("videoniu.mp4--");
-							}
-						    );  
-						});
+					let d = Buffer.from('');
+					pkg.request(space_url + space_dir + fn[i], 
+					function (error, response, body) {})
+					.on('data', function(data) {
+						d = Buffer.concat([d, Buffer.from(data)]);
+					}).on('end', function() {
+						cbk1(d);
 					});
 				}
 			})(i);	
 		}
 
-		CP1.serial(
+		CP1.parallel(
 			_f1,
-			function(result) {
-				res.send(result);
+			function(data) {
+				for (var i = 0; i < fn.length; i++) {
+					a.write(CP1.data['P_' + i]);
+				}	
+				a.end();
 			},
-			60000
+			6000
 		);
 		
-		// res.send(space_url +  space_dir + '_info.txt');
 	},
 	300000
 );
