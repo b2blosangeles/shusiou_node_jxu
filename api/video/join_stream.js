@@ -10,7 +10,7 @@ let source_path = '/var/img/',
 
 var CP = new pkg.crowdProcess();
 var _f = {}; 
-
+var stream = pkg.fs.createWriteStream(source_path + "videoniu.mp4", {flags:'a'});
 _f['P_I0'] = function(cbk) { 
 	pkg.request(space_url +  space_dir + '_info.txt', 
 	function (err, res, body) {
@@ -38,9 +38,15 @@ CP.serial(
 					pkg.request(space_url + space_dir + cfg.x[i], 
 					function (error, response, body) {})
 					.on('data', function(data) {
-						d = "Buffer.concat([d, Buffer.from(data)])";
+						//d = "Buffer.concat([d, Buffer.from(data)])";
+						response.pipe(stream)
 					}).on('end', function() {
-						cbk1(d);
+						stream.close(
+							function() {
+								cbk1(true);
+							}
+						);
+						
 					});
 				}
 			})(i);	
