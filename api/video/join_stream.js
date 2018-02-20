@@ -36,7 +36,7 @@ CP.serial(
 			_f1['P_' + i] = (function(i) {
 				return function(cbk1) {
 					let d = Buffer.from('');
-					pkg.request(space_url + space_dir + fn[i], 
+					pkg.request(space_url + space_dir + cfg.x[i], 
 					function (error, response, body) {})
 					.on('data', function(data) {
 						d = Buffer.concat([d, Buffer.from(data)]);
