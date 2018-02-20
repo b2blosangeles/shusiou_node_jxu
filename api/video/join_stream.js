@@ -34,26 +34,7 @@ CP.serial(
 		a = new stream.PassThrough();
 		a.pipe(res);
 		
-		var fn = [];
-		var range = req.headers.range;
-		if (!start) var start = 0, end = 0, maxChunk = cfg.trunksize, total = cfg.filesize;
-		if (range) {
-			var total = cfg.filesize; 
-			var parts = range.replace(/bytes=/, "").split("-");
-			var partialstart = parts[0]; var partialend;
-			  partialend =  parts[1];
-			var start = parseInt(partialstart, 10);
-			var end = (partialend) ? parseInt(partialend, 10) : (total-1);
-			var chunksize = (end-start)+1;
-			if (chunksize > maxChunk) {
-			  end = start + maxChunk - 1;
-			  chunksize = (end - start) + 1;
-			} 
-		}
 		
-		var sidx = Math.floor(start / maxChunk); 
-		var eidx = Math.min(Math.ceil(end / maxChunk), sidx+1); 
-		start = sidx * maxChunk; end = eidx * maxChunk;
 		for (var i = sidx; i < eidx; i++) {
 			fn.push(cfg.x[i]);	
 		}
@@ -64,7 +45,7 @@ CP.serial(
 		var CP1 = new pkg.crowdProcess();
 		var _f1 = {}; 
 		
-		for (var i = 0; i < fn.length; i++) {
+		for (var i = 0; i < cfg.x.length; i++) {
 			_f1['P_' + i] = (function(i) {
 				return function(cbk1) {
 					let d = Buffer.from('');
@@ -79,7 +60,7 @@ CP.serial(
 			})(i);	
 		}
 
-		CP1.parallel(
+		CP1.serial(
 			_f1,
 			function(data) {
 				for (var i = 0; i < fn.length; i++) {
