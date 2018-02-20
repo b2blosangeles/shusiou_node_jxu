@@ -7,6 +7,7 @@ var _f1 = {};
 var fn = ['aa'];
 res.send(fn);
 return true;
+/*
 for (var i = 0; i < fn.length; i++) {
 	_f1['P_' + i] = (function(i) {
 		return function(cbk1) {
@@ -32,4 +33,4 @@ CP1.parallel(
 	},
 	6000
 );
-
+*/
