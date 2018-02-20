@@ -34,11 +34,19 @@ CP.serial(
 		for (var i = 0; i < cfg.x.length; i++) {
 			_f1['P_' + i] = (function(i) {
 				return function(cbk1) {
+					var http = require('http');
+					http.get(space_url + space_dir + cfg.x[i], function(response) {
+					    response.pipe(stream);
+					}).on('end', function() {
+						cbk1("END");
+					   });
+					/*
 					let r = pkg.request(space_url + space_dir + cfg.x[i]);
 					// .pipe(stream);
 					r.on('end', function() {
 						cbk1("END");
 					   });
+					  */ 
 				}
 			})(i);	
 		}
