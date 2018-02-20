@@ -1,3 +1,10 @@
+let source_path = '/var/img/',
+    source_file = 'video.mp4',
+    tmp_folder = source_path + '_x/' + source_file + '/',
+    space_id = 'shusiou-d-01',
+    space_url = 'https://shusiou-d-01.nyc3.digitaloceanspaces.com',  
+    space_dir = '/shusiou/' + source_file + '/';
+
 let stream = require("stream"),
 a = new stream.PassThrough();
 a.pipe(res);
@@ -11,7 +18,7 @@ for (var i = 0; i < fn.length; i++) {
 	_f1['P_' + i] = (function(i) {
 		return function(cbk1) {
 			let d = Buffer.from('');
-			pkg.request('/var/img/_x/video.mp4/' + fn[i], 
+			pkg.request(space_url +  space_dir + fn[i], 
 			function (error, response, body) {})
 			.on('data', function(data) {
 				d = Buffer.concat([d, Buffer.from(data)]);
