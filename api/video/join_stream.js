@@ -28,9 +28,7 @@ for (var i = 0; i < fn.length; i++) {
 		}
 	})(i);	
 }
-res.send(fn);
-return true;
-/*
+
 CP1.serial(
 	_f1,
 	function(data) {
@@ -41,4 +39,4 @@ CP1.serial(
 	},
 	6000
 );
-*/
+
