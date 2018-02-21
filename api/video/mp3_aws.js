@@ -53,6 +53,38 @@ var writeInfo = function(v, cbk) {
 	 else    cbk(v);
      });		
 }
+_f['INFO_0'] = function(cbk) { 
+	pkg.fs.readdir( tmp_folder, (err, files) => {
+		var f = [];
+		files.forEach(file => {
+			f[f.length] = file;
+		});
+		cbk(f);
+	});	
+};
+_f['INFO_1'] = function(cbk) { 
+	CP.exit = 1;
+	if (CP.data['INFO_0'] !== false) {
+		cbk(CP.data['INFO_0']);
+	} else {
+		let buff = new Buffer(100);
+		pkg.fs.stat(source_path + source_file, function(err, stat) {
+			pkg.fs.open(source_path + source_file, 'r', function(err, fd) {
+				pkg.fs.read(fd, buff, 0, 100, 0, function(err, bytesRead, buffer) {
+					var start = buffer.indexOf(new Buffer('mvhd')) + 17;
+					var timeScale = buffer.readUInt32BE(start, 4);
+					var duration = buffer.readUInt32BE(start + 4, 4);
+					var movieLength = Math.floor(duration/timeScale);
+					var v = {filesize:stat.size,time_scale:timeScale, trunksize: trunkSize,
+						duration: duration, length:movieLength, x:[], status:0};
+					writeInfo(v, cbk);
+				});
+			});
+		});
+
+	} 
+};
+/*
 _f['P_A'] = function(cbk) {
 	pkg.fs.exists(tmp_folder, function(exists) {
 		if (!exists) {
@@ -72,6 +104,7 @@ _f['P_A'] = function(cbk) {
 	});	
 };
 
+*/
 _f['P_I'] = function(cbk) { 
 	pkg.fs.readdir( tmp_folder, (err, files) => {
 		var f = [];
