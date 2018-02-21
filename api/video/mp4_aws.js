@@ -105,7 +105,7 @@ _f['P_A'] = function(cbk) {
 	});	
 };
 
-*/
+
 _f['P_I'] = function(cbk) { 
 	pkg.fs.readdir( tmp_folder, (err, files) => {
 		var f = [];
@@ -202,7 +202,7 @@ _f['P_I2'] = function(cbk) {
 		cbk(false)
 	}
 };
-
+*/
 CP.serial(
 	_f,
 	function(results) {
