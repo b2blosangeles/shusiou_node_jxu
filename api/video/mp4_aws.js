@@ -108,7 +108,7 @@ _f['PUSH_SECTION'] = function(cbk) {
 		for (var i = 0 ; i < a.length; i+=10) {
 			_f1['P_'+i] = (function(i) {
 				return function(cbk1) {
-					cbk1(a[i] + ' -- skipped as timeout'+ ((new Date().getTime() - tm));
+					cbk1(a[i] + ' -- skipped as timeout'+ (new Date().getTime() - tm));
 					return true;
 					if ((new Date().getTime() - tm) > 300) {
 						cbk1(a[i] + ' -- skipped as timeout'+ ((new Date().getTime() - tm));
