@@ -57,7 +57,7 @@ _f['INFO_0'] = function(cbk) {
 	pkg.exec("ffprobe -i " + source_path + source_file + " -show_format -v quiet | sed -n 's/duration=//p'", 
 	function(error, stdout, stderr) {
 		if (error) cbk(false);
-		else if (stdout) cbk(true);
+		else if (stdout) cbk(stdout);
 		else cbk(false);
 	});	
 };
