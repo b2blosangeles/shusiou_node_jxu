@@ -54,14 +54,11 @@ var writeInfo = function(v, cbk) {
      });		
 }
 _f['INFO_0'] = function(cbk) { 
-	cbk(false);
-	return true;
-	pkg.fs.readdir( tmp_folder, (err, files) => {
-		var f = [];
-		files.forEach(file => {
-			f[f.length] = file;
-		});
-		cbk(f);
+	pkg.exec("ffprobe -i video.mp4 -show_format -v quiet | sed -n 's/duration=//p'", 
+	function(error, stdout, stderr) {
+		if (error) cbk(false);
+		else if (stdout) cbk(true);
+		else cbk(false);
 	});	
 };
 _f['INFO_1'] = function(cbk) { 
