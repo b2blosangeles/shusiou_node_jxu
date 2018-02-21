@@ -108,6 +108,8 @@ _f['PUSH_SECTION'] = function(cbk) {
 		for (var i = 0 ; i < a.length; i+=10) {
 			_f1['P_'+i] = (function(i) {
 				return function(cbk1) {
+					cbk1(a[i] + ' -- skipped as timeout');
+					return true;
 					if ((new Date().getTime() - tm) > 3000) {
 						cbk1(a[i] + ' -- skipped as timeout');
 						CP1.exit = 1;
