@@ -64,8 +64,7 @@ var writeInfo = function(v, cbk) {
      });		
 }
 _f['CREATE_TEMP_PATH'] = function(cbk) {
-	var folderP = require(env.site_path + '/api/inc/folderP/folderP');
-	var fp = new folderP();		
+	let folderP = require(env.site_path + '/api/inc/folderP/folderP'),  fp = new folderP();		
 	fp.build(tmp_folder, () => { cbk(true) });
 };
 
@@ -76,7 +75,7 @@ _f['INFO_0'] = function(cbk) {
 		} else {
 			cbk('exist');
 		}
-	}
+	});
 	CP.exit = 1;
 	return true;
 	pkg.exec("ffprobe -i " + source_path + source_file + " -show_format -v quiet | sed -n 's/duration=//p'", 
