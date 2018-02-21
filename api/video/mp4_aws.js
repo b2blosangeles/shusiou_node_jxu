@@ -66,7 +66,7 @@ _f['INFO_0'] = function(cbk) {
 };
 _f['INFO_1'] = function(cbk) { 
 	CP.exit = 1;
-	if (CP.data['INFO_0'] !== false) {
+	if (!isNaN(CP.data['INFO_0'])) {
 		cbk(CP.data['INFO_0']);
 	} else {
 		let buff = new Buffer(100);
