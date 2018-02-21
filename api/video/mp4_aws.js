@@ -63,30 +63,39 @@ var writeInfo = function(v, cbk) {
 	 else    cbk(v);
      });		
 }
+
 _f['CREATE_TEMP_PATH'] = function(cbk) {
 	let folderP = require(env.site_path + '/api/inc/folderP/folderP'),  fp = new folderP();		
 	fp.build(tmp_folder, () => { cbk(true) });
 };
 
 _f['INFO_0'] = function(cbk) { 
-	pkg.fs.exists(tmp_folder + '_info.txt', function(exists) {
-		if (!exists) {
-			cbk('not exist');
-		} else {
-			cbk('exist');
+	pkg.request(space_url +  space_dir + '_info.txt', 
+	function (err, res, body) {
+		let v = {};
+		if (!err) {
+			try { 
+				v = JSON.parse(body);
+			} catch (e) { v = false; }
 		}
-	});
+		if (!v.video_length) {
+			pkg.exec("ffprobe -i " + source_path + source_file + " -show_format -v quiet | sed -n 's/duration=//p'", 
+			function(error, stdout, stderr) {
+				if (error) cbk(false);
+				else if (stdout) {
+					let s = stdout.replace(/[`~!@#$%^&*()_|+\-=?;:'",.<>\{\}\[\]\\\/]/gi, '\\$&').
+						replace(/[\n\r]/g, '\\n');
+					writeInfo({video_length:parseInt(s)}, cbk);
+				} else cbk(false);
+			});		
+		} else {
+			v.cache = 1;
+			cbk(v);
+		}
+	});	
 	CP.exit = 1;
 	return true;
-	pkg.exec("ffprobe -i " + source_path + source_file + " -show_format -v quiet | sed -n 's/duration=//p'", 
-	function(error, stdout, stderr) {
-		if (error) cbk(false);
-		else if (stdout) {
-			let s = stdout.replace(/[`~!@#$%^&*()_|+\-=?;:'",.<>\{\}\[\]\\\/]/gi, '\\$&').
-				replace(/[\n\r]/g, '\\n')
-			cbk(parseInt(s));
-		} else cbk(false);
-	});	
+	
 };
 
 
