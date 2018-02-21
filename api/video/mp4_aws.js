@@ -74,6 +74,13 @@ _f['INFO_0'] = function(cbk) {
 		} else cbk(false);
 	});	
 };
+_f['P_A'] = function(cbk) {
+	var folderP = require(env.site_path + '/api/inc/folderP/folderP');
+	var fp = new folderP();		
+	fp.build(tmp_folder, () => {	
+		cbk(true)
+	});	
+};
 
 _f['INFO_1'] = function(cbk) { 
 	var videoLength = CP.data['INFO_0'], a = [];
