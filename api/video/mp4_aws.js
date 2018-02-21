@@ -87,6 +87,7 @@ _f['INFO_1'] = function(cbk) {
 		cbk('a');
 		CP.exit = 1;
 		return true;
+		/*
 		let buff = new Buffer(100);
 		pkg.fs.stat(source_path + source_file, function(err, stat) {
 			pkg.fs.open(source_path + source_file, 'r', function(err, fd) {
@@ -101,7 +102,7 @@ _f['INFO_1'] = function(cbk) {
 				});
 			});
 		});
-
+		*/
 	} 
 };
 
