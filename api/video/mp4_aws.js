@@ -123,9 +123,9 @@ _f['PUSH_SECTION'] = function(cbk) {
 			_f1,
 			function(results) {
 				var t = new Date().getTime() - tm;
-				cbk(t+'---');
+				cbk(results);
 			},
-			50000
+			40000
 		);
 	} else {
 		cbk('Error on PUSH_SECTION');
