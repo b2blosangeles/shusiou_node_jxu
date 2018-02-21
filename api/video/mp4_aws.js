@@ -114,6 +114,7 @@ _f['PUSH_SECTION'] = function(cbk) {
 					} else {
 						pkg.exec(a[i], function(error, stdout, stderr) {
 							cbk1(a[i] + ' -- Done');
+							CP1.exit = 1;
 						});
 					}	
 				}
