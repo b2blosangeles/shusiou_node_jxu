@@ -108,7 +108,7 @@ _f['PUSH_SECTION'] = function(cbk) {
 		for (var i = 0 ; i < a.length; i+=10) {
 			_f1['P_'+i] = (function(i) {
 				return function(cbk1) {
-					if ((new Date().getTime() - tm) > 30000) {
+					if ((new Date().getTime() - tm) > 10000) {
 						cbk1(a[i] + ' -- skipped as timeout'+ (new Date().getTime() - tm));
 						CP1.exit = 1;
 					} else {
@@ -125,7 +125,7 @@ _f['PUSH_SECTION'] = function(cbk) {
 				var t = new Date().getTime() - tm;
 				cbk(results);
 			},
-			40000
+			50000
 		);
 	} else {
 		cbk('Error on PUSH_SECTION');
