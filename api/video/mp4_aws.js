@@ -71,27 +71,27 @@ _f['CREATE_TEMP_PATH'] = function(cbk) {
 
 _f['INFO'] = function(cbk) { 
 	pkg.request(space_url +  space_dir + '_info.txt', 
-	function (err, res, body) {
-		let v = {};
-		if (!err) {
-			try { 
-				v = JSON.parse(body);
-			} catch (e) { v = false; }
-		}
-		if (!v.video_length) {
-			pkg.exec("ffprobe -i " + source_path + source_file + " -show_format -v quiet | sed -n 's/duration=//p'", 
-			function(error, stdout, stderr) {
-				if (error) cbk(false);
-				else if (stdout) {
-					let s = stdout.replace(/[`~!@#$%^&*()_|+\-=?;:'",.<>\{\}\[\]\\\/]/gi, '\\$&').
-						replace(/[\n\r]/g, '\\n');
-					writeInfo({video_length:parseInt(s)}, cbk);
-				} else cbk(false);
-			});		
-		} else {
-			v.cache = 1;
-			cbk(v);
-		}
+		function (err, res, body) {
+			let v = {};
+			if (!err) {
+				try { 
+					v = JSON.parse(body);
+				} catch (e) { v = false; }
+			}
+			if (!v.video_length) {
+				pkg.exec("ffprobe -i " + source_path + source_file + " -show_format -v quiet | sed -n 's/duration=//p'", 
+				function(error, stdout, stderr) {
+					if (error) cbk(false);
+					else if (stdout) {
+						let s = stdout.replace(/[`~!@#$%^&*()_|+\-=?;:'",.<>\{\}\[\]\\\/]/gi, '\\$&').
+							replace(/[\n\r]/g, '\\n');
+						writeInfo({video_length:parseInt(s)}, cbk);
+					} else cbk(false);
+				});		
+			} else {
+				v.cache = 1;
+				cbk(v);
+			}
 	});	
 };
 
@@ -106,13 +106,14 @@ _f['PUSH_SECTION'] = function(cbk) {
 							});
 		cbk(a.join(' && '));
 		return true;
+	/*
 		var CP1 = new pkg.crowdProcess();
 		var _f1 = {}
 		for (var i = 0 ; i < a.length; i+=10) {
 			_f1['P_'+i] = (function(i) {
 				return function(cbk1) {
 					if (new Date().getTime() - tm > 30000) {
-						cbk1(a[i] + ' -- skiped as timeout');
+						cbk1(a[i] + ' -- skipped as timeout');
 						CP1.exit = 1;
 					} else {					
 						pkg.exec(a[i], function(error, stdout, stderr) {
@@ -131,6 +132,7 @@ _f['PUSH_SECTION'] = function(cbk) {
 		);
 		
 		CP.exit = 1;
+		*/
 	} else {
 		cbk('Error on PUSH_SECTION');
 		CP.exit = 1;
