@@ -77,13 +77,11 @@ _f['INFO_0'] = function(cbk) {
 
 _f['INFO_1'] = function(cbk) { 
 	var videoLength = CP.data['INFO_0'], a = [];
-	cbk(videoLength);
-	return true;
 	if (!isNaN(videoLength)) {
-		//for (var i = 0 ; i < videoLength; i++) {
-		//	a[a.length] = i;
-		//}
-		cbk(videoLength);
+		for (var i = 0 ; i < videoLength; i+=10) {
+			a[a.length] = i;
+		}
+		cbk(a);
 		CP.exit = 1;
 	} else {
 		cbk('a');
