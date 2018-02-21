@@ -103,9 +103,6 @@ _f['PUSH_SECTION'] = function(cbk) {
 			a[a.length] = 'ffmpeg -i ' +  source_path + source_file + ' -t 00:00:10 -c copy ' +  
 				tmp_folder + 's_' + a.length + '.mp4 -ss ' +  toHHMMSS(i);
 		}
-		cbk(a.join(' && '));
-		return true;
-	/*
 		var CP1 = new pkg.crowdProcess();
 		var _f1 = {}
 		for (var i = 0 ; i < a.length; i+=10) {
@@ -129,13 +126,8 @@ _f['PUSH_SECTION'] = function(cbk) {
 			},
 			50000
 		);
-		
-		CP.exit = 1;
-		*/
 	} else {
 		cbk('Error on PUSH_SECTION');
-		CP.exit = 1;
-		return true;
 	} 
 };
 
