@@ -110,7 +110,7 @@ _f['PUSH_SECTION'] = function(cbk) {
 				return function(cbk1) {
 					if ((new Date().getTime() - tm) > 300) {
 						cbk1(a[i] + ' -- skipped as timeout');
-						CP1.exit = 1;
+						// CP1.exit = 1;
 					} else {
 						pkg.exec(a[i], function(error, stdout, stderr) {
 							cbk1(a[i] + ' -- Done');
