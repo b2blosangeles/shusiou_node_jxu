@@ -112,12 +112,9 @@ _f['PUSH_SECTION'] = function(cbk) {
 						cbk1(a[i] + ' -- skipped as timeout');
 						CP1.exit = 1;
 					} else {
-						cbk1(a[i] + ' -- Done');
-						/*
 						pkg.exec(a[i], function(error, stdout, stderr) {
 							cbk1(a[i] + ' -- Done');
 						});
-						*/
 					}	
 				}
 			})(i);
