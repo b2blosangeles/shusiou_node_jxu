@@ -73,9 +73,14 @@ _f['INFO_0'] = function(cbk) {
 	});	
 };
 _f['INFO_1'] = function(cbk) { 
-	CP.exit = 1;
+	
 	if (!isNaN(CP.data['INFO_0'])) {
-		cbk(CP.data['INFO_0']);
+		let videolength = CP.data['INFO_0'], a;
+		for (var i = 0 ; i < videoLength; i+=10) {
+			a[a.length] = i;
+		}
+		cbk(a);
+		CP.exit = 1;
 	} else {
 		let buff = new Buffer(100);
 		pkg.fs.stat(source_path + source_file, function(err, stat) {
