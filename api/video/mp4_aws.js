@@ -73,7 +73,9 @@ _f['INFO_0'] = function(cbk) {
 	});	
 };
 _f['INFO_1'] = function(cbk) { 
-	
+	cbk(a);
+	CP.exit = 1;
+	return true;
 	if (!isNaN(CP.data['INFO_0'])) {
 		let videolength = CP.data['INFO_0'], a = [];
 		for (var i = 0 ; i < videoLength; i+=10) {
