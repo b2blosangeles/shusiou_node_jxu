@@ -57,8 +57,11 @@ _f['INFO_0'] = function(cbk) {
 	pkg.exec("ffprobe -i " + source_path + source_file + " -show_format -v quiet | sed -n 's/duration=//p'", 
 	function(error, stdout, stderr) {
 		if (error) cbk(false);
-		else if (stdout) cbk(stdout);
-		else cbk(false);
+		else if (stdout) {
+			let s = stdout.replace(/[`~!@#$%^&*()_|+\-=?;:'",.<>\{\}\[\]\\\/]/gi, '\\$&').
+				replace(/[\n\r]/g, '\\n')
+			cbk(s);
+		} else cbk(false);
 	});	
 };
 _f['INFO_1'] = function(cbk) { 
