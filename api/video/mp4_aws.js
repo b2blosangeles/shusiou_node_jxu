@@ -89,11 +89,11 @@ _f['INFO_1'] = function(cbk) {
 			a[a.length] = 'ffmpeg -i ' +  source_path + source_file + ' -t 00:00:10 -c copy ' +  tmp_folder + 's_' + a.length + 
 				'.mp4 -ss ' +  toHHMMSS(i);
 		}
-		/*	
+			
 		pkg.exec(a.join(' && '), function(error, stdout, stderr) {
-							cbk1(true);
-						});*/
-		cbk(a.join(' && '));
+							cbk(true);
+						});
+	//	cbk(a.join(' && '));
 		return true;
 		var CP1 = new pkg.crowdProcess();
 		var _f1 = {}
