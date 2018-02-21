@@ -96,17 +96,14 @@ _f['INFO'] = function(cbk) {
 };
 
 
-_f['INFO_1'] = function(cbk) { 
+_f['PUSH_SECTION'] = function(cbk) { 
 	var videoLength = CP.data['INFO'].video_length, a = [];
 	if (!isNaN(videoLength)) {
 		for (var i = 0 ; i < videoLength; i+=10) {
 			a[a.length] = 'ffmpeg -i ' +  source_path + source_file + ' -t 00:00:10 -c copy ' +  tmp_folder + 's_' + a.length + 
 				'.mp4 -ss ' +  toHHMMSS(i);
 		}
-			
-	//	pkg.exec(a.join(' && '), function(error, stdout, stderr) {
-	//						cbk(true);
-	//					});
+							});
 		cbk(a.join(' && '));
 		return true;
 		var CP1 = new pkg.crowdProcess();
@@ -114,9 +111,14 @@ _f['INFO_1'] = function(cbk) {
 		for (var i = 0 ; i < a.length; i+=10) {
 			_f1['P_'+i] = (function(i) {
 				return function(cbk1) {
-					pkg.exec(a[i], function(error, stdout, stderr) {
-							cbk1(true);
+					if (new Date().getTime() - tm > 30000) {
+						cbk1(true); 
+						CP1.exit = 1;
+					} else {					
+						pkg.exec(a[i], function(error, stdout, stderr) {
+							cbk1(a[i]);
 						});
+					}	
 				}
 			})(i);
 		}
@@ -130,25 +132,9 @@ _f['INFO_1'] = function(cbk) {
 		
 		CP.exit = 1;
 	} else {
-		cbk('a');
+		cbk('Error on PUSH_SECTION');
 		CP.exit = 1;
 		return true;
-		/*
-		let buff = new Buffer(100);
-		pkg.fs.stat(source_path + source_file, function(err, stat) {
-			pkg.fs.open(source_path + source_file, 'r', function(err, fd) {
-				pkg.fs.read(fd, buff, 0, 100, 0, function(err, bytesRead, buffer) {
-					var start = buffer.indexOf(new Buffer('mvhd')) + 17;
-					var timeScale = buffer.readUInt32BE(start, 4);
-					var duration = buffer.readUInt32BE(start + 4, 4);
-					var movieLength = Math.floor(duration/timeScale);
-					var v = {filesize:stat.size,time_scale:timeScale, trunksize: trunkSize,
-						duration: duration, length:movieLength, x:[], status:0};
-					writeInfo(v, cbk);
-				});
-			});
-		});
-		*/
 	} 
 };
 
