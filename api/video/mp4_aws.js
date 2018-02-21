@@ -54,7 +54,7 @@ var writeInfo = function(v, cbk) {
      });		
 }
 _f['INFO_0'] = function(cbk) { 
-	pkg.exec("ffprobe -i video.mp4 -show_format -v quiet | sed -n 's/duration=//p'", 
+	pkg.exec("ffprobe -i " + source_path + source_file + " -show_format -v quiet | sed -n 's/duration=//p'", 
 	function(error, stdout, stderr) {
 		if (error) cbk(false);
 		else if (stdout) cbk(true);
