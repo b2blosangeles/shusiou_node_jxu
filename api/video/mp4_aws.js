@@ -74,13 +74,10 @@ _f['INFO_0'] = function(cbk) {
 		} else cbk(false);
 	});	
 };
-/*
+
 _f['INFO_1'] = function(cbk) { 
-	cbk(a);
-	CP.exit = 1;
-	return true;
-	if (!isNaN(CP.data['INFO_0'])) {
-		let videolength = CP.data['INFO_0'], a = [];
+	let videolength = CP.data['INFO_0'], a = [];
+	if (!isNaN(videolength)) {
 		for (var i = 0 ; i < videoLength; i+=10) {
 			a[a.length] = i;
 		}
@@ -107,7 +104,7 @@ _f['INFO_1'] = function(cbk) {
 
 	} 
 };
-*/
+
 /*
 _f['P_A'] = function(cbk) {
 	pkg.fs.exists(tmp_folder, function(exists) {
