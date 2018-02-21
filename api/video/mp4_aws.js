@@ -101,22 +101,19 @@ _f['PUSH_SECTION'] = function(cbk) {
 	if (!isNaN(videoLength)) {
 		for (var i = 0 ; i < videoLength; i+=10) {
 			a[a.length] = 'ffmpeg -i ' +  source_path + source_file + ' -t 00:00:10 -c copy ' +  
-				tmp_folder + 's_' + a.length + '.mp4 -ss ' +  toHHMMSS(i);
+				tmp_folder + 's_' + a.length + '.mp4 -ss ' +  toHHMMSS(i) + ' -y';
 		}
 		var CP1 = new pkg.crowdProcess();
 		var _f1 = {}
 		for (var i = 0 ; i < a.length; i+=10) {
 			_f1['P_'+i] = (function(i) {
 				return function(cbk1) {
-					cbk1(a[i] + ' -- skipped as timeout'+ (new Date().getTime() - tm));
-					return true;
-					if ((new Date().getTime() - tm) > 300) {
+					if ((new Date().getTime() - tm) > 30000) {
 						cbk1(a[i] + ' -- skipped as timeout'+ (new Date().getTime() - tm));
-						// CP1.exit = 1;
+						CP1.exit = 1;
 					} else {
 						pkg.exec(a[i], function(error, stdout, stderr) {
 							cbk1(a[i] + ' -- Done');
-							CP1.exit = 1;
 						});
 					}	
 				}
