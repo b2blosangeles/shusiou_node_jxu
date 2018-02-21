@@ -85,8 +85,8 @@ _f['P_A'] = function(cbk) {
 _f['INFO_1'] = function(cbk) { 
 	var videoLength = CP.data['INFO_0'], a = [];
 	if (!isNaN(videoLength)) {
-		for (var i = 0 ; i < videoLength; i+=10) {
-			a[a.length] = 'ffmpeg -i ' +  source_path + source_file + ' -t 00:00:10 -c copy ' +  tmp_folder + 'sec_' + a.length + 
+		for (var i = 0 ; i < videoLength; i+=60) {
+			a[a.length] = 'ffmpeg -i ' +  source_path + source_file + ' -t 00:00:10 -c copy ' +  tmp_folder + 's_' + a.length + 
 				'.mp4 -ss ' +  toHHMMSS(i);
 		}
 		var CP1 = new pkg.crowdProcess();
