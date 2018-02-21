@@ -54,6 +54,7 @@ var writeInfo = function(v, cbk) {
      });		
 }
 _f['INFO_0'] = function(cbk) { 
+	cbk(false);
 	pkg.fs.readdir( tmp_folder, (err, files) => {
 		var f = [];
 		files.forEach(file => {
