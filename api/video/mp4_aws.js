@@ -91,8 +91,8 @@ _f['INFO_1'] = function(cbk) {
 		}
 			
 	//	pkg.exec(a.join(' && '), function(error, stdout, stderr) {
-							cbk(true);
-						});
+	//						cbk(true);
+	//					});
 		cbk(a.join(' && '));
 		return true;
 		var CP1 = new pkg.crowdProcess();
