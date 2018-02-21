@@ -85,7 +85,7 @@ _f['P_A'] = function(cbk) {
 _f['INFO_1'] = function(cbk) { 
 	var videoLength = CP.data['INFO_0'], a = [];
 	if (!isNaN(videoLength)) {
-		for (var i = 0 ; i < videoLength; i+=10) {
+		for (var i = 0 ; i < videoLength; i++) {
 			a[a.length] = 'ffmpeg -i ' +  source_path + source_file + ' -t 00:00:10 -c copy ' +  tmp_folder + 'sec_' + a.length + 
 				'.mp4 -ss ' +  toHHMMSS(i);
 		}
