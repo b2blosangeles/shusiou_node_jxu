@@ -97,6 +97,7 @@ _f['INFO_1'] = function(cbk) {
 					pkg.exec(a[i], function(error, stdout, stderr) {
 							cbk1(true);
 						});
+				}
 			})(i);
 		}	
 		CP1.serial(
