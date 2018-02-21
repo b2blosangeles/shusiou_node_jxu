@@ -91,7 +91,7 @@ _f['INFO_1'] = function(cbk) {
 		}
 		var CP1 = new pkg.crowdProcess();
 		var _f1 = {}
-		for (var i = 0 ; i < a.length; i+=10) {
+		for (var i = 0 ; i < a.length; i++) {
 			_f1['P_'+i] = (function(i) {
 				return function(cbk1) {
 					pkg.exec(a[i], function(error, stdout, stderr) {
