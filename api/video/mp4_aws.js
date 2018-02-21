@@ -63,16 +63,22 @@ var writeInfo = function(v, cbk) {
 	 else    cbk(v);
      });		
 }
-_f['CREATE_PATH_A'] = function(cbk) {
+_f['CREATE_TEMP_PATH'] = function(cbk) {
 	var folderP = require(env.site_path + '/api/inc/folderP/folderP');
 	var fp = new folderP();		
-	fp.build(tmp_folder, () => {	
-		cbk(true)
-	});
-	CP.exit = 1;
+	fp.build(tmp_folder, () => { cbk(true) });
 };
 
 _f['INFO_0'] = function(cbk) { 
+	pkg.fs.exists(tmp_folder + '_info.txt', function(exists) {
+		if (!exists) {
+			cbk('not exist');
+		} else {
+			cbk('exist');
+		}
+	}
+	CP.exit = 1;
+	return true;
 	pkg.exec("ffprobe -i " + source_path + source_file + " -show_format -v quiet | sed -n 's/duration=//p'", 
 	function(error, stdout, stderr) {
 		if (error) cbk(false);
