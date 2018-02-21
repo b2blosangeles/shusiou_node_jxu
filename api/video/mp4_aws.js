@@ -72,6 +72,7 @@ _f['INFO_0'] = function(cbk) {
 		} else cbk(false);
 	});	
 };
+/*
 _f['INFO_1'] = function(cbk) { 
 	cbk(a);
 	CP.exit = 1;
@@ -104,6 +105,7 @@ _f['INFO_1'] = function(cbk) {
 
 	} 
 };
+*/
 /*
 _f['P_A'] = function(cbk) {
 	pkg.fs.exists(tmp_folder, function(exists) {
