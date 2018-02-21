@@ -69,7 +69,7 @@ _f['CREATE_TEMP_PATH'] = function(cbk) {
 	fp.build(tmp_folder, () => { cbk(true) });
 };
 
-_f['INFO_0'] = function(cbk) { 
+_f['INFO'] = function(cbk) { 
 	pkg.request(space_url +  space_dir + '_info.txt', 
 	function (err, res, body) {
 		let v = {};
@@ -93,14 +93,11 @@ _f['INFO_0'] = function(cbk) {
 			cbk(v);
 		}
 	});	
-	CP.exit = 1;
-	return true;
-	
 };
 
 
 _f['INFO_1'] = function(cbk) { 
-	var videoLength = CP.data['INFO_0'], a = [];
+	var videoLength = CP.data['INFO'].video_length, a = [];
 	if (!isNaN(videoLength)) {
 		for (var i = 0 ; i < videoLength; i+=10) {
 			a[a.length] = 'ffmpeg -i ' +  source_path + source_file + ' -t 00:00:10 -c copy ' +  tmp_folder + 's_' + a.length + 
