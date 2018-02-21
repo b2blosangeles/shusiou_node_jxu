@@ -89,7 +89,24 @@ _f['INFO_1'] = function(cbk) {
 			a[a.length] = 'ffmpeg -i ' +  source_path + source_file + ' -t 00:00:10 -c copy ' +  tmp_folder + 'sec_' + a.length + 
 				'.mp4 -ss ' +  toHHMMSS(i);
 		}
-		cbk(a);
+		var CP1 = new pkg.crowdProcess();
+		var _f1 = {}
+		for (var i = 0 ; i < a.length; i+=10) {
+			_f1['P_'+i] = (function(i) {
+				return function(cbk1) {
+					pkg.exec(a[i], function(error, stdout, stderr) {
+							cbk1(true);
+						});
+			})(i);
+		}	
+		CP1.serial(
+			_f1,
+			function(results) {
+				cbk(results);
+			},
+			50000
+		);
+		
 		CP.exit = 1;
 	} else {
 		cbk('a');
