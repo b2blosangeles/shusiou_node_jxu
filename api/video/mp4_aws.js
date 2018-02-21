@@ -60,7 +60,7 @@ _f['INFO_0'] = function(cbk) {
 		else if (stdout) {
 			let s = stdout.replace(/[`~!@#$%^&*()_|+\-=?;:'",.<>\{\}\[\]\\\/]/gi, '\\$&').
 				replace(/[\n\r]/g, '\\n')
-			cbk(s);
+			cbk(parseInt(s));
 		} else cbk(false);
 	});	
 };
