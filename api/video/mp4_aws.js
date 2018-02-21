@@ -112,11 +112,11 @@ _f['PUSH_SECTION'] = function(cbk) {
 			_f1['P_'+i] = (function(i) {
 				return function(cbk1) {
 					if (new Date().getTime() - tm > 30000) {
-						cbk1(true); 
+						cbk1(a[i] + ' -- skiped as timeout');
 						CP1.exit = 1;
 					} else {					
 						pkg.exec(a[i], function(error, stdout, stderr) {
-							cbk1(a[i]);
+							cbk1(a[i] + ' -- Done');
 						});
 					}	
 				}
