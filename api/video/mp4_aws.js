@@ -79,7 +79,7 @@ _f['INFO_1'] = function(cbk) {
 	var videoLength = CP.data['INFO_0'], a = [];
 	if (!isNaN(videoLength)) {
 		for (var i = 0 ; i < videoLength; i+=10) {
-			a[a.length] = i;
+			a[a.length] = toHHMMSS(i);
 		}
 		cbk(a);
 		CP.exit = 1;
