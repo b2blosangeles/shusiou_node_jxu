@@ -81,7 +81,7 @@ _f['INFO'] = function(cbk) {
 			if (!v.video_length) {
 				pkg.exec("ffprobe -i " + source_path + source_file + " -show_format -v quiet | sed -n 's/duration=//p' -y", 
 				function(error, stdout, stderr) {
-					if (error) cbk(false);
+					if (error) cbk('false');
 					else if (stdout) {
 						let s = stdout.replace(/[`~!@#$%^&*()_|+\-=?;:'",.<>\{\}\[\]\\\/]/gi, '\\$&').
 							replace(/[\n\r]/g, '\\n');
