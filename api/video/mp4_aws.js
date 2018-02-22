@@ -109,10 +109,10 @@ _f['PUSH_SECTION'] = function(cbk) {
 						CP1.exit = 1;
 					} else {
 						pkg.exec('ffmpeg -i ' +  source_path + source_file + ' -t 00:00:10 -c copy ' +  
-							tmp_folder + 's_' + a.length + '.mp4 -ss ' +  toHHMMSS(i) + ' -y', 
-						function(error, stdout, stderr) {
-							cbk1(i + ' -- Done');
-						});
+							tmp_folder + 's_' + i + '-' + (i + 10) + '.mp4 -ss ' +  toHHMMSS(i) + ' -y', 
+							function(error, stdout, stderr) {
+								cbk1(i + ' -- Done');
+							});
 					}	
 				}
 		}
