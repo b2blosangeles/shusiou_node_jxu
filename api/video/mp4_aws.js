@@ -111,6 +111,7 @@ _f['PUSH_SECTION'] = function(cbk) {
 						pkg.exec('ffmpeg -i ' +  source_path + source_file + ' -t 00:00:10 -c copy ' +  
 							tmp_folder + 's_' + i + '_' + (i + 10) + '.mp4 -ss ' +  toHHMMSS(i) + ' -y', 
 							function(error, stdout, stderr) {
+								writeInfo({video_length:videoLength}, cbk1);
 								cbk1(i + ' -- Done');
 							});
 					}	
