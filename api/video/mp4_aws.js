@@ -90,7 +90,7 @@ _f['INFO'] = function(cbk) {
 				});		
 			} else {
 				v.cache = 1;
-				cbk(v);
+				cbk(space_url +  space_dir + '_info.txt');
 			}
 	});	
 };
