@@ -110,16 +110,39 @@ _f['PUSH_SECTION'] = function(cbk) {
 						cbk1(i + ' -- skipped as timeout');
 						CP1.exit = 1;
 					} else {
-						var s_file = tmp_folder + 's_' + i + '_' + (i + 10) + '.mp4';
+						var local_file = tmp_folder + 's_' + i + '_' + (i + 10) + '.mp4';
 						pkg.exec('ffmpeg -i ' +  source_path + source_file + ' -t 00:00:10 -c copy ' +  
-							s_file +' -ss ' +  toHHMMSS(i) + ' -y', 
+							local_file +' -ss ' +  toHHMMSS(i) + ' -y', 
 							function(error, stdout, stderr) {
-								
-								if (_info._x.indexOf(i) === -1) {
-									_info._x.push(i);
-									writeInfo(_info, cbk1);
-								}
-								cbk1(i + ' -- Done');
+//----
+								pkg.fs.readFile(local_file, function (err, data0) {
+								  if (err) { throw err; }
+								     var base64data = new Buffer(data0, 'binary');
+								     var params = {
+									 Body: base64data,
+									 Bucket: space_id,
+									 Key: space_dir + f[i],
+									 ContentType: 'video/mp4',
+									 ACL: 'public-read'
+								     };	
+								     s3.putObject(params, function(err, data) {
+									 if (err) cbk1(err.message);
+									 else {
+										 let v = CP.data['P_I1'];
+										 v.x[v.x.length] = f[i];
+										 if (i === (f.length - 1)) {
+											v.status = 1;
+										 }
+//	----
+										if (_info._x.indexOf(i) === -1) {
+											_info._x.push(i);
+											writeInfo(_info, cbk1);
+										} else {
+											cbk1(i + ' -- Done');
+										}	 
+									 }	 
+								     });
+								});
 							});
 					}	
 				}})(i);	
