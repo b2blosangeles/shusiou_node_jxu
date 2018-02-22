@@ -60,7 +60,7 @@ var writeInfo = function(v, cbk) {
      };	
      s3.putObject(params, function(err, data) {
 	 if (err) cbk(false);
-	 else    cbk(v);
+	 else    cbk('---v---');
      });		
 }
 
