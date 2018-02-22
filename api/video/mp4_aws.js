@@ -114,12 +114,11 @@ _f['PUSH_SECTION'] = function(cbk) {
 								cbk1(i + ' -- Done');
 							});
 					}	
-				}
+				}});	
 		}
 		CP1.serial(
 			_f1,
 			function(results) {
-				var t = new Date().getTime() - tm;
 				cbk(results);
 			},
 			50000
