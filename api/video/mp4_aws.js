@@ -76,7 +76,7 @@ _f['INFO'] = function(cbk) {
 			if (!err) {
 				try { 
 					v = JSON.parse(body);
-				} catch (e) { v = false; }
+				} catch (e) { }
 			}
 			if (!v.video_length) {
 				pkg.exec("ffprobe -i " + source_path + source_file + " -show_format -v quiet | sed -n 's/duration=//p' -y", 
