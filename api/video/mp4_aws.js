@@ -110,8 +110,9 @@ _f['PUSH_SECTION'] = function(cbk) {
 						cbk1(i + ' -- skipped as timeout');
 						CP1.exit = 1;
 					} else {
+						var s_file = tmp_folder + 's_' + i + '_' + (i + 10) + '.mp4';
 						pkg.exec('ffmpeg -i ' +  source_path + source_file + ' -t 00:00:10 -c copy ' +  
-							tmp_folder + 's_' + i + '_' + (i + 10) + '.mp4 -ss ' +  toHHMMSS(i) + ' -y', 
+							s_file +' -ss ' +  toHHMMSS(i) + ' -y', 
 							function(error, stdout, stderr) {
 								
 								if (_info._x.indexOf(i) === -1) {
