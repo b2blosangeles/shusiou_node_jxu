@@ -126,7 +126,7 @@ _f['PUSH_SECTION'] = function(cbk) {
 		CP1.serial(
 			_f1,
 			function(results) {
-				cbk('==results==');
+				cbk(results);
 			},
 			50000
 		);
