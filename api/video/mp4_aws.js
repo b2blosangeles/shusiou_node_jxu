@@ -114,7 +114,7 @@ _f['PUSH_SECTION'] = function(cbk) {
 							tmp_folder + 's_' + i + '_' + (i + 10) + '.mp4 -ss ' +  toHHMMSS(i) + ' -y', 
 							function(error, stdout, stderr) {
 								
-								if (_info._x.indexOf(i) !== -1) {
+								if (_info._x.indexOf(i) === -1) {
 									_info._x.push(i);
 									writeInfo(_info, cbk1);
 								}
