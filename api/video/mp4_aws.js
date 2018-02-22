@@ -145,7 +145,7 @@ _f['PUSH_SECTION'] = function(cbk) {
 											_info._x.push(i);
 											writeInfo(_info, cbk1);
 										} else {
-											cbk1(i + ' -- Done');
+											cbk1(i + ' -- Done' + space_fn);
 										}
 
 									 }	 
