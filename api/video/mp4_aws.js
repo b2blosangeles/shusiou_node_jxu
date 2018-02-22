@@ -99,25 +99,22 @@ _f['INFO'] = function(cbk) {
 _f['PUSH_SECTION'] = function(cbk) { 
 	var videoLength = CP.data['INFO'].video_length, a = [];
 	if (!isNaN(videoLength)) {
-		for (var i = 0 ; i < videoLength; i+=10) {
-			a[a.length] = 'ffmpeg -i ' +  source_path + source_file + ' -t 00:00:10 -c copy ' +  
-				tmp_folder + 's_' + a.length + '.mp4 -ss ' +  toHHMMSS(i) + ' -y';
-		}
 		var CP1 = new pkg.crowdProcess();
-		var _f1 = {}
-		for (var i = 0 ; i < a.length; i+=10) {
+		var _f1 = {}		
+		for (var i = 0 ; i < videoLength; i+=10) {
 			_f1['P_'+i] = (function(i) {
 				return function(cbk1) {
 					if ((new Date().getTime() - tm) > 10000) {
-						cbk1(a[i] + ' -- skipped as timeout'+ (new Date().getTime() - tm));
+						cbk1(i + ' -- skipped as timeout');
 						CP1.exit = 1;
 					} else {
-						pkg.exec(a[i], function(error, stdout, stderr) {
-							cbk1(a[i] + ' -- Done');
+						pkg.exec('ffmpeg -i ' +  source_path + source_file + ' -t 00:00:10 -c copy ' +  
+							tmp_folder + 's_' + a.length + '.mp4 -ss ' +  toHHMMSS(i) + ' -y', 
+						function(error, stdout, stderr) {
+							cbk1(i + ' -- Done');
 						});
 					}	
 				}
-			})(i);
 		}
 		CP1.serial(
 			_f1,
