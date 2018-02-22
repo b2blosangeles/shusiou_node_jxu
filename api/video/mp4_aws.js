@@ -111,20 +111,10 @@ _f['PUSH_SECTION'] = function(cbk) {
 						CP1.exit = 1;
 					} else {
 						var local_fn = tmp_folder + 's_' + i + '_' + (i + 10) + '.mp4';
-						var space_fn =  's_' + i + '_' + (i + 10) + '.mp4';
+						var space_fn =  space_dir + 's_' + i + '_' + (i + 10) + '.mp4';
 						pkg.exec('ffmpeg -i ' +  source_path + source_file + ' -t 00:00:10 -c copy ' +  
 							local_fn +' -ss ' +  toHHMMSS(i) + ' -y', 
-							function(error, stdout, stderr) {
-							/*
-										if (_info._x.indexOf(i) === -1) {
-											_info._x.push(i);
-											writeInfo(_info, cbk1);
-										} else {
-											cbk1(i + ' -- Done');
-										}
-							*/
-							//----
-							
+							function(error, stdout, stderr) {		
 								pkg.fs.readFile(local_fn, function (err, data0) {
 								  if (err) { 
 									  cbk1(' niu -- Done');
@@ -151,8 +141,6 @@ _f['PUSH_SECTION'] = function(cbk) {
 									 }	 
 								     });
 								});
-								
-							//	----
 							});
 					}	
 				}})(i);	
