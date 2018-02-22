@@ -113,7 +113,7 @@ _f['PUSH_SECTION'] = function(cbk) {
 						var local_fn = tmp_folder + 's_' + i + '_' + (i + 10) + '.mp4';
 						var space_fn =  's_' + i + '_' + (i + 10) + '.mp4';
 						pkg.exec('ffmpeg -i ' +  source_path + source_file + ' -t 00:00:10 -c copy ' +  
-							local_file +' -ss ' +  toHHMMSS(i) + ' -y', 
+							local_fn +' -ss ' +  toHHMMSS(i) + ' -y', 
 							function(error, stdout, stderr) {
 							/*
 										if (_info._x.indexOf(i) === -1) {
