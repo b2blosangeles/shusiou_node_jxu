@@ -112,7 +112,7 @@ _f['PUSH_SECTION'] = function(cbk) {
 							tmp_folder + 's_' + i + '_' + (i + 10) + '.mp4 -ss ' +  toHHMMSS(i) + ' -y', 
 							function(error, stdout, stderr) {
 								cbk1(i + ' -- Done');
-							});
+							})(i);
 					}	
 				}});	
 		}
