@@ -79,7 +79,7 @@ _f['INFO'] = function(cbk) {
 				} catch (e) { }
 			}
 			if (!v.video_length) {
-				pkg.exec("ffprobe -i " + source_path + source_file + " -show_format -v quiet | sed -n 's/duration=//p' -y", 
+				pkg.exec("ffprobe -i " + source_path + source_file + " -show_format -v quiet | sed -n 's/duration=//p'", 
 				function(error, stdout, stderr) {
 					if (error) cbk("ffprobe -i " + source_path + source_file + " -show_format -v quiet | sed -n 's/duration=//p' -y");
 					else if (stdout) {
