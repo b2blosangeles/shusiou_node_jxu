@@ -79,7 +79,7 @@ _f['INFO'] = function(cbk) {
 				} catch (e) { v = false; }
 			}
 			if (!v.video_length) {
-				pkg.exec("ffprobe -i " + source_path + source_file + " -show_format -v quiet | sed -n 's/duration=//p'", 
+				pkg.exec("ffprobe -i " + source_path + source_file + " -show_format -v quiet | sed -n 's/duration=//p' -y", 
 				function(error, stdout, stderr) {
 					if (error) cbk(false);
 					else if (stdout) {
@@ -109,7 +109,7 @@ _f['PUSH_SECTION'] = function(cbk) {
 						CP1.exit = 1;
 					} else {
 						pkg.exec('ffmpeg -i ' +  source_path + source_file + ' -t 00:00:10 -c copy ' +  
-							tmp_folder + 's_' + i + '-' + (i + 10) + '.mp4 -ss ' +  toHHMMSS(i) + ' -y', 
+							tmp_folder + 's_' + i + '_' + (i + 10) + '.mp4 -ss ' +  toHHMMSS(i) + ' -y', 
 							function(error, stdout, stderr) {
 								cbk1(i + ' -- Done');
 							});
