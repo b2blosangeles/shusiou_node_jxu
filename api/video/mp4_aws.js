@@ -110,21 +110,22 @@ _f['PUSH_SECTION'] = function(cbk) {
 						cbk1(i + ' -- skipped as timeout');
 						CP1.exit = 1;
 					} else {
-						var local_file = tmp_folder + 's_' + i + '_' + (i + 10) + '.mp4';
+						var local_fn = tmp_folder + 's_' + i + '_' + (i + 10) + '.mp4';
+						var space_fn =  's_' + i + '_' + (i + 10) + '.mp4';
 						pkg.exec('ffmpeg -i ' +  source_path + source_file + ' -t 00:00:10 -c copy ' +  
 							local_file +' -ss ' +  toHHMMSS(i) + ' -y', 
 							function(error, stdout, stderr) {
-							
+							/*
 										if (_info._x.indexOf(i) === -1) {
 											_info._x.push(i);
 											writeInfo(_info, cbk1);
 										} else {
 											cbk1(i + ' -- Done');
 										}
-							
+							*/
 							//----
-							/*
-								pkg.fs.readFile(local_file, function (err, data0) {
+							
+								pkg.fs.readFile(local_fn, function (err, data0) {
 								  if (err) { 
 									  cbk1(' niu -- Done');
 									  return true
@@ -133,7 +134,7 @@ _f['PUSH_SECTION'] = function(cbk) {
 								     var params = {
 									 Body: base64data,
 									 Bucket: space_id,
-									 Key: space_dir + f[i],
+									 Key: space_fn,
 									 ContentType: 'video/mp4',
 									 ACL: 'public-read'
 								     };	
@@ -150,7 +151,7 @@ _f['PUSH_SECTION'] = function(cbk) {
 									 }	 
 								     });
 								});
-							*/	
+								
 							//	----
 							});
 					}	
