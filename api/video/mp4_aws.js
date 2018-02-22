@@ -97,7 +97,9 @@ _f['INFO'] = function(cbk) {
 
 
 _f['PUSH_SECTION'] = function(cbk) { 
-	var videoLength = CP.data['INFO'].video_length, a = [];
+	let _info =  CP.data['INFO'];
+	if (!_info._x) _info._x = [];
+	var videoLength = _info.video_length, a = [];
 	if (!isNaN(videoLength)) {
 		var CP1 = new pkg.crowdProcess();
 		var _f1 = {}		
@@ -111,7 +113,11 @@ _f['PUSH_SECTION'] = function(cbk) {
 						pkg.exec('ffmpeg -i ' +  source_path + source_file + ' -t 00:00:10 -c copy ' +  
 							tmp_folder + 's_' + i + '_' + (i + 10) + '.mp4 -ss ' +  toHHMMSS(i) + ' -y', 
 							function(error, stdout, stderr) {
-								writeInfo({video_length:videoLength}, cbk1);
+								
+								if (_info._x.indexOf(i) !== -1) {
+									_info._x.push(i);
+									writeInfo(_info, cbk1);
+								}
 								cbk1(i + ' -- Done');
 							});
 					}	
