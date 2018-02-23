@@ -35,21 +35,21 @@ function showBuckets(s3, callback){
 	});
 }
 
-
-
 var CP = new pkg.crowdProcess();
 var _f = {}; 
 
-
-_f['NIU'] = function(cbk) {
+_f['GET_BUCKETS'] = function(cbk) {
 	showBuckets(s3, cbk);
 };
-
+_f['GET_FOLDERS'] = function(cbk) {
+	let buckets = CP.data.GET_BUCKETS.Buckets;
+	cbk(buckets);
+};
 
 CP.serial(
 	_f,
 	function(results) {
-		res.send(results);
+		res.send(CP.data.GET_FOLDERS);
 	},
 	300000
 );	
