@@ -31,10 +31,7 @@ function showBuckets(s3, callback){
 	};
 	s3.listBuckets(params, function(err, data) {
 		if (err) return callback(err);
-		s3.deleteObjects(params, function(err, d) {
-			if (err) return callback(err);
-			else callback(d);
-		});	
+		else callback(data);	
 	});
 }
 
