@@ -67,7 +67,7 @@ var writeInfo = function(v, cbk) {
      });		
 }
 
-function sendDataFolder(data0, space_fn, _info, callback){
+function sendDataFolder(data0, space_fn, _info, i, callback){
 	var base64data = new Buffer(data0, 'binary');
 	 var params = {
 		 Body: base64data,
@@ -76,17 +76,17 @@ function sendDataFolder(data0, space_fn, _info, callback){
 		 ContentType: 'video/mp4',
 		 ACL: 'public-read'
 	};	
-	     s3.putObject(params, function(err, data) {
-		 if (err)  callback(err.message);
-		 else {
+	s3.putObject(params, function(err, data) {
+		if (err)  callback(err.message);
+		else {
 			if (_info._x.indexOf(i) === -1) {
 				_info._x.push(i);
 				writeInfo(_info,  callback);
 			} else {
 				 callback(i + ' -- Done-' + space_fn);
 			}
-		 }	 
-	     });
+		}	 
+	});
 }
 
 _f['CREATE_TEMP_PATH'] = function(cbk) {
@@ -144,9 +144,10 @@ _f['PUSH_SECTION'] = function(cbk) {
 								pkg.exec('ffmpeg -i ' +  source_path + source_file + ' -ss ' + toHHMMSS(i) + ' -t 5 ' + 
 									' -c copy ' + local_fn +' -y', 
 									function(error, stdout, stderr) {		
-										sendDataFolder(data0, space_fn, _info, cbk1);
+										sendDataFolder(data0, space_fn, _info,i,  cbk1);
 									}
 								);
+							}	
 						});	
 					}
 				})(i);	
