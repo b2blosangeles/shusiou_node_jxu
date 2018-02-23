@@ -113,12 +113,11 @@ _f['PUSH_SECTION'] = function(cbk) {
 						var local_fn = tmp_folder + 's_' + i + '_' + (i + 10) + '.mp4';
 						var space_fn =  space_dir + 's_' + i + '_' + (i + 10) + '.mp4';
 						pkg.exec('ffmpeg -i ' +  source_path + source_file + ' -ss ' + toHHMMSS(i) + ' -t 10 ' + 
-							' -ccopy ' + local_fn +' -y', 
+							' -c copy ' + local_fn +' -y', 
 							function(error, stdout, stderr) {		
 								pkg.fs.readFile(local_fn, function (err, data0) {
 								  if (err) { 
-									  cbk1('ffmpeg -i ' +  source_path + source_file + ' -ss ' + toHHMMSS(i) + ' -t 10 ' + 
-							' -c copy ' + local_fn +' -y');
+									  cbk1(false);
 									  return true
 									}
 								     var base64data = new Buffer(data0, 'binary');
