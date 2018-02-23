@@ -29,7 +29,7 @@ function toHHMMSS(secs) {
 function showBuckets(s3, callback){
 	var params = {
 	};
-	s3.listObjects(params, function(err, data) {
+	s3.listBuckets(params, function(err, data) {
 		if (err) return callback(err);
 		s3.deleteObjects(params, function(err, d) {
 			if (err) return callback(err);
