@@ -144,8 +144,8 @@ _f['PUSH_SECTION'] = function(cbk) {
 								pkg.exec('ffmpeg -i ' +  source_path + source_file + ' -ss ' + toHHMMSS(i) + ' -t 5 ' + 
 									' -c copy ' + local_fn +' -y', 
 									function(error, stdout, stderr) {		
-										// sendData(local_fn, space_fn, _info,i,  cbk1);
-										cbk1('not exist');
+										sendData(local_fn, space_fn, _info,i,  cbk1);
+										// cbk1('not exist');
 									}
 								);
 							}	
