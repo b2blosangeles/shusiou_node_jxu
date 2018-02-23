@@ -68,25 +68,32 @@ var writeInfo = function(v, cbk) {
 }
 
 function sendData(local_fn, space_fn, _info, i, callback){
-	var base64data = new Buffer(local_fn, 'binary');
-	 var params = {
-		 Body: base64data,
-		 Bucket: space_id,
-		 Key: space_fn,
-		 ContentType: 'video/mp4',
-		 ACL: 'public-read'
-	};	
-	s3.putObject(params, function(err, data) {
-		if (err)  callback(err.message);
-		else {
-			if (_info._x.indexOf(i) === -1) {
-				_info._x.push(i);
-				writeInfo(_info,  callback);
-			} else {
-				 callback(i + ' -- Done-' + space_fn);
-			}
-		}	 
-	});
+	pkg.fs.readFile(local_fn, function (err, data0) {
+		if (err) {
+			callback(false);
+		} else {
+			var base64data = new Buffer(local_fn, 'binary');
+			 var params = {
+				 Body: base64data,
+				 Bucket: space_id,
+				 Key: space_fn,
+				 ContentType: 'video/mp4',
+				 ACL: 'public-read'
+			};	
+			s3.putObject(params, function(err, data) {
+				if (err)  callback(err.message);
+				else {
+					if (_info._x.indexOf(i) === -1) {
+						_info._x.push(i);
+						writeInfo(_info,  callback);
+					} else {
+						 callback(i + ' -- Done-' + space_fn);
+					}
+				}	 
+			});
+		}	
+	});	
+
 }
 
 _f['CREATE_TEMP_PATH'] = function(cbk) {
