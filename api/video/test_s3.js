@@ -44,8 +44,8 @@ _f['GET_BUCKETS'] = function(cbk) {
 _f['GET_FOLDERS'] = function(cbk) {
 	let buckets = CP.data.GET_BUCKETS.Buckets;
 	var params = {
-		Bucket: buckets[0].Name, 
-		MaxKeys: 2
+		Bucket: buckets[0].Name //, 
+		// MaxKeys: 2
 	};
 	s3.listObjects(params, function(err, data) {
 		if (err) {
