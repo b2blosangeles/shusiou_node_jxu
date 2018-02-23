@@ -26,21 +26,11 @@ function toHHMMSS(secs) {
         .join(":")
 }
 
-function showBuckets(s3, bucketName, folder, callback){
+function showBuckets(s3, callback){
 	var params = {
-		Bucket: bucketName,
-		Prefix: folder
 	};
 	s3.listObjects(params, function(err, data) {
 		if (err) return callback(err);
-		if (data.Contents.length == 0) callback({"Deleted":[],"Errors":[]});
-		var params = {
-			Bucket: bucketName
-		};		
-		params.Delete = {Objects:[]};
-		data.Contents.forEach(function(content) {
-			params.Delete.Objects.push({Key: content.Key});
-		});
 		s3.deleteObjects(params, function(err, d) {
 			if (err) return callback(err);
 			else callback(d);
@@ -55,7 +45,7 @@ var _f = {};
 
 
 _f['NIU'] = function(cbk) {
-	cbk(true);
+	showBuckets(s3, cbk);
 };
 
 
