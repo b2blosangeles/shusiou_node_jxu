@@ -113,41 +113,40 @@ _f['PUSH_SECTION'] = function(cbk) {
 						var local_fn = tmp_folder + 's_' + i + '_' + (i + 5) + '.mp4';
 						var space_fn =  space_dir + 's_' + i + '_' + (i + 5) + '.mp4';
 						pkg.fs.exist(local_fn, function (err, exist) {
-							if (!exist) {
+							if (exist) {
 								cbk1('exist');
 							} else {
 								pkg.exec('ffmpeg -i ' +  source_path + source_file + ' -ss ' + toHHMMSS(i) + ' -t 5 ' + 
 									' -c copy ' + local_fn +' -y', 
 									function(error, stdout, stderr) {		
 										pkg.fs.readFile(local_fn, function (err, data0) {
-										  if (err) { 
+										  	if (err) { 
 											  cbk1(false);
 											  return true
 											}
-										     var base64data = new Buffer(data0, 'binary');
-										     var params = {
-											 Body: base64data,
-											 Bucket: space_id,
-											 Key: space_fn,
-											 ContentType: 'video/mp4',
-											 ACL: 'public-read'
-										     };	
-										     s3.putObject(params, function(err, data) {
-											 if (err) cbk1(err.message);
-											 else {
-												if (_info._x.indexOf(i) === -1) {
-													_info._x.push(i);
-													writeInfo(_info, cbk1);
-												} else {
-													cbk1(i + ' -- Done-' + space_fn);
-												}
-
-											 }	 
-										     });
-									});
-								}
+										     	var base64data = new Buffer(data0, 'binary');
+										    	 var params = {
+												 Body: base64data,
+												 Bucket: space_id,
+												 Key: space_fn,
+												 ContentType: 'video/mp4',
+												 ACL: 'public-read'
+										     	};	
+											     s3.putObject(params, function(err, data) {
+												 if (err) cbk1(err.message);
+												 else {
+													if (_info._x.indexOf(i) === -1) {
+														_info._x.push(i);
+														writeInfo(_info, cbk1);
+													} else {
+														cbk1(i + ' -- Done-' + space_fn);
+													}
+												 }	 
+											     });
+										});
+								});
 							});	
-				}})(i);	
+						}})(i);	
 		}
 		CP1.serial(
 			_f1,
