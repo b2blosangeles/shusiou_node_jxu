@@ -49,9 +49,9 @@ _f['GET_FOLDERS'] = function(cbk) {
 	};
 	s3.listObjects(params, function(err, data) {
 		if (err) {
-			return callback(err); 
+			return cbk(err); 
 		} else {
-			return callback(data);       
+			return cbk(data);       
 		}
 	});
 };
