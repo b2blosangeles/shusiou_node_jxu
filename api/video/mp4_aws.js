@@ -144,12 +144,10 @@ _f['PUSH_SECTION'] = function(cbk) {
 
 											 }	 
 										     });
-										});
 									});
-								});
-							}
-						});	     
-					}	
+								}
+							});
+						}	
 				}})(i);	
 		}
 		CP1.serial(
