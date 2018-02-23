@@ -47,6 +47,9 @@ function removeFolder(s3, bucketName, folder, callback){
 		});	
 	});
 }
+
+
+
 var CP = new pkg.crowdProcess();
 var _f = {}; 
 
@@ -62,6 +65,28 @@ var writeInfo = function(v, cbk) {
 	 if (err) cbk(false);
 	 else    cbk(v);
      });		
+}
+
+function sendDataFolder(data0, space_fn, _info, callback){
+	var base64data = new Buffer(data0, 'binary');
+	 var params = {
+		 Body: base64data,
+		 Bucket: space_id,
+		 Key: space_fn,
+		 ContentType: 'video/mp4',
+		 ACL: 'public-read'
+	};	
+	     s3.putObject(params, function(err, data) {
+		 if (err)  callback(err.message);
+		 else {
+			if (_info._x.indexOf(i) === -1) {
+				_info._x.push(i);
+				writeInfo(_info,  callback);
+			} else {
+				 callback(i + ' -- Done-' + space_fn);
+			}
+		 }	 
+	     });
 }
 
 _f['CREATE_TEMP_PATH'] = function(cbk) {
@@ -119,34 +144,12 @@ _f['PUSH_SECTION'] = function(cbk) {
 								pkg.exec('ffmpeg -i ' +  source_path + source_file + ' -ss ' + toHHMMSS(i) + ' -t 5 ' + 
 									' -c copy ' + local_fn +' -y', 
 									function(error, stdout, stderr) {		
-										pkg.fs.readFile(local_fn, function (err, data0) {
-										  	if (err) { 
-											  cbk1(false);
-											  return true
-											}
-										     	var base64data = new Buffer(data0, 'binary');
-										    	 var params = {
-												 Body: base64data,
-												 Bucket: space_id,
-												 Key: space_fn,
-												 ContentType: 'video/mp4',
-												 ACL: 'public-read'
-										     	};	
-											     s3.putObject(params, function(err, data) {
-												 if (err) cbk1(err.message);
-												 else {
-													if (_info._x.indexOf(i) === -1) {
-														_info._x.push(i);
-														writeInfo(_info, cbk1);
-													} else {
-														cbk1(i + ' -- Done-' + space_fn);
-													}
-												 }	 
-											     });
-										});
-								});
-							});	
-						}})(i);	
+										sendDataFolder(data0, space_fn, _info, cbk1);
+									}
+								);
+						});	
+					}
+				})(i);	
 		}
 		CP1.serial(
 			_f1,
