@@ -137,7 +137,7 @@ _f['PUSH_SECTION'] = function(cbk) {
 						cbk1(i + ' -- skipped as timeout');
 						CP1.exit = 1;
 					} else {
-						pkg.fs.exists(local_fn, function (err, exist) {
+						pkg.fs.exists(local_fn, function (exist) {
 							if (exist) {
 								cbk1('exist');
 							} else {
