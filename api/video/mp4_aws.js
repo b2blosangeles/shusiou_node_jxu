@@ -150,7 +150,8 @@ _f['PUSH_SECTION'] = function(cbk) {
 							}	
 						});	
 					}
-				})(i);	
+				}	
+			})(i);	
 		}
 		CP1.serial(
 			_f1,
