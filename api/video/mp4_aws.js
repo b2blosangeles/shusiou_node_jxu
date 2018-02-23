@@ -140,7 +140,7 @@ _f['PUSH_SECTION'] = function(cbk) {
 				return function(cbk1) {
 					var local_fn = tmp_folder + 's_' + i + '.mp4';
 					var space_fn =  space_dir + 's_' + i + '.mp4';					
-					if ((new Date().getTime() - tm) > 10000) {
+					if ((new Date().getTime() - tm) > 30000) {
 						cbk1(i + ' -- skipped as timeout');
 						CP1.exit = 1;
 					} else {
