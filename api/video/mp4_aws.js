@@ -67,8 +67,8 @@ var writeInfo = function(v, cbk) {
      });		
 }
 
-function sendDataFolder(data0, space_fn, _info, i, callback){
-	var base64data = new Buffer(data0, 'binary');
+function sendDataFolder(local_fn, space_fn, _info, i, callback){
+	var base64data = new Buffer(local_fn, 'binary');
 	 var params = {
 		 Body: base64data,
 		 Bucket: space_id,
@@ -144,7 +144,7 @@ _f['PUSH_SECTION'] = function(cbk) {
 								pkg.exec('ffmpeg -i ' +  source_path + source_file + ' -ss ' + toHHMMSS(i) + ' -t 5 ' + 
 									' -c copy ' + local_fn +' -y', 
 									function(error, stdout, stderr) {		
-										sendDataFolder(data0, space_fn, _info,i,  cbk1);
+										sendDataFolder(local_fn, space_fn, _info,i,  cbk1);
 									}
 								);
 							}	
