@@ -112,7 +112,7 @@ _f['PUSH_SECTION'] = function(cbk) {
 					} else {
 						var local_fn = tmp_folder + 's_' + i + '_' + (i + 10) + '.mp4';
 						var space_fn =  space_dir + 's_' + i + '_' + (i + 10) + '.mp4';
-						pkg.exec('ffmpeg -i ' +  source_path + source_file + ' -ss ' + toHHMMSS(i) + ' -t 10 ' + 
+						pkg.exec('ffmpeg -i ' +  source_path + source_file + ' -ss ' + toHHMMSS(i) + ' -t 5 ' + 
 							' -c copy ' + local_fn +' -y', 
 							function(error, stdout, stderr) {		
 								pkg.fs.readFile(local_fn, function (err, data0) {
