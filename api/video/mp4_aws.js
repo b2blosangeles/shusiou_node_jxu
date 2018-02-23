@@ -138,8 +138,8 @@ _f['PUSH_SECTION'] = function(cbk) {
 		for (var i = 0 ; i < videoLength; i+=10) {
 			_f1['P_'+i] = (function(i) {
 				return function(cbk1) {
-					var local_fn = tmp_folder + 's_' + i + '_' + (i + 10) + '.mp4';
-					var space_fn =  space_dir + 's_' + i + '_' + (i + 10) + '.mp4';					
+					var local_fn = tmp_folder + 's_' + i + '.mp4';
+					var space_fn =  space_dir + 's_' + i + '.mp4';					
 					if ((new Date().getTime() - tm) > 10000) {
 						cbk1(i + ' -- skipped as timeout');
 						CP1.exit = 1;
@@ -153,7 +153,6 @@ _f['PUSH_SECTION'] = function(cbk) {
 									' -c copy ' + local_fn +' -y', 
 									function(error, stdout, stderr) {		
 										sendData(local_fn, space_fn, _info,i,  cbk1);
-										// cbk1('not exist');
 									}
 								);
 							}	
