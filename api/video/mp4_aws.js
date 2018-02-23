@@ -66,7 +66,7 @@ var writeInfo = function(v, cbk) {
 	 else    cbk(v);
      });		
 }
-/*
+
 function sendData(local_fn, space_fn, _info, i, callback){
 	var base64data = new Buffer(local_fn, 'binary');
 	 var params = {
@@ -88,7 +88,7 @@ function sendData(local_fn, space_fn, _info, i, callback){
 		}	 
 	});
 }
-*/
+
 _f['CREATE_TEMP_PATH'] = function(cbk) {
 	let folderP = require(env.site_path + '/api/inc/folderP/folderP'),  fp = new folderP();		
 	fp.build(tmp_folder, () => { cbk(true) });
