@@ -106,19 +106,18 @@ _f['PUSH_SECTION'] = function(cbk) {
 		for (var i = 0 ; i < videoLength; i+=10) {
 			_f1['P_'+i] = (function(i) {
 				return function(cbk1) {
-					if ((new Date().getTime() - tm) > 10000) {
+					if ((new Date().getTime() - tm) > 30000) {
 						cbk1(i + ' -- skipped as timeout');
 						CP1.exit = 1;
 					} else {
 						var local_fn = tmp_folder + 's_' + i + '_' + (i + 10) + '.mp4';
 						var space_fn =  space_dir + 's_' + i + '_' + (i + 10) + '.mp4';
 						pkg.exec('ffmpeg -i ' +  source_path + source_file + ' -vf trim=' + i + ':' + 
-							 (i + 10) + '' + local_fn +' -y', 
+							 (i + 10) + ' ' + local_fn +' -y', 
 							function(error, stdout, stderr) {		
 								pkg.fs.readFile(local_fn, function (err, data0) {
 								  if (err) { 
-									  cbk1('ffmpeg -i ' +  source_path + source_file + ' -vf trim=' + i + ':' + 
-							 (i + 10) + ' ' + local_fn +' -y');
+									  cbk1(true);
 									  return true
 									}
 								     var base64data = new Buffer(data0, 'binary');
