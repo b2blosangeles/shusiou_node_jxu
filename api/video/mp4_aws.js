@@ -106,7 +106,7 @@ _f['PUSH_SECTION'] = function(cbk) {
 		for (var i = 0 ; i < videoLength; i+=10) {
 			_f1['P_'+i] = (function(i) {
 				return function(cbk1) {
-					if ((new Date().getTime() - tm) > 30000) {
+					if ((new Date().getTime() - tm) > 10000) {
 						cbk1(i + ' -- skipped as timeout');
 						CP1.exit = 1;
 					} else {
