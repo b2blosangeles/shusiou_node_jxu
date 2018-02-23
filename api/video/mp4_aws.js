@@ -72,7 +72,7 @@ function sendData(local_fn, space_fn, _info, i, callback){
 		if (err) {
 			callback(false);
 		} else {
-			var base64data = new Buffer(local_fn, 'binary');
+			var base64data = new Buffer(data0, 'binary');
 			 var params = {
 				 Body: base64data,
 				 Bucket: space_id,
@@ -135,11 +135,11 @@ _f['PUSH_SECTION'] = function(cbk) {
 	if (!isNaN(videoLength)) {
 		var CP1 = new pkg.crowdProcess();
 		var _f1 = {}		
-		for (var i = 0 ; i < videoLength; i+=5) {
+		for (var i = 0 ; i < videoLength; i+=10) {
 			_f1['P_'+i] = (function(i) {
 				return function(cbk1) {
-					var local_fn = tmp_folder + 's_' + i + '_' + (i + 5) + '.mp4';
-					var space_fn =  space_dir + 's_' + i + '_' + (i + 5) + '.mp4';					
+					var local_fn = tmp_folder + 's_' + i + '_' + (i + 10) + '.mp4';
+					var space_fn =  space_dir + 's_' + i + '_' + (i + 10) + '.mp4';					
 					if ((new Date().getTime() - tm) > 10000) {
 						cbk1(i + ' -- skipped as timeout');
 						CP1.exit = 1;
