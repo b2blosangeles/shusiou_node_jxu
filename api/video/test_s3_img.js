@@ -33,6 +33,23 @@ _f['GET_INFO'] = function(cbk) {
 	cbk('niu');
 	return true;
 	let buff = new Buffer(100);
+	pkg.request(l[1], 
+		function (err, res, body) {
+			if (err) { 
+				cbk(false); 
+			} else {
+				pkg.fs.read(body, buff, 0, 100, 0, function(err, bytesRead, buffer) {
+					var start = buffer.indexOf(new Buffer('mvhd')) + 17;
+					var timeScale = buffer.readUInt32BE(start, 4);
+					var duration = buffer.readUInt32BE(start + 4, 4);
+					var movieLength = Math.floor(duration/timeScale);
+					var v = {filesize:stat.size,time_scale:timeScale, trunksize: trunkSize,
+						duration: duration, length:movieLength, x:[], status:0};
+					cbk(v);
+				});
+			}
+		});
+	/*
 	pkg.fs.stat(l[1], function(err, stat) {
 		pkg.fs.open(l[1], 'r', function(err, fd) {
 			pkg.fs.read(fd, buff, 0, 100, 0, function(err, bytesRead, buffer) {
@@ -45,7 +62,8 @@ _f['GET_INFO'] = function(cbk) {
 				cbk(v);
 			});
 		});
-	});	
+	});
+	*/
 };
 
 /*
