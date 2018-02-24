@@ -40,14 +40,14 @@ _f['GET_INFO'] = function(cbk) {
 				let buffer = body;
 				// pkg.fs.read(body, buff, 0, 100, 0, function(err, bytesRead, buffer) {
 				
-					var start = buffer.indexOf(new Buffer('mvhd')) + 17;
+				//	var start = buffer.indexOf(new Buffer('mvhd')) + 17;
 				/*	var timeScale = buffer.readUInt32BE(start, 4);
 					var duration = buffer.readUInt32BE(start + 4, 4);
 					var movieLength = "Math.floor(duration/timeScale)";
 					var v = {filesize:stat.size,time_scale:timeScale, trunksize: trunkSize,
 						duration: duration, length:movieLength, x:[], status:0};
 				*/
-					cbk(start);
+					cbk('start');
 				// });
 				
 			}
