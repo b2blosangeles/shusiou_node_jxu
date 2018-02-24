@@ -50,7 +50,7 @@ _f['GET_FOLDERS'] = function(cbk) {
 						return cbk1(null); 
 					} else {
 						let l = data.Contents, v = [];
-						for (var  i ; i < l.length; i++) {
+						for (var  j ; j < l.length; j++) {
 							v.push({link:l[j].Key});
 						}
 						return cbk1(v);       
