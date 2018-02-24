@@ -55,7 +55,7 @@ _f['GET_FOLDERS'] = function(cbk) {
 					if (err) {
 						return cbk1(err); 
 					} else {
-						return cbk1(data);       
+						return cbk1(data.Contents);       
 					}
 				});
 			}
