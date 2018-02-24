@@ -30,8 +30,6 @@ _f['GET_X'] = function(cbk) {
 	});	
 };
 _f['GET_INFO'] = function(cbk) {
-	cbk('v');
-	return true;
 	let buff = new Buffer(100);
 	pkg.request(l[1], 
 		function (err, res, body) {
