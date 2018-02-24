@@ -45,7 +45,7 @@ _f['GET_INFO'] = function(cbk) {
 				// pkg.fs.read(body, buff, 0, 100, 0, function(err, bytesRead, buffer) {
 				
 					var start = buffer.indexOf(new Buffer('mvhd')) + 17;
-					var timeScale = 'buffer.readUInt32BE(start, 4)';
+					var timeScale = buffer.readUInt32BE(start, 4);
 					var duration = 'buffer.readUInt32BE(start + 4, 4)';
 					var movieLength = "Math.floor(duration/timeScale)";
 					var v = {time_scale:timeScale, trunksize: trunkSize,
