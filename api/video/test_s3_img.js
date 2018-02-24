@@ -16,7 +16,7 @@ let l = ['https://shusiou-d-01.nyc3.digitaloceanspaces.com/shusiou/_a/video.mp4/
 
 var CP = new pkg.crowdProcess();
 var _f = {}; 
-
+/*
 _f['GET_X'] = function(cbk) {
 	pkg.request(l[0], 
 	function (err, res, body) {
@@ -31,6 +31,7 @@ _f['GET_X'] = function(cbk) {
 		}
 	});	
 };
+*/
 _f['GET_INFO1'] = function(cbk) {
 	let buff = new Buffer(100);
 	pkg.request({
