@@ -45,7 +45,7 @@ _f['GET_FOLDERS'] = function(cbk) {
 	let buckets = CP.data.GET_BUCKETS.Buckets;
 	var CP1 = new pkg.crowdProcess(), _f1 = {};
 	for (let i = 0; i < buckets.length; i++) {
-		_f1['P_' + i] = (function(i) {
+		_f1[buckets[i].Name] = (function(i) {
 			return function(cbk1) {
 				var params = {
 					Bucket: buckets[i].Name //, 
@@ -64,7 +64,7 @@ _f['GET_FOLDERS'] = function(cbk) {
 	CP1.serial(
 		_f1,
 		function(results) {
-			cbk(results);
+			cbk(results.results);
 		},
 		60000	
 	)
