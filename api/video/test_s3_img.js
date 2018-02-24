@@ -36,8 +36,8 @@ _f['GET_INFO'] = function(cbk) {
 			if (err) { 
 				cbk(false); 
 			} else {
-				let // buffer = Buffer.from(body);
-				buffer = body;
+				let buffer = Buffer.from(body);
+				// buffer = body;
 				// pkg.fs.read(body, buff, 0, 100, 0, function(err, bytesRead, buffer) {
 				
 					var start = buffer.indexOf(new Buffer('mvhd')) + 17;
