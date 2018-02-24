@@ -47,9 +47,13 @@ _f['GET_FOLDERS'] = function(cbk) {
 				};
 				s3.listObjects(params, function(err, data) {
 					if (err) {
-						return cbk1(err); 
+						return cbk1(null); 
 					} else {
-						return cbk1(data.Contents);       
+						let l = data.Contents, v = [];
+						for (var  i ; i < l.length; i++) {
+							v.push({link:l[j].Key});
+						}
+						return cbk1(v);       
 					}
 				});
 			}
