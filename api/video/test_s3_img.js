@@ -8,6 +8,9 @@ const s3 = new AWS.S3({
 let space_url = 'https://shusiou-d-01.nyc3.digitaloceanspaces.com/', 
     trunkSize = 512 * 1024 * 10;
 
+let l = 'https://shusiou-d-01.nyc3.digitaloceanspaces.com/shusiou/_a/video.mp4/s_0.mp4';
+
+
 var CP = new pkg.crowdProcess();
 var _f = {}; 
 
