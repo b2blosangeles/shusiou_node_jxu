@@ -51,7 +51,7 @@ _f['GET_INFO'] = function(cbk) {
 					var v = {filesize:stat.size,time_scale:timeScale, trunksize: trunkSize,
 						duration: duration, length:movieLength, x:[], status:0};
 				*/
-					cbk(start);
+					cbk('start');
 				// });
 				
 			}
