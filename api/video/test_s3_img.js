@@ -8,20 +8,16 @@ const s3 = new AWS.S3({
 let space_url = 'https://shusiou-d-01.nyc3.digitaloceanspaces.com/', 
     trunkSize = 512 * 1024 * 10;
 
-let l = 'https://shusiou-d-01.nyc3.digitaloceanspaces.com/shusiou/_a/video.mp4/s_0.mp4';
+let l = ['https://shusiou-d-01.nyc3.digitaloceanspaces.com/shusiou/_a/video.mp4/_info.txt'];
 
 
 var CP = new pkg.crowdProcess();
 var _f = {}; 
 
-_f['GET_BUCKETS'] = function(cbk) {
-	var params = {
-	};
-	s3.listBuckets(params, function(err, data) {
-		if (err) return cbk(err);
-		else cbk(data);	
-	});	
+_f['GET_X'] = function(cbk) {
+
 };
+/*
 _f['GET_FOLDERS'] = function(cbk) {
 	let buckets = CP.data.GET_BUCKETS.Buckets;
 	var CP1 = new pkg.crowdProcess(), _f1 = {};
@@ -54,11 +50,11 @@ _f['GET_FOLDERS'] = function(cbk) {
 		60000	
 	)
 };
-
+*/
 CP.serial(
 	_f,
 	function(results) {
-		res.send(CP.data.GET_FOLDERS);
+		res.send(results);
 	},
 	300000
 );	
