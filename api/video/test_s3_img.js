@@ -71,13 +71,14 @@ CP.serial(
 		a.pipe(res);		
 		let d = Buffer.from('');
 		pkg.request(l[1], 
-		function (error, response, body) {})
-		.on('data', function(data) {
-			d = Buffer.concat([d, Buffer.from(data)]);
-		}).on('end', function() {
-			a.write(d);
-		});		
-		a.end();
+			function (error, response, body) {})
+				.on('data', function(data) {
+					d = Buffer.concat([d, Buffer.from(data)]);
+				}).on('end', function() {
+					a.write(d);
+					a.end();
+				});		
+		
 	},
 	10000
 );	
