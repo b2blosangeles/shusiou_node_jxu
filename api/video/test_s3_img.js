@@ -155,9 +155,9 @@ _f['GET_FOLDERS'] = function(cbk) {
 CP.serial(
 	_f,
 	function(results) {
-		res.send([CP.data.GET_INFO1,CP.data.GET_INFO2,CP.data.GET_INFO3]);
-		return true;
-		res.writeHead(206, {'Content-Range': 'bytes ' + 0 + '-' + 1000000 + '/' + 1000000, 
+		//res.send([CP.data.GET_INFO1,CP.data.GET_INFO2,CP.data.GET_INFO3]);
+		//return true;
+		res.writeHead(206, {'Content-Range': 'bytes ' + 0 + '-' + CP.data.GET_INFO1.start  + '/' + CP.data.GET_INFO1.start, 
 		    'Accept-Ranges': 'bytes', 'Content-Type': 'video/mp4' });		
 		let stream = require("stream"),
 		a = new stream.PassThrough();
