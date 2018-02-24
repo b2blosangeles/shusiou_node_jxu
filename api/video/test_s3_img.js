@@ -15,7 +15,18 @@ var CP = new pkg.crowdProcess();
 var _f = {}; 
 
 _f['GET_X'] = function(cbk) {
-
+	pkg.request(l[0], 
+	function (err, res, body) {
+		if (err) { 
+			cbk(false); 
+		} else {
+			let v = {};
+			try { 
+				v = JSON.parse(body);
+			} catch (e) { v = false; }
+			cbk(v);
+		}
+	});	
 };
 /*
 _f['GET_FOLDERS'] = function(cbk) {
