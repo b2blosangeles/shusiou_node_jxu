@@ -5,13 +5,7 @@ const s3 = new AWS.S3({
     accessKeyId: 'QYF3ENCI4TEDFDWFBS6N',
     secretAccessKey: '7DJD8b9iAqD5qsLgRZH9OXfgOQMob/edWouwiqYeOwI'
 });
-let source_path = '/var/img/',
-    source_file = 'video.mp4',
-    tmp_folder = source_path + '_a/' + source_file + '/',
-    
-    space_id = 'shusiou-d-01',
-    space_url = 'https://shusiou-d-01.nyc3.digitaloceanspaces.com/', 
-    space_dir = 'shusiou/_a/' + source_file + '/',
+let space_url = 'https://shusiou-d-01.nyc3.digitaloceanspaces.com/', 
     trunkSize = 512 * 1024 * 10;
 
 let tm = new Date().getTime();
