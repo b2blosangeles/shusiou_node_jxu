@@ -43,17 +43,31 @@ _f['GET_BUCKETS'] = function(cbk) {
 };
 _f['GET_FOLDERS'] = function(cbk) {
 	let buckets = CP.data.GET_BUCKETS.Buckets;
-	var params = {
-		Bucket: buckets[0].Name //, 
-		// MaxKeys: 2
-	};
-	s3.listObjects(params, function(err, data) {
-		if (err) {
-			return cbk(err); 
-		} else {
-			return cbk(data);       
-		}
-	});
+	var CP1 = new pkg.crowdProcess(), _f1 = {};
+	for (let i = 0; i < buckets.length; i++) {
+		_f1['P_' + i] = (function(i) {
+			return function(cbk1) {
+				var params = {
+					Bucket: buckets[i].Name //, 
+					// MaxKeys: 2
+				};
+				s3.listObjects(params, function(err, data) {
+					if (err) {
+						return cbk1(err); 
+					} else {
+						return cbk1(data);       
+					}
+				});
+			}
+		})(i);
+	}
+	CP1.serial(
+		_f1,
+		function(results) {
+			cbk(results);
+		},
+		60000	
+	)
 };
 
 CP.serial(
