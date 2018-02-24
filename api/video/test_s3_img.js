@@ -74,50 +74,7 @@ _f['GET_INFO1'] = function(cbk) {
 	});
 	*/
 };
-_f['GET_INFO2'] = function(cbk) {
-	let buff = new Buffer(100);
-	pkg.request({
-   			method: 'GET',
-   		 	url: l[2],
-			encoding: null
-		},
-		function (err, resp, body) {
-			if (err) { 
-				cbk(false); 
-			} else {
-				let buffer = body;
-				var start = buffer.indexOf(new Buffer('mvhd')) + 17;
-				var timeScale = buffer.readUInt32BE(start, 4);
-				var duration = buffer.readUInt32BE(start + 4, 4);
-				var movieLength = Math.floor(duration/timeScale);
-				var v = {start:start, time_scale:timeScale, trunksize: trunkSize,
-					duration: duration, length:movieLength, x:[], status:0};
-				cbk(v);
-			}
-		});
-};
-_f['GET_INFO3'] = function(cbk) {
-	let buff = new Buffer(100);
-	pkg.request({
-   			method: 'GET',
-   		 	url: l[3],
-			encoding: null
-		},
-		function (err, resp, body) {
-			if (err) { 
-				cbk(false); 
-			} else {
-				let buffer = body;
-				var start = buffer.indexOf(new Buffer('mvhd')) + 17;
-				var timeScale = buffer.readUInt32BE(start, 4);
-				var duration = buffer.readUInt32BE(start + 4, 4);
-				var movieLength = Math.floor(duration/timeScale);
-				var v = {start:start, time_scale:timeScale, trunksize: trunkSize,
-					duration: duration, length:movieLength, x:[], status:0};
-				cbk(v);
-			}
-		});
-};
+
 /*
 _f['GET_FOLDERS'] = function(cbk) {
 	let buckets = CP.data.GET_BUCKETS.Buckets;
