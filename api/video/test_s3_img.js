@@ -133,7 +133,7 @@ _f['GET_FOLDERS'] = function(cbk) {
 CP.serial(
 	_f,
 	function(results) {
-		res.send(CP.data.GET_INFO);
+		res.send([CP.data.GET_INFO1,CP.data.GET_INFO2]);
 		return true;
 		res.writeHead(206, {'Content-Range': 'bytes ' + 0 + '-' + 1000000 + '/' + 1000000, 
 		    'Accept-Ranges': 'bytes', 'Content-Type': 'video/mp4' });		
