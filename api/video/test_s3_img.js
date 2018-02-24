@@ -30,6 +30,8 @@ _f['GET_X'] = function(cbk) {
 	});	
 };
 _f['GET_INFO'] = function(cbk) {
+	cbk('niu');
+	return true;
 	let buff = new Buffer(100);
 	pkg.fs.stat(l[1], function(err, stat) {
 		pkg.fs.open(l[1], 'r', function(err, fd) {
