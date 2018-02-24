@@ -51,7 +51,7 @@ _f['GET_FOLDERS'] = function(cbk) {
 					} else {
 						let l = data.Contents, v = [];
 						for (var  j = 0 ; j < l.length; j++) {
-							v.push({link:l[j].Key, size:l[j].Size});
+							v.push({link: space_url + '' + l[j].Key, size:l[j].Size});
 						}
 						return cbk1(v);       
 					}
