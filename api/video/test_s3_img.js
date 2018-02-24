@@ -29,6 +29,23 @@ _f['GET_X'] = function(cbk) {
 		}
 	});	
 };
+_f['GET_INFO'] = function(cbk) {
+	let buff = new Buffer(100);
+	pkg.fs.stat(l[1], function(err, stat) {
+		pkg.fs.open(l[1], 'r', function(err, fd) {
+			pkg.fs.read(fd, buff, 0, 100, 0, function(err, bytesRead, buffer) {
+				var start = buffer.indexOf(new Buffer('mvhd')) + 17;
+				var timeScale = buffer.readUInt32BE(start, 4);
+				var duration = buffer.readUInt32BE(start + 4, 4);
+				var movieLength = Math.floor(duration/timeScale);
+				var v = {filesize:stat.size,time_scale:timeScale, /* trunksize: trunkSize,*/
+					duration: duration, length:movieLength, x:[], status:0};
+				cbk(v);
+			});
+		});
+	});	
+};
+
 /*
 _f['GET_FOLDERS'] = function(cbk) {
 	let buckets = CP.data.GET_BUCKETS.Buckets;
@@ -66,6 +83,8 @@ _f['GET_FOLDERS'] = function(cbk) {
 CP.serial(
 	_f,
 	function(results) {
+		res.send(CP.data.GET_INFO);
+		return true;
 		res.writeHead(206, {'Content-Range': 'bytes ' + 0 + '-' + 1000000 + '/' + 1000000, 
 		    'Accept-Ranges': 'bytes', 'Content-Type': 'video/mp4' });		
 		let stream = require("stream"),
