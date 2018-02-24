@@ -8,32 +8,16 @@ const s3 = new AWS.S3({
 let space_url = 'https://shusiou-d-01.nyc3.digitaloceanspaces.com/', 
     trunkSize = 512 * 1024 * 10;
 
-let tm = new Date().getTime();
-
-function toHHMMSS(secs) {
-    var sec_num = parseInt(secs, 10);    
-    var hours   = Math.floor(sec_num / 3600) % 24;
-    var minutes = Math.floor(sec_num / 60) % 60;
-    var seconds = sec_num % 60;    
-    return [hours,minutes,seconds]
-        .map(v => v < 10 ? "0" + v : v)
-        .join(":")
-}
-
-function showBuckets(s3, callback){
-	var params = {
-	};
-	s3.listBuckets(params, function(err, data) {
-		if (err) return callback(err);
-		else callback(data);	
-	});
-}
-
 var CP = new pkg.crowdProcess();
 var _f = {}; 
 
 _f['GET_BUCKETS'] = function(cbk) {
-	showBuckets(s3, cbk);
+	var params = {
+	};
+	s3.listBuckets(params, function(err, data) {
+		if (err) return cbk(err);
+		else cbk(data);	
+	});	
 };
 _f['GET_FOLDERS'] = function(cbk) {
 	let buckets = CP.data.GET_BUCKETS.Buckets;
