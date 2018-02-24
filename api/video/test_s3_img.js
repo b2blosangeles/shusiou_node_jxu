@@ -9,7 +9,8 @@ let space_url = 'https://shusiou-d-01.nyc3.digitaloceanspaces.com/',
     trunkSize = 512 * 1024 * 10;
 
 let l = ['https://shusiou-d-01.nyc3.digitaloceanspaces.com/shusiou/_a/video.mp4/_info.txt',
-	'https://shusiou-d-01.nyc3.digitaloceanspaces.com/shusiou/_a/video.mp4/s_0.mp4'];
+	'https://shusiou-d-01.nyc3.digitaloceanspaces.com/shusiou/_a/video.mp4/s_0.mp4',
+	'https://shusiou-d-01.nyc3.digitaloceanspaces.com/shusiou/_a/video.mp4/s_10.mp4'];
 
 
 var CP = new pkg.crowdProcess();
@@ -29,7 +30,7 @@ _f['GET_X'] = function(cbk) {
 		}
 	});	
 };
-_f['GET_INFO'] = function(cbk) {
+_f['GET_INFO1'] = function(cbk) {
 	let buff = new Buffer(100);
 	pkg.request({
    			method: 'GET',
@@ -48,7 +49,7 @@ _f['GET_INFO'] = function(cbk) {
 					var timeScale = buffer.readUInt32BE(start, 4);
 					var duration = buffer.readUInt32BE(start + 4, 4);
 					var movieLength = Math.floor(duration/timeScale);
-					var v = {time_scale:timeScale, trunksize: trunkSize,
+					var v = {start:start, time_scale:timeScale, trunksize: trunkSize,
 						duration: duration, length:movieLength, x:[], status:0};
 				
 					cbk(v);
@@ -71,6 +72,28 @@ _f['GET_INFO'] = function(cbk) {
 		});
 	});
 	*/
+};
+_f['GET_INFO2'] = function(cbk) {
+	let buff = new Buffer(100);
+	pkg.request({
+   			method: 'GET',
+   		 	url: l[2],
+			encoding: null
+		},
+		function (err, resp, body) {
+			if (err) { 
+				cbk(false); 
+			} else {
+				let buffer = body;
+				var start = buffer.indexOf(new Buffer('mvhd')) + 17;
+				var timeScale = buffer.readUInt32BE(start, 4);
+				var duration = buffer.readUInt32BE(start + 4, 4);
+				var movieLength = Math.floor(duration/timeScale);
+				var v = {start:start, time_scale:timeScale, trunksize: trunkSize,
+					duration: duration, length:movieLength, x:[], status:0};
+				cbk(v);
+			}
+		});
 };
 
 /*
