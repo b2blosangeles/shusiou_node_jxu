@@ -31,7 +31,7 @@ _f['GET_X'] = function(cbk) {
 };
 _f['GET_INFO'] = function(cbk) {
 	let buff = new Buffer(100);
-	pkg.request(l[1], 
+	pkg.request(l[1], {encoding: 'binary'},
 		function (err, resp, body) {
 			if (err) { 
 				cbk(false); 
