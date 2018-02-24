@@ -31,13 +31,13 @@ _f['GET_X'] = function(cbk) {
 };
 _f['GET_INFO'] = function(cbk) {
 	let buff = new Buffer(100);
-	pkg.request(l[1], {encoding: 'binary'},
+	pkg.request(l[1], {encoding: null},
 		function (err, resp, body) {
 			if (err) { 
 				cbk(false); 
 			} else {
-				let buffer = Buffer.from(body);
-				// let buffer = body;
+				// let buffer = Buffer.from(body);
+				let buffer = body;
 				// pkg.fs.read(body, buff, 0, 100, 0, function(err, bytesRead, buffer) {
 				
 					var start = buffer.indexOf(new Buffer('mvhd')) + 17;
