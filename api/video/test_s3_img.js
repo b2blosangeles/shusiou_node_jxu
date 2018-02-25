@@ -20,7 +20,7 @@ var _f = {};
 let dirn = '/tmp/video';
 
 let range = req.headers.range,
-    start = 0,
+    start = 0, duration = 0,
     maxChunk = 1024 * 1024; // 1MB at a time
 
 function downloadFile(url, callback) {
@@ -140,7 +140,7 @@ CP.serial(
 		}
 		 var fn;	
 		
-		if (!start) {
+		if (!start && start < duration) {
 			let v = l[0].match(/([^\/]+)\/([^\/]+)$/);
 			fn = dirn + '/' + v[1] + '_' + v[2];
 			// fn = dirn + '/cache.mp4';
