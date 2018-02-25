@@ -129,8 +129,8 @@ _f['FFMPEG'] = function(cbk) {
 CP.serial(
 	_f,
 	function(results) {
-	//	res.send(results);
-	//	return true;
+		res.send(results);
+		return true;
 		
 		var range = req.headers.range;
 		if (range) {
