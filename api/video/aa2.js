@@ -121,32 +121,6 @@ CP.serial(
 	function(results) {
 		res.send(results);
 		return true;
-		
-		let fn = dirn + '/output2.mp4';
-		pkg.fs.stat(fn, function(err, data1) {
-		      var total = data1.size;
-		      var range = req.headers.range;
-		      if (range) {
-				var parts = range.replace(/bytes=/, "").split("-");
-				var partialstart = parts[0]; 
-			      	var partialend  =  parts[1];
-				start = parseInt(partialstart, 10);
-				var end = partialend ? parseInt(partialend, 10) : total-1;
-				var chunksize = (end-start)+1;
-				if (chunksize > maxChunk) {
-				  end = start + maxChunk - 1;
-				  chunksize = (end - start) + 1;
-				}							      
-				res.writeHead(206, {'Content-Range': 'bytes ' + start + '-' + end + '/' + total, 
-					'Accept-Ranges': 'bytes', 'Content-Length': chunksize, 'Content-Type': 'video/mp4' });
-			       	pkg.fs.createReadStream(fn, {start:start, end:end}).pipe(res);
-			} else {
-				res.writeHead(206, {'Content-Range': 'bytes ' + start + '-' + total + '/' + total, 
-					'Accept-Ranges': 'bytes', 'Content-Length': maxChunk, 'Content-Type': 'video/mp4' });				
-				pkg.fs.createReadStream(fn).pipe(res);
-			//	res.send('Need streaming player');
-			}
-		});
 	},
 	10000
 );	
