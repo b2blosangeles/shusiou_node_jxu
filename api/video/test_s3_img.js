@@ -84,7 +84,20 @@ _f['GET_INFO1'] = function(cbk) {
 };
 */
 _f['GET_INF02'] = function(cbk) {
-	downloadFile(l[2], cbk);
+	var CP1 = new pkg.crowdProcess();
+	var _f1 = [];
+	for (var i = 1; i < l.length; i++) {
+		_f1['P_' + i] = (function(i) {
+			return function(cbk1) {
+				downloadFile(l[i], cbk1);
+			}
+		})(i);
+	}
+	CP1.serial(
+		_f1,
+		function(results) {
+			cbk(results);
+		}, 3000);	
 };
 
 _f['GET_INFO3'] = function(cbk) {
