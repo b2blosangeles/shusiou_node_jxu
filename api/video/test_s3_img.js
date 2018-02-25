@@ -38,9 +38,7 @@ _f['GET_X'] = function(cbk) {
 	});	
 };
 */
-_f['GET_INFO1'] = function(cbk) {
-	cbk(true);
-	return true;		
+_f['GET_INFO1'] = function(cbk) {		
 	let d = Buffer.from('');
 	pkg.request(l[1], function (error, response, body) {})
 		.on('data', function(data) {
@@ -50,7 +48,7 @@ _f['GET_INFO1'] = function(cbk) {
 				
 		});
 };
-_f['GET_INF2'] = function(cbk) {
+_f['GET_INF02'] = function(cbk) {
 		
 	let d = Buffer.from('');
 	pkg.request(l[2], function (error, response, body) {})
