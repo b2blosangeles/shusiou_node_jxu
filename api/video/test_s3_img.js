@@ -134,7 +134,7 @@ CP.serial(
 	_f,
 	function(results) {
 	//	res.send(results);
-	//	return true;
+		return true;
 		//res.send([CP.data.GET_INFO1]);
 		//return true;
 		//res.writeHead(206, {'Content-Range': 'bytes ' + 0 + '-' + (CP.data.GET_INFO1.duration)  + '/' +  (CP.data.GET_INFO1.duration), 
