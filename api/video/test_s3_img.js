@@ -64,19 +64,20 @@ _f['GET_INFO1'] = function(cbk) {
 				
 		});
 };
-_f['GET_INF02'] = function(cbk) {
-	cbk(true);
-	return true;		
-	let d = Buffer.from('');
-	pkg.request(l[2], function (error, response, body) {})
-		.on('data', function(data) {
-				d = Buffer.concat([d, Buffer.from(data)]);
-		}).on('end', function() {
-				a.write(d);
-				a.end();
-		});
-};
 */
+_f['GET_INF02'] = function(cbk) {
+	var file = fs.createWriteStream("/tmp/s_550.mp4");
+	 file.on('finish', function() {
+      		file.close(function() {
+			cbk('NIUBB');
+		});  
+    	});
+	var request = http.get(l[2], function(response) {
+		response.pipe(file);
+		
+	});
+};
+
 _f['GET_INFO3'] = function(cbk) {
 	let buff = new Buffer(100);
 	pkg.request({
