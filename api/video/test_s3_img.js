@@ -17,8 +17,9 @@ let l = ['https://shusiou-d-01.nyc3.digitaloceanspaces.com/shusiou/_a/video.mp4/
 var CP = new pkg.crowdProcess();
 var _f = {}; 
 
-function saveFile() {
-	return 'saveFile';
+function saveFile(url) {
+	var v = url.match(/([^\]+/)$/)
+	return v;
 	
 	pkg.fs.exists(tmp_folder, function(exists) {
 		if (!exists) {
