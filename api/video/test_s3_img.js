@@ -15,12 +15,11 @@ let l = ['https://shusiou-d-01.nyc3.digitaloceanspaces.com/shusiou/_a/video.mp4/
 var folderP = require(env.site_path + '/api/inc/folderP/folderP');
 var CP = new pkg.crowdProcess();
 var _f = {}; 
-
+let dirn = '/tmp/video';
 function downloadFile(url, callback) {
 	let v = url.match(/([^\/]+)\/([^\/]+)$/),
-	    dirn = '/tmp/video/' + v[1],
 	    fp = new folderP(), 
-	    fn = dirn + '/' + v[2];
+	    fn = dirn + '/' + v[1] + '/' + v[2];
 	
 	fp.build(dirn, () => {
 		let file = pkg.fs.createWriteStream(fn);
@@ -76,7 +75,7 @@ _f['GET_INF02'] = function(cbk) {
 
 
 _f['GET_INFO3'] = function(cbk) {
-	let cmd = 'ffmpeg -f concat -i niu.txt -codec copy output2.mp4';
+	let cmd = 'cd ' + dirn + ' && ffmpeg -f concat -i niu.txt -codec copy output2.mp4';
 	pkg.exec(cmd, 
 		function(error, stdout, stderr) {
 			else cbk(cmd);
