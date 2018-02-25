@@ -34,12 +34,6 @@ function downloadFile(url, callback) {
 }
 
 
-// let stream = require("stream"),
-// a = new stream.PassThrough();
-// a.pipe(res);
-// res.writeHead(200, {'Content-Type': 'video/mp4' });
-
-
 _f['GET_INF02'] = function(cbk) {
 	var CP1 = new pkg.crowdProcess();
 	var _f1 = [];
@@ -65,12 +59,9 @@ _f['GET_INFO3'] = function(cbk) {
 	});
 };
 
-
 CP.serial(
 	_f,
 	function(results) {
-		res.send(results);
-		return true;
 		//res.send([CP.data.GET_INFO1]);
 		//return true;
 		//res.writeHead(206, {'Content-Range': 'bytes ' + 0 + '-' + (CP.data.GET_INFO1.duration)  + '/' +  (CP.data.GET_INFO1.duration), 
@@ -80,7 +71,7 @@ CP.serial(
 		a = new stream.PassThrough();
 		a.pipe(res);		
 		let d = Buffer.from('');
-		pkg.request(l[1], function (error, response, body) {})
+		pkg.request( dirn + '/output2.mp4', function (error, response, body) {})
 			.on('data', function(data) {
 					d = Buffer.concat([d, Buffer.from(data)]);
 			}).on('end', function() {
