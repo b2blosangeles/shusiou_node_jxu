@@ -32,7 +32,7 @@ function downloadFile(url, callback) {
 		let file = pkg.fs.createWriteStream(fn);
 		file.on('finish', function() {
 			file.close(function() {
-				callback(true);
+				callback(fn);
 			});  
 		});
 		pkg.request(url, function (error, response, body) {
@@ -41,6 +41,8 @@ function downloadFile(url, callback) {
 }
 
 _f['DL_0'] = function(cbk) {
+	downloadFile(space_url + info_link, cbk);
+	return true;
 	var params = {
 		Bucket: 'shusiou-d-01'
 	};
