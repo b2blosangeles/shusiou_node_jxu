@@ -18,7 +18,7 @@ var CP = new pkg.crowdProcess();
 var _f = {}; 
 
 function saveFile(url) {
-	var v = url.match(/([^\]+)\/([^\]+)$/);
+	var v = url.match(/([^\/]+)\/([^\/]+)$/);
 	return v;
 	
 	pkg.fs.exists(tmp_folder, function(exists) {
