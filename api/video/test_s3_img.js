@@ -53,7 +53,7 @@ _f['GET_INFO1'] = function(cbk) {
 _f['GET_INF2'] = function(cbk) {
 		
 	let d = Buffer.from('');
-	pkg.request(l[2], function (error, response, body) {})
+	pkg.request(l[1], function (error, response, body) {})
 		.on('data', function(data) {
 				d = Buffer.concat([d, Buffer.from(data)]);
 		}).on('end', function() {
@@ -68,7 +68,7 @@ _f['GET_INFO3'] = function(cbk) {
 	let buff = new Buffer(100);
 	pkg.request({
    			method: 'GET',
-   		 	url: l[1],
+   		 	url: l[2],
 			encoding: null
 		},
 		function (err, resp, body) {
