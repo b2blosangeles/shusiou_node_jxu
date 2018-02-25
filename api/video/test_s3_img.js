@@ -146,6 +146,8 @@ CP.serial(
 		} else {
 			let fn = dirn + '/cache.mp4';
 		}
+		red.send(fn);
+		return true;
 		pkg.fs.stat(fn, function(err, data1) {
 		      var total = data1.size;
 		      var range = req.headers.range;
