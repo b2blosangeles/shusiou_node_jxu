@@ -142,7 +142,7 @@ CP.serial(
 		
 		let fn = dirn + '/output2.mp4';
 		pkg.fs.stat(fn, function(err, data1) {
-		      var total = data1.size * 3;
+		      var total = data1.size;
 		      var range = req.headers.range;
 		      if (range) {
 				var parts = range.replace(/bytes=/, "").split("-");
