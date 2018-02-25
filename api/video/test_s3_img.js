@@ -131,7 +131,8 @@ CP.serial(
 	//	res.send(results);
 	//	return true;
 		
-		let fn = dirn + '/cache.mp4';
+		// let fn = dirn + '/cache.mp4';
+		let fn = dirn + l[0];
 		pkg.fs.stat(fn, function(err, data1) {
 			
 		      var total = data1.size;
