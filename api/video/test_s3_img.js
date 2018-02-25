@@ -56,33 +56,7 @@ _f['GET_X'] = function(cbk) {
 	});	
 };
 */
-/*
-_f['GET_INFO1'] = function(cbk) {	
-		cbk(true);
-	return true;
-	let d = Buffer.from('');
-	pkg.request(l[1], function (error, response, body) {})
-		.on('data', function(data) {
-				d = Buffer.concat([d, Buffer.from(data)]);
-		}).on('end', function() {
-			let buffer = d;
-				// pkg.fs.read(body, buff, 0, 100, 0, function(err, bytesRead, buffer) {
-				
-					var start = buffer.indexOf(new Buffer('mvhd')) + 17;
-					var timeScale = buffer.readUInt32BE(start, 4);
-					var duration = buffer.readUInt32BE(start + 4, 4);
-					var movieLength = Math.floor(duration/timeScale);
-					var v = {start:start, time_scale:timeScale, trunksize: trunkSize,
-						duration: duration, length:movieLength, x:[], status:0};
-				
-					cbk(v);		
-		
-			//	a.write(d);
-			//	a.end();
-				
-		});
-};
-*/
+
 _f['GET_INF02'] = function(cbk) {
 	var CP1 = new pkg.crowdProcess();
 	var _f1 = [];
@@ -100,48 +74,13 @@ _f['GET_INF02'] = function(cbk) {
 		}, 3000);	
 };
 
+
 _f['GET_INFO3'] = function(cbk) {
-	let buff = new Buffer(100);
-	pkg.request({
-   			method: 'GET',
-   		 	url: l[2],
-			encoding: null
-		},
-		function (err, resp, body) {
-			if (err) { 
-				cbk(false); 
-			} else {
-				// let buffer = Buffer.from(body);
-				let buffer = body;
-				// pkg.fs.read(body, buff, 0, 100, 0, function(err, bytesRead, buffer) {
-				
-					var start = buffer.indexOf(new Buffer('mvhd')) + 17;
-					var timeScale = buffer.readUInt32BE(start, 4);
-					var duration = buffer.readUInt32BE(start + 4, 4);
-					var movieLength = Math.floor(duration/timeScale);
-					var v = {start:start, time_scale:timeScale, trunksize: trunkSize,
-						duration: duration, length:movieLength, x:[], status:0};
-				
-					cbk(v);
-				// });
-				
-			}
-		});
-	/*
-	pkg.fs.stat(l[1], function(err, stat) {
-		pkg.fs.open(l[1], 'r', function(err, fd) {
-			pkg.fs.read(fd, buff, 0, 100, 0, function(err, bytesRead, buffer) {
-				var start = buffer.indexOf(new Buffer('mvhd')) + 17;
-				var timeScale = buffer.readUInt32BE(start, 4);
-				var duration = buffer.readUInt32BE(start + 4, 4);
-				var movieLength = Math.floor(duration/timeScale);
-				var v = {filesize:stat.size,time_scale:timeScale, trunksize: trunkSize,
-					duration: duration, length:movieLength, x:[], status:0};
-				cbk(v);
-			});
-		});
+	let cmd = 'ffmpeg -f concat -i niu.txt -codec copy output2.mp4';
+	pkg.exec(cmd, 
+	function(error, stdout, stderr) {
+		else cbk(cmd);
 	});
-	*/
 };
 
 /*
