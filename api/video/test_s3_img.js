@@ -78,8 +78,8 @@ _f['GET_INF02'] = function(cbk) {
 _f['GET_INFO3'] = function(cbk) {
 	let cmd = 'ffmpeg -f concat -i niu.txt -codec copy output2.mp4';
 	pkg.exec(cmd, 
-	function(error, stdout, stderr) {
-		else cbk(cmd);
+		function(error, stdout, stderr) {
+			else cbk(cmd);
 	});
 };
 
