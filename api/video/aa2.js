@@ -80,7 +80,7 @@ _f['DL_1'] = function(cbk) {
 			cbk(results);
 		}, 3000);	
 };
-/*
+
 
 _f['GET_INFO1'] = function(cbk) {	
 	let d = Buffer.from('');
@@ -96,7 +96,7 @@ _f['GET_INFO1'] = function(cbk) {
 					var timeScale = buffer.readUInt32BE(start, 4);
 					var duration = buffer.readUInt32BE(start + 4, 4);
 					var movieLength = Math.floor(duration/timeScale);
-					var v = {start:start, time_scale:timeScale, trunksize: trunkSize,
+					var v = {start:start, time_scale:timeScale, trunksize: maxChunk,
 						duration: duration, length:movieLength, x:[], status:0};
 				
 					cbk(v);		
@@ -106,7 +106,7 @@ _f['GET_INFO1'] = function(cbk) {
 				
 		});
 };
-*/
+
 
 _f['FFMPEG'] = function(cbk) {
 	let cmd = 'cd ' + dirn + ' && ffmpeg -f concat -i niu.txt -codec copy output2.mp4 -y';
