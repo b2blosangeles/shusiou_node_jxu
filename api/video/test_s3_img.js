@@ -139,10 +139,8 @@ CP.serial(
 			      	var partialend  =  parts[1];
 				start = parseInt(partialstart, 10);
 		}
-		 var fn;	
-			res.send('duration-->' + CP.data.DURATION.duration);
-			return true;		
-		if (start <  duration) {
+		 var fn;		
+		if (start <  parseInt(CP.data.DURATION.duration)) {
 
 			let v = l[0].match(/([^\/]+)\/([^\/]+)$/);
 			fn = dirn + '/' + v[1] + '_' + v[2];
