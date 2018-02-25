@@ -147,8 +147,6 @@ CP.serial(
 		} else {
 			let fn = dirn + '/cache.mp4';
 		}
-		
-		let fn = dirn + '-4-/cache.mp4';
 		res.send(fn);
 		return true;
 		
