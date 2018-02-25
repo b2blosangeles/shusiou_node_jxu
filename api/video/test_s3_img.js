@@ -20,7 +20,7 @@ var _f = {};
 let dirn = '/tmp/video';
 
 let range = req.headers.range,
-    start = 0, duration = 0;
+    start = 0,
     maxChunk = 1024 * 1024; // 1MB at a time
 
 function downloadFile(url, callback) {
