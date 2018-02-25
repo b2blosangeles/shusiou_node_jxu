@@ -67,12 +67,12 @@ CP.serial(
 		//res.writeHead(206, {'Content-Range': 'bytes ' + 0 + '-' + (CP.data.GET_INFO1.duration)  + '/' +  (CP.data.GET_INFO1.duration), 
 		//    'Accept-Ranges': 'bytes', 'Content-Type': 'video/mp4' });	
 		res.writeHead(200, {'Content-Type': 'video/mp4' });	
-		let stream = require("stream"),
-		a = new stream.PassThrough();
-		a.pipe(res);		
-		let d = Buffer.from('');
-		// var file = pkg.fs.createReadStream( dirn + '/output2.mp4').pipe(res);
-						   
+		//let stream = require("stream"),
+		//a = new stream.PassThrough();
+		//a.pipe(res);		
+		//let d = Buffer.from('');
+		pkg.fs.createReadStream( dirn + '/output2.mp4').pipe(res);
+		/*				   
 		pkg.fs.readFile( dirn + '/output2.mp4', function (error, body) {})
 			.on('data', function(data) {
 				d = Buffer.concat([d, Buffer.from(data)]);
@@ -80,7 +80,7 @@ CP.serial(
 			}).on('end', function() {
 					a.end();
 			});		
-		
+		*/
 	},
 	10000
 );	
