@@ -69,14 +69,13 @@ _f['DURATION'] = function(cbk) {
 		.on('data', function(data) {
 			buffer = Buffer.concat([buffer, Buffer.from(data)]);
 		}).on('end', function() {
-			let buffer = d;
-				var start = buffer.indexOf(new Buffer('mvhd')) + 17;
-				var timeScale = buffer.readUInt32BE(start, 4);
-				var duration = buffer.readUInt32BE(start + 4, 4);
-				var movieLength = Math.floor(duration/timeScale);
-				var v = {start:start, time_scale:timeScale,
-					duration: duration, length:movieLength};
-				cbk(v);					
+			var start = buffer.indexOf(new Buffer('mvhd')) + 17;
+			var timeScale = buffer.readUInt32BE(start, 4);
+			var duration = buffer.readUInt32BE(start + 4, 4);
+			var movieLength = Math.floor(duration/timeScale);
+			var v = {start:start, time_scale:timeScale,
+				duration: duration, length:movieLength};
+			cbk(v);					
 		});	
 };
 
