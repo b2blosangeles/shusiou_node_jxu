@@ -131,19 +131,17 @@ CP.serial(
 	//	res.send(results);
 	//	return true;
 		
-
-		
 		var range = req.headers.range;
-		let fn = dirn + '-2-/cache.mp4';
-		res.send(fn);
-		return true;		
-		
 		if (range) {
 				var parts = range.replace(/bytes=/, "").split("-");
 				var partialstart = parts[0]; 
 			      	var partialend  =  parts[1];
 				start = parseInt(partialstart, 10);
 		}
+		let fn = dirn + '-3-/cache.mp4';
+		res.send(fn);
+		return true;			
+		
 		if (!start) {
 			let v = l[0].match(/([^\/]+)\/([^\/]+)$/);
 			let fn = dirn + '/' + v[1] + '_' + v[2];
