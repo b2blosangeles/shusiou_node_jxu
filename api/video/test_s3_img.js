@@ -130,7 +130,7 @@ CP.serial(
 			encoding: null
 		}, function (error, response, body) {})
 			.on('data', function(data) {
-					d = Buffer.concat([d, Buffer.from(data)]);
+					d = Buffer.concat([d, data]);
 			}).on('end', function() {
 					a.write(d);
 					a.end();
