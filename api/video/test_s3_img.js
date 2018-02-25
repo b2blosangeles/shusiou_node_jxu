@@ -62,25 +62,30 @@ _f['GET_INFO3'] = function(cbk) {
 CP.serial(
 	_f,
 	function(results) {
-		//res.send([CP.data.GET_INFO1]);
-		//return true;
-		//res.writeHead(206, {'Content-Range': 'bytes ' + 0 + '-' + (CP.data.GET_INFO1.duration)  + '/' +  (CP.data.GET_INFO1.duration), 
-		//    'Accept-Ranges': 'bytes', 'Content-Type': 'video/mp4' });	
-		res.writeHead(200, {'Content-Type': 'video/mp4' });	
-		//let stream = require("stream"),
-		//a = new stream.PassThrough();
-		//a.pipe(res);		
-		//let d = Buffer.from('');
-		pkg.fs.createReadStream( dirn + '/output2.mp4').pipe(res);
-		/*				   
-		pkg.fs.readFile( dirn + '/output2.mp4', function (error, body) {})
-			.on('data', function(data) {
-				d = Buffer.concat([d, Buffer.from(data)]);
-				a.write(d);
-			}).on('end', function() {
-					a.end();
-			});		
-		*/
+		pkg.fs.stat(dirn + '/output2.mp4', function(err, data1) {
+		      var total = data1.size;
+		      var range = req.headers.range;
+		      if (range) {
+				var parts = range.replace(/bytes=/, "").split("-");
+				var partialstart = parts[0]; var partialend;
+				  partialend =  parts[1];
+				var start = parseInt(partialstart, 10);
+				var end = partialend ? parseInt(partialend, 10) : total-1;
+				var chunksize = (end-start)+1;
+				var maxChunk = 1024 * 1024; // 1MB at a time
+				if (chunksize > maxChunk) {
+				  end = start + maxChunk - 1;
+				  chunksize = (end - start) + 1;
+				}							      
+
+				var file = pkg.fs.createReadStream(fn, {start:start, end:end});
+				res.writeHead(206, {'Content-Range': 'bytes ' + start + '-' + end + '/' + total, 
+					'Accept-Ranges': 'bytes', 'Content-Length': chunksize, 'Content-Type': 'video/mp4' });
+			       file.pipe(res);
+			} else {
+				res.send('Need streaming player');
+			}
+		});
 	},
 	10000
 );	
