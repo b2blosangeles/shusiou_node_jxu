@@ -61,7 +61,7 @@ _f['DL_0'] = function(cbk) {
 	});	
 };
 
-/*
+
 _f['DL_1'] = function(cbk) {
 	var CP1 = new pkg.crowdProcess();
 	var _f1 = [];
@@ -78,7 +78,36 @@ _f['DL_1'] = function(cbk) {
 			cbk(results);
 		}, 3000);	
 };
+
+
+/*
+_f['GET_INFO1'] = function(cbk) {	
+		cbk(true);
+	return true;
+	let d = Buffer.from('');
+	pkg.request(l[1], function (error, response, body) {})
+		.on('data', function(data) {
+				d = Buffer.concat([d, Buffer.from(data)]);
+		}).on('end', function() {
+			let buffer = d;
+				// pkg.fs.read(body, buff, 0, 100, 0, function(err, bytesRead, buffer) {
+				
+					var start = buffer.indexOf(new Buffer('mvhd')) + 17;
+					var timeScale = buffer.readUInt32BE(start, 4);
+					var duration = buffer.readUInt32BE(start + 4, 4);
+					var movieLength = Math.floor(duration/timeScale);
+					var v = {start:start, time_scale:timeScale, trunksize: trunkSize,
+						duration: duration, length:movieLength, x:[], status:0};
+				
+					cbk(v);		
+		
+			//	a.write(d);
+			//	a.end();
+				
+		});
+};
 */
+
 _f['FFMPEG'] = function(cbk) {
 	let cmd = 'cd ' + dirn + ' && ffmpeg -f concat -i niu.txt -codec copy output2.mp4 -y';
 	pkg.exec(cmd, 
