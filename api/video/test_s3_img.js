@@ -131,7 +131,10 @@ CP.serial(
 	//	res.send(results);
 	//	return true;
 		
-		// let fn = dirn + '/cache.mp4';
+		let fn = dirn + '--/cache.mp4';
+		res.send(fn);
+		return true;
+		
 		 var range = req.headers.range;
 		if (range) {
 				var parts = range.replace(/bytes=/, "").split("-");
