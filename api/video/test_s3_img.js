@@ -128,8 +128,8 @@ _f['FFMPEG'] = function(cbk) {
 CP.serial(
 	_f,
 	function(results) {
-		// res.send(results);
-		// return true;
+		res.send(results);
+		return true;
 		
 		let fn = dirn + '/cache.mp4';
 		pkg.fs.stat(fn, function(err, data1) {
