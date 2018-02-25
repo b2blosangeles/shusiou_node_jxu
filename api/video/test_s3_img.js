@@ -5,12 +5,11 @@ const s3 = new AWS.S3({
     accessKeyId: 'QYF3ENCI4TEDFDWFBS6N',
     secretAccessKey: '7DJD8b9iAqD5qsLgRZH9OXfgOQMob/edWouwiqYeOwI'
 });
-let space_url = 'https://shusiou-d-01.nyc3.digitaloceanspaces.com/', 
-    trunkSize = 512 * 1024 * 10;
+let space_url = 'https://shusiou-d-01.nyc3.digitaloceanspaces.com/shusiou/_a';
 
-let l = ['https://shusiou-d-01.nyc3.digitaloceanspaces.com/shusiou/_a/video.mp4/_info.txt',
-	'https://shusiou-d-01.nyc3.digitaloceanspaces.com/shusiou/_a/video.mp4/s_540.mp4',
-	'https://shusiou-d-01.nyc3.digitaloceanspaces.com/shusiou/_a/video.mp4/s_550.mp4'];
+let l = ['/video.mp4/_info.txt',
+	'/video.mp4/s_540.mp4',
+	'/video.mp4/s_550.mp4'];
 
 var folderP = require(env.site_path + '/api/inc/folderP/folderP');
 var CP = new pkg.crowdProcess();
@@ -45,7 +44,7 @@ _f['DL_1'] = function(cbk) {
 	for (var i = 1; i < l.length; i++) {
 		_f1['P_' + i] = (function(i) {
 			return function(cbk1) {
-				downloadFile(l[i], cbk1);
+				downloadFile(space_url + l[i], cbk1);
 			}
 		})(i);
 	}
