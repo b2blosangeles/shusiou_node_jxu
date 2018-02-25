@@ -10,8 +10,8 @@ let space_url = 'https://shusiou-d-01.nyc3.digitaloceanspaces.com/shusiou/_a';
 
 let 	info_link = '/video.mp4/_info.txt',
 	l = [
-		'/video.mp4/s_540.mp4',
-		'/video.mp4/s_550.mp4'
+		'/video.mp4/s_0.mp4',
+		'/video.mp4/s_10.mp4'
 	];
 
 var folderP = require(env.site_path + '/api/inc/folderP/folderP');
@@ -121,8 +121,8 @@ _f['FFMPEG'] = function(cbk) {
 CP.serial(
 	_f,
 	function(results) {
-		res.send(results);
-		return true;
+	//	res.send(results);
+	//	return true;
 		
 		let fn = dirn + '/output2.mp4';
 		pkg.fs.stat(fn, function(err, data1) {
