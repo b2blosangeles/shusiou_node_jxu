@@ -58,7 +58,7 @@ _f['DL_0'] = function(cbk) {
 			for (var  j = 0 ; j < list.length; j++) {
 				v.push({link: space_url + '' + list[j].Key, size:list[j].Size});
 			}
-			return cbk(v);       
+			return cbk('v');       
 		}
 	});	
 };
@@ -77,10 +77,10 @@ _f['DL_1'] = function(cbk) {
 	CP1.parallel(
 		_f1,
 		function(results) {
-			cbk('results');
+			cbk(results);
 		}, 3000);	
 };
-
+/*
 
 _f['GET_INFO1'] = function(cbk) {	
 	let d = Buffer.from('');
@@ -106,7 +106,7 @@ _f['GET_INFO1'] = function(cbk) {
 				
 		});
 };
-
+*/
 
 _f['FFMPEG'] = function(cbk) {
 	let cmd = 'cd ' + dirn + ' && ffmpeg -f concat -i niu.txt -codec copy output2.mp4 -y';
