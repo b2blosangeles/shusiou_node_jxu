@@ -18,9 +18,11 @@ var CP = new pkg.crowdProcess();
 var _f = {}; 
 
 function saveFile(url, callback) {
-	let v = url.match(/([^\/]+)\/([^\/]+)$/);
-	var dirn = '/tmp/video/' + v[1];
-	fn = dirn + '/' + v[2];
+	let v = url.match(/([^\/]+)\/([^\/]+)$/),
+	    dirn = '/tmp/video/' + v[1],
+	    fp = new folderP(), 
+	    fn = dirn + '/' + v[2];
+	
 	fp.build(dirn, () => {
 		callback(fn);
 	});
