@@ -20,7 +20,7 @@ var _f = {};
 let dirn = '/tmp/video';
 
 let range = req.headers.range,
-    start = 0,
+    start = 0, duration = 0;
     maxChunk = 1024 * 1024; // 1MB at a time
 
 function downloadFile(url, callback) {
@@ -62,7 +62,7 @@ _f['DL_0'] = function(cbk) {
 		}
 	});	
 };
-_f['DURATION0'] = function(cbk) {
+_f['DURATION1'] = function(cbk) {
 	let url = space_url + l[0];
 	let buffer = Buffer.from('');
 	pkg.request(url, function (error, response, body) {})
@@ -75,25 +75,11 @@ _f['DURATION0'] = function(cbk) {
 			var movieLength = Math.floor(duration/timeScale);
 			var v = {start:start, time_scale:timeScale,
 				duration: duration, length:movieLength};
+			duration = v.duration;
 			cbk(v);					
 		});	
 };
-_f['DURATION1'] = function(cbk) {
-	let url = space_url + l[1];
-	let buffer = Buffer.from('');
-	pkg.request(url, function (error, response, body) {})
-		.on('data', function(data) {
-			buffer = Buffer.concat([buffer, Buffer.from(data)]);
-		}).on('end', function() {
-			var start = buffer.indexOf(new Buffer('mvhd')) + 17;
-			var timeScale = buffer.readUInt32BE(start, 4);
-			var duration = buffer.readUInt32BE(start + 4, 4);
-			var movieLength = Math.floor(duration/timeScale);
-			var v = {start:start, time_scale:timeScale,
-				duration: duration, length:movieLength};
-			cbk(v);					
-		});	
-};
+
 _f['DL_1'] = function(cbk) {
 	var CP1 = new pkg.crowdProcess();
 	var _f1 = [];
