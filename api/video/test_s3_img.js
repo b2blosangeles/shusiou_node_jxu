@@ -46,6 +46,17 @@ _f['GET_INFO1'] = function(cbk) {
 				d = Buffer.concat([d, Buffer.from(data)]);
 		}).on('end', function() {
 				a.write(d);
+				
+		});
+};
+_f['GET_INF2'] = function(cbk) {
+		
+	let d = Buffer.from('');
+	pkg.request(l[1], function (error, response, body) {})
+		.on('data', function(data) {
+				d = Buffer.concat([d, Buffer.from(data)]);
+		}).on('end', function() {
+				a.write(d);
 				a.end();
 		});
 };
