@@ -39,7 +39,23 @@ function downloadFile(url, callback) {
 		}).pipe(file);			
 	});
 }
-
+_f['DURATION'] = function(cbk) {
+	let url = space_url + '/video.mp4/s_0.mp4';
+	let buffer = Buffer.from('');
+	pkg.request(url, function (error, response, body) {})
+		.on('data', function(data) {
+			buffer = Buffer.concat([buffer, Buffer.from(data)]);
+		}).on('end', function() {
+			var start = buffer.indexOf(new Buffer('mvhd')) + 17;
+			var timeScale = buffer.readUInt32BE(start, 4);
+			var duration = buffer.readUInt32BE(start + 4, 4);
+			var movieLength = Math.floor(duration/timeScale);
+			var v = {start:start, time_scale:timeScale,
+				duration: duration, length:movieLength};
+			duration = v.duration;
+			cbk(v);					
+		});	
+};
 _f['DL_0'] = function(cbk) {
 	/*
 	downloadFile(space_url + info_link, function(fn) {
@@ -62,23 +78,7 @@ _f['DL_0'] = function(cbk) {
 		}
 	});	
 };
-_f['DURATION1'] = function(cbk) {
-	let url = space_url + l[0];
-	let buffer = Buffer.from('');
-	pkg.request(url, function (error, response, body) {})
-		.on('data', function(data) {
-			buffer = Buffer.concat([buffer, Buffer.from(data)]);
-		}).on('end', function() {
-			var start = buffer.indexOf(new Buffer('mvhd')) + 17;
-			var timeScale = buffer.readUInt32BE(start, 4);
-			var duration = buffer.readUInt32BE(start + 4, 4);
-			var movieLength = Math.floor(duration/timeScale);
-			var v = {start:start, time_scale:timeScale,
-				duration: duration, length:movieLength};
-			duration = v.duration;
-			cbk(v);					
-		});	
-};
+
 
 _f['DL_1'] = function(cbk) {
 	var CP1 = new pkg.crowdProcess();
@@ -142,7 +142,7 @@ CP.serial(
 		
 		let fn = dirn + '/output2.mp4';
 		pkg.fs.stat(fn, function(err, data1) {
-		      var total = data1.size * 10;
+		      var total = data1.size * 3;
 		      var range = req.headers.range;
 		      if (range) {
 				var parts = range.replace(/bytes=/, "").split("-");
