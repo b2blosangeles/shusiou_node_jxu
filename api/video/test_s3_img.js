@@ -17,14 +17,22 @@ var folderP = require(env.site_path + '/api/inc/folderP/folderP');
 var CP = new pkg.crowdProcess();
 var _f = {}; 
 
-function saveFile(url, callback) {
+function downloadFile(url, callback) {
 	let v = url.match(/([^\/]+)\/([^\/]+)$/),
 	    dirn = '/tmp/video/' + v[1],
 	    fp = new folderP(), 
 	    fn = dirn + '/' + v[2];
 	
 	fp.build(dirn, () => {
-		callback(fn);
+	
+		let file = pkg.fs.createWriteStream(fn);
+		file.on('finish', function() {
+			file.close(function() {
+				cbk(true);
+			});  
+		});
+		pkg.request(url, function (error, response, body) {
+		}).pipe(file);			
 	});
 }
 
@@ -78,15 +86,7 @@ _f['GET_INFO1'] = function(cbk) {
 };
 */
 _f['GET_INF02'] = function(cbk) {
-	var file = pkg.fs.createWriteStream("/tmp/s_550.mp4");
-	 file.on('finish', function() {
-      		file.close(function() {
-			saveFile(l[2], cbk);
-		});  
-    	});
-	pkg.request(l[2], function (error, response, body) {
-		// response.pipe(file);
-	}).pipe(file);
+	downloadFile(l[2], cbk);
 };
 
 _f['GET_INFO3'] = function(cbk) {
