@@ -126,7 +126,7 @@ CP.serial(
 		let d = Buffer.from('');
 		pkg.request(l[1], function (error, response, body) {})
 			.on('data', function(data) {
-					d = Buffer.concat([d, data]);
+					d = Buffer.concat([d, Buffer.from(data)]);
 			}).on('end', function() {
 					a.write(d);
 					a.end();
