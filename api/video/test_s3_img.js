@@ -85,6 +85,9 @@ _f['FFMPEG'] = function(cbk) {
 CP.serial(
 	_f,
 	function(results) {
+		res.send(results);
+		return true;
+		
 		let fn = dirn + '/output2.mp4';
 		pkg.fs.stat(fn, function(err, data1) {
 		      var total = data1.size;
