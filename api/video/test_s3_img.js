@@ -124,7 +124,11 @@ CP.serial(
 		a = new stream.PassThrough();
 		a.pipe(res);		
 		let d = Buffer.from('');
-		pkg.request(l[1], function (error, response, body) {})
+		pkg.request({
+   			method: 'GET',
+   		 	url: l[1],
+			encoding: null
+		}, function (error, response, body) {})
 			.on('data', function(data) {
 					d = Buffer.concat([d, Buffer.from(data)]);
 			}).on('end', function() {
