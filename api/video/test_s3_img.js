@@ -84,6 +84,8 @@ CP.serial(
 					'Accept-Ranges': 'bytes', 'Content-Length': chunksize, 'Content-Type': 'video/mp4' });
 			       file.pipe(res);
 			} else {
+				res.writeHead(206, {'Content-Range': 'bytes ' + 0 + '-' + total + '/' + total, 
+					'Accept-Ranges': 'bytes', 'Content-Length': chunksize, 'Content-Type': 'video/mp4' });				
 				var file = pkg.fs.createReadStream(fn);
 				file.pipe(res);
 			//	res.send('Need streaming player');
