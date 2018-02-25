@@ -68,13 +68,14 @@ _f['WRITE_TXT'] = function(cbk) {
 		cbk('niu');
 	}); 
 };
+/*
 _f['DL_0'] = function(cbk) {
-	/*
+	
 	downloadFile(space_url + info_link, function(fn) {
 		cbk(fn);
 	});
 	return true;
-	*/
+	
 	var params = {
 		Bucket: 'shusiou-d-01'
 	};
@@ -90,7 +91,7 @@ _f['DL_0'] = function(cbk) {
 		}
 	});	
 };
-
+*/
 
 _f['DL_1'] = function(cbk) {
 	var CP1 = new pkg.crowdProcess();
