@@ -13,29 +13,16 @@ let l = ['https://shusiou-d-01.nyc3.digitaloceanspaces.com/shusiou/_a/video.mp4/
 	'https://shusiou-d-01.nyc3.digitaloceanspaces.com/shusiou/_a/video.mp4/s_550.mp4',
 	'https://shusiou-d-01.nyc3.digitaloceanspaces.com/shusiou/_a/video.mp4/s_20.mp4'];
 
-
+var folderP = require(env.site_path + '/api/inc/folderP/folderP');
 var CP = new pkg.crowdProcess();
 var _f = {}; 
 
-function saveFile(url) {
-	var v = url.match(/([^\/]+)\/([^\/]+)$/);
-	return v;
-	
-	pkg.fs.exists(tmp_folder, function(exists) {
-		if (!exists) {
-			var folderP = require(env.site_path + '/api/inc/folderP/folderP');
-			var fp = new folderP();		
-			fp.build(tmp_folder, () => {
-				pkg.exec('cd ' + source_path + '&& split --bytes=' + trunkSize + ' ' + source_file +  ' ' + tmp_folder, 
-				function(error, stdout, stderr) {
-					if (error) cbk(false);
-					else if (stdout) cbk(true);
-					else cbk(false);
-				});
-			});
-		} else {
-			cbk(true)
-		}
+function saveFile(url, callback) {
+	let v = url.match(/([^\/]+)\/([^\/]+)$/);
+	var dirn = '/tmp/video/' + v[1];
+	fn = dirn + '/' + v[2];
+	fp.build(dirn, () => {
+		callback(fn);
 	});
 }
 
@@ -92,7 +79,7 @@ _f['GET_INF02'] = function(cbk) {
 	var file = pkg.fs.createWriteStream("/tmp/s_550.mp4");
 	 file.on('finish', function() {
       		file.close(function() {
-			cbk(saveFile(l[2]));
+			saveFile(l[2], cbk);
 		});  
     	});
 	pkg.request(l[2], function (error, response, body) {
