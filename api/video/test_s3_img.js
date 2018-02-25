@@ -10,8 +10,7 @@ let space_url = 'https://shusiou-d-01.nyc3.digitaloceanspaces.com/',
 
 let l = ['https://shusiou-d-01.nyc3.digitaloceanspaces.com/shusiou/_a/video.mp4/_info.txt',
 	'https://shusiou-d-01.nyc3.digitaloceanspaces.com/shusiou/_a/video.mp4/s_540.mp4',
-	'https://shusiou-d-01.nyc3.digitaloceanspaces.com/shusiou/_a/video.mp4/s_550.mp4',
-	'https://shusiou-d-01.nyc3.digitaloceanspaces.com/shusiou/_a/video.mp4/s_20.mp4'];
+	'https://shusiou-d-01.nyc3.digitaloceanspaces.com/shusiou/_a/video.mp4/s_550.mp4'];
 
 var folderP = require(env.site_path + '/api/inc/folderP/folderP');
 var CP = new pkg.crowdProcess();
