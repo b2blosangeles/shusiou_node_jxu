@@ -132,7 +132,8 @@ CP.serial(
 	//	return true;
 		
 		// let fn = dirn + '/cache.mp4';
-		let fn = dirn + l[0];
+		let v = l[0].match(/([^\/]+)\/([^\/]+)$/);
+		let fn = dirn + v[0] + '_' + v[1];
 		res.send(fn);
 		return true;
 		pkg.fs.stat(fn, function(err, data1) {
