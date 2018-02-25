@@ -58,7 +58,7 @@ _f['DL_0'] = function(cbk) {
 			for (var  j = 0 ; j < list.length; j++) {
 				v.push({link: space_url + '' + list[j].Key, size:list[j].Size});
 			}
-			return cbk(v);       
+			return cbk('v');       
 		}
 	});	
 };
