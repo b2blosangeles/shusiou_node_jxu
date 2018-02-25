@@ -27,17 +27,23 @@ function downloadFile(url, callback) {
 	let v = url.match(/([^\/]+)\/([^\/]+)$/),
 	    fp = new folderP(), 
 	    fn = dirn + '/' + v[1] + '_' + v[2];
-	
-	fp.build(dirn, () => {
-		let file = pkg.fs.createWriteStream(fn);
-		file.on('finish', function() {
-			file.close(function() {
-				callback(fn);
-			});  
-		});
-		pkg.request(url, function (error, response, body) {
-		}).pipe(file);			
-	});
+	pkg.fs.exists(fn, (exists) => {
+	     if (!exists) {
+			fp.build(dirn, () => {
+				let file = pkg.fs.createWriteStream(fn);
+				file.on('finish', function() {
+					file.close(function() {
+						callback(fn);
+					});  
+				});
+				pkg.request(url, function (error, response, body) {
+				}).pipe(file);			
+			});	     
+	     } else {
+		     callback(fn);
+	     }
+	 });
+
 }
 /*
 _f['DURATION'] = function(cbk) {
