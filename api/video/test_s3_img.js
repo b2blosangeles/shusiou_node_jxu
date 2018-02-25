@@ -62,7 +62,8 @@ _f['GET_INFO3'] = function(cbk) {
 CP.serial(
 	_f,
 	function(results) {
-		pkg.fs.stat(dirn + '/output2.mp4', function(err, data1) {
+		let fn = dirn + '/output2.mp4';
+		pkg.fs.stat(fn, function(err, data1) {
 		      var total = data1.size;
 		      var range = req.headers.range;
 		      if (range) {
