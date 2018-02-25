@@ -13,7 +13,11 @@ let 	info_link = '/video.mp4/_info.txt',
 		'/video.mp4/s_0.mp4',
 		'/video.mp4/s_10.mp4',
 		'/video.mp4/s_20.mp4',
-		'/video.mp4/s_30.mp4'
+		'/video.mp4/s_30.mp4',
+		'/video.mp4/s_40.mp4',
+		'/video.mp4/s_50.mp4',
+		'/video.mp4/s_60.mp4',
+		'/video.mp4/s_70.mp4'		
 	];
 
 var folderP = require(env.site_path + '/api/inc/folderP/folderP');
