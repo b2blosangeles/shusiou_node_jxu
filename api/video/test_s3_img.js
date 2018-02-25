@@ -142,7 +142,7 @@ CP.serial(
 			let v = l[1].match(/([^\/]+)\/([^\/]+)$/);
 			let fn = dirn + '/' + v[1] + '_' + v[2];
 		} else {
-			let fn = dirn + 'cache.mp4';
+			let fn = dirn + '/cache.mp4';
 		}
 		pkg.fs.stat(fn, function(err, data1) {
 		      var total = data1.size;
