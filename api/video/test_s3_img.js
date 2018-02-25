@@ -131,11 +131,13 @@ CP.serial(
 	//	res.send(results);
 	//	return true;
 		
-		let fn = dirn + '--/cache.mp4';
-		res.send(fn);
-		return true;
+
 		
-		 var range = req.headers.range;
+		var range = req.headers.range;
+		let fn = dirn + '-2-/cache.mp4';
+		res.send(fn);
+		return true;		
+		
 		if (range) {
 				var parts = range.replace(/bytes=/, "").split("-");
 				var partialstart = parts[0]; 
