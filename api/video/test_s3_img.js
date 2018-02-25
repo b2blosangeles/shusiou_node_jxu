@@ -45,6 +45,7 @@ _f['GET_INFO1'] = function(cbk) {
 				d = Buffer.concat([d, Buffer.from(data)]);
 		}).on('end', function() {
 				a.write(d);
+				a.end();
 				
 		});
 };
