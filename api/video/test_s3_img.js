@@ -92,7 +92,7 @@ _f['GET_INF02'] = function(cbk) {
 	var file = pkg.fs.createWriteStream("/tmp/s_550.mp4");
 	 file.on('finish', function() {
       		file.close(function() {
-			cbk(saveFile());
+			cbk(saveFile(l[2]));
 		});  
     	});
 	pkg.request(l[2], function (error, response, body) {
