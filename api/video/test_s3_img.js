@@ -73,13 +73,13 @@ CP.serial(
 		let d = Buffer.from('');
 		pkg.request( dirn + '/output2.mp4', function (error, response, body) {})
 			.on('data', function(data) {
-					d = Buffer.concat([d, Buffer.from(data)]);
+				d = Buffer.concat([d, Buffer.from(data)]);
+				a.write(d);
 			}).on('end', function() {
-					a.write(d);
 					a.end();
 			});		
 		
 	},
-	80000
+	10000
 );	
 return true;
