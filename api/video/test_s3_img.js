@@ -41,7 +41,20 @@ function downloadFile(url, callback) {
 }
 
 _f['DL_0'] = function(cbk) {
-	downloadFile(space_url + info_link, cbk);	
+	var params = {
+		Bucket: 'shusiou-d-01'
+	};
+	s3.listObjects(params, function(err, data) {
+		if (err) {
+			return cbk(null); 
+		} else {
+			let list = data.Contents, v = [];
+			for (var  j = 0 ; j < list.length; j++) {
+				v.push({link: space_url + '' + list[j].Key, size:list[j].Size});
+			}
+			return cbk(v);       
+		}
+	});	
 };
 
 _f['DL_1'] = function(cbk) {
