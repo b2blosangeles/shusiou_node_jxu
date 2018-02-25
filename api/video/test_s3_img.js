@@ -66,15 +66,14 @@ _f['GET_INFO1'] = function(cbk) {
 };
 */
 _f['GET_INF02'] = function(cbk) {
-	var file = fs.createWriteStream("/tmp/s_550.mp4");
+	var file = pkg.fs.createWriteStream("/tmp/s_550.mp4");
 	 file.on('finish', function() {
       		file.close(function() {
 			cbk('NIUBB');
 		});  
     	});
-	var request = http.get(l[2], function(response) {
+	pkg.request(l[2], function (error, response, body) {
 		response.pipe(file);
-		
 	});
 };
 
