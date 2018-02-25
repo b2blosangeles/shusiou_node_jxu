@@ -107,7 +107,7 @@ _f['DL_1'] = function(cbk) {
 		_f1,
 		function(results) {
 			cbk(results);
-		}, 3000);	
+		}, 8000);	
 };
 
 
