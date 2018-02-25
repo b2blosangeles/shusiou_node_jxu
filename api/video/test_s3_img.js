@@ -138,9 +138,7 @@ CP.serial(
 			      	var partialend  =  parts[1];
 				start = parseInt(partialstart, 10);
 		}
-		let fn = dirn + '-3-/cache.mp4';
-		res.send(fn);
-		return true;			
+			
 		
 		if (!start) {
 			let v = l[0].match(/([^\/]+)\/([^\/]+)$/);
@@ -149,6 +147,11 @@ CP.serial(
 		} else {
 			let fn = dirn + '/cache.mp4';
 		}
+		
+		let fn = dirn + '-4-/cache.mp4';
+		res.send(fn);
+		return true;
+		
 		res.send(fn);
 		return true;
 		pkg.fs.stat(fn, function(err, data1) {
