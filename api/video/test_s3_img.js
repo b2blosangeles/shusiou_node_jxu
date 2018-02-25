@@ -148,7 +148,7 @@ CP.serial(
 			fn = dirn + '/cache.mp4';
 		}
 		pkg.fs.stat(fn, function(err, data1) {
-		      var total = parseInt(data1.size) + 1;
+		      var total = parseInt(data1.size);
 		      var range = req.headers.range;
 		      if (range) {
 				var parts = range.replace(/bytes=/, "").split("-");
