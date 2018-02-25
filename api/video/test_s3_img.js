@@ -141,11 +141,11 @@ CP.serial(
 			
 		
 		if (!start) {
-			let v = l[0].match(/([^\/]+)\/([^\/]+)$/);
-			let fn = dirn + '/' + v[1] + '_' + v[2];
-			// let fn = dirn + '/cache.mp4';
+			//let v = l[0].match(/([^\/]+)\/([^\/]+)$/);
+			//let fn = dirn + '/' + v[1] + '_' + v[2];
+			let fn = dirn + '--6--/cache.mp4';
 		} else {
-			let fn = dirn + '/cache.mp4';
+			let fn = dirn + '--7--/cache.mp4';
 		}
 		res.send(fn);
 		return true;
