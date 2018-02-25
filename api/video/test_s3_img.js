@@ -27,7 +27,7 @@ function downloadFile(url, callback) {
 		let file = pkg.fs.createWriteStream(fn);
 		file.on('finish', function() {
 			file.close(function() {
-				cbk(true);
+				callback(true);
 			});  
 		});
 		pkg.request(url, function (error, response, body) {
