@@ -19,7 +19,7 @@ let dirn = '/tmp/video';
 function downloadFile(url, callback) {
 	let v = url.match(/([^\/]+)\/([^\/]+)$/),
 	    fp = new folderP(), 
-	    fn = dirn + '/' + v[1] + '/' + v[2];
+	    fn = dirn + '/' + v[1] + '_' + v[2];
 	
 	fp.build(dirn, () => {
 		let file = pkg.fs.createWriteStream(fn);
