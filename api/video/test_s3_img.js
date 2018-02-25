@@ -7,9 +7,12 @@ const s3 = new AWS.S3({
 });
 let space_url = 'https://shusiou-d-01.nyc3.digitaloceanspaces.com/shusiou/_a';
 
-let l = ['/video.mp4/_info.txt',
-	'/video.mp4/s_540.mp4',
-	'/video.mp4/s_550.mp4'];
+
+let 	info_link = '/video.mp4/_info.txt',
+	l = [
+		'/video.mp4/s_540.mp4',
+		'/video.mp4/s_550.mp4'
+	];
 
 var folderP = require(env.site_path + '/api/inc/folderP/folderP');
 var CP = new pkg.crowdProcess();
@@ -37,11 +40,14 @@ function downloadFile(url, callback) {
 	});
 }
 
+_f['DL_0'] = function(cbk) {
+	downloadFile(space_url + info_link, cbk);	
+};
 
 _f['DL_1'] = function(cbk) {
 	var CP1 = new pkg.crowdProcess();
 	var _f1 = [];
-	for (var i = 1; i < l.length; i++) {
+	for (var i = 0; i < l.length; i++) {
 		_f1['P_' + i] = (function(i) {
 			return function(cbk1) {
 				downloadFile(space_url + l[i], cbk1);
