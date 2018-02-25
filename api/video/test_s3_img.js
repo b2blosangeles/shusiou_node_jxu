@@ -143,7 +143,7 @@ CP.serial(
 		if (!start) {
 			let v = l[0].match(/([^\/]+)\/([^\/]+)$/);
 			fn = dirn + '/' + v[1] + '_' + v[2];
-			fn = dirn + '/cache.mp4';
+			// fn = dirn + '/cache.mp4';
 		} else {
 			fn = dirn + '/cache.mp4';
 		}
