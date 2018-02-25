@@ -140,7 +140,7 @@ CP.serial(
 				start = parseInt(partialstart, 10);
 		}
 		 var fn;	
-			res.send('duration-->' + duration);
+			res.send('duration-->' + CP.data.DURATION);
 			return true;		
 		if (start <  duration) {
 
