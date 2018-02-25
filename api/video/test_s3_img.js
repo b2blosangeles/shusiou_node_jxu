@@ -62,7 +62,23 @@ _f['DL_0'] = function(cbk) {
 		}
 	});	
 };
-
+_f['DURATION'] = function(cbk) {
+	let url = space_url + l[0];
+	let buffer = Buffer.from('');
+	pkg.request(url, function (error, response, body) {})
+		.on('data', function(data) {
+			buffer = Buffer.concat([buffer, Buffer.from(data)]);
+		}).on('end', function() {
+			let buffer = d;
+				var start = buffer.indexOf(new Buffer('mvhd')) + 17;
+				var timeScale = buffer.readUInt32BE(start, 4);
+				var duration = buffer.readUInt32BE(start + 4, 4);
+				var movieLength = Math.floor(duration/timeScale);
+				var v = {start:start, time_scale:timeScale,
+					duration: duration, length:movieLength};
+				cbk(v);					
+		});	
+};
 
 _f['DL_1'] = function(cbk) {
 	var CP1 = new pkg.crowdProcess();
