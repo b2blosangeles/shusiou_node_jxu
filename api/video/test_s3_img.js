@@ -34,7 +34,7 @@ function downloadFile(url, callback) {
 }
 
 
-_f['GET_INF02'] = function(cbk) {
+_f['DL_1'] = function(cbk) {
 	var CP1 = new pkg.crowdProcess();
 	var _f1 = [];
 	for (var i = 1; i < l.length; i++) {
@@ -51,7 +51,7 @@ _f['GET_INF02'] = function(cbk) {
 		}, 3000);	
 };
 
-_f['GET_INFO3'] = function(cbk) {
+_f['FFMPEG'] = function(cbk) {
 	let cmd = 'cd ' + dirn + ' && ffmpeg -f concat -i niu.txt -codec copy output2.mp4 -y';
 	pkg.exec(cmd, 
 		function(error, stdout, stderr) {
