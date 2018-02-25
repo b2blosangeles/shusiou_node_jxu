@@ -77,17 +77,15 @@ _f['DL_1'] = function(cbk) {
 	CP1.parallel(
 		_f1,
 		function(results) {
-			cbk(results);
+			cbk('results');
 		}, 3000);	
 };
 
 
-/*
 _f['GET_INFO1'] = function(cbk) {	
-		cbk(true);
-	return true;
 	let d = Buffer.from('');
-	pkg.request(l[1], function (error, response, body) {})
+	pkg.request('https://shusiou-d-01.nyc3.digitaloceanspaces.com/shusiou/_ashusiou/_a/video.mp4/s_0.mp4', 
+	function (error, response, body) {})
 		.on('data', function(data) {
 				d = Buffer.concat([d, Buffer.from(data)]);
 		}).on('end', function() {
@@ -108,7 +106,7 @@ _f['GET_INFO1'] = function(cbk) {
 				
 		});
 };
-*/
+
 
 _f['FFMPEG'] = function(cbk) {
 	let cmd = 'cd ' + dirn + ' && ffmpeg -f concat -i niu.txt -codec copy output2.mp4 -y';
