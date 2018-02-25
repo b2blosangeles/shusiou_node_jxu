@@ -44,13 +44,26 @@ _f['GET_INFO1'] = function(cbk) {
 		.on('data', function(data) {
 				d = Buffer.concat([d, Buffer.from(data)]);
 		}).on('end', function() {
-				a.write(d);
-				a.end();
+			let buffer = d;
+				// pkg.fs.read(body, buff, 0, 100, 0, function(err, bytesRead, buffer) {
+				
+					var start = buffer.indexOf(new Buffer('mvhd')) + 17;
+					var timeScale = buffer.readUInt32BE(start, 4);
+					var duration = buffer.readUInt32BE(start + 4, 4);
+					var movieLength = Math.floor(duration/timeScale);
+					var v = {start:start, time_scale:timeScale, trunksize: trunkSize,
+						duration: duration, length:movieLength, x:[], status:0};
+				
+					cbk(v);		
+		
+			//	a.write(d);
+			//	a.end();
 				
 		});
 };
 _f['GET_INF02'] = function(cbk) {
-		
+	cbk(true);
+	return true;		
 	let d = Buffer.from('');
 	pkg.request(l[2], function (error, response, body) {})
 		.on('data', function(data) {
@@ -144,7 +157,7 @@ _f['GET_FOLDERS'] = function(cbk) {
 CP.serial(
 	_f,
 	function(results) {
-	//	res.send(results);
+		res.send(results);
 		return true;
 		//res.send([CP.data.GET_INFO1]);
 		//return true;
