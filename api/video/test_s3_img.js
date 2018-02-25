@@ -44,7 +44,7 @@ _f['GET_INF02'] = function(cbk) {
 			}
 		})(i);
 	}
-	CP1.serial(
+	CP1.parallel(
 		_f1,
 		function(results) {
 			cbk(results);
@@ -52,7 +52,7 @@ _f['GET_INF02'] = function(cbk) {
 };
 
 _f['GET_INFO3'] = function(cbk) {
-	let cmd = 'cd ' + dirn + ' && ffmpeg -f concat -i niu.txt -codec copy output2.mp4';
+	let cmd = 'cd ' + dirn + ' && ffmpeg -f concat -i niu.txt -codec copy output2.mp4 -y';
 	pkg.exec(cmd, 
 		function(error, stdout, stderr) {
 			cbk(cmd);
