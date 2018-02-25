@@ -132,9 +132,18 @@ CP.serial(
 	//	return true;
 		
 		// let fn = dirn + '/cache.mp4';
-		
-		let v = l[1].match(/([^\/]+)\/([^\/]+)$/);
-		let fn = dirn + '/' + v[1] + '_' + v[2];
+		if (range) {
+				var parts = range.replace(/bytes=/, "").split("-");
+				var partialstart = parts[0]; 
+			      	var partialend  =  parts[1];
+				start = parseInt(partialstart, 10);
+		}
+		if (!start) {
+			let v = l[1].match(/([^\/]+)\/([^\/]+)$/);
+			let fn = dirn + '/' + v[1] + '_' + v[2];
+		} else {
+			let fn = dirn + 'cache.mp4';
+		}
 		pkg.fs.stat(fn, function(err, data1) {
 		      var total = data1.size;
 		      var range = req.headers.range;
