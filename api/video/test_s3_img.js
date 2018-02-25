@@ -57,15 +57,14 @@ _f['GET_INF02'] = function(cbk) {
 		}, 3000);	
 };
 
-/*
 _f['GET_INFO3'] = function(cbk) {
 	let cmd = 'cd ' + dirn + ' && ffmpeg -f concat -i niu.txt -codec copy output2.mp4';
 	pkg.exec(cmd, 
 		function(error, stdout, stderr) {
-			else cbk(cmd);
+			cbk(cmd);
 	});
 };
-*/
+
 
 CP.serial(
 	_f,
