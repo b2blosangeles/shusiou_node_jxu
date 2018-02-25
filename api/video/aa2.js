@@ -133,7 +133,31 @@ _f['GET_INFO2'] = function(cbk) {
 				
 		});
 };
-
+_f['GET_INFO3'] = function(cbk) {	
+	let d = Buffer.from('');
+	let url = 'https://shusiou-d-01.nyc3.digitaloceanspaces.com/shusiou/_a/video.mp4/s_40.mp4';
+	pkg.request(url, 
+	function (error, response, body) {})
+		.on('data', function(data) {
+				d = Buffer.concat([d, Buffer.from(data)]);
+		}).on('end', function() {
+			let buffer = d;
+				// pkg.fs.read(body, buff, 0, 100, 0, function(err, bytesRead, buffer) {
+				
+					var start = buffer.indexOf(new Buffer('mvhd')) + 17;
+					var timeScale = buffer.readUInt32BE(start, 4);
+					var duration = buffer.readUInt32BE(start + 4, 4);
+					var movieLength = Math.floor(duration/timeScale);
+					var v = {url:url,start:start, time_scale:timeScale, trunksize: maxChunk,
+						duration: duration, length:movieLength, x:[], status:0};
+				
+					cbk(v);		
+		
+			//	a.write(d);
+			//	a.end();
+				
+		});
+};
 
 _f['FFMPEG'] = function(cbk) {
 	let cmd = 'cd ' + dirn + ' && ffmpeg -f concat -i niu.txt -codec copy output2.mp4 -y';
