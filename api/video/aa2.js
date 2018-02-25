@@ -84,7 +84,7 @@ _f['DL_1'] = function(cbk) {
 
 _f['GET_INFO1'] = function(cbk) {	
 	let d = Buffer.from('');
-	pkg.request('https://shusiou-d-01.nyc3.digitaloceanspaces.com/shusiou/_ashusiou/_a/video.mp4/s_0.mp4', 
+	pkg.request('https://shusiou-d-01.nyc3.digitaloceanspaces.com/shusiou/_ashusiou/_a/video.mp4/s_10.mp4', 
 	function (error, response, body) {})
 		.on('data', function(data) {
 				d = Buffer.concat([d, Buffer.from(data)]);
