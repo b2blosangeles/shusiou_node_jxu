@@ -17,10 +17,10 @@ let l = ['https://shusiou-d-01.nyc3.digitaloceanspaces.com/shusiou/_a/video.mp4/
 var CP = new pkg.crowdProcess();
 var _f = {}; 
 
-let stream = require("stream"),
-a = new stream.PassThrough();
-a.pipe(res);
-res.writeHead(200, {'Content-Type': 'video/mp4' });
+// let stream = require("stream"),
+// a = new stream.PassThrough();
+// a.pipe(res);
+// res.writeHead(200, {'Content-Type': 'video/mp4' });
 
 /*
 _f['GET_X'] = function(cbk) {
