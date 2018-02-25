@@ -71,7 +71,9 @@ CP.serial(
 		a = new stream.PassThrough();
 		a.pipe(res);		
 		let d = Buffer.from('');
-		pkg.request( dirn + '/output2.mp4', function (error, response, body) {})
+		// var file = pkg.fs.createReadStream( dirn + '/output2.mp4').pipe(res);
+						   
+		pkg.fs.readFile( dirn + '/output2.mp4', function (error, body) {})
 			.on('data', function(data) {
 				d = Buffer.concat([d, Buffer.from(data)]);
 				a.write(d);
