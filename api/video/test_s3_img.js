@@ -100,7 +100,8 @@ _f['DL_1'] = function(cbk) {
 			}
 		})(i);
 	}
-	CP1.parallel(
+	// CP1.parallel(
+	CP1.serial(
 		_f1,
 		function(results) {
 			cbk(results);
