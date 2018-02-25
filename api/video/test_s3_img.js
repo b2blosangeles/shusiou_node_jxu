@@ -39,6 +39,7 @@ function downloadFile(url, callback) {
 		}).pipe(file);			
 	});
 }
+/*
 _f['DURATION'] = function(cbk) {
 	let url = space_url + '/video.mp4/s_0.mp4';
 	let buffer = Buffer.from('');
@@ -56,6 +57,7 @@ _f['DURATION'] = function(cbk) {
 			cbk(v);					
 		});	
 };
+*/
 _f['WRITE_TXT'] = function(cbk) {
 	var str = '';
 	for (var i = 0; i < l.length; i++) {
