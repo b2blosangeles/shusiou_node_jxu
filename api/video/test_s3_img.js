@@ -147,11 +147,13 @@ CP.serial(
 				  end = start + maxChunk - 1;
 				  chunksize = (end - start) + 1;
 				}	
+			      /*
 			      if (start >= duration) {
 			      	fn = dirn + '/video.mp4/s_50.mp4'
 			      } else {
 			      	fn = dirn + '/video.mp4/s_40.mp4'
 			      }
+			      */
 			//      	end = start + duration;
 				res.writeHead(206, {'Content-Range': 'bytes ' + start + '-' + end + '/' + total, 
 					'Accept-Ranges': 'bytes', 'Content-Length': chunksize, 'Content-Type': 'video/mp4' });
