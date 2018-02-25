@@ -42,7 +42,7 @@ function downloadFile(url, callback) {
 
 _f['DL_0'] = function(cbk) {
 	downloadFile(space_url + info_link, function(fn) {
-		cbk(fn)l
+		cbk(fn);
 	});
 	return true;
 	var params = {
