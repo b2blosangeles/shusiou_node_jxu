@@ -140,7 +140,7 @@ CP.serial(
 		}
 		 var fn;	
 		
-		if (!start && start < duration) {
+		if (start < duration) {
 			let v = l[0].match(/([^\/]+)\/([^\/]+)$/);
 			fn = dirn + '/' + v[1] + '_' + v[2];
 			// fn = dirn + '/cache.mp4';
