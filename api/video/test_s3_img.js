@@ -16,6 +16,11 @@ var folderP = require(env.site_path + '/api/inc/folderP/folderP');
 var CP = new pkg.crowdProcess();
 var _f = {}; 
 let dirn = '/tmp/video';
+
+let range = req.headers.range,
+    start = 0,
+    maxChunk = 1024 * 1024; // 1MB at a time
+
 function downloadFile(url, callback) {
 	let v = url.match(/([^\/]+)\/([^\/]+)$/),
 	    fp = new folderP(), 
@@ -68,27 +73,22 @@ CP.serial(
 		      var range = req.headers.range;
 		      if (range) {
 				var parts = range.replace(/bytes=/, "").split("-");
-				var partialstart = parts[0]; var partialend;
-				  partialend =  parts[1];
-				var start = parseInt(partialstart, 10);
+				var partialstart = parts[0]; 
+			      	var partialend  =  parts[1];
+				start = parseInt(partialstart, 10);
 				var end = partialend ? parseInt(partialend, 10) : total-1;
 				var chunksize = (end-start)+1;
-				var maxChunk = 1024 * 1024; // 1MB at a time
 				if (chunksize > maxChunk) {
 				  end = start + maxChunk - 1;
 				  chunksize = (end - start) + 1;
 				}							      
-
-				var file = pkg.fs.createReadStream(fn, {start:start, end:end});
 				res.writeHead(206, {'Content-Range': 'bytes ' + start + '-' + end + '/' + total, 
 					'Accept-Ranges': 'bytes', 'Content-Length': chunksize, 'Content-Type': 'video/mp4' });
-			       file.pipe(res);
+			       	pkg.fs.createReadStream(fn, {start:start, end:end}).pipe(res);
 			} else {
-				var maxChunk = 1024 * 1024;
-				res.writeHead(206, {'Content-Range': 'bytes ' + 0 + '-' + total + '/' + total, 
+				res.writeHead(206, {'Content-Range': 'bytes ' + start + '-' + total + '/' + total, 
 					'Accept-Ranges': 'bytes', 'Content-Length': maxChunk, 'Content-Type': 'video/mp4' });				
-				var file = pkg.fs.createReadStream(fn);
-				file.pipe(res);
+				pkg.fs.createReadStream(fn).pipe(res);
 			//	res.send('Need streaming player');
 			}
 		});
