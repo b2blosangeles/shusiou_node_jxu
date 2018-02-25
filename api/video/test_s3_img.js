@@ -50,7 +50,7 @@ _f['GET_INFO1'] = function(cbk) {
 		});
 };
 
-_f['GET_INFO1'] = function(cbk) {
+_f['GET_INFO3'] = function(cbk) {
 	cbk(true);
 	return true;
 	let buff = new Buffer(100);
