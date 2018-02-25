@@ -41,7 +41,9 @@ function downloadFile(url, callback) {
 }
 
 _f['DL_0'] = function(cbk) {
-	downloadFile(space_url + info_link, cbk);
+	downloadFile(space_url + info_link, function(fn) {
+		cbk(fn)l
+	});
 	return true;
 	var params = {
 		Bucket: 'shusiou-d-01'
@@ -59,6 +61,7 @@ _f['DL_0'] = function(cbk) {
 	});	
 };
 
+/*
 _f['DL_1'] = function(cbk) {
 	var CP1 = new pkg.crowdProcess();
 	var _f1 = [];
@@ -75,7 +78,7 @@ _f['DL_1'] = function(cbk) {
 			cbk(results);
 		}, 3000);	
 };
-
+*/
 _f['FFMPEG'] = function(cbk) {
 	let cmd = 'cd ' + dirn + ' && ffmpeg -f concat -i niu.txt -codec copy output2.mp4 -y';
 	pkg.exec(cmd, 
