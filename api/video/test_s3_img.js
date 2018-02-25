@@ -137,7 +137,7 @@ _f['GET_INFO1'] = function(cbk) {
 */
 
 _f['FFMPEG'] = function(cbk) {
-	let cmd = 'cd ' + dirn + ' && ffmpeg -f concat -i niu.txt -codec copy output2.mp4 -y';
+	let cmd = 'cd ' + dirn + ' && ffmpeg -f concat -i niu1.txt -codec copy output2.mp4 -y';
 	pkg.exec(cmd, 
 		function(error, stdout, stderr) {
 			cbk(cmd);
