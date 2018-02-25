@@ -140,10 +140,10 @@ CP.serial(
 				start = parseInt(partialstart, 10);
 		}
 		 var fn;	
-		
+			res.send('duration-->' + duration);
+			return true;		
 		if (start <  duration) {
-			res.send(duration);
-			return true;
+
 			let v = l[0].match(/([^\/]+)\/([^\/]+)$/);
 			fn = dirn + '/' + v[1] + '_' + v[2];
 			// fn = dirn + '/cache.mp4';
