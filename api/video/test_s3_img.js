@@ -62,7 +62,7 @@ _f['WRITE_TXT'] = function(cbk) {
 		let v = l[i].match(/([^\/]+)\/([^\/]+)$/);
 		str += "file '" + v[1] + '_' + v[2] + "'\n";
 	}
-	pkg.fs.writeFile(dirn + '/niu1.txt', str, function(err) {	    
+	pkg.fs.writeFile(dirn + '/engine.data', str, function(err) {	    
 		cbk('niu');
 	}); 
 };
@@ -137,7 +137,7 @@ _f['GET_INFO1'] = function(cbk) {
 */
 
 _f['FFMPEG'] = function(cbk) {
-	let cmd = 'cd ' + dirn + ' && ffmpeg -f concat -i niu1.txt -codec copy output2.mp4 -y';
+	let cmd = 'cd ' + dirn + ' && ffmpeg -f concat -i engine.data -codec copy output2.mp4 -y';
 	pkg.exec(cmd, 
 		function(error, stdout, stderr) {
 			cbk(cmd);
