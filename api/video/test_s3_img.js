@@ -141,7 +141,9 @@ CP.serial(
 		}
 		 var fn;	
 		
-		if (start <  maxChunk) {
+		if (start <  duration) {
+			res.send(duration);
+			return true;
 			let v = l[0].match(/([^\/]+)\/([^\/]+)$/);
 			fn = dirn + '/' + v[1] + '_' + v[2];
 			// fn = dirn + '/cache.mp4';
