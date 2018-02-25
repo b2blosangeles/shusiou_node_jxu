@@ -141,17 +141,11 @@ CP.serial(
 		 var fn;	
 		
 		if (!start) {
-			//let v = l[0].match(/([^\/]+)\/([^\/]+)$/);
-			//let fn = dirn + '/' + v[1] + '_' + v[2];
-			fn = dirn + '--6--/cache.mp4';
+			let v = l[0].match(/([^\/]+)\/([^\/]+)$/);
+			fn = dirn + '/' + v[1] + '_' + v[2];
 		} else {
-			fn = dirn + '--7--/cache.mp4';
+			fn = dirn + '/cache.mp4';
 		}
-		res.send(fn);
-		return true;
-		
-		res.send(fn);
-		return true;
 		pkg.fs.stat(fn, function(err, data1) {
 		      var total = data1.size;
 		      var range = req.headers.range;
