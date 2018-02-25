@@ -11,7 +11,9 @@ let space_url = 'https://shusiou-d-01.nyc3.digitaloceanspaces.com/shusiou/_a';
 let 	info_link = '/video.mp4/_info.txt',
 	l = [
 		'/video.mp4/s_0.mp4',
-		'/video.mp4/s_1.mp4'
+		'/video.mp4/s_10.mp4',
+		'/video.mp4/s_20.mp4',
+		'/video.mp4/s_30.mp4'
 	];
 
 var folderP = require(env.site_path + '/api/inc/folderP/folderP');
