@@ -84,8 +84,9 @@ CP.serial(
 					'Accept-Ranges': 'bytes', 'Content-Length': chunksize, 'Content-Type': 'video/mp4' });
 			       file.pipe(res);
 			} else {
+				var maxChunk = 1024 * 1024;
 				res.writeHead(206, {'Content-Range': 'bytes ' + 0 + '-' + total + '/' + total, 
-					'Accept-Ranges': 'bytes', 'Content-Length': chunksize, 'Content-Type': 'video/mp4' });				
+					'Accept-Ranges': 'bytes', 'Content-Length': maxChunk, 'Content-Type': 'video/mp4' });				
 				var file = pkg.fs.createReadStream(fn);
 				file.pipe(res);
 			//	res.send('Need streaming player');
