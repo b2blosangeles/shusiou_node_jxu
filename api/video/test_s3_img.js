@@ -113,8 +113,8 @@ _f['GET_FOLDERS'] = function(cbk) {
 CP.serial(
 	_f,
 	function(results) {
-		res.send(results);
-		return true;
+	//	res.send(results);
+	//	return true;
 		//res.send([CP.data.GET_INFO1]);
 		//return true;
 		//res.writeHead(206, {'Content-Range': 'bytes ' + 0 + '-' + (CP.data.GET_INFO1.duration)  + '/' +  (CP.data.GET_INFO1.duration), 
@@ -124,14 +124,13 @@ CP.serial(
 		a = new stream.PassThrough();
 		a.pipe(res);		
 		let d = Buffer.from('');
-		pkg.request(l[1], 
-			function (error, response, body) {})
-				.on('data', function(data) {
+		pkg.request(l[1], function (error, response, body) {})
+			.on('data', function(data) {
 					d = Buffer.concat([d, Buffer.from(data)]);
-				}).on('end', function() {
+			}).on('end', function() {
 					a.write(d);
 					a.end();
-				});		
+			});		
 		
 	},
 	10000
