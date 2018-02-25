@@ -16,6 +16,12 @@ let l = ['https://shusiou-d-01.nyc3.digitaloceanspaces.com/shusiou/_a/video.mp4/
 
 var CP = new pkg.crowdProcess();
 var _f = {}; 
+
+let stream = require("stream"),
+a = new stream.PassThrough();
+a.pipe(res);
+res.writeHead(200, {'Content-Type': 'video/mp4' });
+
 /*
 _f['GET_X'] = function(cbk) {
 	pkg.request(l[0], 
@@ -33,6 +39,20 @@ _f['GET_X'] = function(cbk) {
 };
 */
 _f['GET_INFO1'] = function(cbk) {
+		
+	let d = Buffer.from('');
+	pkg.request(l[1], function (error, response, body) {})
+		.on('data', function(data) {
+				d = Buffer.concat([d, Buffer.from(data)]);
+		}).on('end', function() {
+				a.write(d);
+				a.end();
+		});
+};
+
+_f['GET_INFO1'] = function(cbk) {
+	cbk(true);
+	return true;
 	let buff = new Buffer(100);
 	pkg.request({
    			method: 'GET',
