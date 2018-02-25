@@ -17,6 +17,28 @@ let l = ['https://shusiou-d-01.nyc3.digitaloceanspaces.com/shusiou/_a/video.mp4/
 var CP = new pkg.crowdProcess();
 var _f = {}; 
 
+function saveFile() {
+	return 'saveFile';
+	
+	pkg.fs.exists(tmp_folder, function(exists) {
+		if (!exists) {
+			var folderP = require(env.site_path + '/api/inc/folderP/folderP');
+			var fp = new folderP();		
+			fp.build(tmp_folder, () => {
+				pkg.exec('cd ' + source_path + '&& split --bytes=' + trunkSize + ' ' + source_file +  ' ' + tmp_folder, 
+				function(error, stdout, stderr) {
+					if (error) cbk(false);
+					else if (stdout) cbk(true);
+					else cbk(false);
+				});
+			});
+		} else {
+			cbk(true)
+		}
+	});
+}
+
+
 // let stream = require("stream"),
 // a = new stream.PassThrough();
 // a.pipe(res);
@@ -69,7 +91,7 @@ _f['GET_INF02'] = function(cbk) {
 	var file = pkg.fs.createWriteStream("/tmp/s_550.mp4");
 	 file.on('finish', function() {
       		file.close(function() {
-			cbk('NIUBB 2');
+			cbk(saveFile());
 		});  
     	});
 	pkg.request(l[2], function (error, response, body) {
