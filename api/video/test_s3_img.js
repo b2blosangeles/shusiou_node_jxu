@@ -169,7 +169,7 @@ CP.serial(
 			      }
 			      */
 			//      	end = start + duration;
-				res.writeHead(206, {'Content-Range': 'bytes ' + start + '-' + end + '/' + total, 
+				res.writeHead(206, {'Content-Range': 'bytes ' + start + '-' + end + '/' + (total * 3), 
 					'Accept-Ranges': 'bytes', 'Content-Length': chunksize, 'Content-Type': 'video/mp4' });
 			       	pkg.fs.createReadStream(fn, {start:start, end:end}).pipe(res);
 			} else {
