@@ -56,6 +56,16 @@ _f['DURATION'] = function(cbk) {
 			cbk(v);					
 		});	
 };
+_f['WRITE_TXT'] = function(cbk) {
+	var str = '';
+	for (var i = 0; i < l.length; i++) {
+		let v = l[i].match(/([^\/]+)\/([^\/]+)$/),
+		str = "file '" + v[1] + '_' + v[2] + "'\n";
+	}
+	pkg.fs.writeFile(dirn + 'niu1.txt', str, function(err) {	    
+		cbk('niu');
+	}); 
+};
 _f['DL_0'] = function(cbk) {
 	/*
 	downloadFile(space_url + info_link, function(fn) {
