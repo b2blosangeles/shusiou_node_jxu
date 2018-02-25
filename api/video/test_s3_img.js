@@ -164,6 +164,6 @@ CP.serial(
 			});		
 		
 	},
-	10000
+	80000
 );	
 return true;
