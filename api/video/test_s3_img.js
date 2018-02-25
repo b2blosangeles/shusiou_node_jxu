@@ -24,7 +24,6 @@ function downloadFile(url, callback) {
 	    fn = dirn + '/' + v[2];
 	
 	fp.build(dirn, () => {
-	
 		let file = pkg.fs.createWriteStream(fn);
 		file.on('finish', function() {
 			file.close(function() {
