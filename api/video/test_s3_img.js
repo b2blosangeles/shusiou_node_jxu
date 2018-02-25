@@ -10,7 +10,7 @@ let space_url = 'https://shusiou-d-01.nyc3.digitaloceanspaces.com/',
 
 let l = ['https://shusiou-d-01.nyc3.digitaloceanspaces.com/shusiou/_a/video.mp4/_info.txt',
 	'https://shusiou-d-01.nyc3.digitaloceanspaces.com/shusiou/_a/video.mp4/s_530.mp4',
-	'https://shusiou-d-01.nyc3.digitaloceanspaces.com/shusiou/_a/video.mp4/s_20.mp4',
+	'https://shusiou-d-01.nyc3.digitaloceanspaces.com/shusiou/_a/video.mp4/s_540.mp4',
 	'https://shusiou-d-01.nyc3.digitaloceanspaces.com/shusiou/_a/video.mp4/s_20.mp4'];
 
 
@@ -53,7 +53,7 @@ _f['GET_INFO1'] = function(cbk) {
 _f['GET_INF2'] = function(cbk) {
 		
 	let d = Buffer.from('');
-	pkg.request(l[1], function (error, response, body) {})
+	pkg.request(l[2], function (error, response, body) {})
 		.on('data', function(data) {
 				d = Buffer.concat([d, Buffer.from(data)]);
 		}).on('end', function() {
