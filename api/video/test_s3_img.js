@@ -132,6 +132,7 @@ CP.serial(
 	//	return true;
 		
 		// let fn = dirn + '/cache.mp4';
+		 var range = req.headers.range;
 		if (range) {
 				var parts = range.replace(/bytes=/, "").split("-");
 				var partialstart = parts[0]; 
