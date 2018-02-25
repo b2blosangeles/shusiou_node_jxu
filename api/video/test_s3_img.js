@@ -140,7 +140,7 @@ CP.serial(
 				start = parseInt(partialstart, 10);
 		}
 		if (!start) {
-			let v = l[1].match(/([^\/]+)\/([^\/]+)$/);
+			let v = l[0].match(/([^\/]+)\/([^\/]+)$/);
 			let fn = dirn + '/' + v[1] + '_' + v[2];
 		} else {
 			let fn = dirn + '/cache.mp4';
