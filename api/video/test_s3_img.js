@@ -9,7 +9,7 @@ let space_url = 'https://shusiou-d-01.nyc3.digitaloceanspaces.com/',
     trunkSize = 512 * 1024 * 10;
 
 let l = ['https://shusiou-d-01.nyc3.digitaloceanspaces.com/shusiou/_a/video.mp4/_info.txt',
-	'https://shusiou-d-01.nyc3.digitaloceanspaces.com/shusiou/_a/video.mp4/s_30.mp4',
+	'https://shusiou-d-01.nyc3.digitaloceanspaces.com/shusiou/_a/video.mp4/s_630.mp4',
 	'https://shusiou-d-01.nyc3.digitaloceanspaces.com/shusiou/_a/video.mp4/s_20.mp4',
 	'https://shusiou-d-01.nyc3.digitaloceanspaces.com/shusiou/_a/video.mp4/s_20.mp4'];
 
