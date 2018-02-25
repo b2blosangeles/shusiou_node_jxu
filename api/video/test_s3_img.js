@@ -38,6 +38,7 @@ _f['GET_X'] = function(cbk) {
 	});	
 };
 */
+/*
 _f['GET_INFO1'] = function(cbk) {	
 		cbk(true);
 	return true;
@@ -75,7 +76,7 @@ _f['GET_INF02'] = function(cbk) {
 				a.end();
 		});
 };
-
+*/
 _f['GET_INFO3'] = function(cbk) {
 	let buff = new Buffer(100);
 	pkg.request({
