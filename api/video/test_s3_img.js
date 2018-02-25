@@ -137,12 +137,12 @@ _f['FFMPEG'] = function(cbk) {
 CP.serial(
 	_f,
 	function(results) {
-		res.send(results);
-		return true;
+		// res.send(results);
+		// return true;
 		
 		let fn = dirn + '/output2.mp4';
 		pkg.fs.stat(fn, function(err, data1) {
-		      var total = data1.size;
+		      var total = data1.size * 10;
 		      var range = req.headers.range;
 		      if (range) {
 				var parts = range.replace(/bytes=/, "").split("-");
