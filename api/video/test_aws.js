@@ -69,6 +69,7 @@ _f['P_0'] = function(cbk) {
 		});
 	});	
 };
+/*
 _f['P_A'] = function(cbk) {
 	pkg.fs.exists(tmp_folder, function(exists) {
 		if (!exists) {
@@ -184,7 +185,7 @@ _f['P_I2'] = function(cbk) {
 		cbk(false)
 	}
 };
-
+*/
 CP.serial(
 	_f,
 	function(results) {
