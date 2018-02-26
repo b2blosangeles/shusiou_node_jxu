@@ -70,8 +70,6 @@ _f['P_0'] = function(cbk) {
 	});	
 };
 _f['P_A'] = function(cbk) {
-	//cbk('====niu===');
-	//return true;
 	pkg.fs.exists(tmp_folder, function(exists) {
 		if (!exists) {
 			var folderP = require(env.site_path + '/api/inc/folderP/folderP');
