@@ -12,7 +12,7 @@ let source_path = '/var/img/',
     space_id = 'shusiou-d-01',
     space_url = 'https://shusiou-d-01.nyc3.digitaloceanspaces.com/', 
     space_dir = 'shusiou/' + source_file + '/',
-    trunkSize = 512 * 1024 * 10;
+    trunkSize = 512 * 1024;
 
 let tm = new Date().getTime();
 
@@ -53,7 +53,7 @@ var writeInfo = function(v, cbk) {
 	 else    cbk(v);
      });		
 }
-_f['P_0'] = function(cbk) {
+_f['ANALYZE_SOURCE'] = function(cbk) {
 	let buff = new Buffer(100);
 	pkg.fs.stat(source_path + source_file, function(err, stat) {
 		pkg.fs.open(source_path + source_file, 'r', function(err, fd) {
@@ -69,8 +69,8 @@ _f['P_0'] = function(cbk) {
 		});
 	});	
 };
-/*
-_f['P_A'] = function(cbk) {
+
+_f['CREATE_DIR'] = function(cbk) {
 	pkg.fs.exists(tmp_folder, function(exists) {
 		if (!exists) {
 			var folderP = require(env.site_path + '/api/inc/folderP/folderP');
@@ -88,7 +88,7 @@ _f['P_A'] = function(cbk) {
 		}
 	});	
 };
-
+/*
 _f['P_I'] = function(cbk) { 
 	pkg.fs.readdir( tmp_folder, (err, files) => {
 		var f = [];
