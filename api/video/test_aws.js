@@ -98,7 +98,7 @@ _f['P_I'] = function(cbk) {
 		cbk(f);
 	});	
 };	
-/*
+
 _f['P_I0'] = function(cbk) { 
 	pkg.request(space_url +  space_dir + '_info.txt', 
 	function (err, res, body) {
@@ -186,7 +186,7 @@ _f['P_I2'] = function(cbk) {
 		cbk(false)
 	}
 };
-*/
+
 CP.serial(
 	_f,
 	function(results) {
