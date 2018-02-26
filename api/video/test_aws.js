@@ -88,7 +88,7 @@ _f['CREATE_DIR'] = function(cbk) {
 		}
 	});	
 };
-/*
+
 _f['P_I'] = function(cbk) { 
 	pkg.fs.readdir( tmp_folder, (err, files) => {
 		var f = [];
@@ -98,6 +98,7 @@ _f['P_I'] = function(cbk) {
 		cbk(f);
 	});	
 };	
+/*
 _f['P_I0'] = function(cbk) { 
 	pkg.request(space_url +  space_dir + '_info.txt', 
 	function (err, res, body) {
