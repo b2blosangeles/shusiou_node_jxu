@@ -127,7 +127,7 @@ _f['P_I1'] = function(cbk) {
 					var duration = buffer.readUInt32BE(start + 4, 4);
 					var movieLength = Math.floor(duration/timeScale);
 					var v = {filesize:stat.size,time_scale:timeScale, trunksize: trunkSize,
-						duration: duration, length:movieLength, status:0};
+						duration: duration, length:movieLength, x:[], status:0};
 					writeInfo(v, cbk);
 				});
 			});
