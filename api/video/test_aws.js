@@ -128,7 +128,7 @@ _f['P_I1'] = function(cbk) {
 					var movieLength = Math.floor(duration/timeScale);
 					var v = {filesize:stat.size,time_scale:timeScale, trunksize: trunkSize,
 						duration: duration, length:movieLength, status:0};
-					cbk(v, cbk);
+					writeInfo(v, cbk);
 				});
 			});
 		});
