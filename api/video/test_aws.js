@@ -113,7 +113,7 @@ _f['P_I0'] = function(cbk) {
 		}
 	});		
 };	
-/*
+
 _f['P_I1'] = function(cbk) { 
 	if (CP.data['P_I0'] !== false) {
 		cbk(CP.data['P_I0']);
@@ -135,6 +135,7 @@ _f['P_I1'] = function(cbk) {
 
 	} 
 };
+/*
 _f['P_I2'] = function(cbk) { 
 	if (CP.data['P_I1'] !== false) {
 		var x = CP.data['P_I1'].x;
