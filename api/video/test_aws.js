@@ -12,7 +12,7 @@ let source_path = '/var/img/',
     space_id = 'shusiou-d-01',
     space_url = 'https://shusiou-d-01.nyc3.digitaloceanspaces.com/', 
     space_dir = 'shusiou/' + source_file + '/',
-    trunkSize = 512 * 1024;
+    trunkSize = 512 * 1024 * 2;
 
 let tm = new Date().getTime();
 
