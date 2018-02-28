@@ -78,8 +78,8 @@ _f['CREATE_DIR'] = function(cbk) {
 			fp.build(tmp_folder, () => {
 				let ts_file =  source_file.replace(/\.mp4$/, '.ts');
 				pkg.exec('cd ' + source_path + ' && ffmpeg -i ' + source_file +
-					 ' -c copy -bsf:v h264_mp4toannexb -f mpegts ' +  ts_fil +
-					 ' && split --bytes=' + trunkSize + ' ' +  ts_fil +  ' -d ' + tmp_folder, 
+					 ' -c copy -bsf:v h264_mp4toannexb -f mpegts ' +  ts_file +
+					 ' && split --bytes=' + trunkSize + ' ' +  ts_file +  ' -d ' + tmp_folder, 
 				function(error, stdout, stderr) {
 					if (error) cbk(false);
 					else if (stdout) cbk(true);
