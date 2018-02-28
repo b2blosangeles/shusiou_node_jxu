@@ -76,6 +76,7 @@ CP.serial(
 						ffn = space_url + space_dir + fn[i];
 					}
 					cbk(ffn);
+					return true;
 					pkg.request(ffn, 
 					function (error, response, body) {})
 					.on('data', function(data) {
