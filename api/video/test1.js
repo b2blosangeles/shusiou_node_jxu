@@ -7,7 +7,7 @@ a.pipe(res);
 res.writeHead(200, {'Content-Type': 'video/mp4' });
 
 var d = Buffer.from('');
-pkg.request('https://shusiou-d-01.nyc3.digitaloceanspaces.com/shusiou/video.mp4/aa', 
+pkg.request('https://shusiou-d-01.nyc3.digitaloceanspaces.com/shusiou/video.mp4/jxu.mp4', 
 function (error, response, body) {})
 .on('data', function(data) {
 	d = Buffer.concat([d, Buffer.from(data)]);
