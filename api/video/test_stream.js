@@ -58,7 +58,8 @@ CP.serial(
 		for (var i = sidx; i < eidx; i++) {
 			fn.push(cfg.x[i]);	
 		}
-		
+		cbk(fn);
+		return true;
 		//res.writeHead(206, {'Content-Range': 'bytes ' + start + '-' + end + '/' + cfg.filesize, 
 		//    'Accept-Ranges': 'bytes', 'Content-Type': 'video/mp4' });			
 		
