@@ -82,10 +82,13 @@ CP.serial(
 		CP1.parallel(
 			_f1,
 			function(data) {
+				res.send(data);
+				/*
 				for (var i = 0; i < fn.length; i++) {
 					a.write(CP1.data['P_' + i]);
 				}	
 				a.end();
+				*/
 			},
 			6000
 		);
