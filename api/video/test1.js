@@ -12,7 +12,7 @@ function (error, response, body) {})
 .on('data', function(data) {
 	d = Buffer.concat([d, Buffer.from(data)]);
 }).on('end', function() {
-	a.write(CP1.data['P_' + i]);
+	a.write(d);
 	a.end();
 });
 return true;
