@@ -34,76 +34,15 @@ CP.serial(
 		a = new stream.PassThrough();
 		a.pipe(res);
 		
-		var fn = [];
-		var range = req.headers.range;
-		if (!start) {
-			var start = 0, end = 0, maxChunk = cfg.trunksize, total = cfg.filesize;
-			total = 1024 * 1024;
-		}	
-		if (range) {
-			// var total = cfg.filesize; 
-			var total = 1024 * 1024; 
-			var parts = range.replace(/bytes=/, "").split("-");
-			var partialstart = parts[0]; var partialend;
-			  partialend =  parts[1];
-			var start = parseInt(partialstart, 10);
-			var end = (partialend) ? parseInt(partialend, 10) : (total-1);
-			var chunksize = (end-start)+1;
-			if (chunksize > maxChunk) {
-			  end = start + maxChunk - 1;
-			  chunksize = (end - start) + 1;
-			} 
-		}
 		
-		var sidx = Math.floor(start / maxChunk); 
-		var eidx = Math.min(Math.ceil(end / maxChunk), sidx+1); 
-		start = sidx * maxChunk; end = eidx * maxChunk;
-		for (var i = sidx; i < eidx; i++) {
-			fn.push(cfg.x[i]);	
-		}
-		fn = ['aa'];
-		res.writeHead(206, {'Content-Range': 'bytes ' + 0 + '-' + total + '/' + total, 
-		    'Accept-Ranges': 'bytes', 'Content-Type': 'video/mp4' });			
-		
-		var CP1 = new pkg.crowdProcess();
-		var _f1 = {}; 
-		
-		for (var i = 0; i < 1; i++) {
-		//for (var i = 0; i < fn.length; i++) {
-			_f1['P_' + i] = (function(i) {
-				return function(cbk1) {
-					let d = Buffer.from(''), ffn = '';
-				//	if (fn[i] == 'aa') {
-						ffn = space_url + space_dir + 'jxu.mp4';
-				//	} else {
-				//		ffn = space_url + space_dir + fn[i];
-				//	}
-				//	cbk1(ffn);
-				//	return true;
-					pkg.request('https://shusiou-d-01.nyc3.digitaloceanspaces.com/shusiou/video.mp4/jxu.mp4', 
-					function (error, response, body) {})
-					.on('data', function(data) {
-						d = Buffer.concat([d, Buffer.from(data)]);
-					}).on('end', function() {
-						cbk1(d);
-					});
-				}
-			})(i);	
-		}
-
-		CP1.parallel(
-			_f1,
-			function(data) {
-			//	res.send(data);
-			//	return true;
-				for (var i = 0; i < 1; i++) {
-				// for (var i = 0; i < fn.length; i++) {
-					a.write(CP1.data['P_' + i]);
-				}	
-				a.end();
-			},
-			6000
-		);
+		pkg.request('https://shusiou-d-01.nyc3.digitaloceanspaces.com/shusiou/video.mp4/jxu.mp4', 
+		function (error, response, body) {})
+		.on('data', function(data) {
+			d = Buffer.concat([d, Buffer.from(data)]);
+		}).on('end', function() {
+			a.write(CP1.data['P_' + i]);
+			a.end();
+		});
 		
 	},
 	300000
