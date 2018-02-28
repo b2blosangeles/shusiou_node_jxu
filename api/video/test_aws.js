@@ -138,7 +138,7 @@ _f['P_I1'] = function(cbk) {
 
 	} 
 };
-/*
+
 _f['P_I2'] = function(cbk) { 
 	if (CP.data['P_I1'] !== false) {
 		var x = CP.data['P_I1'].x;
@@ -190,7 +190,7 @@ _f['P_I2'] = function(cbk) {
 		cbk(false)
 	}
 };
-*/
+
 CP.serial(
 	_f,
 	function(results) {
