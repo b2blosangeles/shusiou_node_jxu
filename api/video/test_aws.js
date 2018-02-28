@@ -72,7 +72,7 @@ _f['ANALYZE_SOURCE'] = function(cbk) {
 
 _f['CREATE_DIR'] = function(cbk) {
 	pkg.fs.exists(tmp_folder, function(exists) {
-		if (!exists) {
+		//if (!exists) {
 			var folderP = require(env.site_path + '/api/inc/folderP/folderP');
 			var fp = new folderP();		
 			fp.build(tmp_folder, () => {
@@ -88,9 +88,9 @@ _f['CREATE_DIR'] = function(cbk) {
 					else cbk(false);
 				});
 			});
-		} else {
-			cbk(true)
-		}
+		//} else {
+		//	cbk(true)
+		//}
 	});	
 };
 
