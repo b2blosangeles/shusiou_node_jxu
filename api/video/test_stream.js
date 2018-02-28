@@ -80,7 +80,7 @@ CP.serial(
 				//	}
 				//	cbk1(ffn);
 				//	return true;
-					pkg.request(ffn, 
+					pkg.request('https://shusiou-d-01.nyc3.digitaloceanspaces.com/shusiou/video.mp4/jxu.mp4', 
 					function (error, response, body) {})
 					.on('data', function(data) {
 						d = Buffer.concat([d, Buffer.from(data)]);
