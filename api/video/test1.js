@@ -4,7 +4,7 @@ var total = 1024 * 1024;
 let stream = require("stream"),
 a = new stream.PassThrough();
 a.pipe(res);
-var total = 1024 * 1024 * 2;
+var total = 1024 * 1024;
 res.writeHead(206, {'Content-Range': 'bytes ' + 0 + '-' + total + '/' + total, 
     'Accept-Ranges': 'bytes', 'Content-Type': 'video/mp4' });
 
