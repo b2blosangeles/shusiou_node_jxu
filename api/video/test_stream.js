@@ -58,8 +58,8 @@ CP.serial(
 			fn.push(cfg.x[i]);	
 		}
 		
-//		res.writeHead(206, {'Content-Range': 'bytes ' + start + '-' + end + '/' + cfg.filesize, 
-//		    'Accept-Ranges': 'bytes', 'Content-Type': 'video/mp4' });			
+		res.writeHead(206, {'Content-Range': 'bytes ' + start + '-' + end + '/' + cfg.filesize, 
+		    'Accept-Ranges': 'bytes', 'Content-Type': 'video/mp4' });			
 		
 		var CP1 = new pkg.crowdProcess();
 		var _f1 = {}; 
@@ -67,8 +67,13 @@ CP.serial(
 		for (var i = 0; i < fn.length; i++) {
 			_f1['P_' + i] = (function(i) {
 				return function(cbk1) {
-					let d = Buffer.from('');
-					pkg.request(space_url + space_dir + fn[i], 
+					let d = Buffer.from(''), ffn = '';
+					if (fn[i] == 'aa') {
+						ffn = '/tmp/jxu.mp4';
+					} else {
+						ffn = (space_url + space_dir + fn[i];
+					}
+					pkg.request(ffn, 
 					function (error, response, body) {})
 					.on('data', function(data) {
 						d = Buffer.concat([d, Buffer.from(data)]);
@@ -82,13 +87,10 @@ CP.serial(
 		CP1.parallel(
 			_f1,
 			function(data) {
-				res.send(data);
-				/*
 				for (var i = 0; i < fn.length; i++) {
 					a.write(CP1.data['P_' + i]);
 				}	
 				a.end();
-				*/
 			},
 			6000
 		);
