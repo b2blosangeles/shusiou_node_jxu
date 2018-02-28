@@ -59,8 +59,8 @@ CP.serial(
 			fn.push(cfg.x[i]);	
 		}
 		fn = ['aa'];
-		res.writeHead(206, {'Content-Range': 'bytes ' + start + '-' + end + '/' + total, 
-		    'Accept-Ranges': 'bytes', 'Content-Type': 'video/mp4' });			
+	//	res.writeHead(206, {'Content-Range': 'bytes ' + start + '-' + end + '/' + total, 
+	//	    'Accept-Ranges': 'bytes', 'Content-Type': 'video/mp4' });			
 		
 		var CP1 = new pkg.crowdProcess();
 		var _f1 = {}; 
@@ -75,8 +75,8 @@ CP.serial(
 				//	} else {
 				//		ffn = space_url + space_dir + fn[i];
 				//	}
-				//	cbk1(ffn);
-				//	return true;
+					cbk1(ffn);
+					return true;
 					pkg.request(ffn, 
 					function (error, response, body) {})
 					.on('data', function(data) {
@@ -91,8 +91,8 @@ CP.serial(
 		CP1.parallel(
 			_f1,
 			function(data) {
-			//	res.send(data);
-			//	return true;
+				res.send(data);
+				return true;
 				for (var i = 0; i < fn.length; i++) {
 					a.write(CP1.data['P_' + i]);
 				}	
