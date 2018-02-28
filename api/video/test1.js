@@ -5,7 +5,7 @@ let stream = require("stream"),
 a = new stream.PassThrough();
 a.pipe(res);
 
-cd = Buffer.from('');
+var d = Buffer.from('');
 pkg.request('https://shusiou-d-01.nyc3.digitaloceanspaces.com/shusiou/video.mp4/jxu.mp4', 
 function (error, response, body) {})
 .on('data', function(data) {
