@@ -70,11 +70,11 @@ CP.serial(
 			_f1['P_' + i] = (function(i) {
 				return function(cbk1) {
 					let d = Buffer.from(''), ffn = '';
-					if (fn[i] == 'aa') {
-						ffn = '/tmp/jxu.mp4';
-					} else {
-						ffn = space_url + space_dir + fn[i];
-					}
+				//	if (fn[i] == 'aa') {
+						ffn = space_url + space_dir + 'kxu.mp4';
+				//	} else {
+				//		ffn = space_url + space_dir + fn[i];
+				//	}
 					cbk1(ffn);
 					return true;
 					pkg.request(ffn, 
