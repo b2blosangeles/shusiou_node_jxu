@@ -77,8 +77,6 @@ _f['CREATE_DIR'] = function(cbk) {
 			var fp = new folderP();		
 			fp.build(tmp_folder, () => {
 				let ts_file =  source_file.replace(/\.mp4$/, '.ts');
-				cbk(ts_file);
-				return true;
 				pkg.exec('cd ' + source_path + ' && ffmpeg -i ' + source_file +
 					 ' -c copy -bsf:v h264_mp4toannexb -f mpegts ' +  ts_file +
 					 ' && split --bytes=' + trunkSize + ' ' +  ts_file +  ' -d ' + tmp_folder, 
