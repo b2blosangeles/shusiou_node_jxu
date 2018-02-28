@@ -33,7 +33,9 @@ CP.serial(
 		let stream = require("stream"),
 		a = new stream.PassThrough();
 		a.pipe(res);
-		
+		var total = 1024 * 1024;
+		res.writeHead(206, {'Content-Range': 'bytes ' + 0 + '-' + total + '/' + total, 
+		    'Accept-Ranges': 'bytes', 'Content-Type': 'video/mp4' });	
 		
 		pkg.request('https://shusiou-d-01.nyc3.digitaloceanspaces.com/shusiou/video.mp4/jxu.mp4', 
 		function (error, response, body) {})
