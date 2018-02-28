@@ -30,9 +30,9 @@ CP.serial(
 	_f,
 	function(results) {
 		var cfg = CP.data.P_I0;
-		let stream = require("stream"),
-		a = new stream.PassThrough();
-		a.pipe(res);
+		//let stream = require("stream"),
+		//a = new stream.PassThrough();
+		//a.pipe(res);
 		
 		var fn = [];
 		var range = req.headers.range;
@@ -75,7 +75,7 @@ CP.serial(
 					} else {
 						ffn = space_url + space_dir + fn[i];
 					}
-					cbk(ffn);
+					cbk1(ffn);
 					return true;
 					pkg.request(ffn, 
 					function (error, response, body) {})
