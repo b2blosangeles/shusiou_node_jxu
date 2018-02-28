@@ -38,7 +38,8 @@ CP.serial(
 		var range = req.headers.range;
 		if (!start) var start = 0, end = 0, maxChunk = cfg.trunksize, total = cfg.filesize;
 		if (range) {
-			var total = cfg.filesize; 
+			// var total = cfg.filesize; 
+			var total = 1024 * 1024; 
 			var parts = range.replace(/bytes=/, "").split("-");
 			var partialstart = parts[0]; var partialend;
 			  partialend =  parts[1];
