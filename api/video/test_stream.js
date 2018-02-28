@@ -71,7 +71,7 @@ CP.serial(
 					if (fn[i] == 'aa') {
 						ffn = '/tmp/jxu.mp4';
 					} else {
-						ffn = (space_url + space_dir + fn[i];
+						ffn = space_url + space_dir + fn[i];
 					}
 					pkg.request(ffn, 
 					function (error, response, body) {})
