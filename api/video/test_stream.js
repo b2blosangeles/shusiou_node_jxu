@@ -37,25 +37,26 @@ CP.serial(
 		var fn = [];
 		var range = req.headers.range;
 		
-		if (!start) {
-			var start = 0 || req.param('start'), end = 0 || req.param('end'), maxChunk = cfg.trunksize, total = cfg.filesize;
-		}
-		if (range) {
-			var total = cfg.filesize; 
-			var parts = range.replace(/bytes=/, "").split("-");
-			var partialstart = parts[0]; var partialend;
-			  partialend =  parts[1];
-			var start = parseInt(partialstart, 10);
-			var end = (partialend) ? parseInt(partialend, 10) : (total-1);
-			var chunksize = (end-start)+1;
-			if (chunksize > maxChunk) {
-			  end = start + maxChunk - 1;
-			  chunksize = (end - start) + 1;
-			} 
+		if (req.param('start')) {
+			var start = req.param('start'), end = req.param('end'), maxChunk = cfg.trunksize, total = cfg.filesize;
 		} else {
-			var start = 0, end = 0, maxChunk = cfg.trunksize, total = cfg.filesize;
+			if (!start) {
+				var start = 0 || req.param('start'), end = 0 || req.param('end'), maxChunk = cfg.trunksize, total = cfg.filesize;
+			}
+			if (range) {
+				var total = cfg.filesize; 
+				var parts = range.replace(/bytes=/, "").split("-");
+				var partialstart = parts[0]; var partialend;
+				  partialend =  parts[1];
+				var start = parseInt(partialstart, 10);
+				var end = (partialend) ? parseInt(partialend, 10) : (total-1);
+				var chunksize = (end-start)+1;
+				if (chunksize > maxChunk) {
+				  end = start + maxChunk - 1;
+				  chunksize = (end - start) + 1;
+				} 
+			} 
 		}
-		
 		var sidx = Math.floor(start / maxChunk); 
 		var eidx = Math.min(Math.ceil(end / maxChunk), sidx+1); 
 		start = sidx * maxChunk; end = eidx * maxChunk;
