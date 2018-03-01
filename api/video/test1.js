@@ -21,7 +21,7 @@ function (error, response, body) {})
 	on('data', function(data1) {
 		d = Buffer.concat([d, Buffer.from(data1)]);
 	}).on('end', function() {	
-		pkg.request('https://shusiou-d-01.nyc3.digitaloceanspaces.com/shusiou/video.mp4/aa', 
+		pkg.request('https://shusiou-d-01.nyc3.digitaloceanspaces.com/shusiou/video.mp4/ac', 
 		function (error2, response2, body2) {}).
 		on('data', function(data2) {
 			d = Buffer.concat([d, Buffer.from(data2)]);
