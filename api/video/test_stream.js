@@ -61,7 +61,7 @@ CP.serial(
 			fn.push(cfg.x[i]);	
 		}
 		fn = ['aa'];
-		res.writeHead(206, {'Content-Range': 'bytes ' + 0 + '-' + total + '/' + total, 
+		res.writeHead(206, {'Content-Range': 'bytes ' + 0 + '-' + end + '/' + total, 
 		    'Accept-Ranges': 'bytes', 'Content-Type': 'video/mp4' });			
 		
 		var CP1 = new pkg.crowdProcess();
