@@ -1,6 +1,5 @@
 var total = 1024*1024;
-var range = req.headers.range;
-if ((req.headers) && (range)) {
+if ((req.headers) && (req.headers.range)) {
         res.writeHead(206, {'Content-Range': 'bytes ' + 0 + '-' + (total-1) + '/' + total, 
          'Accept-Ranges': 'bytes', 'Content-Type': 'video/mp4' });
 }                              
