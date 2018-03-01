@@ -15,7 +15,7 @@ function (error, response, body) {})
 .on('data', function(data) {
 	d = Buffer.concat([d, Buffer.from(data)]);
 }).on('end', function() {
-	
+	/*
 	pkg.request('https://shusiou-d-01.nyc3.digitaloceanspaces.com/shusiou/v/output001.mp4', 
 	function (error1, response1, body1) {}).
 	on('data', function(data1) {
@@ -30,8 +30,8 @@ function (error, response, body) {})
 			a.end();
 		});
 	});
-	
-	// a.write(d);
-	// a.end();
+	*/
+	 a.write(d);
+	 a.end();
 });
 return true;
