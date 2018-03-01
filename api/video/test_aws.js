@@ -76,10 +76,11 @@ _f['CREATE_DIR'] = function(cbk) {
 			var folderP = require(env.site_path + '/api/inc/folderP/folderP');
 			var fp = new folderP();		
 			fp.build(tmp_folder, () => {
-				let ts_file =  source_file.replace(/\.mp4$/, '.ts');
-				pkg.exec('cd ' + source_path + ' && ffmpeg -i ' + source_file +
-					 ' -c copy -bsf:v h264_mp4toannexb -f mpegts ' +  ts_file +
-					 ' -y && split -b ' + trunkSize + ' ' +  ts_file +  ' ' + tmp_folder + '', 
+				// let ts_file =  source_file.replace(/\.mp4$/, '.ts');
+				// pkg.exec('cd ' + source_path + ' && ffmpeg -i ' + source_file +
+				//	 ' -c copy -bsf:v h264_mp4toannexb -f mpegts ' +  ts_file +
+				//	 ' -y && split -b ' + trunkSize + ' ' +  ts_file +  ' ' + tmp_folder + '', 
+				pkg.exec('cd ' + source_path + ' && split -b ' + trunkSize + ' ' +  source_file +  ' ' + tmp_folder + '', 					 
 				function(error, stdout, stderr) {
 					if (error) cbk(false);
 					else if (stdout) cbk(true);
