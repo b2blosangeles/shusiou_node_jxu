@@ -41,7 +41,6 @@ CP.serial(
 		}	
 		if (range) {
 			var total = cfg.filesize; 
-			var total = 1024 * 1024; 
 			var parts = range.replace(/bytes=/, "").split("-");
 			var partialstart = parts[0]; var partialend;
 			  partialend =  parts[1];
