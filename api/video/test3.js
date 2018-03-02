@@ -17,7 +17,7 @@ function (error, response, body) {})
 */
     var x = pkg.request('https://shusiou-d-01.nyc3.digitaloceanspaces.com/shusiou/v/output001.mp4');
     req.pipe(x)
-    x.pipe(resp)
+    x.pipe(res)
 
 
 
