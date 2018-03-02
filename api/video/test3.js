@@ -12,7 +12,7 @@ function (error, response, body) {})
 }).on('end', function() {
 	// a.write(d);
 	 a.end();
-}).pipe(res);
+});
 
 /*
 pkg.request
