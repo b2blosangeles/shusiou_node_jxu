@@ -4,8 +4,10 @@ var _f = {}, fn = ['output000.mp4', 'output001.mp4'];
 for (var i = 0; i < fn.length; i++) {
 	_f['P_' + i] = (function(i) {
 		return function(cbk) {
+			//cbk(i);
+			//return truel
 			let url = 'https://shusiou-d-01.nyc3.digitaloceanspaces.com/shusiou/v/' + fn[i];
-			let file = pkg.fs.createWriteStream('var/img/M_' + i + '.mp4');
+			let file = pkg.fs.createWriteStream('/var/img/M_' + i + '.mp4');
 			file.on('finish', function() {
 				file.close(function() {
 					cbk(fn[i]);
