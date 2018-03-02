@@ -15,11 +15,11 @@ function (error, response, body) {})
 	 a.end();
 });
 */
-    var x = pkg.request('https://shusiou-d-01.nyc3.digitaloceanspaces.com/shusiou/v/output001.mp4');
-    req.pipe(x)
-    x.pipe(res)
+//    var x = pkg.request('https://shusiou-d-01.nyc3.digitaloceanspaces.com/shusiou/v/output001.mp4');
+//    req.pipe(x)
+ //   x.pipe(res)
 
-
+pkg.request('https://shusiou-d-01.nyc3.digitaloceanspaces.com/shusiou/v/output001.mp4').pipe(res);
 
 /*
 pkg.request
