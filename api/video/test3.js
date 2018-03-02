@@ -21,7 +21,7 @@ _f['PULLING'] = function(cbk) {
 				let file = pkg.fs.createWriteStream('/var/img/M_' + i + '.mp4');
 				file.on('finish', function() {
 					file.close(function() {
-						let cmd = 'cd ' + dirn + ' && ffmpeg -i M_' + i + '.mp4 ' +
+						let cmd = 'cd ' + dirn + ' && ffmpeg -f concat -safe 0 -i M_' + i + '.mp4 ' +
 						    ' -c copy -bsf:v h264_mp4toannexb -f mpegts  M_' + i + '.ts -y ' +
 						    ' && rm M_' + i + '.mp4';
 						pkg.exec(cmd, 
