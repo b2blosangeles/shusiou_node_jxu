@@ -18,10 +18,12 @@ _f['PULLING'] = function(cbk) {
 		_f1['P_' + i] = (function(i) {
 			return function(cbk1) {
 				let url = 'https://shusiou-d-01.nyc3.digitaloceanspaces.com/shusiou/v/' + fn[i];
-				let file = pkg.fs.createWriteStream('/var/img/M_' + i + '.mp4');
+				let file = pkg.fs.createWriteStream('/var/img/M_' + i + '.ts');
 				file.on('finish', function() {
 					file.close(function() {
-						let cmd = 'cd ' + dirn + ' && ffmpeg -i M_' + i + '.mp4  -c copy -bsf:v h264_mp4toannexb -f mpegts  M_' + i + '.ts -y';
+						let cmd = 'cd ' + dirn + ' && ffmpeg -i M_' + i + '.mp4 ' +
+						    ' -c copy -bsf:v h264_mp4toannexb -f mpegts  M_' + i + '.ts -y ' +
+						    ' && rm M_' + i + '.mp4';
 						pkg.exec(cmd, 
 							function(error, stdout, stderr) {
 								cbk1(fn[i]);;
