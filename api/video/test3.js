@@ -3,14 +3,14 @@ a = new stream.PassThrough();
 a.pipe(res);
 
 var total = 1024*1024;
-//var d = Buffer.from('');
+var d = Buffer.from('');
 pkg.request('https://shusiou-d-01.nyc3.digitaloceanspaces.com/shusiou/v/output001.mp4', 
 function (error, response, body) {})
 .on('data', function(data) {
-	// d = Buffer.concat([d, Buffer.from(data)]);
-	a.write(Buffer.from(data));
+	d = Buffer.concat([d, Buffer.from(data)]);
+	//a.write(Buffer.from(data));
 }).on('end', function() {
-	// a.write(d);
+	a.write(d);
 	 a.end();
 });
 
