@@ -8,7 +8,7 @@ pkg.request('https://shusiou-d-01.nyc3.digitaloceanspaces.com/shusiou/v/output00
 function (error, response, body) {})
 .on('data', function(data) {
 	// d = Buffer.concat([d, Buffer.from(data)]);
-	a.write(Buffer.from(data)]);
+	a.write(Buffer.from(data));
 }).on('end', function() {
 	// a.write(d);
 	 a.end();
