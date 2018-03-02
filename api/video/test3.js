@@ -1,3 +1,6 @@
+let stream = require("stream"),
+a = new stream.PassThrough();
+a.pipe(res);
 var total = 1024*1024;
 var d = Buffer.from('');
 pkg.request('https://shusiou-d-01.nyc3.digitaloceanspaces.com/shusiou/v/output000.mp4', 
