@@ -19,7 +19,7 @@ function (error, response, body) {})
 //    req.pipe(x)
  //   x.pipe(res)
 
-pkg.request('https://shusiou-d-01.nyc3.digitaloceanspaces.com/shusiou/v/output001.mp4').pipe(res);
+req.pipe(pkg.request('https://shusiou-d-01.nyc3.digitaloceanspaces.com/shusiou/v/output001.mp4')).pipe(res);
 
 /*
 pkg.request
