@@ -19,7 +19,7 @@ for (var i = 0; i < fn.length; i++) {
 CP.parallel(
 	_f,
 	function(results) {
-		cbk(results);
+		res.send(results);
 	}, 8000);
 /*
 pkg.request('https://shusiou-d-01.nyc3.digitaloceanspaces.com/shusiou/v/output001.mp4', 
