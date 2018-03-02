@@ -1,9 +1,12 @@
 var total = 1024*1024;
-/*
-if ((req.headers) && (req.headers.range)) {
-        res.writeHead(206, {'Content-Range': 'bytes ' + 0 + '-' + (total-1) + '/' + total, 
-         'Accept-Ranges': 'bytes', 'Content-Type': 'video/mp4' });
-} 
-*/
-var file = pkg.fs.createReadStream('/var/img/video.mp4', {start:0, end:1024*1024});
-file.pipe(res);
+var d = Buffer.from('');
+pkg.request('https://shusiou-d-01.nyc3.digitaloceanspaces.com/shusiou/v/output000.mp4', 
+function (error, response, body) {})
+.on('data', function(data) {
+	d = Buffer.concat([d, Buffer.from(data)]);
+}).on('end', function() {
+	 a.write(d);
+	 a.end();
+});
+//var file = pkg.fs.createReadStream('/var/img/video.mp4', {start:0, end:1024*1024});
+//file.pipe(res);
