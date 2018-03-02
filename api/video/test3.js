@@ -1,11 +1,11 @@
 let CP = new pkg.crowdProcess();
 let _f = {}, fn = ['output000.mp4', 'output001.mp4']; 
-let dirn = '/tmp/img';
+let dirn = '/tmp/img/';
 
 _f['WRITE_TXT'] = function(cbk) {
 	var str = '';
 	for (var i = 0; i < fn.length; i++) {
-		str += "file '" + 'M_' + i + ".mp4'\n";
+		str += "file '" + dirn + 'M_' + i + ".mp4'\n";
 	}
 	pkg.fs.writeFile(dirn + 'engine.data', str, function(err) {	    
 		cbk('WRITE_TXT:' + dirn + 'engine.data');
@@ -36,7 +36,7 @@ _f['PULLING'] = function(cbk) {
 	}, 6000);
 }
 _f['FFMPEG'] = function(cbk) {
-	let cmd = 'cd ' + dirn + ' && ffmpeg -f concat -i engine.data -codec copy cache.mp4 -y';
+	let cmd = 'cd ' + dirn + ' && ffmpeg -f concat -i ' + dirn + 'engine.data -codec copy cache.mp4 -y';
 	pkg.exec(cmd, 
 		function(error, stdout, stderr) {
 			cbk(cmd);
