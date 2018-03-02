@@ -1,6 +1,6 @@
-//let stream = require("stream"),
-//a = new stream.PassThrough();
-//a.pipe(res);
+let stream = require("stream"),
+a = new stream.PassThrough();
+a.pipe(res);
 
 var total = 1024*1024;
 //var d = Buffer.from('');
