@@ -14,7 +14,6 @@ _f['WRITE_TXT'] = function(cbk) {
 _f['PULLING'] = function(cbk) {
 	var CP1 = new pkg.crowdProcess();
 	var _f1 = {}; 
-
 	for (var i = 0; i < fn.length; i++) {
 		_f1['P_' + i] = (function(i) {
 			return function(cbk1) {
@@ -33,7 +32,7 @@ _f['PULLING'] = function(cbk) {
 	CP1.parallel(
 	_f1,
 	function(results) {
-		cbk.send(results);
+		cbk(results);
 	}, 6000);
 }
 CP.serial(_f,
