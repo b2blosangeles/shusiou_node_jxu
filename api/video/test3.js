@@ -35,6 +35,13 @@ _f['PULLING'] = function(cbk) {
 		cbk(results);
 	}, 6000);
 }
+_f['FFMPEG'] = function(cbk) {
+	let cmd = 'cd ' + dirn + ' && ffmpeg -f concat -i engine.data -codec copy cache.mp4 -y';
+	pkg.exec(cmd, 
+		function(error, stdout, stderr) {
+			cbk(cmd);
+	});
+};
 CP.serial(_f,
 	function(results) {
 		res.send(results);
