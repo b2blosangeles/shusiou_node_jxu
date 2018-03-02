@@ -5,7 +5,7 @@ let dirn = '/var/img/';
 _f['WRITE_TXT'] = function(cbk) {
 	var str = '';
 	for (var i = 0; i < fn.length; i++) {
-		str += "file '" + dirn + 'M_' + i + ".mp4'\n";
+		str += "file '" + dirn + 'M_' + i + ".ts'\n";
 	}
 	pkg.fs.writeFile(dirn + 'engine.data', str, function(err) {	    
 		cbk('WRITE_TXT:' + dirn + 'engine.data');
@@ -18,7 +18,7 @@ _f['PULLING'] = function(cbk) {
 		_f1['P_' + i] = (function(i) {
 			return function(cbk1) {
 				let url = 'https://shusiou-d-01.nyc3.digitaloceanspaces.com/shusiou/v/' + fn[i];
-				let file = pkg.fs.createWriteStream('/var/img/M_' + i + '.ts');
+				let file = pkg.fs.createWriteStream('/var/img/M_' + i + '.mp4');
 				file.on('finish', function() {
 					file.close(function() {
 						let cmd = 'cd ' + dirn + ' && ffmpeg -i M_' + i + '.mp4 ' +
