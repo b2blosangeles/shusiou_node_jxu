@@ -1,6 +1,6 @@
 let CP = new pkg.crowdProcess();
 let _f = {}, fn = ['output000.mp4', 'output001.mp4']; 
-let dirn = '/tmp/img/';
+let dirn = '/var/img/';
 
 _f['WRITE_TXT'] = function(cbk) {
 	var str = '';
