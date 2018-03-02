@@ -11,11 +11,10 @@ _f['WRITE_TXT'] = function(cbk) {
 		cbk('niu');
 	}); 
 };
-CP1.serial(
-_f1,
-function(results) {
-	res.send(results);
-}, 8000);
+CP.serial(_f,
+	function(results) {
+		res.send(results);
+	}, 8000);
 return true;
 
 var CP1 = new pkg.crowdProcess();
