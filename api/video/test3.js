@@ -5,7 +5,7 @@ let dirn = '/var/img/';
 _f['WRITE_TXT'] = function(cbk) {
 	var str = '';
 	for (var i = 0; i < fn.length; i++) {
-		str += "file '" + dirn + 'M_' + i + ".ts'\n";
+		str += "file '" + dirn + 'M_' + i + ".mp4'\n";
 	}
 	pkg.fs.writeFile(dirn + 'engine.data', str, function(err) {	    
 		cbk('WRITE_TXT:' + dirn + 'engine.data');
@@ -21,12 +21,14 @@ _f['PULLING'] = function(cbk) {
 				let file = pkg.fs.createWriteStream('/var/img/M_' + i + '.mp4');
 				file.on('finish', function() {
 					file.close(function() {
+						cbk1(fn[i]);
+						return true;
 						let cmd = 'cd ' + dirn + ' && ffmpeg -f concat -safe 0 -i M_' + i + '.mp4 ' +
 						    ' -c copy -bsf:v h264_mp4toannexb -f mpegts  M_' + i + '.ts -y ' +
 						    ' && rm M_' + i + '.mp4';
 						pkg.exec(cmd, 
 							function(error, stdout, stderr) {
-								cbk1(fn[i]);;
+								cbk1(fn[i]);
 						});
 					});  
 				});
