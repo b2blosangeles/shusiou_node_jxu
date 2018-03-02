@@ -4,6 +4,7 @@ a.pipe(res);
 
 var total = 1024*1024;
 var d = Buffer.from('');
+/*
 pkg.request('https://shusiou-d-01.nyc3.digitaloceanspaces.com/shusiou/v/output001.mp4', 
 function (error, response, body) {})
 .on('data', function(data) {
@@ -13,6 +14,12 @@ function (error, response, body) {})
 	a.write(d);
 	 a.end();
 });
+*/
+    var x = pkg.request('https://shusiou-d-01.nyc3.digitaloceanspaces.com/shusiou/v/output001.mp4');
+    req.pipe(x)
+    x.pipe(resp)
+
+
 
 /*
 pkg.request
