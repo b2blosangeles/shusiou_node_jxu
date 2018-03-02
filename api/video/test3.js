@@ -1,5 +1,25 @@
+let CP = new pkg.crowdProcess();
+let _f = {}, fn = ['output000.mp4', 'output001.mp4']; 
+let dirn = '/tmp/img';
+
+_f['WRITE_TXT'] = function(cbk) {
+	var str = '';
+	for (var i = 0; i < fn.length; i++) {
+		str += "file '" + 'M_' + i + ".mp4'\n";
+	}
+	pkg.fs.writeFile(dirn + 'engine.data', str, function(err) {	    
+		cbk('niu');
+	}); 
+};
+CP1.serial(
+_f1,
+function(results) {
+	res.send(results);
+}, 8000);
+return true;
+
 var CP1 = new pkg.crowdProcess();
-var _f1 = {}, fn = ['output000.mp4', 'output001.mp4']; 
+var _f1 = {}; 
 
 for (var i = 0; i < fn.length; i++) {
 	_f1['P_' + i] = (function(i) {
