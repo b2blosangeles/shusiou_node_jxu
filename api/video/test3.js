@@ -50,7 +50,9 @@ _f['FFMPEG'] = function(cbk) {
 };
 CP.serial(_f,
 	function(results) {
-		res.send(results);
+		var file = pkg.fs.createReadStream('/var/img/video.mp4');
+		file.pipe(res);
+		// res.send(results);
 	}, 8000);
 return true;
 
