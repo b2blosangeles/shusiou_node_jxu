@@ -43,6 +43,7 @@ _f['PULLING'] = function(cbk) {
 		cbk(results);
 	}, 6000);
 }
+/*
 _f['FFMPEG'] = function(cbk) {
 	let cmd = 'cd ' + dirn + ' && ffmpeg -f concat -safe 0 -i ' + dirn + 'engine.data -codec copy cache.mp4 -y';
 	pkg.exec(cmd, 
@@ -50,6 +51,7 @@ _f['FFMPEG'] = function(cbk) {
 			cbk(cmd);
 	});
 };
+*/
 CP.serial(_f,
 	function(results) {
 		var file = pkg.fs.createReadStream('/var/img/cache.mp4');
