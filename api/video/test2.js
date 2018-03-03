@@ -5,6 +5,6 @@ if ((req.headers) && (req.headers.range)) {
          'Accept-Ranges': 'bytes', 'Content-Type': 'video/mp4' });
 } 
 */
-//var file = pkg.fs.createReadStream('/var/img/cache.mp4');
-//file.pipe(res);
-res.sendFile('/var/img/cache.mp4');
+var file = pkg.fs.createReadStream('/var/img/cache.mp4');
+file.pipe(res);
+// res.sendFile('/var/img/cache.mp4');
