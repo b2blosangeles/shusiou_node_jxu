@@ -80,7 +80,7 @@ _f['CREATE_DIR'] = function(cbk) {
 	//	ffmpeg -i video.mp4 -c copy -map 0 -segment_time 5 -reset_timestamps 1 -f segment _s/s_%d.mp4
 
 		pkg.exec('cd ' + source_path + ' && ffmpeg -i ' +  source_file + 
-			 ' -c copy -map 0 -segment_time 5 -reset_timestamps 0 -f segment ' + tmp_folder + 's_%d.mp4', 					 
+			 ' -c copy -map 0 -segment_time 5 -reset_timestamps 1 -f segment ' + tmp_folder + 's_%d.mp4', 					 
 		function(error, stdout, stderr) {
 			if (error) cbk(false);
 			else if (stdout) cbk(true);
