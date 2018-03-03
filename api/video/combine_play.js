@@ -5,7 +5,7 @@ let dirn = '/var/img/';
 _f['WRITE_TXT'] = function(cbk) {
 	var str = '';
 	for (var i = 0; i < fn.length; i++) {
-		str += "file '" + dirn + 'M_' + i + ".ts'\n";
+		str += "file '" + dirn + 'M_' + i + ".mp4'\n";
 	}
 	pkg.fs.writeFile(dirn + 'engine.data', str, function(err) {	    
 		cbk('WRITE_TXT:' + dirn + 'engine.data');
