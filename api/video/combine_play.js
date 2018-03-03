@@ -45,7 +45,8 @@ _f['PULLING'] = function(cbk) {;
 }
 
 _f['FFMPEG'] = function(cbk) {
-	let cmd = 'cd ' + dirn + ' && ffmpeg -f concat -safe 0 -i ' + dirn + 'engine.data -codec copy cache.mp4 -y';
+	// let cmd = 'cd ' + dirn + ' && ffmpeg -f concat -safe 0 -i ' + dirn + 'engine.data -codec copy cache.mp4 -y';
+	let cmd = 'cd ' + dirn + ' && ffmpeg -f concat -safe 0 -i ' + dirn + 'engine.data -c copy cache.mp4 -y';
 	pkg.exec(cmd, 
 		function(error, stdout, stderr) {
 			cbk(cmd);	
