@@ -7,4 +7,4 @@ if ((req.headers) && (req.headers.range)) {
 */
 //var file = pkg.fs.createReadStream('/var/img/cache.mp4');
 //file.pipe(res);
-res.sendFile('/var/img/cache.mp4');
+res.sendFile('/var/img/_s/video.mp4/s_80.mp4');
