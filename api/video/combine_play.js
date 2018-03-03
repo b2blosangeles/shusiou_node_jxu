@@ -55,12 +55,12 @@ _f['FFMPEG'] = function(cbk) {
 CP.serial(_f,
 	function(results) {
         res.writeHead(200, { 'Content-Type': 'video/mp4' });	
-		var file = pkg.fs.createReadStream('/var/img/cache.mp4');
-		file.pipe(res);
+	//	var file = pkg.fs.createReadStream('/var/img/cache.mp4');
+	//	file.pipe(res);
 		//var file = pkg.fs.createReadStream('/var/img/video.mp4');
 		//file.pipe(res);	
 	
-	//	res.sendFile('/var/img/cache.mp4');
+		res.sendFile('/var/img/cache.mp4');
 	}, 8000);
 return true;
 
