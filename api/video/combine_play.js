@@ -1,5 +1,5 @@
 let CP = new pkg.crowdProcess();
-let _f = {}, fn = ['output000.mp4', 'output001.mp4']; 
+let _f = {}, fn = ['s_17.mp4', 's_18.mp4']; 
 let dirn = '/var/img/';
 
 _f['WRITE_TXT'] = function(cbk) {
@@ -17,7 +17,7 @@ _f['PULLING'] = function(cbk) {
 	for (var i = 0; i < fn.length; i++) {
 		_f1['P_' + i] = (function(i) {
 			return function(cbk1) {
-				let url = 'https://shusiou-d-01.nyc3.digitaloceanspaces.com/shusiou/v/' + fn[i];
+				let url = 'https://shusiou-d-01.nyc3.digitaloceanspaces.com/shusiou/video.mp4/_s/' + fn[i];
 				let file = pkg.fs.createWriteStream('/var/img/M_' + i + '.mp4');
 				file.on('finish', function() {
 					file.close(function() {
@@ -50,7 +50,7 @@ _f['FFMPEG'] = function(cbk) {
 };
 CP.serial(_f,
 	function(results) {
-		var file = pkg.fs.createReadStream('/var/img/video.mp4');
+		var file = pkg.fs.createReadStream('/var/img/cache.mp4');
 		file.pipe(res);
 		// res.send(results);
 	}, 8000);
