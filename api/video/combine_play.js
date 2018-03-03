@@ -3,8 +3,6 @@ let _f = {}, fn = ['s_0.mp4', 's_1.mp4'];
 let dirn = '/var/img/';
 
 _f['WRITE_TXT'] = function(cbk) {
-	cbk(true);
-	return true;	
 	var str = '';
 	for (var i = 0; i < fn.length; i++) {
 		str += "file '" + dirn + 'M_' + i + ".ts'\n";
