@@ -74,28 +74,18 @@ _f['ANALYZE_SOURCE'] = function(cbk) {
 };
 
 _f['CREATE_DIR'] = function(cbk) {
-	pkg.fs.exists(tmp_folder, function(exists) {
-		//if (!exists) {
-			var folderP = require(env.site_path + '/api/inc/folderP/folderP');
-			var fp = new folderP();		
-			fp.build(tmp_folder, () => {
-				// let ts_file =  source_file.replace(/\.mp4$/, '.ts');
-				// pkg.exec('cd ' + source_path + ' && ffmpeg -i ' + source_file +
-				//	 ' -c copy -bsf:v h264_mp4toannexb -f mpegts ' +  ts_file +
-				//	 ' -y && split -b ' + trunkSize + ' ' +  ts_file +  ' ' + tmp_folder + '', 
-			//	ffmpeg -i video.mp4 -c copy -map 0 -segment_time 5 -reset_timestamps 1 -f segment _s/s_%d.mp4
-				
-				pkg.exec('cd ' + source_path + ' && ffmpeg -i ' +  source_file + 
-					 ' -c copy -map 0 -segment_time 5 -reset_timestamps 1 -f segment _s/s_%d.mp4', 					 
-				function(error, stdout, stderr) {
-					if (error) cbk(false);
-					else if (stdout) cbk(true);
-					else cbk(false);
-				});
-			});
-		//} else {
-		//	cbk(true)
-		//}
+	var folderP = require(env.site_path + '/api/inc/folderP/folderP');
+	var fp = new folderP();		
+	fp.build(tmp_folder, () => {
+	//	ffmpeg -i video.mp4 -c copy -map 0 -segment_time 5 -reset_timestamps 1 -f segment _s/s_%d.mp4
+
+		pkg.exec('cd ' + source_path + ' && ffmpeg -i ' +  source_file + 
+			 ' -c copy -map 0 -segment_time 5 -reset_timestamps 1 -f segment ' + tmp_folder + 's_%d.mp4', 					 
+		function(error, stdout, stderr) {
+			if (error) cbk(false);
+			else if (stdout) cbk(true);
+			else cbk(false);
+		});
 	});	
 };
 
