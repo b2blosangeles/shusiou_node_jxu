@@ -52,10 +52,10 @@ _f['FFMPEG'] = function(cbk) {
 };
 CP.serial(_f,
 	function(results) {
-		//var file = pkg.fs.createReadStream('/var/img/cache.mp4');
-		//file.pipe(res);
-		var file = pkg.fs.createReadStream('/var/img/video.mp4');
-		file.pipe(res);	
+		var file = pkg.fs.createReadStream('/var/img/cache.mp4');
+		file.pipe(res);
+		//var file = pkg.fs.createReadStream('/var/img/video.mp4');
+		//file.pipe(res);	
 	
 		// res.send(results);
 	}, 8000);
