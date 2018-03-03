@@ -95,7 +95,14 @@ _f['P_I'] = function(cbk) {
 		files.forEach(file => {
 			f[f.length] = file;
 		});
-		cbk(f);
+		cbk(f.filter(function(a) {
+        			let patt = /s\_([0-9]+)\./;
+        			return  patt.test(a); 
+       		 	}).sort(function(a, b) {
+				let va = a.match(/s\_([0-9]+)\./), 
+                		vb = b.match(/s\_([0-9]+)\./);
+		 	 	return parseInt(va[1]) - parseInt(vb[1]);
+			}));
 	});	
 };	
 
