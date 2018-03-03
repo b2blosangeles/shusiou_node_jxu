@@ -7,7 +7,7 @@ const s3 = new AWS.S3({
 });
 let source_path = '/var/img/',
     source_file = 'video.mp4',
-    tmp_folder = source_path + '_section/' + source_file + '/',
+    tmp_folder = source_path + '_s/' + source_file + '/',
     
     space_id = 'shusiou-d-01',
     space_url = 'https://shusiou-d-01.nyc3.digitaloceanspaces.com/', 
@@ -37,6 +37,9 @@ function removeFolder(s3, bucketName, folder, callback){
 		});	
 	});
 }
+
+// ffmpeg -i video.mp4 -c copy -map 0 -segment_time 5 -reset_timestamps 1 -f segment _s/s_%d.mp4
+
 var CP = new pkg.crowdProcess();
 var _f = {}; 
 
@@ -80,7 +83,10 @@ _f['CREATE_DIR'] = function(cbk) {
 				// pkg.exec('cd ' + source_path + ' && ffmpeg -i ' + source_file +
 				//	 ' -c copy -bsf:v h264_mp4toannexb -f mpegts ' +  ts_file +
 				//	 ' -y && split -b ' + trunkSize + ' ' +  ts_file +  ' ' + tmp_folder + '', 
-				pkg.exec('cd ' + source_path + ' && split -b ' + trunkSize + ' ' +  source_file +  ' ' + tmp_folder + '', 					 
+			//	ffmpeg -i video.mp4 -c copy -map 0 -segment_time 5 -reset_timestamps 1 -f segment _s/s_%d.mp4
+				
+				pkg.exec('cd ' + source_path + ' && ffmpeg -i ' +  source_file + 
+					 ' -c copy -map 0 -segment_time 5 -reset_timestamps 1 -f segment _s/s_%d.mp4', 					 
 				function(error, stdout, stderr) {
 					if (error) cbk(false);
 					else if (stdout) cbk(true);
