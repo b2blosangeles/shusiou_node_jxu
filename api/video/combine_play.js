@@ -11,9 +11,7 @@ _f['WRITE_TXT'] = function(cbk) {
 		cbk('WRITE_TXT:' + dirn + 'engine.data');
 	}); 
 };
-_f['PULLING'] = function(cbk) {
-	cbk(true);
-	return true;
+_f['PULLING'] = function(cbk) {;
 	var CP1 = new pkg.crowdProcess();
 	var _f1 = {}; 
 	for (var i = 0; i < fn.length; i++) {
