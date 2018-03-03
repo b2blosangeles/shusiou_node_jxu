@@ -48,21 +48,18 @@ _f['FFMPEG'] = function(cbk) {
 	let cmd = 'cd ' + dirn + ' && ffmpeg -f concat -safe 0 -i ' + dirn + 'engine.data -codec copy cache.mp4 -y';
 	pkg.exec(cmd, 
 		function(error, stdout, stderr) {
-			setTimeout(
-				function() { cbk(cmd);
-					   }, 1000	    
-			);	
+			cbk(cmd);	
 	});
 };
 
 CP.serial(_f,
 	function(results) {
-		var file = pkg.fs.createReadStream('/var/img/cache.mp4');
-		file.pipe(res);
+	//	var file = pkg.fs.createReadStream('/var/img/cache.mp4');
+	//	file.pipe(res);
 		//var file = pkg.fs.createReadStream('/var/img/video.mp4');
 		//file.pipe(res);	
 	
-	//	res.sendFile('/var/img/cache.mp4');
+		res.sendFile('/var/img/cache.mp4');
 	}, 8000);
 return true;
 
