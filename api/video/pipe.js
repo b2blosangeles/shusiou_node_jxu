@@ -1,5 +1,5 @@
 var ss = req.query['ss'] + '';
-res.send(req.query);
+res.send(ss);
 return true;
 //ss = '2';
 let space = {
