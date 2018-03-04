@@ -1,3 +1,4 @@
+let ss = 12;
 let space = {
 	endpoint : 'https://shusiou-d-01.nyc3.digitaloceanspaces.com/shusiou/',
 	video:'video.mp4',
@@ -57,9 +58,8 @@ _f['FFMPEG_SECTION'] = function(cbk) {
 	});
 };
 _f['FFMPEG_IMG'] = function(cbk) {
-	let t = 12;
-	let cmd =  'cd ' + space.cache_folder  + ' && ffmpeg -i out121.mp4 -ss ' + t + ' -vframes 1 -preset ultrafast ' + 
-	    space.video + '_' + t + '.png -y';
+	let cmd =  'cd ' + space.cache_folder  + ' && ffmpeg -i out121.mp4 -ss ' + ss + ' -vframes 1 -preset ultrafast ' + 
+	    space.video + '_' + ss + '.png -y';
 	pkg.exec(cmd, 
 		function(error, stdout, stderr) {
 			cbk(cmd);	
@@ -70,7 +70,7 @@ CP.serial(_f,
 	function(results) {
 			
         	// res.writeHead(206, { 'Content-Type': 'video/mp4' });	
-		var file = pkg.fs.createReadStream('/var/img/out2.png');
+		var file = pkg.fs.createReadStream(space.video + '_' + ss + '.png');
 		file.pipe(res);
 	}, 8000);
 return true;
