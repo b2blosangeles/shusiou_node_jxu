@@ -1,4 +1,4 @@
-let ss = 5;
+let ss = 2;
 let space = {
 	endpoint : 'https://shusiou-d-01.nyc3.digitaloceanspaces.com/shusiou/',
 	video:'video.mp4',
@@ -7,7 +7,7 @@ let space = {
 	ss : ''
 }
 let CP = new pkg.crowdProcess();
-let _f = {}, fn = ['s_0.mp4', 's_1.mp4', 's_2.mp4', 's_3.mp4']; 
+let _f = {}, fn = ['s_0.mp4']; 
 
 _f['WRITE_TXT'] = function(cbk) {
 	var str = '';
