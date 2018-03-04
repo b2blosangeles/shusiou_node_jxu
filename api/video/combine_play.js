@@ -53,7 +53,7 @@ _f['FFMPEG'] = function(cbk) {
 	});
 };
 _f['FFMPEG_SECTION'] = function(cbk) {
-	let cmd = 'cd ' + dirn + ' && ffmpeg -ss 00:00:16 -t 00:00:03 -i cache.mp4 -c copy -reset_timestamps 1 -y out12.mp4';
+	let cmd = 'cd ' + dirn + ' && ffmpeg -ss 00:00:15 -i cache.mp4 -ss 00:00:01 -t 00:00:03  -c copy -reset_timestamps 1 -y out12.mp4';
 	pkg.exec(cmd, 
 		function(error, stdout, stderr) {
 			cbk(cmd);	
