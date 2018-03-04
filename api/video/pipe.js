@@ -1,5 +1,4 @@
-var ss = req.query['ss'];
-ss =  parseInt(ss);
+var ss = req.query['ss'].toString();
 //ss = '2';
 let space = {
 	endpoint : 'https://shusiou-d-01.nyc3.digitaloceanspaces.com/shusiou/',
