@@ -1,7 +1,9 @@
 let space = {
 	endpoint : 'https://shusiou-d-01.nyc3.digitaloceanspaces.com/shusiou/',
 	video:'video.mp4',
-	cache_folder: '/var/img/'
+	cache_folder: '/var/img/',
+	type : 'img',
+	ss : ''
 }
 let CP = new pkg.crowdProcess();
 let _f = {}, fn = ['s_0.mp4', 's_1.mp4', 's_2.mp4', 's_3.mp4']; 
