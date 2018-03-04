@@ -52,11 +52,17 @@ _f['FFMPEG'] = function(cbk) {
 			cbk(cmd);	
 	});
 };
-
+_f['FFMPEG_SECTION'] = function(cbk) {
+	let cmd = 'cd ' + dirn + ' && ffmpeg -i cache.mp4 -ss 00:00:012 -t 3 -c copy out2.mp4 -y';
+	pkg.exec(cmd, 
+		function(error, stdout, stderr) {
+			cbk(cmd);	
+	});
+};
 CP.serial(_f,
 	function(results) {
         	// res.writeHead(206, { 'Content-Type': 'video/mp4' });	
-		var file = pkg.fs.createReadStream('/var/img/cache.mp4');
+		var file = pkg.fs.createReadStream('/var/img/out2.mp4');
 		file.pipe(res);
 	//	var file = pkg.fs.createReadStream('/var/img/video.mp4');
 	//	file.pipe(res);	
