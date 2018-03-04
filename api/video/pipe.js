@@ -1,4 +1,4 @@
-var ss = req.query['ss'].toString();
+var ss = req.query['ss'];
 res.send(ss);
 return true;
 //ss = '2';
