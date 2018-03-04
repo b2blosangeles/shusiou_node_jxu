@@ -9,18 +9,20 @@ let space = {
 let CP = new pkg.crowdProcess();
 let _f = {}, fn = ['s_0.mp4']; 
 
-_f['WRITE_TXT'] = function(cbk) {
-	var str = '';
-	for (var i = 0; i < fn.length; i++) {
-		str += "file '" + space.cache_folder + 'M_' + i + ".mp4'\n";
-	}
-	pkg.fs.writeFile(space.cache_folder  + 'engine.data', str, function(err) {	    
-		cbk('WRITE_TXT:' + space.cache_folder  + 'engine.data');
-	}); 
-};
+
 _f['PULLING'] = function(cbk) {;
 	var CP1 = new pkg.crowdProcess();
 	var _f1 = {}; 
+			       
+	_f1['WRITE_TXT'] = function(cbk1) {
+		var str = '';
+		for (var i = 0; i < fn.length; i++) {
+			str += "file '" + space.cache_folder + 'M_' + i + ".mp4'\n";
+		}
+		pkg.fs.writeFile(space.cache_folder  + 'engine.data', str, function(err) {	    
+			cbk1('WRITE_TXT:' + space.cache_folder  + 'engine.data');
+		}); 
+	};			       
 	for (var i = 0; i < fn.length; i++) {
 		_f1['P_' + i] = (function(i) {
 			return function(cbk1) {
