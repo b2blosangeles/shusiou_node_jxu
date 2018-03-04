@@ -70,7 +70,7 @@ CP.serial(_f,
 	function(results) {
 			
         	// res.writeHead(206, { 'Content-Type': 'video/mp4' });	
-		var file = pkg.fs.createReadStream(space.cache_folder + space.video + '_' + ss + '.png');
+		var file = pkg.fs.createReadStream(space.cache_folder + space.video + '/' + space.video + '_' + ss + '.png');
 		file.pipe(res);
 	}, 8000);
 return true;
