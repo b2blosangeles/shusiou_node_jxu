@@ -9,7 +9,13 @@ let space = {
 let CP = new pkg.crowdProcess();
 let _f = {}, fn = ['s_0.mp4']; 
 
-
+_f['CREATE_DIR'] = function(cbk) {
+	var folderP = require(env.site_path + '/api/inc/folderP/folderP');
+	var fp = new folderP();		
+	fp.build(space.cache_folder, () => {
+		cbk(true)
+	});	
+};
 _f['PULLING'] = function(cbk) {;
 	var CP1 = new pkg.crowdProcess();
 	var _f1 = {}; 
