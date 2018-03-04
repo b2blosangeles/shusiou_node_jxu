@@ -1,5 +1,5 @@
 let CP = new pkg.crowdProcess();
-let _f = {}, fn = ['s_11.mp4', 's_12.mp4']; 
+let _f = {}, fn = ['s_11.mp4', 's_12.mp4', 's_13.mp4', 's_14.mp4']; 
 let dirn = '/var/img/';
 
 _f['WRITE_TXT'] = function(cbk) {
