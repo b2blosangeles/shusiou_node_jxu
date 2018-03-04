@@ -1,4 +1,6 @@
 var ss = req.query['ss'].toString();
+res.send(ss);
+return true;
 //ss = '2';
 let space = {
 	endpoint : 'https://shusiou-d-01.nyc3.digitaloceanspaces.com/shusiou/',
