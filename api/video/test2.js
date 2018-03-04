@@ -5,7 +5,7 @@ if ((req.headers) && (req.headers.range)) {
          'Accept-Ranges': 'bytes', 'Content-Type': 'video/mp4' });
 } 
 */
-res.writeHeader(200, { 'Content-Type': 'video/mp4' });
+res.writeHead(200, { 'Content-Type': 'video/mp4' });
 //var file = pkg.fs.createReadStream('/var/img/yygg.mp4');
 //file.pipe(res);
 res.sendFile('/var/img/yygg.mp4');
