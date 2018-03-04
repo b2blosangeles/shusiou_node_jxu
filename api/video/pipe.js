@@ -57,7 +57,7 @@ _f['FFMPEG_SECTION'] = function(cbk) {
 	});
 };
 _f['FFMPEG_IMG'] = function(cbk) {
-	let cmd =  'cd ' + space.cache_folder  + ' && ffmpeg -i out121.mp4 -ss 00:00:02 -vframes 1 -preset ultrafast out2.png -y';
+	let cmd =  'cd ' + space.cache_folder  + ' && ffmpeg -i out121.mp4 -ss 2 -vframes 1 -preset ultrafast out2.png -y';
 	pkg.exec(cmd, 
 		function(error, stdout, stderr) {
 			cbk(cmd);	
