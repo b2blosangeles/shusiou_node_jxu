@@ -7,6 +7,8 @@ let space = {
 	type : 'img',
 	ss : ''
 }
+res.send(new Date());
+return true;
 let CP = new pkg.crowdProcess();
 let _f = {}, fn = ['s_0.mp4']; 
 
