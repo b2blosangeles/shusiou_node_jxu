@@ -21,8 +21,8 @@ _f['PULLING'] = function(cbk) {;
 				let file = pkg.fs.createWriteStream('/var/img/M_' + i + '.mp4');
 				file.on('finish', function() {
 					file.close(function() {
-						cbk1(fn[i]);
-						return true;
+					//	cbk1(fn[i]);
+					//	return true;
 						let cmd = 'cd ' + dirn + ' && ffmpeg -i M_' + i + '.mp4 ' +
 						    ' -c copy -bsf:v h264_mp4toannexb -f mpegts  M_' + i + '.ts -y ' +
 						    ' && rm M_' + i + '.mp4';
@@ -55,13 +55,13 @@ _f['FFMPEG'] = function(cbk) {
 
 CP.serial(_f,
 	function(results) {
-  //      res.writeHead(206, { 'Content-Type': 'video/mp4' });	
-		//var file = pkg.fs.createReadStream('/var/img/cache.mp4');
-		//file.pipe(res);
+        res.writeHead(206, { 'Content-Type': 'video/mp4' });	
+		var file = pkg.fs.createReadStream('/var/img/cache.mp4');
+		file.pipe(res);
 	//	var file = pkg.fs.createReadStream('/var/img/video.mp4');
 	//	file.pipe(res);	
 	
-		res.sendFile('/var/img/cache.mp4');
+	//	res.sendFile('/var/img/cache.mp4');
 	}, 8000);
 return true;
 
