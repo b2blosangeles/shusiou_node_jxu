@@ -44,12 +44,14 @@ _f['PULLING'] = function(cbk) {;
 }
 
 _f['FFMPEG'] = function(cbk) {
-	let cmd = 'cd ' + space.cache_folder  + ' && ffmpeg -f concat -safe 0 -i ' + space.cache_folder  + 'engine.data -c copy cache.mp4 -y';
+	let cmd = 'cd ' + space.cache_folder  + 
+	    ' && ffmpeg -f concat -safe 0 -i ' + space.cache_folder  + 'engine.data -c copy cache.mp4 -y';
 	pkg.exec(cmd, 
 		function(error, stdout, stderr) {
 			cbk(cmd);	
 	});
 };
+/*
 _f['FFMPEG_SECTION'] = function(cbk) {
 	let cmd = 'cd ' +space.cache_folder  + ' && ffmpeg -ss 00:00:01 -i cache.mp4 -ss 00:00:01 -t 00:00:07  -c copy -y out121.mp4';
 	pkg.exec(cmd, 
@@ -57,8 +59,9 @@ _f['FFMPEG_SECTION'] = function(cbk) {
 			cbk(cmd);	
 	});
 };
+*/
 _f['FFMPEG_IMG'] = function(cbk) {
-	let cmd =  'cd ' + space.cache_folder  + ' && ffmpeg -i out121.mp4 -ss ' + ss + ' -vframes 1 -preset ultrafast ' + 
+	let cmd =  'cd ' + space.cache_folder  + ' && ffmpeg -i cache.mp4 -ss ' + ss + ' -vframes 1 -preset ultrafast ' + 
 	    space.video + '_' + ss + '.png -y';
 	pkg.exec(cmd, 
 		function(error, stdout, stderr) {
