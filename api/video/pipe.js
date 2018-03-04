@@ -61,7 +61,7 @@ _f['FFMPEG_SECTION'] = function(cbk) {
 };
 CP.serial(_f,
 	function(results) {
-		let 'cd ' + dirn + ' && ffmpeg -i out121.mp4 -vframes 1 -preset ultrafast out2.png -y';	
+		let 'cd ' + dirn + ' && ffmpeg -i out121.mp4 -ss 00:00:02 -vframes 1 -preset ultrafast out2.png -y';	
         	// res.writeHead(206, { 'Content-Type': 'video/mp4' });	
 		var file = pkg.fs.createReadStream('/var/img/out2.png');
 		file.pipe(res);
