@@ -81,7 +81,7 @@ _f['FFMPEG_IMG'] = function(cbk) {
 
 CP.serial(_f,
 	function(results) {
-res.send(space.cache_folder  + space.video + '_' + ss + '.png);
+res.send(space.cache_folder  + space.video + '_' + ss + '.png');
 return true;			
         	// res.writeHead(206, { 'Content-Type': 'video/mp4' });	
 		var file = pkg.fs.createReadStream(space.cache_folder  + space.video + '_' + ss + '.png');
