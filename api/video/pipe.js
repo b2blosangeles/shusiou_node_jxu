@@ -114,10 +114,9 @@ _f['FFMPEG_SECTION'] = function(cbk) {
 	if (!sec_t) {
 		cbk(false);
 	} else {
-		//let cmd = 'cd ' + space.cache_folder  + ' && ffmpeg -ss ' + sec_s;
-		//	' -i cache_' + sec_s.toString() + '_' + sec_t.toString() + '.mp4 ';
-		let cmd =  'cd ' + space.cache_folder  + ' && ffmpeg -i '  + fn[0] + ' -ss ' + start_point + ' -vframes 1 -preset ultrafast ' + 
-		    space.video + '_' + ss + '.png -y';
+		let cmd = 'cd ' + space.cache_folder + ' && ffmpeg -ss ' + sec_s + ' -i cache_' + sec_s + '_' + sec_t + '.mp4 ';
+		//let cmd =  'cd ' + space.cache_folder  + ' && ffmpeg -i '  + fn[0] + ' -ss ' + start_point + ' -vframes 1 -preset ultrafast ' + 
+		//    space.video + '_' + ss + '.png -y';
 		cbk(cmd);
 		/*
 		let cmd = 'cd ' + space.cache_folder  + ' && ffmpeg -ss ' + sec_s + 
