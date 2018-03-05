@@ -36,7 +36,11 @@ if (isNaN(req.query['ss'])) {
 	res.send('Wrong ss');
 	return true;
 }
-var ss = req.query['ss'], sec = Math.floor(parseInt(ss) / 5), start_point = parseInt(ss) % 5;
+var ss0 = req.query['ss'], 
+    ss = Math.floor(ss0),
+    d_s = ss0 - ss,
+    sec = Math.floor(parseInt(ss) / 5), 
+    start_point = parseInt(ss) % 5 + d_s;
 let space = {
 	endpoint : 'https://shusiou-d-01.nyc3.digitaloceanspaces.com/shusiou/',
 	video:'video.mp4',
