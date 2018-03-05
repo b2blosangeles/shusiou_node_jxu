@@ -114,11 +114,13 @@ _f['FFMPEG_SECTION'] = function(cbk) {
 	if (!sec_t) {
 		cbk(false);
 	} else {
+		cbk('cmd');
+		/*
 		let cmd = 'cd ' + space.cache_folder  + ' && ffmpeg -ss ' + sec_s + 
 		    ' -i cache_' + sec_s + '_' + sec_t + '.mp4 -ss ' + (s - ss_s) + 
 		    ' -t ' + t + '  -c copy -y tmpcache_' + s + '_' + t + '.mp4';
 		cbk(cmd);
-/*
+
 		pkg.exec(cmd, 
 			function(error, stdout, stderr) {
 				cbk(cmd);	
