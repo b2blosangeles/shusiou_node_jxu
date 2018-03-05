@@ -71,8 +71,7 @@ _f['CREATE_DIR'] = function(cbk) {
 _f['PULLING'] = function(cbk) {;
 	var CP1 = new pkg.crowdProcess();
 	var _f1 = {}; 
-			       
-			       
+			       		       
 	_f1['WRITE_TXT'] = function(cbk1) {
 		var str = '';
 		for (var i = 0; i < fn.length; i++) {
@@ -96,7 +95,6 @@ _f['PULLING'] = function(cbk) {;
 		cbk(results);
 	}, 6000);
 }
-
 
 _f['MERGE_VIDEO'] = function(cbk) {
 	if (!sec_t) {
@@ -142,8 +140,9 @@ CP.serial(_f,
 			var file = pkg.fs.createReadStream(space.cache_folder  + space.video + '_' + ss + '.png');
 			file.pipe(res);			
 		} else {
-			var file = pkg.fs.createReadStream(space.cache_folder  + space.video + '_' + ss + '.png');
-			file.pipe(res);
+			res.send(results);
+			//var file = pkg.fs.createReadStream(space.cache_folder  + space.video + '_' + ss + '.png');
+			//file.pipe(res);
 		}
 	//  	res.writeHead(206, { 'Content-Type': 'video/mp4' });	
 
