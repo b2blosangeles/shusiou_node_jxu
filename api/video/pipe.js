@@ -109,7 +109,7 @@ _f['MERGE_VIDEO'] = function(cbk) {
 		});
 	}
 };
-/*
+
 _f['FFMPEG_SECTION'] = function(cbk) {
 	if (!sec_t) {
 		cbk(false);
@@ -117,13 +117,16 @@ _f['FFMPEG_SECTION'] = function(cbk) {
 		let cmd = 'cd ' +space.cache_folder  + ' && ffmpeg -ss ' + sec_s + 
 		    ' -i cache_' + sec_s + '_' + sec_t + '.mp4 ' + (s - ss_s) + 
 		    ' -t ' + t + '  -c copy -y tmpcache_' + s + '_' + t + '.mp4';
+		cbk(cmd);
+/*
 		pkg.exec(cmd, 
 			function(error, stdout, stderr) {
 				cbk(cmd);	
 		});
+		*/
 	}
 };
-*/
+
 _f['FFMPEG_IMG'] = function(cbk) {
 	if (sec_t) {
 		cbk(false);
