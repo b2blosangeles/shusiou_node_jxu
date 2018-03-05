@@ -8,7 +8,7 @@ let space = {
 	ss : ''
 }
 let CP = new pkg.crowdProcess();
-let _f = {}, fn = ['M_0.mp4'];
+let _f = {}, fn = ['s_0.mp4'];
 
 _f['CREATE_DIR'] = function(cbk) {
 	var folderP = require(env.site_path + '/api/inc/folderP/folderP');
@@ -24,7 +24,7 @@ _f['PULLING'] = function(cbk) {;
 	_f1['WRITE_TXT'] = function(cbk1) {
 		var str = '';
 		for (var i = 0; i < fn.length; i++) {
-			str += "file '" + space.cache_folder + 'M_' + i + ".mp4'\n";
+			str += "file '" + space.cache_folder + 's_' + i + ".mp4'\n";
 		}
 		pkg.fs.writeFile(space.cache_folder  + 'engine.data', str, function(err) {	    
 			cbk1('WRITE_TXT:' + space.cache_folder  + 'engine.data');
@@ -34,7 +34,7 @@ _f['PULLING'] = function(cbk) {;
 		_f1['P_' + i] = (function(i) {
 			return function(cbk1) {
 				let url = space.endpoint +  space.video + '/_s/' + fn[i];
-				let file = pkg.fs.createWriteStream('/var/img/M_' + i + '.mp4');
+				let file = pkg.fs.createWriteStream('/var/img/s_' + i + '.mp4');
 				file.on('finish', function() {
 					file.close(function() {
 						cbk1(fn[i]);
