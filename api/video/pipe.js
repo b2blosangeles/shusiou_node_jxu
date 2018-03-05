@@ -60,9 +60,6 @@ for (var i = 0; i < sec_t; i++) {
 	fn.push('s_' + (sec_s + i) + '.mp4')
 }
 
-res.send(fn);
-return true;
-
 _f['CREATE_DIR'] = function(cbk) {
 	var folderP = require(env.site_path + '/api/inc/folderP/folderP');
 	var fp = new folderP();		
@@ -112,7 +109,7 @@ _f['MERGE_VIDEO'] = function(cbk) {
 		});
 	}
 };
-
+/*
 _f['FFMPEG_SECTION'] = function(cbk) {
 	if (!sec_t) {
 		cbk(false);
@@ -126,7 +123,7 @@ _f['FFMPEG_SECTION'] = function(cbk) {
 		});
 	}
 };
-
+*/
 _f['FFMPEG_IMG'] = function(cbk) {
 	if (sec_t) {
 		cbk(false);
@@ -151,3 +148,7 @@ CP.serial(_f,
 
 	}, 8000);
 return true;
+
+
+//res.send(fn);
+//return true;
