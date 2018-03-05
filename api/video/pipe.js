@@ -12,19 +12,19 @@ let _f = {}, fn = [];
 if (typeof ss != 'undefined') {
 	fn.push('s_' + ss + '.mp4')
 }
-
+_f['CREATE_DIR'] = function(cbk) {
+	var folderP = require(env.site_path + '/api/inc/folderP/folderP');
+	var fp = new folderP();		
+	fp.build(space.cache_folder, () => {
+		cbk(true)
+	});	
+};
 
 _f['PULLING'] = function(cbk) {;
 	var CP1 = new pkg.crowdProcess();
 	var _f1 = {}; 
 			       
-	_f1['CREATE_DIR'] = function(cbk1) {
-		var folderP = require(env.site_path + '/api/inc/folderP/folderP');
-		var fp = new folderP();		
-		fp.build(space.cache_folder, () => {
-			cbk1(true)
-		});	
-	};			       
+			       
 	_f1['WRITE_TXT'] = function(cbk1) {
 		var str = '';
 		for (var i = 0; i < fn.length; i++) {
