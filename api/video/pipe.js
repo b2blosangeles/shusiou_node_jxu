@@ -20,8 +20,8 @@ function cache_request(url, fn, cbk) {
 	});
 }
 function cache_ffmpeg(cmd, fn, cbk) {
-	pkg.fs.stat(fn, function(error, stats) {
-		if (error) {
+	pkg.fs.stat(fn, function(err, stats) {
+		if (err || !err) {
 			let cmd =  'cd ' + space.cache_folder  + ' && ffmpeg -i '  + fn[0] + ' -ss ' + 0 + ' -vframes 1 -preset ultrafast ' + 
 			    fn +' -y';
 			pkg.exec(cmd, 
@@ -38,7 +38,7 @@ if (isNaN(req.query['ss'])) {
 	res.send('Wrong ss');
 	return true;
 }
-var ss = req.query['ss'], sec = Math(parseInt(ss) / 5), start_point = parseInt(ss) % 5;
+var ss = req.query['ss'], sec = Math.floor(parseInt(ss) / 5), start_point = parseInt(ss) % 5;
 let space = {
 	endpoint : 'https://shusiou-d-01.nyc3.digitaloceanspaces.com/shusiou/',
 	video:'video.mp4',
