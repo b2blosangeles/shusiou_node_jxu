@@ -47,9 +47,9 @@ let space = {
 let CP = new pkg.crowdProcess();
 let _f = {}, fn = []; 
   
-for (var i = 0; i < sec; i++) {
-	fn.push('s_' + i + '.mp4')
-}
+//for (var i = 0; i < sec; i++) {
+	fn.push('s_' + sec + '.mp4')
+//}
 
 _f['CREATE_DIR'] = function(cbk) {
 	var folderP = require(env.site_path + '/api/inc/folderP/folderP');
