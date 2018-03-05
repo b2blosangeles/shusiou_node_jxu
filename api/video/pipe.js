@@ -87,16 +87,6 @@ _f['PULLING'] = function(cbk) {;
 			return function(cbk1) {
 				let url = space.endpoint +  space.video + '/_s/' + fn[i];
 				cache_request(url, space.cache_folder + fn[i], cbk1);
-				/*
-				let file = pkg.fs.createWriteStream(space.cache_folder + fn[i]);
-				file.on('finish', function() {
-					file.close(function() {
-						cbk1(fn[i]);
-					});  
-				});
-				pkg.request(url, function (error, response, body) {
-				}).pipe(file);
-				*/
 			}
 		})(i);	
 	}
@@ -106,29 +96,44 @@ _f['PULLING'] = function(cbk) {;
 		cbk(results);
 	}, 6000);
 }
-/*
 
-_f['FFMPEG'] = function(cbk) {
-	let cmd = 'cd ' + space.cache_folder  + 
-	    ' && ffmpeg -f concat -safe 0 -i ' + space.cache_folder  + 'engine.data -c copy cache.mp4 -y';
-	pkg.exec(cmd, 
-		function(error, stdout, stderr) {
-			cbk(cmd);	
-	});
+
+_f['MERGE_VIDEO'] = function(cbk) {
+	if (!sec_t) {
+		cbk(false);
+	} else {
+		let cmd = 'cd ' + space.cache_folder  + 
+		    ' && ffmpeg -f concat -safe 0 -i ' + space.cache_folder  + 
+		    'engine.data -c copy cache_' + sec_s + '_' + sec_t + '.mp4 -y';
+		pkg.exec(cmd, 
+			function(error, stdout, stderr) {
+				cbk(cmd);	
+		});
+	}
 };
 
 _f['FFMPEG_SECTION'] = function(cbk) {
-	let cmd = 'cd ' +space.cache_folder  + ' && ffmpeg -ss 00:00:01 -i cache.mp4 -ss 00:00:01 -t 00:00:07  -c copy -y out121.mp4';
-	pkg.exec(cmd, 
-		function(error, stdout, stderr) {
-			cbk(cmd);	
-	});
+	if (!sec_t) {
+		cbk(false);
+	} else {
+		let cmd = 'cd ' +space.cache_folder  + ' && ffmpeg -ss ' + sec_s + 
+		    ' -i cache_' + sec_s + '_' + sec_t + '.mp4 ' + (s - ss_s) + 
+		    ' -t ' + t + '  -c copy -y tmpcache_' + s + '_' + t + '.mp4';
+		pkg.exec(cmd, 
+			function(error, stdout, stderr) {
+				cbk(cmd);	
+		});
+	}
 };
-*/
+
 _f['FFMPEG_IMG'] = function(cbk) {
-	let cmd =  'cd ' + space.cache_folder  + ' && ffmpeg -i '  + fn[0] + ' -ss ' + start_point + ' -vframes 1 -preset ultrafast ' + 
-	    space.video + '_' + ss + '.png -y';
-	cache_ffmpeg(cmd, space.video + '_' + ss + '.png', cbk);
+	if (sec_t) {
+		cbk(false);
+	} else {	
+		let cmd =  'cd ' + space.cache_folder  + ' && ffmpeg -i '  + fn[0] + ' -ss ' + start_point + ' -vframes 1 -preset ultrafast ' + 
+		    space.video + '_' + ss + '.png -y';
+		cache_ffmpeg(cmd, space.video + '_' + ss + '.png', cbk);
+	}	
 };
 
 CP.serial(_f,
