@@ -117,7 +117,7 @@ _f['FFMPEG_SECTION'] = function(cbk) {
 };
 */
 _f['FFMPEG_IMG'] = function(cbk) {
-	let cmd =  'cd ' + space.cache_folder  + ' && ffmpeg -i '  + fn[0] + ' -ss ' + start_point + ' -vframes 1 -preset ultrafast ' + 
+	let cmd =  'cd ' + space.cache_folder  + ' && ffmpeg -i '  + fn[sec] + ' -ss ' + start_point + ' -vframes 1 -preset ultrafast ' + 
 	    space.video + '_' + ss + '.png -y';
 	cache_ffmpeg(cmd, space.video + '_' + ss + '.png', cbk);
 };
