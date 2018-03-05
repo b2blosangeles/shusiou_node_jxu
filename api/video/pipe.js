@@ -39,7 +39,7 @@ if (isNaN(req.query['ss'])) {
 var ss0 = req.query['ss'], 
     ss = Math.floor(ss0),
     d_s = ss0 - ss,
-    sec = Math.floor(parseInt(ss) / 5), 
+    sec_s = Math.floor(parseInt(ss) / 5), 
     start_point = parseInt(ss) % 5 + d_s;
 let space = {
 	endpoint : 'https://shusiou-d-01.nyc3.digitaloceanspaces.com/shusiou/',
@@ -52,7 +52,7 @@ let CP = new pkg.crowdProcess();
 let _f = {}, fn = []; 
   
 //for (var i = 0; i < sec; i++) {
-	fn.push('s_' + sec + '.mp4')
+	fn.push('s_' + sec_s + '.mp4')
 //}
 //res.send(fn);
 //return true;
