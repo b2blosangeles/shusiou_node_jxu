@@ -10,7 +10,7 @@ let space = {
 //res.send(new Date());
 //return true;
 let CP = new pkg.crowdProcess();
-let _f = {}, fn = ['s_0.mp4', 's_1.mp4'];
+let _f = {}, fn = ['s_1.mp4'];
 
 _f['CREATE_DIR'] = function(cbk) {
 	var folderP = require(env.site_path + '/api/inc/folderP/folderP');
