@@ -7,7 +7,11 @@ let space = {
 	ss : ''
 }
 let CP = new pkg.crowdProcess();
-let _f = {}, fn = ['s_0.mp4', 's_1.mp4', 's_2.mp4', 's_3.mp4', 's_4.mp4'];
+let _f = {}, fn = []; 
+  
+if (typeof ss != 'undefined') {
+	fn.push('s_' + ss + '.mp4')
+}
 
 _f['CREATE_DIR'] = function(cbk) {
 	var folderP = require(env.site_path + '/api/inc/folderP/folderP');
@@ -23,7 +27,7 @@ _f['PULLING'] = function(cbk) {;
 	_f1['WRITE_TXT'] = function(cbk1) {
 		var str = '';
 		for (var i = 0; i < fn.length; i++) {
-			str += "file '" + space.cache_folder + 's_' + i + ".mp4'\n";
+			str += "file '" + space.cache_folder + fn[i] + "'\n";
 		}
 		pkg.fs.writeFile(space.cache_folder  + 'engine.data', str, function(err) {	    
 			cbk1('WRITE_TXT:' + space.cache_folder  + 'engine.data');
@@ -33,7 +37,7 @@ _f['PULLING'] = function(cbk) {;
 		_f1['P_' + i] = (function(i) {
 			return function(cbk1) {
 				let url = space.endpoint +  space.video + '/_s/' + fn[i];
-				let file = pkg.fs.createWriteStream('/var/img/s_' + i + '.mp4');
+				let file = pkg.fs.createWriteStream(space.cache_folder + fn[i]);
 				file.on('finish', function() {
 					file.close(function() {
 						cbk1(fn[i]);
@@ -50,7 +54,7 @@ _f['PULLING'] = function(cbk) {;
 		cbk(results);
 	}, 6000);
 }
-
+/*
 
 _f['FFMPEG'] = function(cbk) {
 	let cmd = 'cd ' + space.cache_folder  + 
@@ -60,7 +64,7 @@ _f['FFMPEG'] = function(cbk) {
 			cbk(cmd);	
 	});
 };
-/*
+
 _f['FFMPEG_SECTION'] = function(cbk) {
 	let cmd = 'cd ' +space.cache_folder  + ' && ffmpeg -ss 00:00:01 -i cache.mp4 -ss 00:00:01 -t 00:00:07  -c copy -y out121.mp4';
 	pkg.exec(cmd, 
@@ -70,7 +74,7 @@ _f['FFMPEG_SECTION'] = function(cbk) {
 };
 */
 _f['FFMPEG_IMG'] = function(cbk) {
-	let cmd =  'cd ' + space.cache_folder  + ' && ffmpeg -i '  + fn[0] + ' -ss ' + ss + ' -vframes 1 -preset ultrafast ' + 
+	let cmd =  'cd ' + space.cache_folder  + ' && ffmpeg -i '  + fn[0] + ' -ss ' + 0 + ' -vframes 1 -preset ultrafast ' + 
 	    space.video + '_' + ss + '.png -y';
 	pkg.exec(cmd, 
 		function(error, stdout, stderr) {
