@@ -51,7 +51,7 @@ _f['PULLING'] = function(cbk) {;
 	}, 6000);
 }
 
-/*
+
 _f['FFMPEG'] = function(cbk) {
 	let cmd = 'cd ' + space.cache_folder  + 
 	    ' && ffmpeg -f concat -safe 0 -i ' + space.cache_folder  + 'engine.data -c copy cache.mp4 -y';
@@ -60,7 +60,7 @@ _f['FFMPEG'] = function(cbk) {
 			cbk(cmd);	
 	});
 };
-
+/*
 _f['FFMPEG_SECTION'] = function(cbk) {
 	let cmd = 'cd ' +space.cache_folder  + ' && ffmpeg -ss 00:00:01 -i cache.mp4 -ss 00:00:01 -t 00:00:07  -c copy -y out121.mp4';
 	pkg.exec(cmd, 
