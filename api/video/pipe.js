@@ -40,7 +40,12 @@ var ss0 = req.query['ss'],
     ss = Math.floor(ss0),
     d_s = ss0 - ss,
     sec_s = Math.floor(parseInt(ss) / 5), 
+    t = (isNaN(req.query['t'])) ? 0 : parseFloat(req.query['t']),
+    sec_t = Math.ceil(t), 
     start_point = parseInt(ss) % 5 + d_s;
+
+
+
 let space = {
 	endpoint : 'https://shusiou-d-01.nyc3.digitaloceanspaces.com/shusiou/',
 	video:'video.mp4',
