@@ -115,8 +115,8 @@ _f['FFMPEG_SECTION'] = function(cbk) {
 		cbk(false);
 	} else {
 		let cmd = 'cd ' + space.cache_folder  + ' && ffmpeg -ss ' + sec_s + 
-		    ' -i cache_' + sec_s + '_' + sec_t + '.mp4 -ss ' + 
-		    ' -t ' + t + '  -c copy -y tmpcache_' + s + '_' + t + '.mp4';
+		 cmd += ' -i cache_' + sec_s + '_' + sec_t + '.mp4 ';
+		 cmd += ' -t ' + t + '  -c copy -y tmpcache_' + s + '_' + t + '.mp4';
 		cbk(cmd);
 		/*
 		let cmd = 'cd ' + space.cache_folder  + ' && ffmpeg -ss ' + sec_s + 
