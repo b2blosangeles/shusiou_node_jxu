@@ -8,7 +8,7 @@ let space = {
 	ss : ''
 }
 let CP = new pkg.crowdProcess();
-let _f = {}, fn = ['s_0.mp4'];
+let _f = {}, fn = ['s_0.mp4', 's_1.mp4', 's_2.mp4', 's_3.mp4', 's_4.mp4'];
 
 _f['CREATE_DIR'] = function(cbk) {
 	var folderP = require(env.site_path + '/api/inc/folderP/folderP');
