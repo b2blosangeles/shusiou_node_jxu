@@ -118,11 +118,6 @@ _f['FFMPEG_IMG'] = function(cbk) {
 	let cmd =  'cd ' + space.cache_folder  + ' && ffmpeg -i '  + fn[0] + ' -ss ' + 0 + ' -vframes 1 -preset ultrafast ' + 
 	    space.video + '_' + ss + '.png -y';
 	cache_ffmpeg(cmd, space.video + '_' + ss + '.png', cbk);
-	/*
-	pkg.exec(cmd, 
-		function(error, stdout, stderr) {
-			cbk(cmd);	
-	});*/
 };
 
 CP.serial(_f,
