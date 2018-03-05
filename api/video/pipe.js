@@ -1,7 +1,7 @@
 function cache_request(url, fn, cbk) {
 	var fn_temp = '/tmp/' + url.replace(/\//ig, '_').replace(':','_');
-	pkg.fs.stat(fn_temp, function(error, stats) {
-		if (error) {
+	pkg.fs.stat(fn_temp, function(err0, stats) {
+		if (err0 || !err0) {
 			let file = pkg.fs.createWriteStream(fn_temp);
 			file.on('finish', function() {
 				file.close(function() {
@@ -10,10 +10,10 @@ function cache_request(url, fn, cbk) {
 					});
 				});  
 			});
-			pkg.request(url, function (error, response, body) {
+			pkg.request(url, function (err1, response, body) {
 			}).pipe(file);			
 		} else {
-			pkg.fs.copyFile( fn_temp, fn, (err) => {
+			pkg.fs.copyFile( fn_temp, fn, (err2) => {
 				cbk(true);
 			});
 		}
