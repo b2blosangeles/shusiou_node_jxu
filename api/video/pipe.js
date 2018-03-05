@@ -1,7 +1,5 @@
 function cache_request(url, fn, cbk) {
 	var fn_temp = '/tmp/' + url.replace(/\//ig, '_').replace(':','_');
-	res.send(fn_temp);
-	return true;
 	function _f(fn_temp, fn, cbk) {
 		fs.copyFile( fn_temp, fn, (err) => {
 			cbk(true);
@@ -23,10 +21,6 @@ function cache_request(url, fn, cbk) {
 	});
 
 }
-cache_request('https://shusiou-d-01.nyc3.digitaloceanspaces.com/shusiou/video.mp4/_s/s_0.mp4', 'fn', 'cbk');
-return true;
-
-
 
 var ss = req.query['ss'];
 let space = {
