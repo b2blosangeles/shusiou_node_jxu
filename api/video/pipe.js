@@ -18,8 +18,22 @@ function cache_request(url, fn, cbk) {
 			});
 		}
 	});
-
 }
+function cache_ffmpeg(cmd, fn, cbk) {
+	pkg.fs.stat(fn, function(error, stats) {
+		if (error) {
+			let cmd =  'cd ' + space.cache_folder  + ' && ffmpeg -i '  + fn[0] + ' -ss ' + 0 + ' -vframes 1 -preset ultrafast ' + 
+			    fn +' -y';
+			pkg.exec(cmd, 
+				function(error, stdout, stderr) {
+					cbk(cmd);	
+			});
+		} else {
+			cbk(cmd);
+		}
+	});	
+}
+
 
 var ss = req.query['ss'];
 let space = {
@@ -103,10 +117,12 @@ _f['FFMPEG_SECTION'] = function(cbk) {
 _f['FFMPEG_IMG'] = function(cbk) {
 	let cmd =  'cd ' + space.cache_folder  + ' && ffmpeg -i '  + fn[0] + ' -ss ' + 0 + ' -vframes 1 -preset ultrafast ' + 
 	    space.video + '_' + ss + '.png -y';
+	cache_ffmpeg(cmd, space.video + '_' + ss + '.png', cbk);
+	/*
 	pkg.exec(cmd, 
 		function(error, stdout, stderr) {
 			cbk(cmd);	
-	});
+	});*/
 };
 
 CP.serial(_f,
