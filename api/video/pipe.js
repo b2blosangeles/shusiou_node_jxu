@@ -138,6 +138,8 @@ CP.serial(_f,
       		if (!sec_t) {
 			var file = pkg.fs.createReadStream(space.cache_folder  + space.video + '_' + ss + '.png');
 			file.pipe(res);			
+		} else {
+			res.send(sec_t + '---');
 		}
 	//  	res.writeHead(206, { 'Content-Type': 'video/mp4' });	
 
