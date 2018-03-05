@@ -56,11 +56,9 @@ let space = {
 let CP = new pkg.crowdProcess();
 let _f = {}, fn = []; 
   
-//for (var i = 0; i < sec; i++) {
-	fn.push('s_' + sec_s + '.mp4')
-//}
-//res.send(fn);
-//return true;
+for (var i = 0; i < sec_t; i++) {
+	fn.push('s_' + (sec_s + i) + '.mp4')
+}
 
 _f['CREATE_DIR'] = function(cbk) {
 	var folderP = require(env.site_path + '/api/inc/folderP/folderP');
@@ -139,7 +137,8 @@ CP.serial(_f,
 			var file = pkg.fs.createReadStream(space.cache_folder  + space.video + '_' + ss + '.png');
 			file.pipe(res);			
 		} else {
-			res.send(sec_t + '---');
+			var file = pkg.fs.createReadStream(space.cache_folder  + space.video + '_' + ss + '.png');
+			file.pipe(res);
 		}
 	//  	res.writeHead(206, { 'Content-Type': 'video/mp4' });	
 
