@@ -22,8 +22,6 @@ function cache_request(url, fn, cbk) {
 function cache_ffmpeg(cmd, fn, cbk) {
 	pkg.fs.stat(fn, function(err, stats) {
 		if (err || !err) {
-			let cmd =  'cd ' + space.cache_folder  + ' && ffmpeg -i '  + fn[0] + ' -ss ' + 0 + ' -vframes 1 -preset ultrafast ' + 
-			    fn +' -y';
 			pkg.exec(cmd, 
 				function(error, stdout, stderr) {
 					cbk(cmd);	
