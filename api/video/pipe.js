@@ -1,5 +1,5 @@
 function cache_request(url, fn, cbk) {
-	var fn_temp = '/tmp/' + url.repalce(/\//ig, '_').replace(':','_');
+	var fn_temp = '/tmp/' + url.replace(/\//ig, '_').replace(':','_');
 	res.send(fn_temp);
 	return true;
 	function _f(fn_temp, fn, cbk) {
