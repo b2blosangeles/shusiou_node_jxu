@@ -53,6 +53,8 @@ _f['PULLING'] = function(cbk) {;
 		cbk(results);
 	}, 6000);
 }
+res.send('A');
+return true;
 /*
 _f['FFMPEG'] = function(cbk) {
 	let cmd = 'cd ' + space.cache_folder  + 
