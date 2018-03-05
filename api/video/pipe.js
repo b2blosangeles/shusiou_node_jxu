@@ -149,7 +149,7 @@ CP.serial(_f,
 		}
 	//  	res.writeHead(206, { 'Content-Type': 'video/mp4' });	
 
-	}, 8000);
+	}, 12000);
 return true;
 
 
