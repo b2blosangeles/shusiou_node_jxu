@@ -41,7 +41,7 @@ var ss0 = req.query['ss'],
     d_s = ss0 - ss,
     sec_s = Math.floor(parseInt(ss) / 5), 
     t = (isNaN(req.query['t'])) ? 0 : parseFloat(req.query['t']),
-    sec_t = Math.ceil(t), 
+    sec_t =  Math.ceil(parseInt(t) / 5), 
     start_point = parseInt(ss) % 5 + d_s;
 
 
