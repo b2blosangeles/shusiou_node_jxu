@@ -1,5 +1,4 @@
-//var ss = req.query['aa'];
-var ss =  3;
+var ss = req.query['aa'];
 let space = {
 	endpoint : 'https://shusiou-d-01.nyc3.digitaloceanspaces.com/shusiou/',
 	video:'video.mp4',
