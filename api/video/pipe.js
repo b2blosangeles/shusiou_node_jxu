@@ -48,7 +48,7 @@ let CP = new pkg.crowdProcess();
 let _f = {}, fn = []; 
   
 for (var i = 0; i < sec; i++) {
-	fn.push('s_' + sec[i] + '.mp4')
+	fn.push('s_' + i + '.mp4')
 }
 
 _f['CREATE_DIR'] = function(cbk) {
