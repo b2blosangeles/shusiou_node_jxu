@@ -1,3 +1,26 @@
+function cache_request(url, fn, cbk) {
+	var fn_temp = '/tmp/' + url.repalce(/\//ig, '_').replace(':','_');
+	function _f(fn_temp, fn, cbk) {
+		fs.copyFile( fn_temp, fn, (err) => {
+			cbk(true);
+		});
+	}
+	pkg.fs.stat(fn_temp, function(error, stats) {
+		if (error) {
+			let file = pkg.fs.createWriteStream(fn_temp);
+			file.on('finish', function() {
+				file.close(function() {
+					_f(fn_temp, fn, cbk);
+				});  
+			});
+			pkg.request(url, function (error, response, body) {
+			}).pipe(file);			
+		} else {
+			_f(fn_temp, fn, cbk);
+		}
+	});
+
+}
 var ss = req.query['ss'];
 let space = {
 	endpoint : 'https://shusiou-d-01.nyc3.digitaloceanspaces.com/shusiou/',
@@ -38,6 +61,8 @@ _f['PULLING'] = function(cbk) {;
 		_f1['P_' + i] = (function(i) {
 			return function(cbk1) {
 				let url = space.endpoint +  space.video + '/_s/' + fn[i];
+				cache_request(url, space.cache_folder + fn[i], cbk1);
+				/*
 				let file = pkg.fs.createWriteStream(space.cache_folder + fn[i]);
 				file.on('finish', function() {
 					file.close(function() {
@@ -45,7 +70,8 @@ _f['PULLING'] = function(cbk) {;
 					});  
 				});
 				pkg.request(url, function (error, response, body) {
-				}).pipe(file);	
+				}).pipe(file);
+				*/
 			}
 		})(i);	
 	}
