@@ -53,8 +53,7 @@ _f['PULLING'] = function(cbk) {;
 		cbk(results);
 	}, 6000);
 }
-res.send('A');
-return true;
+
 /*
 _f['FFMPEG'] = function(cbk) {
 	let cmd = 'cd ' + space.cache_folder  + 
@@ -84,7 +83,8 @@ _f['FFMPEG_IMG'] = function(cbk) {
 
 CP.serial(_f,
 	function(results) {
-			
+res.send('B');
+return true;			
         	// res.writeHead(206, { 'Content-Type': 'video/mp4' });	
 		var file = pkg.fs.createReadStream(space.cache_folder  + space.video + '_' + ss + '.png');
 		file.pipe(res);
