@@ -115,7 +115,7 @@ _f['FFMPEG_SECTION'] = function(cbk) {
 		cbk(false);
 	} else {
 		//let cmd = 'cd ' + space.cache_folder  + ' && ffmpeg -ss ' + sec_s;
-		//let cmd += ' -i cache_' + sec_s + '_' + sec_t + '.mp4 ';
+		//	' -i cache_' + sec_s.toString() + '_' + sec_t.toString() + '.mp4 ';
 		let cmd = ' -t ' + t.toString() + '  -c copy -y tmpcache_' + s.toString() + '_' + t.toString() + '.mp4';
 		cbk(cmd);
 		/*
