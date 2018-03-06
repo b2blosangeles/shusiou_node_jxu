@@ -47,10 +47,16 @@ _f['CREATE_DIR'] = function(cbk) {
 };
 
 _f['FFMPEG_SECTION'] = function(cbk) {
+	cbk(true);
+	return true;
 	let fn =  space.cache_folder + 's_0.mp4';
 	pkg.fs.stat(fn, function(err, stat) {
 		if (err) cbk('err.message');
 		else {
+			var total = stat.size;
+			res.writeHead(206, {'Content-Range': 'bytes ' + 0 + '-' + total + '/' + total, 
+				'Accept-Ranges': 'bytes', 'Content-Length': chunksize, 'Content-Type': 'video/mp4' });			
+			/*
 			let buff = new Buffer(100);
 			pkg.fs.open(fn, 'r', function(err, fd) {
 				pkg.fs.read(fd, buff, 0, 100, 0, function(err, bytesRead, buffer) {
@@ -67,14 +73,13 @@ _f['FFMPEG_SECTION'] = function(cbk) {
 					}
 				});
 			});
+			*/
 		}
 	});	
 };
 
 CP.serial(_f,
 	function(results) {
-		res.send(CP.data.FFMPEG_SECTION);
-		return true;
 		let url =  space.cache_folder + 's_0.mp4';
 		pkg.fs.stat( url, function(err, stat) {
 			if (err) { res.send(err.message); }
@@ -95,12 +100,12 @@ CP.serial(_f,
 					}							      
 
 					var file = pkg.fs.createReadStream(url, {start:start, end:end});
-					res.writeHead(206, {'Content-Range': 'bytes ' + start + '-' + end + '/' + total, 
+					res.writeHead(206, {'Content-Range': 'bytes ' + start + '-' + end + '/' + (total * 2), 
 						'Accept-Ranges': 'bytes', 'Content-Length': chunksize, 'Content-Type': 'video/mp4' });
 				       file.pipe(res);
 				} else {
 					var file = pkg.fs.createReadStream(url, {start:start, end:end});
-					res.writeHead(206, {'Content-Range': 'bytes ' + 0 + '-' + total + '/' + total, 
+					res.writeHead(206, {'Content-Range': 'bytes ' + 0 + '-' + total + '/' + (total * 2), 
 						'Accept-Ranges': 'bytes', 'Content-Length': total, 'Content-Type': 'video/mp4' });
 				       file.pipe(res);						
 				}
