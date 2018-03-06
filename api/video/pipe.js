@@ -62,7 +62,11 @@ _f['CREATE_DIR'] = function(cbk) {
 };
 
 _f['VALIDATION'] = function(cbk) {
-	cbk(space.cache_folder  + 'engine_' + sec_s + '_' + sec_t +'.cfg')	
+	let url = space.endpoint +  space.video + '/_s/_info.txt';
+	cache_request(url, space.cache_folder + '_info.txt', 
+		function() {
+			cbk('_info.txt');
+	});	
 };
 
 _f['PULLING'] = function(cbk) {;
