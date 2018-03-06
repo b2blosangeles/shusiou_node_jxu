@@ -65,14 +65,23 @@ _f['PULLING'] = function(cbk) {;
 	var CP1 = new pkg.crowdProcess();
 	var _f1 = {}; 
 			       		       
-	_f1['WRITE_TXT'] = function(cbk1) {
-		var str = '';
-		for (var i = 0; i < fn.length; i++) {
-			str += "file '" + space.cache_folder + fn[i] + "'\n";
-		}
-		pkg.fs.writeFile(space.cache_folder  + 'engine_' + sec_s + '_' + sec_t +'.cfg', str, function(err) {	    
-			cbk1('WRITE_TXT:' + space.cache_folder  + 'engine_' + sec_s + '_' + sec_t +'.cfg');
-		}); 
+	_f1['WRITE_CFG'] = function(cbk1) {
+		if (!sec_t) {
+			cbk(false);
+		} else {
+			pkg.fs.stat( 'engine_' + sec_s + '_' + sec_t +'.cfg', function(err, stat) {
+				if (!err) { res.send(true); }
+				else {
+					var str = '';
+					for (var i = 0; i < fn.length; i++) {
+						str += "file '" + space.cache_folder + fn[i] + "'\n";
+					}
+					pkg.fs.writeFile(space.cache_folder  + 'engine_' + sec_s + '_' + sec_t +'.cfg', str, function(err) {	    
+						cbk1('WRITE_TXT:' + space.cache_folder  + 'engine_' + sec_s + '_' + sec_t +'.cfg');
+					}); 					
+				}
+			});
+		}	
 	};			       
 	for (var i = 0; i < fn.length; i++) {
 		_f1['P_' + i] = (function(i) {
