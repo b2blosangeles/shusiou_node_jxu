@@ -53,7 +53,7 @@ for (var i = 0; i <= sec_t; i++) {
 	fn.push('s_' + (sec_s + i) + '.mp4')
 }
 
-_f['VALIDATION'] = function(cbk) {
+_f['CREATE_DIR'] = function(cbk) {
 	var folderP = require(env.site_path + '/api/inc/folderP/folderP');
 	var fp = new folderP();		
 	fp.build(space.cache_folder, () => {
@@ -61,12 +61,8 @@ _f['VALIDATION'] = function(cbk) {
 	});	
 };
 
-_f['CREATE_DIR'] = function(cbk) {
-	var folderP = require(env.site_path + '/api/inc/folderP/folderP');
-	var fp = new folderP();		
-	fp.build(space.cache_folder, () => {
-		cbk(true)
-	});	
+_f['VALIDATION'] = function(cbk) {
+	cbk(space.cache_folder  + 'engine_' + sec_s + '_' + sec_t +'.cfg')	
 };
 
 _f['PULLING'] = function(cbk) {;
