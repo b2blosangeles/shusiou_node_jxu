@@ -116,13 +116,11 @@ _f['FFMPEG_SECTION'] = function(cbk) {
 	} else {
 		let cmd = 'cd ' + space.cache_folder + ' && ffmpeg -ss ' + sec_s + 
 		    ' -i cache_' + sec_s + '_' + sec_t + '.mp4  -t ' + t + ' -c copy tmpcache_' + ss + '_' + t + '.mp4';
-		cbk(cmd);
-		/*
+
 		pkg.exec(cmd, 
 			function(error, stdout, stderr) {
 				cbk(cmd);	
 		});
-		*/
 	}
 };
 
@@ -142,9 +140,9 @@ CP.serial(_f,
 			var file = pkg.fs.createReadStream(space.cache_folder  + space.video + '_' + ss + '.png');
 			file.pipe(res);			
 		} else {
-			res.send('tmpcache_' + ss + '_' + t + '.mp4');
-			//var file = pkg.fs.createReadStream(space.cache_folder  + 'tmpcache_' + ss + '_' + t + '.mp4');
-			//file.pipe(res);
+		//	res.send('tmpcache_' + ss + '_' + t + '.mp4');
+			var file = pkg.fs.createReadStream(space.cache_folder  + 'tmpcache_' + ss + '_' + t + '.mp4');
+			file.pipe(res);
 		}
 	//  	res.writeHead(206, { 'Content-Type': 'video/mp4' });	
 
