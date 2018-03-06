@@ -140,7 +140,7 @@ CP.serial(_f,
 			var file = pkg.fs.createReadStream(space.cache_folder  + space.video + '_' + ss + '.png');
 			file.pipe(res);			
 		} else {
-			res.writeHead(206, { 'Content-Type': 'video/mp4' });
+			res.writeHead(200, { 'Content-Type': 'video/mp4' });
 			var file = pkg.fs.createReadStream(space.cache_folder  + 'tmpcache_' + ss + '_' + t + '.mp4');
 			file.pipe(res);
 		}
