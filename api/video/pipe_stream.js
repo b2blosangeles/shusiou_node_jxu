@@ -100,7 +100,7 @@ CP.serial(_f,
 						'Accept-Ranges': 'bytes', 'Content-Length': chunksize, 'Content-Type': 'video/mp4' });
 				       file.pipe(res);
 				} else {
-					var file = pkg.fs.createReadStream(url);
+					var file = pkg.fs.createReadStream(url, {start:0, end:total});
 					res.writeHead(206, {'Content-Range': 'bytes ' + 0 + '-' + totalsize + '/' + totalsize, 
 						'Accept-Ranges': 'bytes', 'Content-Length': total, 'Content-Type': 'video/mp4' });
 				       file.pipe(res);						
