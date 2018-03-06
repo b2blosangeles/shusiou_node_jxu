@@ -31,7 +31,8 @@ if (isNaN(req.query['ss'])) {
 	res.send('Wrong ss');
 	return true;
 }
-var ss0 = parseFloat(req.query['ss']), 
+
+let ss0 = parseFloat(req.query['ss']), 
     ss = Math.floor(ss0),
     d_s = ss - ss0,
     sec_s = Math.floor(parseInt(ss) / 5), 
@@ -39,7 +40,10 @@ var ss0 = parseFloat(req.query['ss']),
     sec_t =  Math.ceil(parseInt(t) / 5), 
     start_point = parseInt(ss) % 5 + d_s;
 
-
+let _w = parseFloat(req.query['size']),
+    _size_str = (['90', '180', '480'].indexof(_w) !== -1) ? '-vframes scale=-1:' + w : ' -vframes 1 ',
+    _size_fn = (['90', '180', '480'].indexof(_w) !== -1) ? '_' + _w : '';
+						      
 
 let space = {
 	endpoint : 'https://shusiou-d-01.nyc3.digitaloceanspaces.com/shusiou/',
@@ -130,17 +134,17 @@ _f['FFMPEG_SECTION'] = function(cbk) {
 _f['FFMPEG_IMG'] = function(cbk) {
 	if (sec_t) {
 		cbk(false);
-	} else {	
-		let cmd =  'ffmpeg -i ' + space.cache_folder  + fn[0] + ' -ss ' + d_s + ' -vframes 1 -preset ultrafast ' + 
+	} else {
+		let cmd =  'ffmpeg -i ' + space.cache_folder  + fn[0] + ' -ss ' + d_s + _size_str + ' -preset ultrafast ' + 
 		    space.cache_folder + ss0 + '.png -y';
-		cache_ffmpeg(cmd, space.cache_folder + ss0 + '.png', cbk);
+		cache_ffmpeg(cmd, space.cache_folder + ss0 +  _size_fn + '.png', cbk);
 	}	
 };
 
 CP.serial(_f,
 	function(results) {			
       		if (!sec_t) {
-			var file = pkg.fs.createReadStream(space.cache_folder + ss0 + '.png');
+			var file = pkg.fs.createReadStream(space.cache_folder + ss0 + _size_fn + '.png');
 			file.pipe(res);			
 		} else {
 			pkg.fs.stat( space.cache_folder +'sec_' + ss0 + '_' + t + '.mp4', function(err, stat) {
