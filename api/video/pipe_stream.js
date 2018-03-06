@@ -73,7 +73,7 @@ _f['FFMPEG_SECTION'] = function(cbk) {
 
 CP.serial(_f,
 	function(results) {
-		let totalsize = CP.data.FFMPEG_SECTION;
+		let totalsize = CP.data.FFMPEG_SECTION.filesize;
 		res.send(totalsize);
 		return true;
 		let url =  space.cache_folder + 's_0.mp4';
