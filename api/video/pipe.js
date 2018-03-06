@@ -56,7 +56,7 @@ let space = {
 let CP = new pkg.crowdProcess();
 let _f = {}, fn = []; 
   
-for (var i = 0; i < sec_t; i++) {
+for (var i = 0; i <= sec_t; i++) {
 	fn.push('s_' + (sec_s + i) + '.mp4')
 }
 res.send(fn);
