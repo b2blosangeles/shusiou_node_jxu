@@ -105,8 +105,8 @@ _f['FFMPEG_SECTION'] = function(cbk) {
 		cbk(false);
 	} else {
 		let cmd = 'cd ' + space.cache_folder + ' && ffmpeg -ss ' + d_s + 
-		    ' -i cache_' + sec_s + '_' + sec_t + '.mp4  -t ' + t + ' -c copy tmpcache_' + ss0 + '_' + t + '.mp4';
-		cache_ffmpeg(cmd, space.cache_folder  + 'tmpcache_' + ss0 + '_' + t + '.mp4', cbk);
+		    ' -i cache_' + sec_s + '_' + sec_t + '.mp4  -t ' + t + ' -c copy sec_' + ss0 + '_' + t + '.mp4';
+		cache_ffmpeg(cmd, space.cache_folder  + 'sec_' + ss0 + '_' + t + '.mp4', cbk);
 	}
 };
 
@@ -126,7 +126,7 @@ CP.serial(_f,
 			var file = pkg.fs.createReadStream(space.cache_folder + ss0 + '.png');
 			file.pipe(res);			
 		} else {
-			pkg.fs.stat( space.cache_folder +'tmpcache_' + ss0 + '_' + t + '.mp4', function(err, stat) {
+			pkg.fs.stat( space.cache_folder +'sec_' + ss0 + '_' + t + '.mp4', function(err, stat) {
 				if (err) { res.send('err.message'); }
 				else {
 				      var total = stat.size;
@@ -144,13 +144,13 @@ CP.serial(_f,
 						  chunksize = (end - start) + 1;
 						}							      
 
-						var file = pkg.fs.createReadStream(space.cache_folder +'tmpcache_' + ss0 + '_' + t + '.mp4', {start:start, end:end});
+						var file = pkg.fs.createReadStream(space.cache_folder +'sec_' + ss0 + '_' + t + '.mp4', {start:start, end:end});
 						res.writeHead(206, {'Content-Range': 'bytes ' + start + '-' + end + '/' + total, 
 							'Accept-Ranges': 'bytes', 'Content-Length': chunksize, 'Content-Type': 'video/mp4' });
 					       file.pipe(res);
 					} else {
 					//	res.send('Need streaming player');
-						var file = pkg.fs.createReadStream(space.cache_folder +'tmpcache_' + ss0 + '_' + t + '.mp4', {start:start, end:end});
+						var file = pkg.fs.createReadStream(space.cache_folder +'sec_' + ss0 + '_' + t + '.mp4', {start:start, end:end});
 						res.writeHead(206, {'Content-Range': 'bytes ' + 0 + '-' + total + '/' + total, 
 							'Accept-Ranges': 'bytes', 'Content-Length': total, 'Content-Type': 'video/mp4' });
 					       file.pipe(res);						
