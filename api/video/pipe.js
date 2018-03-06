@@ -144,7 +144,7 @@ _f['FFMPEG_IMG'] = function(cbk) {
 CP.serial(_f,
 	function(results) {			
       		if (!sec_t) {
-			pkg.fs.stat( space.cache_folder +'sec_' + ss0 + '_' + t + '.mp4', function(err, stat) {
+			pkg.fs.stat(space.cache_folder + ss0 + _size_fn + '.png', function(err, stat) {
 				if (err) { res.send(err.message); }
 				else {
 					var file = pkg.fs.createReadStream(space.cache_folder + ss0 + _size_fn + '.png');
