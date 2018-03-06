@@ -144,8 +144,13 @@ _f['FFMPEG_IMG'] = function(cbk) {
 CP.serial(_f,
 	function(results) {			
       		if (!sec_t) {
-			var file = pkg.fs.createReadStream(space.cache_folder + ss0 + _size_fn + '.png');
-			file.pipe(res);			
+			pkg.fs.stat( space.cache_folder +'sec_' + ss0 + '_' + t + '.mp4', function(err, stat) {
+				if (err) { res.send('err.message'); }
+				else {
+					var file = pkg.fs.createReadStream(space.cache_folder + ss0 + _size_fn + '.png');
+					file.pipe(res);	
+				}
+			});	
 		} else {
 			pkg.fs.stat( space.cache_folder +'sec_' + ss0 + '_' + t + '.mp4', function(err, stat) {
 				if (err) { res.send('err.message'); }
