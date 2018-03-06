@@ -87,7 +87,7 @@ CP.serial(_f,
 					var partialstart = parts[0]; var partialend;
 					  partialend =  parts[1];
 					var start = parseInt(partialstart, 10);
-					var end = partialend ? parseInt(partialend, 10) : total-1;
+					var end = partialend ? parseInt(partialend, 10) : totalsize-1;
 					var chunksize = (end-start)+1;
 					var maxChunk = 1024 * 1024; // 1MB at a time
 					if (chunksize > maxChunk) {
@@ -100,8 +100,8 @@ CP.serial(_f,
 						'Accept-Ranges': 'bytes', 'Content-Length': chunksize, 'Content-Type': 'video/mp4' });
 				       file.pipe(res);
 				} else {
-					var file = pkg.fs.createReadStream(url, {start:start, end:end});
-					res.writeHead(206, {'Content-Range': 'bytes ' + 0 + '-' + total + '/' + totalsize, 
+					var file = pkg.fs.createReadStream(url);
+					res.writeHead(206, {'Content-Range': 'bytes ' + 0 + '-' + totalsize + '/' + totalsize, 
 						'Accept-Ranges': 'bytes', 'Content-Length': total, 'Content-Type': 'video/mp4' });
 				       file.pipe(res);						
 				}
