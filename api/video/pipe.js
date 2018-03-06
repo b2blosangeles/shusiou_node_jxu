@@ -1,5 +1,5 @@
 function cache_request(url, fn, cbk) {
-	var fn_temp = '/tmp/' + url.replace(/\//ig, '_').replace(':','_');
+	var fn_temp = space.cache_folder  + url.replace(/\//ig, '_').replace(':','_');
 	pkg.fs.stat(fn_temp, function(err0, stats) {
 		if (err0) {
 			let file = pkg.fs.createWriteStream(fn_temp);
