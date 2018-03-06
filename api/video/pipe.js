@@ -132,7 +132,7 @@ CP.serial(_f,
 			file.pipe(res);			
 		} else {
 			pkg.fs.stat( space.cache_folder +'tmpcache_' + ss0 + '_' + t + '.mp4', function(err, stat) {
-				if (err) { res.send(err.message); }
+				if (err) { res.send('err.message'); }
 				else {
 				      var total = stat.size;
 				      var range = req.headers.range;
