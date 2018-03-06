@@ -32,6 +32,9 @@ let space = {
 	video:'video.mp4',
 	cache_folder: '/tmp/shusiou_cache/video.mp4/'
 }
+
+trunkSize = 1024 * 1024 * 1;
+
 let CP = new pkg.crowdProcess();
 let _f = {}, fn = []; 
   
@@ -42,7 +45,7 @@ _f['CREATE_DIR'] = function(cbk) {
 		cbk(true)
 	});	
 };
-/*
+
 _f['FFMPEG_SECTION'] = function(cbk) {
 	let fn =  space.cache_folder + 's_0.mp4';
 	pkg.fs.stat(fn, function(err, stat) {
@@ -62,7 +65,7 @@ _f['FFMPEG_SECTION'] = function(cbk) {
 		}
 	});	
 };
-*/
+
 CP.serial(_f,
 	function(results) {
 		res.send(CP.data.FFMPEG_SECTION);
