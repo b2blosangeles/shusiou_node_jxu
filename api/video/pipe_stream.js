@@ -42,19 +42,27 @@ _f['CREATE_DIR'] = function(cbk) {
 		cbk(true)
 	});	
 };
-/*
+
 _f['FFMPEG_SECTION'] = function(cbk) {
-	if (!sec_t) {
-		cbk(false);
-	} else {
-		let cmd = 'cd ' + space.cache_folder + ' && ffmpeg -ss ' + d_s + 
-		    ' -i cache_' + sec_s + '_' + sec_t + '.mp4  -t ' + t + ' -c copy sec_' + ss0 + '_' + t + '.mp4';
-		cache_ffmpeg(cmd, space.cache_folder  + 'sec_' + ss0 + '_' + t + '.mp4', cbk);
-	}
+	pkg.fs.stat(source_path + source_file, function(err, stat) {
+		pkg.fs.open(source_path + source_file, 'r', function(err, fd) {
+			pkg.fs.read(fd, buff, 0, 100, 0, function(err, bytesRead, buffer) {
+				var start = buffer.indexOf(new Buffer('mvhd')) + 17;
+				var timeScale = buffer.readUInt32BE(start, 4);
+				var duration = buffer.readUInt32BE(start + 4, 4);
+				var movieLength = Math.floor(duration/timeScale);
+				var v = {filesize:stat.size, start:start, time_scale:timeScale, trunksize: trunkSize,
+					duration: duration, length:movieLength, x:[], status:0};
+				cbk(v);
+			});
+		});
+	});	
 };
-*/
+
 CP.serial(_f,
-	function(results) {			
+	function(results) {
+		res.send(CP.data.FFMPEG_SECTION);
+		return true;
 		let url =  space.cache_folder + 's_0.mp4';
 		pkg.fs.stat( url, function(err, stat) {
 			if (err) { res.send(err.message); }
