@@ -121,8 +121,8 @@ _f['FFMPEG_IMG'] = function(cbk) {
 	if (sec_t) {
 		cbk(false);
 	} else {	
-		let cmd =  'cd ' + space.cache_folder  + ' && ffmpeg -i '  + fn[0] + ' -ss ' + start_point + ' -vframes 1 -preset ultrafast ' + 
-		    space.video + '_' + ss + '.png -y';
+		let cmd =  'ffmpeg -i ' + space.cache_folder  + fn[0] + ' -ss ' + start_point + ' -vframes 1 -preset ultrafast ' + 
+		    space.cache_folder + space.video + '_' + ss + '.png -y';
 		cache_ffmpeg(cmd, space.cache_folder  + space.video + '_' + ss + '.png', cbk);
 	}	
 };
