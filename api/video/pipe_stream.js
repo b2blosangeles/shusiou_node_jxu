@@ -53,9 +53,7 @@ _f['FFMPEG_SECTION'] = function(cbk) {
 	pkg.fs.stat(fn, function(err, stat) {
 		if (err) cbk('err.message');
 		else {
-			var total = stat.size;
-			res.writeHead(206, {'Content-Range': 'bytes ' + 0 + '-' + total + '/' + total, 
-				'Accept-Ranges': 'bytes', 'Content-Length': chunksize, 'Content-Type': 'video/mp4' });			
+			var total = stat.size;			
 			/*
 			let buff = new Buffer(100);
 			pkg.fs.open(fn, 'r', function(err, fd) {
