@@ -115,8 +115,8 @@ _f['FFMPEG_IMG'] = function(cbk) {
 		cbk(false);
 	} else {	
 		let cmd =  'ffmpeg -i ' + space.cache_folder  + fn[0] + ' -ss ' + d_s + ' -vframes 1 -preset ultrafast ' + 
-		    space.cache_folder + space.video + '_' + ss0 + '.png -y';
-		cache_ffmpeg(cmd, space.cache_folder  + space.video + '_' + ss0 + '.png', cbk);
+		    space.cache_folder + ss0 + '.png -y';
+		cache_ffmpeg(cmd, space.cache_folder + ss0 + '.png', cbk);
 	}	
 };
 
