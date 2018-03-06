@@ -42,7 +42,7 @@ _f['CREATE_DIR'] = function(cbk) {
 		cbk(true)
 	});	
 };
-
+/*
 _f['FFMPEG_SECTION'] = function(cbk) {
 	let fn =  space.cache_folder + 's_0.mp4';
 	pkg.fs.stat(fn, function(err, stat) {
@@ -62,7 +62,7 @@ _f['FFMPEG_SECTION'] = function(cbk) {
 		}
 	});	
 };
-
+*/
 CP.serial(_f,
 	function(results) {
 		res.send(CP.data.FFMPEG_SECTION);
