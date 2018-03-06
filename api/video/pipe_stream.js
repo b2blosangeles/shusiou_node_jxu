@@ -47,14 +47,10 @@ _f['CREATE_DIR'] = function(cbk) {
 };
 
 _f['FFMPEG_SECTION'] = function(cbk) {
-	cbk(true);
-	return true;
-	let fn =  space.cache_folder + 's_0.mp4';
+	let fn =  '/var/img/video.mp4';
 	pkg.fs.stat(fn, function(err, stat) {
 		if (err) cbk('err.message');
 		else {
-			var total = stat.size;			
-			/*
 			let buff = new Buffer(100);
 			pkg.fs.open(fn, 'r', function(err, fd) {
 				pkg.fs.read(fd, buff, 0, 100, 0, function(err, bytesRead, buffer) {
@@ -71,13 +67,15 @@ _f['FFMPEG_SECTION'] = function(cbk) {
 					}
 				});
 			});
-			*/
 		}
 	});	
 };
 
 CP.serial(_f,
 	function(results) {
+		let totalsize = CP.data.FFMPEG_SECTION.filesize;
+		cbk(totalsize+'--');
+		return true;
 		let url =  space.cache_folder + 's_0.mp4';
 		pkg.fs.stat( url, function(err, stat) {
 			if (err) { res.send(err.message); }
