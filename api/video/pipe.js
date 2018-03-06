@@ -120,15 +120,15 @@ _f['FFMPEG_IMG'] = function(cbk) {
 		cbk(false);
 	} else {	
 		let cmd =  'ffmpeg -i ' + space.cache_folder  + fn[0] + ' -ss ' + d_s + ' -vframes 1 -preset ultrafast ' + 
-		    space.cache_folder + space.video + '_' + ss + '.png -y';
-		cache_ffmpeg(cmd, space.cache_folder  + space.video + '_' + ss + '.png', cbk);
+		    space.cache_folder + space.video + '_' + ss0 + '.png -y';
+		cache_ffmpeg(cmd, space.cache_folder  + space.video + '_' + ss0 + '.png', cbk);
 	}	
 };
 
 CP.serial(_f,
 	function(results) {			
       		if (!sec_t) {
-			var file = pkg.fs.createReadStream(space.cache_folder  + space.video + '_' + ss + '.png');
+			var file = pkg.fs.createReadStream(space.cache_folder  + space.video + '_' + ss0 + '.png');
 			file.pipe(res);			
 		} else {
 			pkg.fs.stat( space.cache_folder +'tmpcache_' + ss0 + '_' + t + '.mp4', function(err, stat) {
