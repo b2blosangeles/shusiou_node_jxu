@@ -163,7 +163,11 @@ CP.serial(_f,
 							'Accept-Ranges': 'bytes', 'Content-Length': chunksize, 'Content-Type': 'video/mp4' });
 					       file.pipe(res);
 					} else {
-						res.send('Need streaming player');
+					//	res.send('Need streaming player');
+						var file = pkg.fs.createReadStream(space.cache_folder +'tmpcache_' + d_s + '_' + t + '.mp4', {start:start, end:end});
+						res.writeHead(206, {'Content-Range': 'bytes ' + 0 + '-' + total + '/' + total, 
+							'Accept-Ranges': 'bytes', 'Content-Length': total, 'Content-Type': 'video/mp4' });
+					       file.pipe(res);						
 					}
 				}
 			});
