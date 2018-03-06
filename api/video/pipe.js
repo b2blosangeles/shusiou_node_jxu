@@ -49,7 +49,7 @@ var ss0 = parseFloat(req.query['ss']),
 let space = {
 	endpoint : 'https://shusiou-d-01.nyc3.digitaloceanspaces.com/shusiou/',
 	video:'video.mp4',
-	cache_folder: '/tmp/shusiou_cache/'
+	cache_folder: '/tmp/shusiou_cache/video.mp4/'
 }
 let CP = new pkg.crowdProcess();
 let _f = {}, fn = []; 
