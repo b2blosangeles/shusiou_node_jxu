@@ -110,7 +110,7 @@ _f['FFMPEG_SECTION'] = function(cbk) {
 		cbk(false);
 	} else {
 		let cmd = 'cd ' + space.cache_folder + ' && ffmpeg -ss ' + d_s + 
-		    ' -i cache_' + sec_s + '_' + sec_t + '.mp4  -t ' + t + ' -c copy tmpcache_' + d_s + '_' + t + '.mp4';
+		    ' -i cache_' + sec_s + '_' + sec_t + '.mp4  -t ' + t + ' -c copy tmpcache_' + ss0 + '_' + t + '.mp4';
 		cache_ffmpeg(cmd, space.cache_folder  + 'tmpcache_' + d_s + '_' + t + '.mp4', cbk);
 	}
 };
