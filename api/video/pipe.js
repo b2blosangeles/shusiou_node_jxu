@@ -136,7 +136,7 @@ _f['FFMPEG_IMG'] = function(cbk) {
 		cbk(false);
 	} else {
 		let cmd =  'ffmpeg -i ' + space.cache_folder  + fn[0] + ' -ss ' + d_s + _size_str + ' -preset ultrafast ' + 
-		    space.cache_folder + ss0 + '.png -y';
+		    space.cache_folder + ss0 + _size_fn + '.png -y';
 		cache_ffmpeg(cmd, space.cache_folder + ss0 +  _size_fn + '.png', cbk);
 	}	
 };
