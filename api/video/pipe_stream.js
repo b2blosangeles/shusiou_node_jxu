@@ -44,11 +44,11 @@ _f['CREATE_DIR'] = function(cbk) {
 };
 
 _f['FFMPEG_SECTION'] = function(cbk) {
-	let url =  space.cache_folder + 's_0.mp4';
-	pkg.fs.stat(url, function(err, stat) {
-		if (err) cbk(err.message);
+	let fn =  space.cache_folder + 's_0.mp4';
+	pkg.fs.stat(fn, function(err, stat) {
+		if (err) cbk('err.message');
 		else {
-			pkg.fs.open(url, 'r', function(err, fd) {
+			pkg.fs.open(fn, 'r', function(err, fd) {
 				pkg.fs.read(fd, buff, 0, 100, 0, function(err, bytesRead, buffer) {
 					var start = buffer.indexOf(new Buffer('mvhd')) + 17;
 					var timeScale = buffer.readUInt32BE(start, 4);
