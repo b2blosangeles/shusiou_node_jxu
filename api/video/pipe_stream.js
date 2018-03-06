@@ -73,8 +73,8 @@ _f['FFMPEG_SECTION'] = function(cbk) {
 
 CP.serial(_f,
 	function(results) {
-		let totalsize = CP.data.FFMPEG_SECTION.filesize;
-		cbk(totalsize+'--');
+		let totalsize = CP.data.FFMPEG_SECTION;
+		cbk(totalsize);
 		return true;
 		let url =  space.cache_folder + 's_0.mp4';
 		pkg.fs.stat( url, function(err, stat) {
