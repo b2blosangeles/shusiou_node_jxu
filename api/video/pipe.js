@@ -149,13 +149,13 @@ CP.serial(_f,
 						  chunksize = (end - start) + 1;
 						}							      
 
-						var file = pkg.fs.createReadStream(space.cache_folder +'tmpcache_' + d_s + '_' + t + '.mp4', {start:start, end:end});
+						var file = pkg.fs.createReadStream(space.cache_folder +'tmpcache_' + ss0 + '_' + t + '.mp4', {start:start, end:end});
 						res.writeHead(206, {'Content-Range': 'bytes ' + start + '-' + end + '/' + total, 
 							'Accept-Ranges': 'bytes', 'Content-Length': chunksize, 'Content-Type': 'video/mp4' });
 					       file.pipe(res);
 					} else {
 					//	res.send('Need streaming player');
-						var file = pkg.fs.createReadStream(space.cache_folder +'tmpcache_' + d_s + '_' + t + '.mp4', {start:start, end:end});
+						var file = pkg.fs.createReadStream(space.cache_folder +'tmpcache_' + ss0 + '_' + t + '.mp4', {start:start, end:end});
 						res.writeHead(206, {'Content-Range': 'bytes ' + 0 + '-' + total + '/' + total, 
 							'Accept-Ranges': 'bytes', 'Content-Length': total, 'Content-Type': 'video/mp4' });
 					       file.pipe(res);						
