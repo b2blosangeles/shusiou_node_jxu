@@ -36,7 +36,7 @@ if (isNaN(req.query['ss'])) {
 	res.send('Wrong ss');
 	return true;
 }
-var ss0 = req.query['ss'], 
+var ss0 =parseFloat(req.query['ss']), 
     ss = Math.floor(ss0),
     d_s = ss0 - ss,
     sec_s = Math.floor(parseInt(ss) / 5), 
