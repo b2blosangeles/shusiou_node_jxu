@@ -103,10 +103,7 @@ _f['MERGE_VIDEO'] = function(cbk) {
 		let cmd = 'cd ' + space.cache_folder  + 
 		    ' && ffmpeg -f concat -safe 0 -i ' + space.cache_folder  + 
 		    'engine.data -c copy cache_' + sec_s + '_' + sec_t + '.mp4 -y';
-		pkg.exec(cmd, 
-			function(error, stdout, stderr) {
-				cbk(cmd);	
-		});
+		cache_ffmpeg(cmd, space.cache_folder  + 'cache_' + sec_s + '_' + sec_t + '.mp4', cbk);
 	}
 };
 
@@ -116,11 +113,7 @@ _f['FFMPEG_SECTION'] = function(cbk) {
 	} else {
 		let cmd = 'cd ' + space.cache_folder + ' && ffmpeg -ss ' + d_s + 
 		    ' -i cache_' + sec_s + '_' + sec_t + '.mp4  -t ' + t + ' -c copy tmpcache_' + d_s + '_' + t + '.mp4';
-
-		pkg.exec(cmd, 
-			function(error, stdout, stderr) {
-				cbk(cmd);	
-		});
+		cache_ffmpeg(cmd, space.cache_folder  + 'tmpcache_' + d_s + '_' + t + '.mp4', cbk);
 	}
 };
 
@@ -130,7 +123,7 @@ _f['FFMPEG_IMG'] = function(cbk) {
 	} else {	
 		let cmd =  'cd ' + space.cache_folder  + ' && ffmpeg -i '  + fn[0] + ' -ss ' + start_point + ' -vframes 1 -preset ultrafast ' + 
 		    space.video + '_' + ss + '.png -y';
-		cache_ffmpeg(cmd, space.video + '_' + ss + '.png', cbk);
+		cache_ffmpeg(cmd, space.cache_folder  + space.video + '_' + ss + '.png', cbk);
 	}	
 };
 
