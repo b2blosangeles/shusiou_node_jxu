@@ -87,7 +87,7 @@ CP.serial(_f,
 					var partialstart = parts[0]; var partialend;
 					  partialend =  parts[1];
 					var start = parseInt(partialstart, 10);
-					var end = partialend ? parseInt(partialend, 10) : totalsize-1;
+					var end = partialend ? parseInt(partialend, 10) : total-1;
 					var chunksize = (end-start)+1;
 					var maxChunk = 1024 * 1024; // 1MB at a time
 					if (chunksize > maxChunk) {
