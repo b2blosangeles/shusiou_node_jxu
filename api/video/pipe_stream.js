@@ -27,24 +27,6 @@ function cache_ffmpeg(cmd, fn, cbk) {
 	});	
 }
 
-if (isNaN(req.query['ss'])) {
-	res.send('Wrong ss');
-	return true;
-}
-
-let ss0 = parseFloat(req.query['ss']), 
-    ss = Math.floor(ss0),
-    d_s = ss - ss0,
-    sec_s = Math.floor(parseInt(ss) / 5), 
-    t = (isNaN(req.query['t'])) ? 0 : parseFloat(req.query['t']),
-    sec_t =  Math.ceil(parseInt(t) / 5), 
-    start_point = parseInt(ss) % 5 + d_s;
-
-let _w = parseFloat(req.query['size']),
-    _size_str = ([90, 180, 480].indexOf(_w) !== -1) ? (' -vf scale=' + _w + ':-1 ') : ' -vframes 1 ',
-    _size_fn = ([90, 180, 480].indexOf(_w) !== -1) ? ('_' + _w) : '';
-// TODO ffmpeg ratio
-
 let space = {
 	endpoint : 'https://shusiou-d-01.nyc3.digitaloceanspaces.com/shusiou/',
 	video:'video.mp4',
