@@ -103,7 +103,7 @@ _f['PULLING'] = function(cbk) {;
 	_f1,
 	function(results) {
 		cbk(results);
-	}, 6000);
+	}, 10000);
 }
 
 _f['MERGE_VIDEO'] = function(cbk) {
@@ -176,6 +176,6 @@ CP.serial(_f,
 			});
 		}	
 
-	}, 18000);
+	}, 20000);
 return true;
 
