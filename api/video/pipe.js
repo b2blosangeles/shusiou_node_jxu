@@ -38,7 +38,7 @@ if (isNaN(req.query['ss'])) {
 }
 var ss0 = parseFloat(req.query['ss']), 
     ss = Math.floor(ss0),
-    d_s = ss0 - ss,
+    d_s = ss - ss0,
     sec_s = Math.floor(parseInt(ss) / 5), 
     t = (isNaN(req.query['t'])) ? 0 : parseFloat(req.query['t']),
     sec_t =  Math.ceil(parseInt(t) / 5), 
