@@ -141,15 +141,33 @@ CP.serial(_f,
 			file.pipe(res);			
 		} else {
 			pkg.fs.stat( space.cache_folder +'tmpcache_' + d_s + '_' + t + '.mp4', function(err, stat) {
-				res.send(stat);
+				if (err) { res.send(err.message); }
+				else {
+				      var total = stat.size;
+				      var range = req.headers.range;
+				      if (range) {
+						var parts = range.replace(/bytes=/, "").split("-");
+						var partialstart = parts[0]; var partialend;
+						  partialend =  parts[1];
+						var start = parseInt(partialstart, 10);
+						var end = partialend ? parseInt(partialend, 10) : total-1;
+						var chunksize = (end-start)+1;
+						var maxChunk = 1024 * 1024; // 1MB at a time
+						if (chunksize > maxChunk) {
+						  end = start + maxChunk - 1;
+						  chunksize = (end - start) + 1;
+						}							      
+
+						var file = pkg.fs.createReadStream(space.cache_folder +'tmpcache_' + d_s + '_' + t + '.mp4', {start:start, end:end});
+						res.writeHead(206, {'Content-Range': 'bytes ' + start + '-' + end + '/' + total, 
+							'Accept-Ranges': 'bytes', 'Content-Length': chunksize, 'Content-Type': 'video/mp4' });
+					       file.pipe(res);
+					} else {
+						res.send('Need streaming player');
+					}
+				}
 			});
-				    /*
-			res.writeHead(200, { 'Content-Type': 'video/mp4' });
-			var file = pkg.fs.createReadStream(space.cache_folder  + 'tmpcache_' + ss + '_' + t + '.mp4');
-			file.pipe(res);
-			*/
-		}
-	//  	res.writeHead(206, { 'Content-Type': 'video/mp4' });	
+		}	
 
 	}, 18000);
 return true;
