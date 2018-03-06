@@ -144,8 +144,10 @@ _f['FFMPEG_IMG'] = function(cbk) {
 CP.serial(_f,
 	function(results) {			
       		if (!sec_t) {
+			let cmd =  'ffmpeg -i ' + space.cache_folder  + fn[0] + ' -ss ' + d_s + _size_str + ' -preset ultrafast ' + 
+		    space.cache_folder + ss0 + _size_fn + '.png -y';
 			pkg.fs.stat(space.cache_folder + ss0 + _size_fn + '.png', function(err, stat) {
-				if (err) { res.send(err.message); }
+				if (err) { res.send(cmd); }
 				else {
 					var file = pkg.fs.createReadStream(space.cache_folder + ss0 + _size_fn + '.png');
 					file.pipe(res);	
