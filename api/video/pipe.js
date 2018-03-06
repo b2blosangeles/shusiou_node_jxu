@@ -1,7 +1,7 @@
 function cache_request(url, fn, cbk) {
 	var fn_temp = '/tmp/' + url.replace(/\//ig, '_').replace(':','_');
 	pkg.fs.stat(fn_temp, function(err0, stats) {
-		if (err0 || !err0) {
+		if (err0) {
 			let file = pkg.fs.createWriteStream(fn_temp);
 			file.on('finish', function() {
 				file.close(function() {
@@ -21,7 +21,7 @@ function cache_request(url, fn, cbk) {
 }
 function cache_ffmpeg(cmd, fn, cbk) {
 	pkg.fs.stat(fn, function(err, stats) {
-		if (err || !err) {
+		if (err) {
 			pkg.exec(cmd, 
 				function(error, stdout, stderr) {
 					cbk(cmd);	
