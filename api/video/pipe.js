@@ -1,21 +1,16 @@
 function cache_request(url, fn, cbk) {
-	var fn_temp = space.cache_folder  + url.replace(/\//ig, '_').replace(':','_');
-	pkg.fs.stat(fn_temp, function(err0, stats) {
+	pkg.fs.stat(fn, function(err0, stats) {
 		if (err0) {
-			let file = pkg.fs.createWriteStream(fn_temp);
+			let file = pkg.fs.createWriteStream(fn);
 			file.on('finish', function() {
 				file.close(function() {
-					pkg.fs.copyFile( fn_temp, fn, (err) => {
-						cbk(true);
-					});
+					cbk(true);
 				});  
 			});
 			pkg.request(url, function (err1, response, body) {
 			}).pipe(file);			
 		} else {
-			pkg.fs.copyFile( fn_temp, fn, (err2) => {
-				cbk(true);
-			});
+			cbk(true);
 		}
 	});
 }
