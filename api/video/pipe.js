@@ -140,7 +140,7 @@ CP.serial(_f,
 			var file = pkg.fs.createReadStream(space.cache_folder  + space.video + '_' + ss + '.png');
 			file.pipe(res);			
 		} else {
-			pkg.fs.stat(fn, function(err, stat) {
+			pkg.fs.stat( space.cache_folder +'tmpcache_' + d_s + '_' + t + '.mp4', function(err, stat) {
 				res.send(stat);
 			});
 				    /*
