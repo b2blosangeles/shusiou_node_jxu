@@ -41,7 +41,7 @@ let ss0 = parseFloat(req.query['ss']),
     start_point = parseInt(ss) % 5 + d_s;
 
 let _w = parseFloat(req.query['size']),
-    _size_str = ([90, 180, 480].indexOf(_w) !== -1) ? (' -vf scale=' + _w + ':-1 ') : ' -vframes 1 ',
+    _size_str = ([90, 180, 480].indexOf(_w) !== -1) ? (' -aspect 16:9 -vf scale=' + _w + ':-1 ') : ' -vframes 1 ',
     _size_fn = ([90, 180, 480].indexOf(_w) !== -1) ? ('_' + _w) : '';
 
 let _crop = req.query['crop'];
