@@ -33,7 +33,7 @@ let space = {
 	cache_folder: '/tmp/shusiou_cache/video.mp4/'
 }
 
-trunkSize = 1024 * 1024 * 1;
+let trunkSize = 1024 * 1024 * 1;
 
 let CP = new pkg.crowdProcess();
 let _f = {}, fn = []; 
