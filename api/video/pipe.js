@@ -142,7 +142,7 @@ CP.serial(_f,
 		} else {
 			pkg.fs.stat(fn, function(err, stat) {
 				res.send(stat);
-			}
+			});
 				    /*
 			res.writeHead(200, { 'Content-Type': 'video/mp4' });
 			var file = pkg.fs.createReadStream(space.cache_folder  + 'tmpcache_' + ss + '_' + t + '.mp4');
