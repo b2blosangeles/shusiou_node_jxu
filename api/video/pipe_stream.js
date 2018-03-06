@@ -98,12 +98,12 @@ CP.serial(_f,
 					}							      
 
 					var file = pkg.fs.createReadStream(url, {start:start, end:end});
-					res.writeHead(206, {'Content-Range': 'bytes ' + start + '-' + end + '/' + (total * 2), 
+					res.writeHead(206, {'Content-Range': 'bytes ' + start + '-' + end + '/' + total, 
 						'Accept-Ranges': 'bytes', 'Content-Length': chunksize, 'Content-Type': 'video/mp4' });
 				       file.pipe(res);
 				} else {
 					var file = pkg.fs.createReadStream(url, {start:start, end:end});
-					res.writeHead(206, {'Content-Range': 'bytes ' + 0 + '-' + total + '/' + (total * 2), 
+					res.writeHead(206, {'Content-Range': 'bytes ' + 0 + '-' + total + '/' + total, 
 						'Accept-Ranges': 'bytes', 'Content-Length': total, 'Content-Type': 'video/mp4' });
 				       file.pipe(res);						
 				}
