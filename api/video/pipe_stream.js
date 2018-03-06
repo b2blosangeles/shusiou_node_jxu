@@ -51,10 +51,11 @@ _f['FFMPEG_SECTION'] = function(cbk) {
 	pkg.fs.stat(fn, function(err, stat) {
 		if (err) cbk('err.message');
 		else {
+			let buff = new Buffer(100);
 			pkg.fs.open(fn, 'r', function(err, fd) {
 				pkg.fs.read(fd, buff, 0, 100, 0, function(err, bytesRead, buffer) {
 					
-					if (err) cbk('err.messageA');
+					if (err) cbk(err.message);
 					else {
 						var start = buffer.indexOf(new Buffer('mvhd')) + 17;
 						var timeScale = buffer.readUInt32BE(start, 4);
