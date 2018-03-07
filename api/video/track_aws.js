@@ -159,7 +159,14 @@ _f['upload'] = function(cbk) {
 	CP1.serial(
 		_f1,
 		function(results) {
-			cbk('uploaded:' + uploaded);
+			if (!uploaded) {
+				let v = CP.data.videoinfo;
+				v.x = tracks;
+				v.status = 1;
+				writeInfo(v, cbk);
+				
+			}
+			// cbk('uploaded:' + uploaded);
 		},
 		50000
 	);
