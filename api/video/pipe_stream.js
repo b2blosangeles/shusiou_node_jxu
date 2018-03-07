@@ -33,6 +33,7 @@ CP.serial(
 	_f,
 	function(results) {
 		res.send(results);
+		return true;
 		var cfg = CP.data.P_I0;
 		let stream = require("stream"),
 		a = new stream.PassThrough();
