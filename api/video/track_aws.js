@@ -91,16 +91,20 @@ _f['tracks'] = function(cbk) {
 		});
 	}
 };
-/*
+
 _f['space'] = function(cbk) { 
-	let x =  CP.data['videoinfo'].x;
-	let tracks = CP.data.tracks;
-	if (typeof tracks === 'string') {
-		cbk(tracks);
-		CP.exit = 1;
+	var params = { 
+	  Bucket: space_id,
+	  Delimiter: '',
+	  Prefix: space_dir
 	}
+
+	s3.listObjects(params, function (err, data) {
+		if(err)cbk(err.message);
+		else cbk(data);
+	});
 }
-*/
+
 _f['upload'] = function(cbk) { 
 	let x =  CP.data['videoinfo'].x;
 	let tracks = CP.data.tracks;
