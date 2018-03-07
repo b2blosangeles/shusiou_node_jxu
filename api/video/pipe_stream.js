@@ -40,7 +40,7 @@ _f['P_I1'] = function(cbk) {
 	for (i=0; i < v.length; i++) {
 		_f1['P_'+i] = (function(i) {
 			return function(cbk1) {
-				pkg.fs.stat(space.cache_folder + v, 
+				pkg.fs.stat(space.cache_folder + v[i], 
 					function (err, stat) {
 						if (err) { 
 							cbk1(false); 
