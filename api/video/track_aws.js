@@ -51,20 +51,18 @@ _f['videoinfo'] = function(cbk) { // P_I0
 						var v = {filesize:stat.size,time_scale:timeScale, trunksize: trunkSize,
 							duration: duration, length:movieLength, x:[], status:0};
 						writeInfo(v, function() {
-							CP.exit = 1;
 							cbk(v);
 						});
 					});
 				});
 			});		
 		} else {
-			CP.exit = 1;
 			cbk(v);
 		}
 	});		
 };
-/*
-_f['split'] = function(cbk) {
+
+_f['tracks'] = function(cbk) {
 	if (CP.data.videoinfo === false) {
 		cbk('no videoinfo');
 	} else {
@@ -73,11 +71,11 @@ _f['split'] = function(cbk) {
 		fp.build(tmp_folder, () => {
 			pkg.exec('cd ' + source_path + ' && split -b ' + trunkSize + ' ' +  source_file +  ' ' + tmp_folder + '', 					 
 			function(err1, stdout, stderr) {
-				if (err) {
+				if (err1) {
 					cbk(err1.message);
 				} else {
 					pkg.fs.readdir( tmp_folder, (err2, files) => {
-						if (err) {
+						if (err2) {
 							cbk(err2.message);
 						} else {
 							var f = [];
@@ -93,12 +91,7 @@ _f['split'] = function(cbk) {
 	}
 };
 
-_f['tracks'] = function(cbk) { // P_I
-	CP.exit = 1;	
-	cbk(CP.data.split);
-};
-
-
+/*
 
 _f['P_I2'] = function(cbk) { 
 	if (CP.data['P_I1'] !== false) {
