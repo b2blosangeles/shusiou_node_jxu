@@ -92,7 +92,7 @@ _f['tracks'] = function(cbk) {
 	}
 };
 _f['next'] = function(cbk) {
-	cbk (Math.ceil(CP.data.videoinfo.filesize / 5) + '==');
+	cbk (Math.ceil(CP.data.videoinfo.filesize / trunkSize) + '==');
 };
 /*
 
