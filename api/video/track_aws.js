@@ -103,7 +103,7 @@ _f['space'] = function(cbk) {
 		if(err)cbk(err.message);
 		else {
 			for (var o in data.Contents) {
-				v[data.Contents[o].Key.replace(space_dir, '')] = data.Contents[o].Size;
+				v[data.Contents[o].Key.replace('/'+space_dir, '')] = data.Contents[o].Size;
 			}
 			cbk(v);
 		}
