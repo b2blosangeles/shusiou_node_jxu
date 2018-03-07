@@ -107,9 +107,11 @@ _f['upload'] = function(cbk) {
 	if (typeof tracks === 'string') {
 		cbk(tracks);
 		CP.exit = 1;
-	} else {
-		cbk(tracks);
-	}
+		return true;
+	} 
+	let next =  tracks.filter(x => !x.includes(x));
+	cbk(next);
+
 }	
 /*
 
