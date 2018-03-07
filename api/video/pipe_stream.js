@@ -113,6 +113,21 @@ CP.serial(
 			}
 		}
 		*/
+		if (range) {
+		//	var total = cfg.filesize; 
+			var parts = range.replace(/bytes=/, "").split("-");
+			var partialstart = parts[0]; var partialend;
+			  partialend =  parts[1];
+			var start = parseInt(partialstart, 10);
+			/*
+			var end = (partialend) ? parseInt(partialend, 10) : (total-1);
+			var chunksize = (end-start)+1;
+			if (chunksize > maxChunk) {
+			  end = start + maxChunk - 1;
+			  chunksize = (end - start) + 1;
+			} 
+			*/
+		} 		
 		let ffn = space.cache_folder + 's_0.mp4';
 		let start = 0;
 		//res.send({'Content-Range': 'bytes ' + start + '-' + (CP.data.P_I1['s_0.mp4']-1) + '/' + totalsize, 
