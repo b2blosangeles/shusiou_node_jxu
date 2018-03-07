@@ -34,7 +34,7 @@ _f['P_I0'] = function(cbk) {
 	});		
 };
 _f['P_I1'] = function(cbk) {
-	var v = CP.data.P_I0.x;
+	var v = CP.data.P_I0;
 	cbk(v);
 	return true;
 	/*
