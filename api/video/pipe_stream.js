@@ -7,7 +7,7 @@ let source_path = '/var/img/',
     tmp_folder = source_path + '_x/' + source_file + '/',
     space_id = 'shusiou-d-01',
     space_url = 'https://shusiou-d-01.nyc3.digitaloceanspaces.com',  
-    space_dir = '/shusiou/' + source_file + '/_t/';
+    space_dir = '/shusiou/' + source_file + '/_s/';
 
 var CP = new pkg.crowdProcess();
 var _f = {}; 
@@ -27,16 +27,16 @@ _f['P_I0'] = function(cbk) {
 	});		
 };
 _f['P_I1'] = function(cbk) {
-	var v = {"aa":0,"ab":0,"ac":0,"ad":0,"ae":0,"af":0,"ag":0};
+	var v = CP.data.P_I0.x;
 	CP1 = new pkg.crowdProcess();
 	var _f1 = {};
-	for (k in v) {
-		_f1[k] = (function(k) {
+	for (i=0; i < v.length; i++) {
+		_f1['P_'+i] = (function(i) {
 			return function(cbk1) {
-				cbk1(k);
+				cbk1(i);
 			}
 			
-		})(k);	
+		})(i);	
 	}
 	/*
 	_f1['WRITE_CFG'] = function(cbk1) {
