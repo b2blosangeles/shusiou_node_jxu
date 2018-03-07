@@ -101,11 +101,19 @@ CP.serial(
 		for (var i = sidx; i < eidx; i++) {
 			fn.push(cfg.x[i]);	
 		}
-		res.writeHead(206, {'Content-Range': 'bytes ' + start + '-' + end + '/' + total, 
-		    'Accept-Ranges': 'bytes', 'Content-Type': 'video/mp4' });			
-		var CP1 = new pkg.crowdProcess();
-		var _f1 = {}; 
+	//	res.writeHead(206, {'Content-Range': 'bytes ' + start + '-' + end + '/' + total, 
+	//	    'Accept-Ranges': 'bytes', 'Content-Type': 'video/mp4' });			
 		
+		let cnt = 0, url = '';
+		for (var o in CP.data.P_I1) {
+			cnt = CP.data.P_I1[o];
+			if (cnt > start) {
+				url = space_url + space_dir + o;
+				break;
+			}
+		}		
+		res.send(url);
+		/*
 		for (var o in CP.data.P_I1) {
 			_f1['P_' + o] = (function(o) {
 				return function(cbk1) {
@@ -122,7 +130,7 @@ CP.serial(
 				}
 			})(o);	
 		}
-
+		
 		CP1.parallel(
 			_f1,
 			function(data) {
@@ -130,7 +138,7 @@ CP.serial(
 			},
 			6000
 		);
-		
+		*/
 	},
 	300000
 );
