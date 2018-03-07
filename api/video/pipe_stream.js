@@ -72,7 +72,6 @@ CP.serial(
 		a = new stream.PassThrough();
 		a.pipe(res);
 		
-		var fn = [];
 		var range = req.headers.range;
 		
 		if (req.param('start')) {
@@ -98,15 +97,13 @@ CP.serial(
 		var sidx = Math.floor(start / maxChunk); 
 		var eidx = Math.min(Math.ceil(end / maxChunk), sidx+1); 
 		start = sidx * maxChunk; end = eidx * maxChunk;
-		for (var i = sidx; i < eidx; i++) {
-			fn.push(cfg.x[i]);	
-		}
+
 		//res.writeHead(206, {'Content-Range': 'bytes ' + start + '-' + end + '/' + total, 
 		 //   'Accept-Ranges': 'bytes', 'Content-Type': 'video/mp4' });			
 		
 		let cnt = 0, ffn = '';
 		for (var o in CP.data.P_I1) {
-			cnt = CP.data.P_I1[o];
+			cnt += CP.data.P_I1[o];
 			if (cnt > start) {
 				ffn = space.cache_folder + o;
 				break;
