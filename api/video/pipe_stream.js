@@ -1,113 +1,102 @@
-function cache_request(url, fn, cbk) {
-	pkg.fs.stat(fn, function(err0, stats) {
-		if (err0) {
-			let file = pkg.fs.createWriteStream(fn);
-			file.on('finish', function() {
-				file.close(function() {
-					cbk(true);
-				});  
-			});
-			pkg.request(url, function (err1, response, body) {
-			}).pipe(file);			
+var CP = new pkg.crowdProcess();
+var _f = {};
+var buff = new Buffer(100);
+
+let source_path = '/var/img/',
+    source_file = 'video.mp4',
+    tmp_folder = source_path + '_x/' + source_file + '/',
+    space_id = 'shusiou-d-01',
+    space_url = 'https://shusiou-d-01.nyc3.digitaloceanspaces.com',  
+    space_dir = '/shusiou/' + source_file + '/_t/';
+
+var CP = new pkg.crowdProcess();
+var _f = {}; 
+
+_f['P_I0'] = function(cbk) { 
+	pkg.request(space_url +  space_dir + '_info.txt', 
+	function (err, res, body) {
+		if (err) { 
+			cbk(false); 
 		} else {
-			cbk(true);
+			let v = {};
+			try { 
+				v = JSON.parse(body);
+			} catch (e) { v = false; }
+			cbk(v);
 		}
-	});
-}
-function cache_ffmpeg(cmd, fn, cbk) {
-	pkg.fs.stat(fn, function(err, stats) {
-		if (err) {
-			pkg.exec(cmd, 
-				function(error, stdout, stderr) {
-					cbk(cmd);	
-			});
-		} else {
-			cbk(cmd);
-		}
-	});	
-}
-
-let space = {
-	endpoint : 'https://shusiou-d-01.nyc3.digitaloceanspaces.com/shusiou/',
-	video:'video.mp4',
-	cache_folder: '/tmp/shusiou_cache/video.mp4/'
-}
-
-let trunkSize = 1024 * 1024 * 1;
-
-let CP = new pkg.crowdProcess();
-let _f = {}, fn = []; 
-  
-_f['CREATE_DIR'] = function(cbk) {
-	var folderP = require(env.site_path + '/api/inc/folderP/folderP');
-	var fp = new folderP();		
-	fp.build(space.cache_folder, () => {
-		cbk(true)
-	});	
+	});		
 };
-
-_f['FFMPEG_SECTION'] = function(cbk) {
-	let fn =  '/var/img/video.mp4';
-	pkg.fs.stat(fn, function(err, stat) {
-		if (err) cbk('err.message');
-		else {
-			let buff = new Buffer(100);
-			pkg.fs.open(fn, 'r', function(err, fd) {
-				pkg.fs.read(fd, buff, 0, 100, 0, function(err, bytesRead, buffer) {
-					
-					if (err) cbk(err.message);
-					else {
-						var start = buffer.indexOf(new Buffer('mvhd')) + 17;
-						var timeScale = buffer.readUInt32BE(start, 4);
-						var duration = buffer.readUInt32BE(start + 4, 4);
-						var movieLength = Math.floor(duration/timeScale);
-						var v = {filesize:stat.size, start:start, time_scale:timeScale, trunksize: trunkSize,
-							duration: duration, length:movieLength, x:[], status:0};
-						cbk(v);
-					}
-				});
-			});
-		}
-	});	
-};
-
-CP.serial(_f,
+CP.serial(
+	_f,
 	function(results) {
-		let totalsize = CP.data.FFMPEG_SECTION.filesize;
-		// res.send(totalsize.toString());
-		// return true;
-		let url =  space.cache_folder + 's_0.mp4';
-		pkg.fs.stat( url, function(err, stat) {
-			if (err) { res.send(err.message); }
-			else {
-			      var total = stat.size;
-			      var range = req.headers.range;
-			      if (range) {
-					var parts = range.replace(/bytes=/, "").split("-");
-					var partialstart = parts[0]; var partialend;
-					  partialend =  parts[1];
-					var start = parseInt(partialstart, 10);
-					var end = partialend ? parseInt(partialend, 10) : totalsize-1;
-					var chunksize = (end-start)+1;
-					var maxChunk = 1024 * 1024; // 1MB at a time
-					if (chunksize > maxChunk) {
-					  end = start + maxChunk - 1;
-					  chunksize = (end - start) + 1;
-					}							      
-
-					var file = pkg.fs.createReadStream(url, {start:start, end:end});
-					res.writeHead(206, {'Content-Range': 'bytes ' + start + '-' + end + '/' + totalsize, 
-						'Accept-Ranges': 'bytes', 'Content-Length': chunksize, 'Content-Type': 'video/mp4' });
-				       file.pipe(res);
-				} else {
-					var file = pkg.fs.createReadStream(url, {start:0, end:total});
-					res.writeHead(206, {'Content-Range': 'bytes ' + 0 + '-' + totalsize + '/' + totalsize, 
-						'Accept-Ranges': 'bytes', 'Content-Length': total, 'Content-Type': 'video/mp4' });
-				       file.pipe(res);						
-				}
+		var cfg = CP.data.P_I0;
+		let stream = require("stream"),
+		a = new stream.PassThrough();
+		a.pipe(res);
+		
+		var fn = [];
+		var range = req.headers.range;
+		
+		if (req.param('start')) {
+			var start = req.param('start'), end = req.param('end'), maxChunk = cfg.trunksize, total = cfg.filesize;
+		} else {
+			if (!start) {
+				var start = 0, end = 0, maxChunk = cfg.trunksize, total = cfg.filesize;
 			}
-		});	
+			if (range) {
+				var total = cfg.filesize; 
+				var parts = range.replace(/bytes=/, "").split("-");
+				var partialstart = parts[0]; var partialend;
+				  partialend =  parts[1];
+				var start = parseInt(partialstart, 10);
+				var end = (partialend) ? parseInt(partialend, 10) : (total-1);
+				var chunksize = (end-start)+1;
+				if (chunksize > maxChunk) {
+				  end = start + maxChunk - 1;
+				  chunksize = (end - start) + 1;
+				} 
+			} 
+		}
+		var sidx = Math.floor(start / maxChunk); 
+		var eidx = Math.min(Math.ceil(end / maxChunk), sidx+1); 
+		start = sidx * maxChunk; end = eidx * maxChunk;
+		for (var i = sidx; i < eidx; i++) {
+			fn.push(cfg.x[i]);	
+		}
+		res.writeHead(206, {'Content-Range': 'bytes ' + start + '-' + end + '/' + total, 
+		    'Accept-Ranges': 'bytes', 'Content-Type': 'video/mp4' });			
+		
+		var CP1 = new pkg.crowdProcess();
+		var _f1 = {}; 
+		
+		for (var i = 0; i < fn.length; i++) {
+			_f1['P_' + i] = (function(i) {
+				return function(cbk1) {
+					let d = Buffer.from('');
+					pkg.request(space_url + space_dir + fn[i], 
+					function (error, response, body) {})
+					.on('data', function(data) {
+						d = Buffer.concat([d, Buffer.from(data)]);
+					}).on('end', function() {
+						cbk1(d);
+					});
+				}
+			})(i);	
+		}
 
-	}, 20000);
+		CP1.parallel(
+			_f1,
+			function(data) {
+				for (var i = 0; i < fn.length; i++) {
+					a.write(CP1.data['P_' + i]);
+				}	
+				a.end();
+			},
+			6000
+		);
+		
+	},
+	300000
+);
 return true;
 
