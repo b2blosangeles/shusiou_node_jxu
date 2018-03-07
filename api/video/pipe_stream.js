@@ -72,14 +72,12 @@ CP.serial(
 		for (var i = 0; i < fn.length; i++) {
 			_f1['P_' + i] = (function(i) {
 				return function(cbk1) {
-					let d = Buffer.from('');
 					pkg.request(space_url + space_dir + fn[i], 
 					function (error, response, body) {})
 					.on('data', function(data) {
-						// d = Buffer.concat([d, Buffer.from(data)]);
 						a.write(Buffer.from(data));
 					}).on('end', function() {
-						cbk1(d);
+						cbk1(true);
 					});
 				}
 			})(i);	
@@ -87,10 +85,7 @@ CP.serial(
 
 		CP1.parallel(
 			_f1,
-			function(data) {
-				for (var i = 0; i < fn.length; i++) {
-				//	a.write(CP1.data['P_' + i]);
-				}	
+			function(data) {	
 				a.end();
 			},
 			6000
