@@ -73,7 +73,7 @@ CP.serial(
 	//	a.pipe(res);
 		
 		var range = req.headers.range;
-		
+		/*
 		if (req.param('start')) {
 			var start = req.param('start'), end = req.param('end'), maxChunk = cfg.trunksize, total = totalsize;
 		} else {
@@ -100,58 +100,23 @@ CP.serial(
 
 		//res.writeHead(206, {'Content-Range': 'bytes ' + start + '-' + end + '/' + total, 
 		 //   'Accept-Ranges': 'bytes', 'Content-Type': 'video/mp4' });			
-		
-		let cnt = 0, ffn = '';
+		*/
+		let start = 0, end=0, ffn = '';
 		for (var o in CP.data.P_I1) {
-			cnt += CP.data.P_I1[o];
-			if (cnt > start) {
+			end = CP.data.P_I1[o];
+			cnt += end;
+			break;
+			if (cnt < start) {
 				ffn = space.cache_folder + o;
+			} else {
 				break;
 			}
 		}
-		/*
-		pkg.request(url, 
-		function (error, response, body) {})
-		.on('data', function(data) {
-		//	d = Buffer.concat([d, Buffer.from(data)]);
-			a.write(Buffer.from(data));
-		}).on('end', function() {
-			a.end();
-		});		
-		// res.send(url);
-		*/
-	//	res.send(ffn);
-	//	return true;
-			var file = pkg.fs.createReadStream(ffn, {start:start, end:end});
-			res.writeHead(206, {'Content-Range': 'bytes ' + start + '-' + end + '/' + total, 
-				'Accept-Ranges': 'bytes', 'Content-Length': chunksize, 'Content-Type': 'video/mp4' });
-		       file.pipe(res);		
-		/*
-		for (var o in CP.data.P_I1) {
-			_f1['P_' + o] = (function(o) {
-				return function(cbk1) {
-					let url = space_url + space_dir + o;
-					let d = Buffer.from('');
-					pkg.request(url, 
-					function (error, response, body) {})
-					.on('data', function(data) {
-					//	d = Buffer.concat([d, Buffer.from(data)]);
-						a.write(Buffer.from(data));
-					}).on('end', function() {
-						cbk1(d);
-					});
-				}
-			})(o);	
-		}
-		
-		CP1.parallel(
-			_f1,
-			function(data) {
-				a.end();
-			},
-			6000
-		);
-		*/
+
+		var file = pkg.fs.createReadStream(ffn, {start:start, end:end});
+		res.writeHead(206, {'Content-Range': 'bytes ' + start + '-' + end + '/' + total, 
+			'Accept-Ranges': 'bytes', 'Content-Length': end, 'Content-Type': 'video/mp4' });
+	       file.pipe(res);		
 	},
 	300000
 );
