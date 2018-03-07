@@ -139,7 +139,7 @@ CP.serial(
 		res.writeHead(206, {'Content-Range': 'bytes ' + start + '-' + (CP.data.P_I1['s_0.mp4']-1) + '/' + total, 
 			'Accept-Ranges': 'bytes', 'Content-Length': CP.data.P_I1['s_0.mp4'], 'Content-Type': 'video/mp4' });
 		*/
-		res.writeHead(206, {'Content-Range': 'bytes ' + start + '-' + (start + CP.data.P_I1['s_0.mp4']-1) + '/' + (CP.data.P_I1['s_0.mp4'] * 2), 
+		res.writeHead(206, {'Content-Range': 'bytes ' + start + '-' + (start + CP.data.P_I1['s_0.mp4']-1) + '/' + (start + CP.data.P_I1['s_0.mp4']), 
 			'Accept-Ranges': 'bytes', 'Content-Length': CP.data.P_I1['s_0.mp4'], 'Content-Type': 'video/mp4' });		
 	       file.pipe(res);	
 	},
