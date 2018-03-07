@@ -19,6 +19,28 @@ let tm = new Date().getTime();
 var CP = new pkg.crowdProcess();
 var _f = {}; 
 
+function removeFolder(folder, callback){
+	var params = {
+		Bucket: space_id,
+		Prefix: folder
+	};
+	s3.listObjects(params, function(err, data) {
+		if (err) return callback(err);
+		if (data.Contents.length == 0) callback({"Deleted":[],"Errors":[]});
+		var params = {
+			Bucket: bucketName
+		};		
+		params.Delete = {Objects:[]};
+		data.Contents.forEach(function(content) {
+			params.Delete.Objects.push({Key: content.Key});
+		});
+		s3.deleteObjects(params, function(err, d) {
+			if (err) return callback(err);
+			else callback(d);
+		});	
+	});
+}
+
 var writeInfo = function(v, cbk) {
      var params = {
 	 Body: JSON.stringify(v),
@@ -116,8 +138,10 @@ _f['clean_space'] = function(cbk) {
 	let diff = objs.filter(x => tracks.includes(x));
 	if (diff.length) {
 		CP.exit = 1;
-		cbk('diff-->');	
-	}	
+		removeFolder(space_dir, cbk);
+	} else {
+		cbk(true);
+	}
 }
 _f['upload'] = function(cbk) { 
 	let tracks = CP.data.tracks;
