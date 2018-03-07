@@ -101,17 +101,18 @@ CP.serial(
 		for (var i = sidx; i < eidx; i++) {
 			fn.push(cfg.x[i]);	
 		}
-		res.writeHead(206, {'Content-Range': 'bytes ' + start + '-' + end + '/' + total, 
-		    'Accept-Ranges': 'bytes', 'Content-Type': 'video/mp4' });			
+		//res.writeHead(206, {'Content-Range': 'bytes ' + start + '-' + end + '/' + total, 
+		 //   'Accept-Ranges': 'bytes', 'Content-Type': 'video/mp4' });			
 		
-		let cnt = 0, url = '';
+		let cnt = 0, ffn = '';
 		for (var o in CP.data.P_I1) {
 			cnt = CP.data.P_I1[o];
 			if (cnt > start) {
-				url = space_url + space_dir + o;
+				ffn = space.cache_folder + o;
 				break;
 			}
 		}
+		/*
 		pkg.request(url, 
 		function (error, response, body) {})
 		.on('data', function(data) {
@@ -121,6 +122,12 @@ CP.serial(
 			a.end();
 		});		
 		// res.send(url);
+		*/
+		
+			var file = pkg.fs.createReadStream(ffn, {start:start, end:end});
+			res.writeHead(206, {'Content-Range': 'bytes ' + start + '-' + end + '/' + total, 
+				'Accept-Ranges': 'bytes', 'Content-Length': chunksize, 'Content-Type': 'video/mp4' });
+		       file.pipe(res);		
 		/*
 		for (var o in CP.data.P_I1) {
 			_f1['P_' + o] = (function(o) {
