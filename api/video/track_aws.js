@@ -102,10 +102,10 @@ _f['space'] = function(cbk) {
 	s3.listObjects(params, function (err, data) {
 		if(err)cbk(err.message);
 		else {
-			for (var o in data) {
-				v[data[o].Key.replace(space_dir, '')] = data[o].Size;
-			}
-			cbk(v);
+			//for (var o in data) {
+			//	v[data[o].Key.replace(space_dir, '')] = data[o].Size;
+			//}
+			cbk(data);
 		}
 	});
 }
