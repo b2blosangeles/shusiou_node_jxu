@@ -37,7 +37,7 @@ _f['P_I1'] = function(cbk) {
 	var v = CP.data.P_I0.x;
 	CP1 = new pkg.crowdProcess();
 	var _f1 = {};
-	for (i=0; i < v.length; i++) {
+	for (var i=0; i < v.length; i++) {
 		_f1['P_'+i] = (function(i) {
 			return function(cbk1) {
 				pkg.fs.stat(space.cache_folder + v[i], 
