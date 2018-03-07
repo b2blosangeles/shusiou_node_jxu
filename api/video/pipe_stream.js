@@ -68,9 +68,9 @@ CP.serial(
 		//res.send({totalsize:totalsize, list:CP.data.P_I1});
 		//return true;
 		var cfg = CP.data.P_I0;
-		let stream = require("stream"),
-		a = new stream.PassThrough();
-		a.pipe(res);
+	//	let stream = require("stream"),
+	//	a = new stream.PassThrough();
+	//	a.pipe(res);
 		
 		var range = req.headers.range;
 		
