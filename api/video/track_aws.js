@@ -24,20 +24,9 @@ function removeFolder(folder, callback){
 		Bucket: space_id,
 		Prefix: folder
 	};
-	s3.listObjects(params, function(err, data) {
+	s3.deleteObjects(params, function(err, d) {
 		if (err) return callback(err);
-		if (data.Contents.length == 0) callback({"Deleted":[],"Errors":[]});
-		var params = {
-			Bucket: bucketName
-		};		
-		params.Delete = {Objects:[]};
-		data.Contents.forEach(function(content) {
-			params.Delete.Objects.push({Key: content.Key});
-		});
-		s3.deleteObjects(params, function(err, d) {
-			if (err) return callback(err);
-			else callback(d);
-		});	
+		else callback(d);
 	});
 }
 
