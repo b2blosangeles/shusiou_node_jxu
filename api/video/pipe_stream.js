@@ -1,5 +1,3 @@
-var CP = new pkg.crowdProcess();
-var _f = {};
 var buff = new Buffer(100);
 
 let source_path = '/var/img/',
@@ -27,19 +25,19 @@ _f['P_I0'] = function(cbk) {
 CP.serial(
 	_f,
 	function(results) {
-		var cfg = CP.data.P_I0;
-		let stream = require("stream"),
-		a = new stream.PassThrough();
-		a.pipe(res);
+		let cfg = CP.data.P_I0,
+		    stream = require("stream"),
+		    a = new stream.PassThrough(),
+		    fn = [];
 		
-		var fn = [];
-		var range = req.headers.range;
+		a.pipe(res);
+		let range = req.headers.range;
 		
 		if (req.param('start')) {
 			var start = req.param('start'), end = req.param('end'), maxChunk = cfg.trunksize, total = cfg.filesize;
 		} else {
 			if (!start) {
-				var start = 0, end = 0, maxChunk = cfg.trunksize, total = cfg.filesize;
+				let start = 0, end = 0, maxChunk = cfg.trunksize, total = cfg.filesize;
 			}
 			if (range) {
 				var total = cfg.filesize; 
