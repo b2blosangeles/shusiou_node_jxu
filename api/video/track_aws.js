@@ -1,3 +1,4 @@
+
 const AWS = require(env.site_path + '/api/inc/aws-sdk/node_modules/aws-sdk')
 const spacesEndpoint = new AWS.Endpoint('nyc3.digitaloceanspaces.com');
 const s3 = new AWS.S3({
@@ -110,7 +111,24 @@ _f['space'] = function(cbk) {
 		}
 	});
 }
-
+_f['clean_space'] = function(cbk) { 
+	let tracks = CP.data.tracks, objs = CP.data.space;
+	let CP1 = new pkg.crowdProcess(), _f1 = {};
+	for (var o in objs) {
+		_f1['P_' + o] = (function(o) {
+			return function(cbk1) {
+				cbk1(o)
+			}
+		})(o);
+	}
+	CP1.serial(
+		_f1,
+		function(results) {
+			cbk(results);
+		},
+		50000
+	);	
+}
 _f['upload'] = function(cbk) { 
 	let tracks = CP.data.tracks;
 	if (typeof tracks === 'string') {
@@ -179,7 +197,7 @@ _f['upload'] = function(cbk) {
 CP.serial(
 	_f,
 	function(results) {
-		res.send(results);
+		res.send(CP.data.clean_space);
 	},
 	70000
 );	
