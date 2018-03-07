@@ -109,7 +109,7 @@ _f['upload'] = function(cbk) {
 		CP.exit = 1;
 		return true;
 	} 
-	let next =  tracks.filter(x => !x.includes(x));
+	let next =  tracks.filter(v => x.includes(v));
 	cbk(next);
 
 }	
