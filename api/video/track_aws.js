@@ -97,11 +97,16 @@ _f['space'] = function(cbk) {
 	  Bucket: space_id,
 	  Delimiter: '',
 	  Prefix: ''
-	}
+	}, v = {};
 
 	s3.listObjects(params, function (err, data) {
 		if(err)cbk(err.message);
-		else cbk(data);
+		else {
+			for (var o in data) {
+				v[data[o].Key.replace(space_dir, '')] = data[o].Size;
+			}
+			cbk(v);
+		}
 	});
 }
 
