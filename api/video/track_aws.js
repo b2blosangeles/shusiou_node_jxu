@@ -222,6 +222,6 @@ function trackAws(_file, _cbk)  {
 	return true;
 }
 
-trackAws(function(data) {
+trackAws('/var/img/video.mp4',function(data) {
 	res.send(data);
 });
