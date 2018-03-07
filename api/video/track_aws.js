@@ -112,15 +112,59 @@ _f['space'] = function(cbk) {
 }
 
 _f['upload'] = function(cbk) { 
-	let x =  CP.data['videoinfo'].x;
 	let tracks = CP.data.tracks;
 	if (typeof tracks === 'string') {
 		cbk(tracks);
 		CP.exit = 1;
 		return true;
 	} 
-	let next =  tracks.filter(v => !x.includes(v));
-	cbk(next);
+	
+	let objs = CP.data.space;
+	var CP1 = new pkg.crowdProcess();
+	var _f1 = {}, f = CP.data.tracks;
+	
+	for (var t in tracks) {
+		_f1['P_' + t] = (function(t) { 
+			return function(cbk1) {
+				if (new Date().getTime() - tm > 30000) {
+					cbk1(true); return true;
+				}
+				pkg.fs.stat( tmp_folder + tracks[t], function (err, stat) {
+					if (stat.size !== objs[tracks[t]] || !objs[tracks[t]]) {
+						pkg.fs.readFile( tmp_folder + tracks[t], function (err, data0) {
+						  if (err) { throw err; }
+						     var base64data = new Buffer(data0, 'binary');
+						     var params = {
+							 Body: base64data,
+							 Bucket: space_id,
+							 Key: space_dir + tracks[t],
+							 ContentType: 'video/mp4',
+							 ACL: 'public-read'
+						     };	
+						     s3.putObject(params, function(err, data) {
+							 if (err) cbk1(err.message);
+							 else {
+								 let v = CP.data.videoinfo;
+								 cbk1(tracks[t])
+							 }	 
+						     });
+						});					
+					}
+				} else {
+					cbk1('Skip ' + tracks[t]);
+				}
+			}
+		})(t);			
+	}
+	CP1.serial(
+		_f1,
+		function(results) {
+			cbk(results.results);
+		},
+		50000
+	);
+	//let next =  tracks.filter(v => !x.includes(v));
+	//cbk(next);
 
 }	
 /*
