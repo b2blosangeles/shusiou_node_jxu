@@ -53,24 +53,6 @@ var writeInfo = function(v, cbk) {
 	 else    cbk(v);
      });		
 }
-/*
-_f['ANALYZE_SOURCE'] = function(cbk) {
-	let buff = new Buffer(100);
-	pkg.fs.stat(source_path + source_file, function(err, stat) {
-		pkg.fs.open(source_path + source_file, 'r', function(err, fd) {
-			pkg.fs.read(fd, buff, 0, 100, 0, function(err, bytesRead, buffer) {
-				var start = buffer.indexOf(new Buffer('mvhd')) + 17;
-				var timeScale = buffer.readUInt32BE(start, 4);
-				var duration = buffer.readUInt32BE(start + 4, 4);
-				var movieLength = Math.floor(duration/timeScale);
-				var v = {filesize:stat.size, start:start, time_scale:timeScale, trunksize: trunkSize,
-					duration: duration, length:movieLength, x:[], status:0};
-				cbk(v);
-			});
-		});
-	});	
-};
-*/
 	
 _f['videoinfo'] = function(cbk) { // P_I0
 	pkg.request(space_url +  space_dir + '_info.txt', 
