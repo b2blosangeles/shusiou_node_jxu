@@ -108,7 +108,7 @@ CP.serial(
 		var CP1 = new pkg.crowdProcess();
 		var _f1 = {}; 
 		
-		for (var o in CP.data.P_I1.list) {
+		for (var o in CP.data.P_I1) {
 			_f1['P_' + o] = (function(o) {
 				return function(cbk1) {
 					cbk1(space_url + space_dir + o);
