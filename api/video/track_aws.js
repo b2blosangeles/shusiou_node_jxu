@@ -213,6 +213,6 @@ CP.serial(
 	function(results) {
 		res.send(results);
 	},
-	70000
+	58000
 );	
 return true;
