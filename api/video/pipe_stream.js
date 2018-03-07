@@ -100,7 +100,7 @@ CP.serial(
 
 		//res.writeHead(206, {'Content-Range': 'bytes ' + start + '-' + end + '/' + total, 
 		 //   'Accept-Ranges': 'bytes', 'Content-Type': 'video/mp4' });			
-		*/
+		
 		let start = 0, end=0, ffn = '';
 		for (var o in CP.data.P_I1) {
 			end = CP.data.P_I1[o];
@@ -112,10 +112,11 @@ CP.serial(
 				break;
 			}
 		}
-
-		var file = pkg.fs.createReadStream(ffn, {start:start, end:end});
-		res.writeHead(206, {'Content-Range': 'bytes ' + start + '-' + end + '/' + total, 
-			'Accept-Ranges': 'bytes', 'Content-Length': end, 'Content-Type': 'video/mp4' });
+		*/
+		let ffn = space.cache_folder + 's_0.mp4';
+		var file = pkg.fs.createReadStream(ffn, {start:0, end:CP.data.P_I1['s_0.mp4']});
+		res.writeHead(206, {'Content-Range': 'bytes ' + start + '-' + (CP.data.P_I1['s_0.mp4']-1) + '/' + total, 
+			'Accept-Ranges': 'bytes', 'Content-Length': CP.data.P_I1['s_0.mp4'], 'Content-Type': 'video/mp4' });
 	       file.pipe(res);		
 	},
 	300000
