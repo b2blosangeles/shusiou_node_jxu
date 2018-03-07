@@ -76,7 +76,8 @@ CP.serial(
 					pkg.request(space_url + space_dir + fn[i], 
 					function (error, response, body) {})
 					.on('data', function(data) {
-						d = Buffer.concat([d, Buffer.from(data)]);
+						// d = Buffer.concat([d, Buffer.from(data)]);
+						a.write(Buffer.from(data));
 					}).on('end', function() {
 						cbk1(d);
 					});
@@ -88,7 +89,7 @@ CP.serial(
 			_f1,
 			function(data) {
 				for (var i = 0; i < fn.length; i++) {
-					a.write(CP1.data['P_' + i]);
+				//	a.write(CP1.data['P_' + i]);
 				}	
 				a.end();
 			},
