@@ -112,8 +112,8 @@ _f['space'] = function(cbk) {
 	});
 }
 _f['clean_space'] = function(cbk) { 
-	let tracks = CP.data.tracks, objs = CP.data.space;
-	let diff = Object.keys(objs).filter(x => !tracks.includes(x));
+	let tracks = CP.data.tracks, objs = Object.keys(CP.data.space);
+	let diff = objs.filter(x => tracks.includes(x));
 	let CP1 = new pkg.crowdProcess(), _f1 = {};
 	for (var o in diff) {
 		_f1['P_' + o] = (function(o) {
