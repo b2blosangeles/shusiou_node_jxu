@@ -111,8 +111,16 @@ CP.serial(
 				url = space_url + space_dir + o;
 				break;
 			}
-		}		
-		res.send(url);
+		}
+		pkg.request(url, 
+		function (error, response, body) {})
+		.on('data', function(data) {
+		//	d = Buffer.concat([d, Buffer.from(data)]);
+			a.write(Buffer.from(data));
+		}).on('end', function() {
+			a.end();
+		});		
+		// res.send(url);
 		/*
 		for (var o in CP.data.P_I1) {
 			_f1['P_' + o] = (function(o) {
