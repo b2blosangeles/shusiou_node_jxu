@@ -33,16 +33,12 @@ var writeInfo = function(v, cbk) {
 }
 var splitTrackes = function(cbk) {
 	pkg.exec('cd ' + source_path + ' && split -b ' + trunkSize + ' ' +  source_file +  ' ' + tmp_folder + '', 					 
-		function(err1, stdout, stderr) {
-			if (err1) {
-				cbk(err1.message);
+		function(err, stdout, stderr) {
+			if (err) {
+				cbk(err.message);
 			} else {
-				pkg.fs.readdir( tmp_folder, (err2, files) => {
-					cbk((err2) ? err2.message : files);
-;if (err2) {						cbk(err2.message);
-					} else {
-						cbk(files);
-					}
+				pkg.fs.readdir( tmp_folder, (err1, files) => {
+					cbk((err1) ? err1.message : files);
 				});			
 			}
 		});		
