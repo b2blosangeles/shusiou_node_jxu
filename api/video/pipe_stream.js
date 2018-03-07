@@ -29,12 +29,12 @@ _f['P_I0'] = function(cbk) {
 CP.serial(
 	_f,
 	function(results) {
-		var cfg = CP.data.P_I0;
-		let stream = require("stream"),
-		a = new stream.PassThrough();
-		a.pipe(res);
+		let cfg = CP.data.P_I0,
+		    stream = require("stream"),
+		    a = new stream.PassThrough(),
+		    fn = [];
 		
-		var fn = [];
+		a.pipe(res);
 		var range = req.headers.range;
 		
 		if (req.param('start')) {
