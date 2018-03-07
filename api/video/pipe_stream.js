@@ -39,9 +39,8 @@ _f['P_I1'] = function(cbk) {
 	CP1 = new pkg.crowdProcess();
 	var _f1 = {};
 	for (var i=0; i < v.length; i++) {
-		_f1['P_'+i] = (function(i) {
+		_f1[v[i]] = (function(i) {
 			return function(cbk1) {
-				cbk1(v[i]);
 				pkg.fs.stat(space.cache_folder + v[i], 
 					function (err, stat) {
 						if (err) { 
@@ -59,7 +58,7 @@ _f['P_I1'] = function(cbk) {
 	CP1.parallel(
 		_f1,
 		function(results) {
-			cbk(results);
+			cbk(results.results);
 	}, 10000);
 	
 };
