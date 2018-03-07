@@ -70,7 +70,7 @@ _f['ANALYZE_SOURCE'] = function(cbk) {
 	});	
 };
 
-_f['CREATE_DIR'] = function(cbk) {
+_f['split'] = function(cbk) {
 	var folderP = require(env.site_path + '/api/inc/folderP/folderP');
 	var fp = new folderP();		
 	fp.build(tmp_folder, () => {
