@@ -83,7 +83,7 @@ _f['split'] = function(cbk) {
 	});	
 };
 
-_f['P_I'] = function(cbk) { 
+_f['tracks'] = function(cbk) { 
 	pkg.fs.readdir( tmp_folder, (err, files) => {
 		var f = [];
 		files.forEach(file => {
@@ -134,7 +134,7 @@ _f['P_I2'] = function(cbk) {
 	if (CP.data['P_I1'] !== false) {
 		var x = CP.data['P_I1'].x;
 		var CP1 = new pkg.crowdProcess();
-		var _f1 = {}, f = CP.data.P_I;
+		var _f1 = {}, f = CP.data.tracks;
 		for (var i = 0; i < f.length; i++) {
 			_f1['P_' + i] = (function(i) { 
 				return function(cbk1) {
