@@ -219,5 +219,5 @@ function trackAws(_cbk)  {
 }
 
 trackAws(function(data) {
-	res.send('data')
+	res.send(data);
 });
