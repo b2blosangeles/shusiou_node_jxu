@@ -160,13 +160,18 @@ _f['upload'] = function(cbk) {
 		_f1,
 		function(results) {
 			if (!uploaded) {
-				let v = CP.data.videoinfo;
-				v.x = tracks;
-				v.status = 1;
-				writeInfo(v, cbk);
+				if (Object.keys(CP.data.space).length == CP.data.tracks) {
+					let v = CP.data.videoinfo;
+					v.x = tracks;
+					v.status = 1;
+					writeInfo(v, function() {
+						cbk(true);
+					});
+				} else {
+					cbk(false);
+				}
 				
 			}
-			// cbk('uploaded:' + uploaded);
 		},
 		50000
 	);
