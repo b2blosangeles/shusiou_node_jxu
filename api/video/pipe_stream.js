@@ -81,7 +81,7 @@ CP.serial(
 				var start = 0, end = 0, maxChunk = cfg.trunksize, total = totalsize;
 			}
 			if (range) {
-				var total = cfg.filesize; 
+			//	var total = cfg.filesize; 
 				var parts = range.replace(/bytes=/, "").split("-");
 				var partialstart = parts[0]; var partialend;
 				  partialend =  parts[1];
