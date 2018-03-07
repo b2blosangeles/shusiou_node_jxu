@@ -72,43 +72,35 @@ _f['ANALYZE_SOURCE'] = function(cbk) {
 };
 */
 	
-
 _f['videoinfo'] = function(cbk) { // P_I0
 	pkg.request(space_url +  space_dir + '_info.txt', 
 	function (err, res, body) {
-		if (err) { 
-			cbk(false); 
+		let v = (err) ? false : {};
+		if (v !== false) { 
+			try {  v = JSON.parse(body); } catch (e) { v = false; }
+		}
+		if (v === false) { 
+			let buff = new Buffer(100);
+			pkg.fs.stat(source_path + source_file, function(err, stat) {
+				pkg.fs.open(source_path + source_file, 'r', function(err, fd) {
+					pkg.fs.read(fd, buff, 0, 100, 0, function(err, bytesRead, buffer) {
+						var start = buffer.indexOf(new Buffer('mvhd')) + 17;
+						var timeScale = buffer.readUInt32BE(start, 4);
+						var duration = buffer.readUInt32BE(start + 4, 4);
+						var movieLength = Math.floor(duration/timeScale);
+						var v = {filesize:stat.size,time_scale:timeScale, trunksize: trunkSize,
+							duration: duration, length:movieLength, x:[], status:0};
+						writeInfo(v, function() {
+							cbk(v);
+						});
+					});
+				});
+			});		
 		} else {
-			let v = {};
-			try { 
-				v = JSON.parse(body);
-			} catch (e) { v = false; }
 			cbk(v);
 		}
 	});		
 };	
-
-_f['P_I1'] = function(cbk) { 
-	if (CP.data['videoinfo'] !== false) {
-		cbk(CP.data['videoinfo']);
-	} else {
-		let buff = new Buffer(100);
-		pkg.fs.stat(source_path + source_file, function(err, stat) {
-			pkg.fs.open(source_path + source_file, 'r', function(err, fd) {
-				pkg.fs.read(fd, buff, 0, 100, 0, function(err, bytesRead, buffer) {
-					var start = buffer.indexOf(new Buffer('mvhd')) + 17;
-					var timeScale = buffer.readUInt32BE(start, 4);
-					var duration = buffer.readUInt32BE(start + 4, 4);
-					var movieLength = Math.floor(duration/timeScale);
-					var v = {filesize:stat.size,time_scale:timeScale, trunksize: trunkSize,
-						duration: duration, length:movieLength, x:[], status:0};
-					writeInfo(v, cbk);
-				});
-			});
-		});
-
-	} 
-};
 
 _f['split'] = function(cbk) {
 	var folderP = require(env.site_path + '/api/inc/folderP/folderP');
@@ -137,7 +129,7 @@ _f['tracks'] = function(cbk) { // P_I
 
 _f['P_I2'] = function(cbk) { 
 	if (CP.data['P_I1'] !== false) {
-		var x = CP.data['P_I1'].x;
+		var x = CP.data['videoinfo'].x;
 		var CP1 = new pkg.crowdProcess();
 		var _f1 = {}, f = CP.data.tracks;
 		for (var i = 0; i < f.length; i++) {
