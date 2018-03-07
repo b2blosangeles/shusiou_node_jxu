@@ -35,11 +35,15 @@ _f['P_I0'] = function(cbk) {
 };
 _f['P_I1'] = function(cbk) {
 	var v = CP.data.P_I0.x;
+	cbk(v);
+	return true;
+	/*
 	CP1 = new pkg.crowdProcess();
 	var _f1 = {};
 	for (var i=0; i < v.length; i++) {
 		_f1['P_'+i] = (function(i) {
 			return function(cbk1) {
+				cbk1(v[i]);
 				pkg.fs.stat(space.cache_folder + v[i], 
 					function (err, stat) {
 						if (err) { 
@@ -48,7 +52,8 @@ _f['P_I1'] = function(cbk) {
 							totalsize+=stat.size;
 							cbk1(stat.size);
 						}
-				});
+					});
+					
 			}
 			
 		})(i);	
@@ -57,7 +62,8 @@ _f['P_I1'] = function(cbk) {
 		_f1,
 		function(results) {
 			cbk(results);
-	}, 10000);		
+	}, 10000);
+	*/
 };
 CP.serial(
 	_f,
