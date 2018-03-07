@@ -66,7 +66,7 @@ _f['P_I1'] = function(cbk) {
 CP.serial(
 	_f,
 	function(results) {
-		res.send(CP.data.P_I1);
+		res.send({totalsize:totalsize, list:CP.data.P_I1});
 		return true;
 		var cfg = CP.data.P_I0;
 		let stream = require("stream"),
