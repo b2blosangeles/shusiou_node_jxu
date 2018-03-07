@@ -33,7 +33,7 @@ _f['P_I1'] = function(cbk) {
 	for (i=0; i < v.length; i++) {
 		_f1['P_'+i] = (function(i) {
 			return function(cbk1) {
-				cbk1(i);
+				cbk1(v[i]);
 			}
 			
 		})(i);	
