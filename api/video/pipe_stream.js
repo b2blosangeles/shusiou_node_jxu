@@ -101,8 +101,8 @@ CP.serial(
 		for (var i = sidx; i < eidx; i++) {
 			fn.push(cfg.x[i]);	
 		}
-	//	res.writeHead(206, {'Content-Range': 'bytes ' + start + '-' + end + '/' + total, 
-	//	    'Accept-Ranges': 'bytes', 'Content-Type': 'video/mp4' });			
+		res.writeHead(206, {'Content-Range': 'bytes ' + start + '-' + end + '/' + total, 
+		    'Accept-Ranges': 'bytes', 'Content-Type': 'video/mp4' });			
 		
 		let cnt = 0, url = '';
 		for (var o in CP.data.P_I1) {
