@@ -88,7 +88,7 @@ _f['videoinfo'] = function(cbk) { // P_I0
 _f['split'] = function(cbk) {
 	if (CP.data.videoinfo === false) {
 		CP.exit = 1;
-		cbk(false);
+		cbk('kkk');
 	}
 	var folderP = require(env.site_path + '/api/inc/folderP/folderP');
 	var fp = new folderP();		
