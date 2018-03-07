@@ -83,7 +83,7 @@ _f['split'] = function(cbk) {
 	});	
 };
 
-_f['tracks'] = function(cbk) { 
+_f['tracks'] = function(cbk) { // P_I
 	pkg.fs.readdir( tmp_folder, (err, files) => {
 		var f = [];
 		files.forEach(file => {
@@ -93,7 +93,7 @@ _f['tracks'] = function(cbk) {
 	});	
 };	
 
-_f['P_I0'] = function(cbk) { 
+_f['videoinfo'] = function(cbk) { // P_I0
 	pkg.request(space_url +  space_dir + '_info.txt', 
 	function (err, res, body) {
 		if (err) { 
@@ -109,8 +109,8 @@ _f['P_I0'] = function(cbk) {
 };	
 
 _f['P_I1'] = function(cbk) { 
-	if (CP.data['P_I0'] !== false) {
-		cbk(CP.data['P_I0']);
+	if (CP.data['videoinfo'] !== false) {
+		cbk(CP.data['videoinfo']);
 	} else {
 		let buff = new Buffer(100);
 		pkg.fs.stat(source_path + source_file, function(err, stat) {
