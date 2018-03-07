@@ -101,27 +101,24 @@ CP.serial(
 		for (var i = sidx; i < eidx; i++) {
 			fn.push(cfg.x[i]);	
 		}
-		/*
 		res.writeHead(206, {'Content-Range': 'bytes ' + start + '-' + end + '/' + total, 
 		    'Accept-Ranges': 'bytes', 'Content-Type': 'video/mp4' });			
-		*/
 		var CP1 = new pkg.crowdProcess();
 		var _f1 = {}; 
 		
 		for (var o in CP.data.P_I1) {
 			_f1['P_' + o] = (function(o) {
 				return function(cbk1) {
-					cbk1(space_url + space_dir + o);
-					/*
+					let url = space_url + space_dir + o;
 					let d = Buffer.from('');
-					pkg.request(space_url + space_dir + fn[i], 
+					pkg.request(url, 
 					function (error, response, body) {})
 					.on('data', function(data) {
-						d = Buffer.concat([d, Buffer.from(data)]);
+					//	d = Buffer.concat([d, Buffer.from(data)]);
+						a.write(Buffer.from(data));
 					}).on('end', function() {
 						cbk1(d);
 					});
-					*/
 				}
 			})(o);	
 		}
@@ -129,13 +126,7 @@ CP.serial(
 		CP1.parallel(
 			_f1,
 			function(data) {
-				res.send(data);
-				/*
-				for (var i = 0; i < fn.length; i++) {
-					a.write(CP1.data['P_' + i]);
-				}	
 				a.end();
-				*/
 			},
 			6000
 		);
