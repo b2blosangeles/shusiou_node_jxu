@@ -12,7 +12,7 @@ let source_path = '/var/img/',
     space_id = 'shusiou-d-01',
     space_url = 'https://shusiou-d-01.nyc3.digitaloceanspaces.com/', 
     space_dir = 'shusiou/' + source_file + '/_t/',
-    trunkSize = 1024 * 1024 * 1;
+    trunkSize = 1024 * 1024;
 
 let tm = new Date().getTime();
 
@@ -71,22 +71,16 @@ _f['ANALYZE_SOURCE'] = function(cbk) {
 };
 
 _f['CREATE_DIR'] = function(cbk) {
-	// pkg.fs.exists(tmp_folder, function(exists) {
-		//if (!exists) {
-			var folderP = require(env.site_path + '/api/inc/folderP/folderP');
-			var fp = new folderP();		
-			fp.build(tmp_folder, () => {
-				pkg.exec('cd ' + source_path + ' && split -b ' + trunkSize + ' ' +  source_file +  ' ' + tmp_folder + '', 					 
-				function(error, stdout, stderr) {
-					if (error) cbk(false);
-					else if (stdout) cbk(true);
-					else cbk(false);
-				});
-			});
-		//} else {
-		//	cbk(true)
-		//}
-	// });	
+	var folderP = require(env.site_path + '/api/inc/folderP/folderP');
+	var fp = new folderP();		
+	fp.build(tmp_folder, () => {
+		pkg.exec('cd ' + source_path + ' && split -b ' + trunkSize + ' ' +  source_file +  ' ' + tmp_folder + '', 					 
+		function(error, stdout, stderr) {
+			if (error) cbk(false);
+			else if (stdout) cbk(true);
+			else cbk(false);
+		});
+	});	
 };
 
 _f['P_I'] = function(cbk) { 
