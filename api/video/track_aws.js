@@ -119,8 +119,7 @@ _f['upload'] = function(cbk) {
 		return true;
 	} 
 	let objs = CP.data.space;
-	var CP1 = new pkg.crowdProcess();
-	var _f1 = {}, 
+	let CP1 = new pkg.crowdProcess(), _f1 = {};
 	
 	for (var t in tracks) {
 		_f1['P_' + t] = (function(t) { 
