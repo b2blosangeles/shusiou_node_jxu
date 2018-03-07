@@ -80,7 +80,6 @@ _f['videoinfo'] = function(cbk) { // P_I0
 				});
 			});		
 		} else {
-			
 			cbk(v);
 		}
 	});		
@@ -94,11 +93,11 @@ _f['split'] = function(cbk) {
 	var fp = new folderP();		
 	fp.build(tmp_folder, () => {
 		pkg.exec('cd ' + source_path + ' && split -b ' + trunkSize + ' ' +  source_file +  ' ' + tmp_folder + '', 					 
-		function(error, stdout, stderr) {
+		function(err, stdout, stderr) {
 			CP.exit = 1;
-			if (error) cbk(false);
+			if (err) cbk(err.message);
 			else if (stdout) cbk(true);
-			else cbk(false);
+			else cbk('cd ' + source_path + ' && split -b ' + trunkSize + ' ' +  source_file +  ' ' + tmp_folder + '');
 		});
 	});	
 };
