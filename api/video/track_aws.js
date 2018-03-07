@@ -15,28 +15,6 @@ let source_path = '/var/img/',
     trunkSize = 1024 * 1024;
 
 let tm = new Date().getTime();
-
-function removeFolder(s3, bucketName, folder, callback){
-	var params = {
-		Bucket: bucketName,
-		Prefix: folder
-	};
-	s3.listObjects(params, function(err, data) {
-		if (err) return callback(err);
-		if (data.Contents.length == 0) callback({"Deleted":[],"Errors":[]});
-		var params = {
-			Bucket: bucketName
-		};		
-		params.Delete = {Objects:[]};
-		data.Contents.forEach(function(content) {
-			params.Delete.Objects.push({Key: content.Key});
-		});
-		s3.deleteObjects(params, function(err, d) {
-			if (err) return callback(err);
-			else callback(d);
-		});	
-	});
-}
 var CP = new pkg.crowdProcess();
 var _f = {}; 
 
@@ -80,6 +58,7 @@ _f['videoinfo'] = function(cbk) { // P_I0
 				});
 			});		
 		} else {
+			CP.exit = 1;
 			cbk(v);
 		}
 	});		
@@ -113,7 +92,7 @@ _f['split'] = function(cbk) {
 		});
 	}
 };
-*/
+
 _f['tracks'] = function(cbk) { // P_I
 	CP.exit = 1;	
 	cbk(CP.data.split);
@@ -172,7 +151,7 @@ _f['P_I2'] = function(cbk) {
 		cbk(false)
 	}
 };
-
+*/
 CP.serial(
 	_f,
 	function(results) {
