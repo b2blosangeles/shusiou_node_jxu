@@ -31,7 +31,26 @@ var writeInfo = function(v, cbk) {
 	 else    cbk(v);
      });		
 }
-	
+var splitTrackes = function(cbk) {
+	pkg.exec('cd ' + source_path + ' && split -b ' + trunkSize + ' ' +  source_file +  ' ' + tmp_folder + '', 					 
+		function(err1, stdout, stderr) {
+			if (err1) {
+				cbk(err1.message);
+			} else {
+				pkg.fs.readdir( tmp_folder, (err2, files) => {
+					if (err2) {
+						cbk(err2.message);
+					} else {
+						var f = [];
+						files.forEach(file => {
+							f[f.length] = file;
+						});
+						cbk(f);
+					}
+				});			
+			}
+		});		
+}	
 _f['videoinfo'] = function(cbk) { // P_I0
 	pkg.request(space_url +  space_dir + '_info.txt', 
 	function (err, res, body) {
@@ -69,24 +88,22 @@ _f['tracks'] = function(cbk) {
 		var folderP = require(env.site_path + '/api/inc/folderP/folderP');
 		var fp = new folderP();		
 		fp.build(tmp_folder, () => {
-			pkg.exec('cd ' + source_path + ' && split -b ' + trunkSize + ' ' +  source_file +  ' ' + tmp_folder + '', 					 
-			function(err1, stdout, stderr) {
-				if (err1) {
-					cbk(err1.message);
+			pkg.fs.readdir( tmp_folder, (err, files) => {
+				if (!err) {
+					var f = [];
+					files.forEach(file => {
+						f[f.length] = file;
+					});
+					if (!f.lengt) {
+						splitTrackes(cbk);
+					} else {
+						cbk(f);
+					}
 				} else {
-					pkg.fs.readdir( tmp_folder, (err2, files) => {
-						if (err2) {
-							cbk(err2.message);
-						} else {
-							var f = [];
-							files.forEach(file => {
-								f[f.length] = file;
-							});
-							cbk(f);
-						}
-					});			
+					splitTrackes(cbk);					
 				}
-			});
+			});			
+
 		});
 	}
 };
