@@ -114,10 +114,14 @@ CP.serial(
 		}
 		*/
 		let ffn = space.cache_folder + 's_0.mp4';
+		res.send(ffn);
+		return true;
+		/*
 		var file = pkg.fs.createReadStream(ffn, {start:0, end:CP.data.P_I1['s_0.mp4']});
 		res.writeHead(206, {'Content-Range': 'bytes ' + start + '-' + (CP.data.P_I1['s_0.mp4']-1) + '/' + total, 
 			'Accept-Ranges': 'bytes', 'Content-Length': CP.data.P_I1['s_0.mp4'], 'Content-Type': 'video/mp4' });
-	       file.pipe(res);		
+	       file.pipe(res);	
+	       */
 	},
 	300000
 );
