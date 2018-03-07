@@ -1,7 +1,11 @@
+var CP = new pkg.crowdProcess();
+var _f = {};
 var buff = new Buffer(100);
 
 let source_path = '/var/img/',
     source_file = 'video.mp4',
+    tmp_folder = source_path + '_x/' + source_file + '/',
+    space_id = 'shusiou-d-01',
     space_url = 'https://shusiou-d-01.nyc3.digitaloceanspaces.com',  
     space_dir = '/shusiou/' + source_file + '/_t/';
 
@@ -25,19 +29,19 @@ _f['P_I0'] = function(cbk) {
 CP.serial(
 	_f,
 	function(results) {
-		let cfg = CP.data.P_I0,
-		    stream = require("stream"),
-		    a = new stream.PassThrough(),
-		    fn = [];
-		
+		var cfg = CP.data.P_I0;
+		let stream = require("stream"),
+		a = new stream.PassThrough();
 		a.pipe(res);
-		let range = req.headers.range;
+		
+		var fn = [];
+		var range = req.headers.range;
 		
 		if (req.param('start')) {
 			var start = req.param('start'), end = req.param('end'), maxChunk = cfg.trunksize, total = cfg.filesize;
 		} else {
 			if (!start) {
-				let start = 0, end = 0, maxChunk = cfg.trunksize, total = cfg.filesize;
+				var start = 0, end = 0, maxChunk = cfg.trunksize, total = cfg.filesize;
 			}
 			if (range) {
 				var total = cfg.filesize; 
