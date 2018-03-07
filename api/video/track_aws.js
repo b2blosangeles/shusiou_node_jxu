@@ -118,7 +118,6 @@ _f['upload'] = function(cbk) {
 		CP.exit = 1;
 		return true;
 	} 
-	
 	let objs = CP.data.space;
 	var CP1 = new pkg.crowdProcess();
 	var _f1 = {}, 
@@ -126,6 +125,8 @@ _f['upload'] = function(cbk) {
 	for (var t in tracks) {
 		_f1['P_' + t] = (function(t) { 
 			return function(cbk1) {
+				cbk1(t);
+				/*
 				if (new Date().getTime() - tm > 30000) {
 					cbk1(true); return true;
 				}
@@ -152,7 +153,8 @@ _f['upload'] = function(cbk) {
 					} else {
 						cbk1('Skip ' + tracks[t]);
 					}
-				});	
+				});
+				*/
 			}
 		})(t);			
 	}
@@ -163,64 +165,7 @@ _f['upload'] = function(cbk) {
 		},
 		50000
 	);
-	//let next =  tracks.filter(v => !x.includes(v));
-	//cbk(next);
-
 }	
-/*
-
-_f['upload'] = function(cbk) { 
-	if (CP.data['P_I1'] !== false) {
-		var x = CP.data['videoinfo'].x;
-		var CP1 = new pkg.crowdProcess();
-		var _f1 = {}, f = CP.data.tracks;
-		for (var i = 0; i < f.length; i++) {
-			_f1['P_' + i] = (function(i) { 
-				return function(cbk1) {
-					if (new Date().getTime() - tm > 30000) {
-						cbk1(true); return true;
-					}
-					if (x.indexOf(f[i]) !==-1) {
-						cbk1('--skip--'); return true;
-					}
-					pkg.fs.readFile( tmp_folder + f[i], function (err, data0) {
-					  if (err) { throw err; }
-					     var base64data = new Buffer(data0, 'binary');
-					     var params = {
-						 Body: base64data,
-						 Bucket: space_id,
-						 Key: space_dir + f[i],
-						 ContentType: 'video/mp4',
-						 ACL: 'public-read'
-					     };	
-					     s3.putObject(params, function(err, data) {
-						 if (err) cbk1(err.message);
-						 else {
-							 let v = CP.data['P_I1'];
-							 v.x[v.x.length] = f[i];
-							 if (i === (f.length - 1)) {
-								v.status = 1;
-							 }
-							 writeInfo(v, cbk1);
-							 // cbk1(data);
-						 }	 
-					     });
-					}); 
-				}
-			})(i)
-		}			
-		CP1.serial(
-			_f1,
-			function(results) {
-				cbk('results');
-			},
-			50000
-		);			
-	} else {
-		cbk(false)
-	}
-};
-*/
 CP.serial(
 	_f,
 	function(results) {
