@@ -211,7 +211,7 @@ _f['upload'] = function(cbk) {
 CP.serial(
 	_f,
 	function(results) {
-		res.send(CP.data.clean_space);
+		res.send(results);
 	},
 	70000
 );	
