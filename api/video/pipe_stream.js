@@ -123,8 +123,8 @@ CP.serial(
 		});		
 		// res.send(url);
 		*/
-		res.send(ffn);
-		return true;
+	//	res.send(ffn);
+	//	return true;
 			var file = pkg.fs.createReadStream(ffn, {start:start, end:end});
 			res.writeHead(206, {'Content-Range': 'bytes ' + start + '-' + end + '/' + total, 
 				'Accept-Ranges': 'bytes', 'Content-Length': chunksize, 'Content-Type': 'video/mp4' });
