@@ -13,7 +13,8 @@ let space = {
 	endpoint : 'https://shusiou-d-01.nyc3.digitaloceanspaces.com/shusiou/',
 	video:'video.mp4',
 	cache_folder: '/tmp/shusiou_cache/video.mp4/'
-}
+};
+vae totalsize = 0;
 
 var CP = new pkg.crowdProcess();
 var _f = {}; 
@@ -42,38 +43,20 @@ _f['P_I1'] = function(cbk) {
 				pkg.fs.stat(space.cache_folder + v, 
 					function (err, stat) {
 						if (err) { 
-							cbk(false); 
+							cbk1(false); 
 						} else {
-							cbk(stat.size);
+							totalsize+=stat.size;
+							cbk1(stat.size);
 						}
 				});
 			}
 			
 		})(i);	
-	}
-	/*
-	_f1['WRITE_CFG'] = function(cbk1) {
-		if (!sec_t) {
-			cbk(false);
-		} else {
-			pkg.fs.stat( 'engine_' + sec_s + '_' + sec_t +'.cfg', function(err, stat) {
-				if (!err) { res.send(true); }
-				else {
-					var str = '';
-					for (var i = 0; i < fn.length; i++) {
-						str += "file '" + space.cache_folder + fn[i] + "'\n";
-					}
-					pkg.fs.writeFile(space.cache_folder  + 'engine_' + sec_s + '_' + sec_t +'.cfg', str, function(err) {	    
-						cbk1('WRITE_TXT:' + space.cache_folder  + 'engine_' + sec_s + '_' + sec_t +'.cfg');
-					}); 					
-				}
-			});
-		}	
-	};*/		
+	}	
 	CP1.parallel(
-	_f1,
-	function(results) {
-		cbk(results);
+		_f1,
+		function(results) {
+			cbk(results);
 	}, 10000);		
 };
 CP.serial(
