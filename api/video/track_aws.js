@@ -81,7 +81,7 @@ _f['tracks'] = function(cbk) {
 		var fp = new folderP();		
 		fp.build(tmp_folder, () => {
 			pkg.fs.readdir( tmp_folder, (err, files) => {
-				if (err || !files.length) {
+				if (err || files.length != Math.ceil(CP.data.videoinfo.filesize / trunkSize)) {
 					splitTrackes(cbk);
 				} else {
 					cbk(files);					
@@ -91,9 +91,7 @@ _f['tracks'] = function(cbk) {
 		});
 	}
 };
-_f['next'] = function(cbk) {
-	cbk (Math.ceil(CP.data.videoinfo.filesize / trunkSize) + '==');
-};
+
 /*
 
 _f['P_I2'] = function(cbk) { 
