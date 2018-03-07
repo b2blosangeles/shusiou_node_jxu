@@ -121,7 +121,7 @@ _f['upload'] = function(cbk) {
 	
 	let objs = CP.data.space;
 	var CP1 = new pkg.crowdProcess();
-	var _f1 = {}, f = CP.data.tracks;
+	var _f1 = {}, 
 	
 	for (var t in tracks) {
 		_f1['P_' + t] = (function(t) { 
@@ -149,10 +149,10 @@ _f['upload'] = function(cbk) {
 							 }	 
 						     });
 						});					
+					} else {
+						cbk1('Skip ' + tracks[t]);
 					}
-				} else {
-					cbk1('Skip ' + tracks[t]);
-				}
+				});	
 			}
 		})(t);			
 	}
