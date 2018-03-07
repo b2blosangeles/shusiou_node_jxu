@@ -95,7 +95,7 @@ _f['tracks'] = function(cbk) {
 _f['space'] = function(cbk) { 
 	var params = { 
 	  Bucket: space_id,
-	  Delimiter: '',
+	  Delimiter: space_dir,
 	  Prefix: ''
 	}
 
