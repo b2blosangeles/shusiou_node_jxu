@@ -192,7 +192,7 @@ _f['upload'] = function(cbk) {
 		_f1,
 		function(results) {
 			if (!uploaded) {
-				if (Object.keys(CP.data.space).length == CP.data.tracks) {
+				if (Object.keys(CP.data.space).length == CP.data.tracks.length && (CP.data.tracks.length)) {
 					let v = CP.data.videoinfo;
 					v.x = tracks;
 					v.status = 1;
