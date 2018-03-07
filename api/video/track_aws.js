@@ -80,7 +80,7 @@ _f['videoinfo'] = function(cbk) { // P_I0
 		}
 	});		
 };
-
+/*
 _f['tracks'] = function(cbk) {
 	if (CP.data.videoinfo === false) {
 		cbk('no videoinfo');
@@ -107,7 +107,7 @@ _f['tracks'] = function(cbk) {
 		});
 	}
 };
-
+*/
 /*
 
 _f['P_I2'] = function(cbk) { 
