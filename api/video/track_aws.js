@@ -91,10 +91,17 @@ _f['tracks'] = function(cbk) {
 		});
 	}
 };
-
+_f['upload'] = function(cbk) { 
+	let x =  CP.data['videoinfo'].x;
+	let tracks = CP.data.tracks;
+	if (typeof tracks === 'string') {
+		cbk(tracks);
+		CP.exit = 1;
+	}
+}	
 /*
 
-_f['P_I2'] = function(cbk) { 
+_f['upload'] = function(cbk) { 
 	if (CP.data['P_I1'] !== false) {
 		var x = CP.data['videoinfo'].x;
 		var CP1 = new pkg.crowdProcess();
