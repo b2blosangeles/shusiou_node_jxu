@@ -9,6 +9,12 @@ let source_path = '/var/img/',
     space_url = 'https://shusiou-d-01.nyc3.digitaloceanspaces.com',  
     space_dir = '/shusiou/' + source_file + '/_s/';
 
+let space = {
+	endpoint : 'https://shusiou-d-01.nyc3.digitaloceanspaces.com/shusiou/',
+	video:'video.mp4',
+	cache_folder: '/tmp/shusiou_cache/video.mp4/'
+}
+
 var CP = new pkg.crowdProcess();
 var _f = {}; 
 
@@ -33,7 +39,14 @@ _f['P_I1'] = function(cbk) {
 	for (i=0; i < v.length; i++) {
 		_f1['P_'+i] = (function(i) {
 			return function(cbk1) {
-				cbk1(v[i]);
+				pkg.fs.stat(space.cache_folder + v, 
+					function (err, stat) {
+						if (err) { 
+							cbk(false); 
+						} else {
+							cbk(stat.size);
+						}
+				});
 			}
 			
 		})(i);	
