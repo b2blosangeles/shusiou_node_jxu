@@ -14,7 +14,7 @@ let space = {
 	video:'video.mp4',
 	cache_folder: '/tmp/shusiou_cache/video.mp4/'
 };
-vae totalsize = 0;
+var totalsize = 0;
 
 var CP = new pkg.crowdProcess();
 var _f = {}; 
@@ -34,10 +34,8 @@ _f['P_I0'] = function(cbk) {
 	});		
 };
 _f['P_I1'] = function(cbk) {
-	var v = CP.data.P_I0;
-	cbk(v);
-	return true;
-	/*
+	var v = CP.data.P_I0.x;
+
 	CP1 = new pkg.crowdProcess();
 	var _f1 = {};
 	for (var i=0; i < v.length; i++) {
@@ -63,7 +61,7 @@ _f['P_I1'] = function(cbk) {
 		function(results) {
 			cbk(results);
 	}, 10000);
-	*/
+	
 };
 CP.serial(
 	_f,
