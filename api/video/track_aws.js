@@ -89,14 +89,10 @@ _f['tracks'] = function(cbk) {
 		var fp = new folderP();		
 		fp.build(tmp_folder, () => {
 			pkg.fs.readdir( tmp_folder, (err, files) => {
-				if (!err) {
-					if (!files.lengt) {
-						splitTrackes(cbk);
-					} else {
-						cbk(files);
-					}
+				if (err || !files.length) {
+					splitTrackes(cbk);
 				} else {
-					splitTrackes(cbk);					
+					cbk(files);					
 				}
 			});			
 
