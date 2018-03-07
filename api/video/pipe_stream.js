@@ -65,8 +65,8 @@ _f['P_I1'] = function(cbk) {
 CP.serial(
 	_f,
 	function(results) {
-		res.send({totalsize:totalsize, list:CP.data.P_I1});
-		return true;
+		//res.send({totalsize:totalsize, list:CP.data.P_I1});
+		//return true;
 		var cfg = CP.data.P_I0;
 		let stream = require("stream"),
 		a = new stream.PassThrough();
@@ -76,10 +76,10 @@ CP.serial(
 		var range = req.headers.range;
 		
 		if (req.param('start')) {
-			var start = req.param('start'), end = req.param('end'), maxChunk = cfg.trunksize, total = cfg.filesize;
+			var start = req.param('start'), end = req.param('end'), maxChunk = cfg.trunksize, total = totalsize;
 		} else {
 			if (!start) {
-				var start = 0, end = 0, maxChunk = cfg.trunksize, total = cfg.filesize;
+				var start = 0, end = 0, maxChunk = cfg.trunksize, total = totalsize;
 			}
 			if (range) {
 				var total = cfg.filesize; 
