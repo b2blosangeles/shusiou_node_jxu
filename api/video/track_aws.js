@@ -80,7 +80,7 @@ _f['videoinfo'] = function(cbk) { // P_I0
 		}
 	});		
 };
-/*
+
 _f['tracks'] = function(cbk) {
 	if (CP.data.videoinfo === false) {
 		cbk('no videoinfo');
@@ -94,6 +94,7 @@ _f['tracks'] = function(cbk) {
 					files.forEach(file => {
 						f[f.length] = file;
 					});
+					cbk(files); return true;
 					if (!f.lengt) {
 						splitTrackes(cbk);
 					} else {
@@ -107,7 +108,7 @@ _f['tracks'] = function(cbk) {
 		});
 	}
 };
-*/
+
 /*
 
 _f['P_I2'] = function(cbk) { 
