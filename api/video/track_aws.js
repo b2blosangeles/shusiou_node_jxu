@@ -1,4 +1,8 @@
-function trackAws(_cbk)  {
+function trackAws(_file, _cbk)  {
+	let _p = file.match(/([^\/]+)$/);
+	_cbk(_p);
+	return true;
+	
 	const AWS = require(env.site_path + '/api/inc/aws-sdk/node_modules/aws-sdk')
 	const spacesEndpoint = new AWS.Endpoint('nyc3.digitaloceanspaces.com');
 	const s3 = new AWS.S3({
