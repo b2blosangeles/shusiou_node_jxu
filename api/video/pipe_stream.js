@@ -101,15 +101,18 @@ CP.serial(
 		for (var i = sidx; i < eidx; i++) {
 			fn.push(cfg.x[i]);	
 		}
+		/*
 		res.writeHead(206, {'Content-Range': 'bytes ' + start + '-' + end + '/' + total, 
 		    'Accept-Ranges': 'bytes', 'Content-Type': 'video/mp4' });			
-		
+		*/
 		var CP1 = new pkg.crowdProcess();
 		var _f1 = {}; 
 		
 		for (var i = 0; i < fn.length; i++) {
 			_f1['P_' + i] = (function(i) {
 				return function(cbk1) {
+					cbk1(space_url + space_dir + fn[i]);
+					/*
 					let d = Buffer.from('');
 					pkg.request(space_url + space_dir + fn[i], 
 					function (error, response, body) {})
@@ -118,6 +121,7 @@ CP.serial(
 					}).on('end', function() {
 						cbk1(d);
 					});
+					*/
 				}
 			})(i);	
 		}
@@ -125,10 +129,13 @@ CP.serial(
 		CP1.parallel(
 			_f1,
 			function(data) {
+				res.send(data);
+				/*
 				for (var i = 0; i < fn.length; i++) {
 					a.write(CP1.data['P_' + i]);
 				}	
 				a.end();
+				*/
 			},
 			6000
 		);
