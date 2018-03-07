@@ -135,7 +135,7 @@ _f['space'] = function(cbk) {
 }
 _f['clean_space'] = function(cbk) { 
 	let tracks = CP.data.tracks, objs = Object.keys(CP.data.space);
-	let diff = objs.filter(x => tracks.includes(x));
+	let diff = objs.filter(x => !tracks.includes(x));
 	if (diff.length) {
 		CP.exit = 1;
 		removeFolder(space_dir, cbk);
