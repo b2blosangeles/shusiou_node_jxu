@@ -108,10 +108,10 @@ CP.serial(
 		var CP1 = new pkg.crowdProcess();
 		var _f1 = {}; 
 		
-		for (var i = 0; i < fn.length; i++) {
-			_f1['P_' + i] = (function(i) {
+		for (var o in CP.data.P_I1.list) {
+			_f1['P_' + o] = (function(o) {
 				return function(cbk1) {
-					cbk1(space_url + space_dir + fn[i]);
+					cbk1(space_url + space_dir + o);
 					/*
 					let d = Buffer.from('');
 					pkg.request(space_url + space_dir + fn[i], 
@@ -123,7 +123,7 @@ CP.serial(
 					});
 					*/
 				}
-			})(i);	
+			})(o);	
 		}
 
 		CP1.parallel(
