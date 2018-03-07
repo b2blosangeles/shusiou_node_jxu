@@ -38,14 +38,10 @@ var splitTrackes = function(cbk) {
 				cbk(err1.message);
 			} else {
 				pkg.fs.readdir( tmp_folder, (err2, files) => {
-					if (err2) {
-						cbk(err2.message);
+					cbk((err2) ? err2.message : files);
+;if (err2) {						cbk(err2.message);
 					} else {
-						var f = [];
-						files.forEach(file => {
-							f[f.length] = file;
-						});
-						cbk(f);
+						cbk(files);
 					}
 				});			
 			}
