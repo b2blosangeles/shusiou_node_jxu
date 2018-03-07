@@ -114,21 +114,10 @@ _f['space'] = function(cbk) {
 _f['clean_space'] = function(cbk) { 
 	let tracks = CP.data.tracks, objs = Object.keys(CP.data.space);
 	let diff = objs.filter(x => tracks.includes(x));
-	let CP1 = new pkg.crowdProcess(), _f1 = {};
-	for (var o in diff) {
-		_f1['P_' + o] = (function(o) {
-			return function(cbk1) {
-				cbk1(o)
-			}
-		})(o);
-	}
-	CP1.serial(
-		_f1,
-		function(results) {
-			cbk(results);
-		},
-		50000
-	);	
+	if (diff.length) {
+		CP.exit = 1;
+		cbk('diff-->');	
+	}	
 }
 _f['upload'] = function(cbk) { 
 	let tracks = CP.data.tracks;
