@@ -124,8 +124,6 @@ _f['upload'] = function(cbk) {
 	for (var t in tracks) {
 		_f1['P_' + t] = (function(t) { 
 			return function(cbk1) {
-				cbk1(t);
-				/*
 				if (new Date().getTime() - tm > 30000) {
 					cbk1(true); return true;
 				}
@@ -153,7 +151,6 @@ _f['upload'] = function(cbk) {
 						cbk1('Skip ' + tracks[t]);
 					}
 				});
-				*/
 			}
 		})(t);			
 	}
