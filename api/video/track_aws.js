@@ -86,30 +86,35 @@ _f['videoinfo'] = function(cbk) { // P_I0
 };	
 _f['split'] = function(cbk) {
 	if (CP.data.videoinfo === false) {
-		CP.exit = 1;
-		cbk('kkk');
+		cbk('no videoinfo');
 	}
 	var folderP = require(env.site_path + '/api/inc/folderP/folderP');
 	var fp = new folderP();		
 	fp.build(tmp_folder, () => {
 		pkg.exec('cd ' + source_path + ' && split -b ' + trunkSize + ' ' +  source_file +  ' ' + tmp_folder + '', 					 
-		function(err, stdout, stderr) {
-			CP.exit = 1;
-			if (err) cbk(err.message);
-			else if (stdout) cbk(true);
-			else cbk('cd ' + source_path + ' && split -b ' + trunkSize + ' ' +  source_file +  ' ' + tmp_folder + '');
+		function(err1, stdout, stderr) {
+			if (err) {
+				cbk(err1.message);
+			} else {
+				pkg.fs.readdir( tmp_folder, (err2, files) => {
+					if (err) {
+						cbk(err2.message);
+					} else {
+						var f = [];
+						files.forEach(file => {
+							f[f.length] = file;
+						});
+						cbk(f);
+					}
+				});			
+			}
 		});
 	});	
 };
 
 _f['tracks'] = function(cbk) { // P_I
-	pkg.fs.readdir( tmp_folder, (err, files) => {
-		var f = [];
-		files.forEach(file => {
-			f[f.length] = file;
-		});
-		cbk(f);
-	});	
+	CP.exit = 1;	
+	cbk(CP.data.split);
 };
 
 
