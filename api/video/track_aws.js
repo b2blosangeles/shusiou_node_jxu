@@ -7,7 +7,7 @@ const s3 = new AWS.S3({
 });
 let source_path = '/var/img/',
     source_file = 'video.mp4',
-    tmp_folder = '/var/tmpvideo/' + source_file + '/_t/',
+    tmp_folder = '/var/shusiou_cache/tmpvideo/' + source_file + '/_t/',
     
     space_id = 'shusiou-d-01',
     space_url = 'https://shusiou-d-01.nyc3.digitaloceanspaces.com/', 
