@@ -96,7 +96,7 @@ _f['space'] = function(cbk) {
 	var params = { 
 	  Bucket: space_id,
 	  Delimiter: '',
-	  Prefix: space_dir
+	  Prefix: ''
 	}
 
 	s3.listObjects(params, function (err, data) {
