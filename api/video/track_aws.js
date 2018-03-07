@@ -80,18 +80,22 @@ _f['videoinfo'] = function(cbk) { // P_I0
 				});
 			});		
 		} else {
-			CP.exit = 1;
+			
 			cbk(v);
 		}
 	});		
 };	
-
 _f['split'] = function(cbk) {
+	if (CP.data.videoinfo === false) {
+		CP.exit = 1;
+		cbk(false);
+	}
 	var folderP = require(env.site_path + '/api/inc/folderP/folderP');
 	var fp = new folderP();		
 	fp.build(tmp_folder, () => {
 		pkg.exec('cd ' + source_path + ' && split -b ' + trunkSize + ' ' +  source_file +  ' ' + tmp_folder + '', 					 
 		function(error, stdout, stderr) {
+			CP.exit = 1;
 			if (error) cbk(false);
 			else if (stdout) cbk(true);
 			else cbk(false);
