@@ -1,5 +1,5 @@
 function trackAws(_file, _cbk)  {
-	let _p = _file.match(/(*)\/([^\/]+)$/);
+	let _p = _file.match(/(.)\/([^\/]+)$/);
 	_cbk(_p);
 	return true;
 	
