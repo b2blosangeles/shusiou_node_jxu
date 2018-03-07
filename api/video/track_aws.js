@@ -91,6 +91,16 @@ _f['tracks'] = function(cbk) {
 		});
 	}
 };
+/*
+_f['space'] = function(cbk) { 
+	let x =  CP.data['videoinfo'].x;
+	let tracks = CP.data.tracks;
+	if (typeof tracks === 'string') {
+		cbk(tracks);
+		CP.exit = 1;
+	}
+}
+*/
 _f['upload'] = function(cbk) { 
 	let x =  CP.data['videoinfo'].x;
 	let tracks = CP.data.tracks;
