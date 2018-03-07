@@ -4,8 +4,6 @@ var buff = new Buffer(100);
 
 let source_path = '/var/img/',
     source_file = 'video.mp4',
-    tmp_folder = source_path + '_x/' + source_file + '/',
-    space_id = 'shusiou-d-01',
     space_url = 'https://shusiou-d-01.nyc3.digitaloceanspaces.com',  
     space_dir = '/shusiou/' + source_file + '/_t/';
 
