@@ -26,13 +26,47 @@ _f['P_I0'] = function(cbk) {
 		}
 	});		
 };
-_f['P_I1'] = function(cbk) { 
-	cbk(CP.data.P_I0);		
+_f['P_I1'] = function(cbk) {
+	var v = {"aa":0,"ab":0,"ac":0,"ad":0,"ae":0,"af":0,"ag":0};
+	CP1 = new pkg.crowdProcess();
+	var _f1 = {};
+	for (k in v) {
+		_f1[k] = (function(k) {
+			return function(cbk1) {
+				cbk1(k);
+			}
+			
+		})(k);	
+	}
+	/*
+	_f1['WRITE_CFG'] = function(cbk1) {
+		if (!sec_t) {
+			cbk(false);
+		} else {
+			pkg.fs.stat( 'engine_' + sec_s + '_' + sec_t +'.cfg', function(err, stat) {
+				if (!err) { res.send(true); }
+				else {
+					var str = '';
+					for (var i = 0; i < fn.length; i++) {
+						str += "file '" + space.cache_folder + fn[i] + "'\n";
+					}
+					pkg.fs.writeFile(space.cache_folder  + 'engine_' + sec_s + '_' + sec_t +'.cfg', str, function(err) {	    
+						cbk1('WRITE_TXT:' + space.cache_folder  + 'engine_' + sec_s + '_' + sec_t +'.cfg');
+					}); 					
+				}
+			});
+		}	
+	};*/		
+	CP1.parallel(
+	_f1,
+	function(results) {
+		cbk(results);
+	}, 10000);		
 };
 CP.serial(
 	_f,
 	function(results) {
-		res.send(results);
+		res.send(CP.data.P_I1);
 		return true;
 		var cfg = CP.data.P_I0;
 		let stream = require("stream"),
