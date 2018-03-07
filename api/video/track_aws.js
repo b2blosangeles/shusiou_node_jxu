@@ -73,12 +73,14 @@ _f['videoinfo'] = function(cbk) { // P_I0
 						var v = {filesize:stat.size,time_scale:timeScale, trunksize: trunkSize,
 							duration: duration, length:movieLength, x:[], status:0};
 						writeInfo(v, function() {
+							CP.exit = 1;
 							cbk(v);
 						});
 					});
 				});
 			});		
 		} else {
+			CP.exit = 1;
 			cbk(v);
 		}
 	});		
