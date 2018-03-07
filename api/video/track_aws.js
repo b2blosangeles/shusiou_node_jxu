@@ -121,6 +121,8 @@ _f['upload'] = function(cbk) {
 	let objs = CP.data.space;
 	let CP1 = new pkg.crowdProcess(), _f1 = {};
 	
+	let uploaded = 0;
+	
 	for (var t in tracks) {
 		_f1['P_' + t] = (function(t) { 
 			return function(cbk1) {
@@ -142,7 +144,7 @@ _f['upload'] = function(cbk) {
 						     s3.putObject(params, function(err, data) {
 							 if (err) cbk1(err.message);
 							 else {
-								 let v = CP.data.videoinfo;
+								 uploaded++;
 								 cbk1(tracks[t])
 							 }	 
 						     });
@@ -157,7 +159,7 @@ _f['upload'] = function(cbk) {
 	CP1.serial(
 		_f1,
 		function(results) {
-			cbk(results.results);
+			cbk('uploaded:' + uploaded);
 		},
 		50000
 	);
