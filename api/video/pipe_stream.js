@@ -26,9 +26,13 @@ _f['P_I0'] = function(cbk) {
 		}
 	});		
 };
+_f['P_I1'] = function(cbk) { 
+	cbk(CP.data.P_I0);		
+};
 CP.serial(
 	_f,
 	function(results) {
+		res.send(results);
 		var cfg = CP.data.P_I0;
 		let stream = require("stream"),
 		a = new stream.PassThrough();
