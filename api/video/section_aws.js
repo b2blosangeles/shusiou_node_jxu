@@ -110,7 +110,14 @@ function trackAws(_file, _cbk)  {
 					if (err || files.length != Math.ceil(CP.data.videoinfo.filesize / trunkSize)) {
 						splitTrackes(cbk);
 					} else {
-						cbk(files);					
+						cbk(files.filter(function(a) {
+							let patt = /s\_([0-9]+)\./;
+							return  patt.test(a); 
+						}).sort(function(a, b) {
+							let va = a.match(/s\_([0-9]+)\./), 
+							vb = b.match(/s\_([0-9]+)\./);
+							return parseInt(va[1]) - parseInt(vb[1]);
+						}));					
 					}
 				});			
 
@@ -141,8 +148,7 @@ function trackAws(_file, _cbk)  {
 		let diff = objs.filter(x => !tracks.includes(x));
 		if (diff.length) {
 			CP.exit = 1;
-			cbk('niu---');
-		//	removeFolder(space_dir, cbk);
+			removeFolder(space_dir, cbk);
 		} else {
 			cbk(true);
 		}
