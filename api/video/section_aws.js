@@ -59,10 +59,14 @@ function trackAws(_file, _cbk)  {
 	var splitTrackes = function(cbk) {
 		pkg.exec('cd ' + source_path + ' && ffmpeg -i ' +  source_file + 
 			 ' -c copy -map 0 -segment_time 5 -reset_timestamps 1 -f segment ' + tmp_folder + 's_%d.mp4', 					 
-		function(error, stdout, stderr) {
-			if (error) cbk(false);
-			else if (stdout) cbk(true);
-			else cbk(false);
+		function(err, stdout, stderr) {
+			if (err) {
+				cbk(err.message);
+			} else {
+				pkg.fs.readdir( tmp_folder, (err1, files) => {
+					cbk((err1) ? err1.message : files);
+				});			
+			}
 		});		
 	}	
 	_f['videoinfo'] = function(cbk) { // P_I0
