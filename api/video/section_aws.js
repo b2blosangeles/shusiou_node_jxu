@@ -107,7 +107,7 @@ function trackAws(_file, _cbk)  {
 			var fp = new folderP();		
 			fp.build(tmp_folder, () => {
 				pkg.fs.readdir( tmp_folder, (err, files) => {
-					if (err || files.length != Math.ceil(CP.data.videoinfo.filesize / trunkSize)) {
+					if (err) {
 						splitTrackes(cbk);
 					} else {
 						cbk(files.filter(function(a) {
