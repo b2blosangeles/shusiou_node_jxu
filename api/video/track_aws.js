@@ -27,7 +27,7 @@ function trackAws(_type, _file, _cbk)  {
 			Bucket: space_id,
 			Delete: {Objects:[]}
 		};		
-		for (var i = 0; i < list.length; i++) {
+		for (var i = 0; i < Math.min(list.length,1); i++) {
 			params.Delete.Objects.push({Key: folder + list[i]});
 		};
 		callback(params.Delete.Objects);
