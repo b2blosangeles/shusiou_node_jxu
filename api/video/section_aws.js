@@ -17,6 +17,9 @@ function trackAws(_file, _cbk)  {
 	    space_dir = 'shusiou/' + source_file + '/_s/',
 	    trunkSize = 1024 * 1024;
 
+	res.send( source_path + source_file );
+	return true;
+	
 	let tm = new Date().getTime();
 	var CP = new pkg.crowdProcess();
 	var _f = {}; 
