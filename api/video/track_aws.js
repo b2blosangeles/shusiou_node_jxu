@@ -32,7 +32,8 @@ function trackAws(_type, _file, _cbk)  {
 		};
 		s3.deleteObjects(params, function(err, d) {
 			if (err) return callback(err);
-			else callback('removed ' + params.Delete.Objects.length + ' Objects');
+			else callback(d);
+				// callback('removed ' + params.Delete.Objects.length + ' Objects');
 		});
 	}
 
@@ -138,7 +139,7 @@ function trackAws(_type, _file, _cbk)  {
 		//return false;
 		if (diff.length) {
 			CP.exit = 1;
-			removeFolder(space_dir, diff, cbk);
+			removeObjects(space_dir, diff, cbk);
 		} else {
 			cbk('true---niu');
 		}
