@@ -12,7 +12,7 @@
 
 	function removeFolder(folder, callback){
 		var params = {
-			Bucket: space_id,
+			Bucket: 'shusiou-d-01',
 			Prefix: folder
 		};
 		s3.listObjects(params, function(err, data) {
