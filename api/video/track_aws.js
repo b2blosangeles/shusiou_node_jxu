@@ -28,7 +28,7 @@ function trackAws(_type, _file, _cbk)  {
 			Bucket: space_id
 		};		
 		for (var i = 0; i < list.length; i++) {
-			delList[delList.length] = folder + list[i];
+			delList[delList.length] = {Key: folder + list[i]};
 		};
 		callback(delList);
 		return false;
