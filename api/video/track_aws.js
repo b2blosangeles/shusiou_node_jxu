@@ -14,6 +14,7 @@ function trackAws(_file, _cbk)  {
 
 	    space_id = 'shusiou-d-01',
 	    space_url = 'https://shusiou-d-01.nyc3.digitaloceanspaces.com/', 
+	    space_info = 'shusiou/' + source_file + '/_info.txt',
 	    space_dir = 'shusiou/' + source_file + '/_t/',
 	    trunkSize = 1024 * 1024;
 
@@ -47,7 +48,7 @@ function trackAws(_file, _cbk)  {
 	     var params = {
 		 Body: JSON.stringify(v),
 		 Bucket: space_id,
-		 Key: space_dir + '_info.txt',
+		 Key: space_info,
 		 ContentType: 'text/plain',
 		 ACL: 'public-read'
 	     };	
@@ -69,7 +70,7 @@ function trackAws(_file, _cbk)  {
 			});		
 	}	
 	_f['videoinfo'] = function(cbk) { // P_I0
-		pkg.request(space_url +  space_dir + '_info.txt', 
+		pkg.request(space_url +  space_info, 
 		function (err, res, body) {
 			let v = (err) ? false : {};
 			if (v !== false) { 
