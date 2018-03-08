@@ -45,10 +45,6 @@ function trackAws(_file, _cbk)  {
 	}
 
 	var writeInfo = function(v, cbk) {
-		if (!v['_s']) v['_s'] = []; 
-		if (!v['status']) v['status'] = {}; 
-		if (!v['status']['_s']) v['status']['_s'] = 0;
-		
 		var params = {
 			Body: JSON.stringify(v),
 			Bucket: space_id,
