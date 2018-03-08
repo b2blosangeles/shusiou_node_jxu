@@ -16,8 +16,7 @@
 			Prefix: folder
 		};
 		s3.listObjects(params, function(err, data) {
-      			callback(data);
-      /*
+
 			if (err) return callback(err);
 			if (data.Contents.length == 0) callback({"Deleted":[],"Errors":[]});
 			var params = {
@@ -31,7 +30,7 @@
 				if (err) return callback(err);
 				else callback(d);
 			});
-      */
+   
 		});
 	}
 
