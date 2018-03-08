@@ -1,7 +1,5 @@
 function trackAws(_file, _cbk)  {
-	let _p = _file.match(/(.+)([^\/]+)$/);
-	_cbk(_p);
-	return true;
+	let _p = _file.match(/(.+)\/([^\/]+)$/);
 	
 	const AWS = require(env.site_path + '/api/inc/aws-sdk/node_modules/aws-sdk')
 	const spacesEndpoint = new AWS.Endpoint('nyc3.digitaloceanspaces.com');
@@ -10,8 +8,8 @@ function trackAws(_file, _cbk)  {
 	    accessKeyId: 'QYF3ENCI4TEDFDWFBS6N',
 	    secretAccessKey: '7DJD8b9iAqD5qsLgRZH9OXfgOQMob/edWouwiqYeOwI'
 	});
-	let source_path = '/var/img/',
-	    source_file = 'video.mp4',
+	let source_path = _p[1],
+	    source_file = _p[2],
 	    tmp_folder = '/var/shusiou_cache/tmpvideo/' + source_file + '/_t/',
 
 	    space_id = 'shusiou-d-01',
