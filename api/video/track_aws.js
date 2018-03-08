@@ -120,7 +120,13 @@ function splitVideo(_type, _file, _cbk)  {
 			var fp = new folderP();		
 			fp.build(tmp_folder, () => {
 				pkg.fs.readdir( tmp_folder, (err, files) => {
-					if (err || files.length != Math.ceil(CP.data.videoinfo.filesize / trunkSize)) {
+					if (_type === '_t')
+						var condition = (files.length != Math.ceil(CP.data.videoinfo.filesize / trunkSize));
+					else if (_type === '_s')
+						var condition = (files.length != Math.ceil(CP.data.videoinfo.length / 5));
+					else var condition = false;
+					
+					if (err || condition) {
 						generateSection(function(data) { cbk(data); });
 					} else {
 						cbk(files);					
@@ -235,6 +241,6 @@ function splitVideo(_type, _file, _cbk)  {
 	return true;
 }
 
-splitVideo('_ty', '/var/img/video.mp4',function(data) {
+splitVideo('_s', '/var/img/video.mp4',function(data) {
 	res.send(data);
 });
