@@ -1,11 +1,8 @@
 function splitVideo(s3, _type, _file, _cbk)  {
 	let _p = _file.match(/(.+)\/([^\/]+)$/);
-	
-
 	let source_path = _p[1] + '/',
 	    source_file = _p[2],
 	    tmp_folder = '/var/shusiou_cache/tmpvideo/' + source_file + '/' + _type + '/',
-
 	    space_id = 'shusiou-d-01',
 	    space_url = 'https://shusiou-d-01.nyc3.digitaloceanspaces.com/', 
 	    space_info = 'shusiou/' + source_file + '/_info.txt',
