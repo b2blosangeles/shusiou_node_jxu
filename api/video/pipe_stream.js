@@ -91,6 +91,6 @@ CP.serial(
 		);
 		
 	},
-	30000
+	10000
 );
 return true;
