@@ -141,7 +141,8 @@ function trackAws(_file, _cbk)  {
 		let diff = objs.filter(x => !tracks.includes(x));
 		if (diff.length) {
 			CP.exit = 1;
-			removeFolder(space_dir, cbk);
+			cbk('niu---');
+		//	removeFolder(space_dir, cbk);
 		} else {
 			cbk(true);
 		}
