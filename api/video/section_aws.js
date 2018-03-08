@@ -8,7 +8,7 @@ function trackAws(_file, _cbk)  {
 	    accessKeyId: 'QYF3ENCI4TEDFDWFBS6N',
 	    secretAccessKey: '7DJD8b9iAqD5qsLgRZH9OXfgOQMob/edWouwiqYeOwI'
 	});
-	let source_path = _p[1],
+	let source_path = _p[1] + '/',
 	    source_file = _p[2],
 	    tmp_folder = '/var/shusiou_cache/tmpvideo/' + source_file + '/_s/',
 
