@@ -1,5 +1,3 @@
-
-
 	const AWS = require(env.site_path + '/api/inc/aws-sdk/node_modules/aws-sdk')
 	const spacesEndpoint = new AWS.Endpoint('nyc3.digitaloceanspaces.com');
 	const s3 = new AWS.S3({
@@ -16,8 +14,6 @@
 			Prefix: folder
 		};
 		s3.listObjects(params, function(err, data) {
-			callback(data);
-			return true;
 			if (err) return callback(err);
 			if (data.Contents.length == 0) callback({"Deleted":[],"Errors":[]});
 			var params = {
@@ -36,7 +32,7 @@
 	}
 
   
-  removeFolder('shusiou/video.mp4/_m/', function(data) {
+  removeFolder('shusiou/video.mp4/_s/', function(data) {
 	  
     res.send({tm:new Date().getTime() - tm,data:data});
   });
