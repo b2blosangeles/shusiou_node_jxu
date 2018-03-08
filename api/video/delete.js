@@ -36,7 +36,7 @@
 	}
 
   
-  removeFolder(space_dir+'_m', function(data) {
+  removeFolder('shusiou/video.mp4/_m/', function(data) {
 	  
     res.send({tm:new Date().getTime() - tm,data:data});
   });
