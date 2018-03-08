@@ -142,7 +142,7 @@ function trackAws(_file, _cbk)  {
 			CP.exit = 1;
 			removeFolder(space_dir, cbk);
 		} else {
-			cbk(true);
+			cbk('true---niu');
 		}
 	}
 	_f['upload'] = function(cbk) { 
