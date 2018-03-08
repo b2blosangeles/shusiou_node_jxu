@@ -27,35 +27,13 @@ function trackAws(_type, _file, _cbk)  {
 		var params = {
 			Bucket: space_id
 		};		
-		
 		for (var i = 0; i < list.length; i++) {
 			delList[delList.length] = folder + list[i];
 		};
-		callback(delList);
-		params.Delete = {Objects:[]};
-		return true;
-		
+		params.Delete = {Objects:delList};
 		s3.deleteObjects(params, function(err, d) {
 			if (err) return callback(err);
-			else callback(d);
-		});			
-	//	callback({niu:list});
-	//	return true;
-		
-		s3.listObjects(params, function(err, data) {
-			if (err) return callback(err);
-			if (data.Contents.length == 0) callback({"Deleted":[],"Errors":[]});
-			var params = {
-				Bucket: space_id
-			};		
-			params.Delete = {Objects:list};
-			data.Contents.forEach(function(content) {
-				params.Delete.Objects.push({Key: content.Key});
-			});
-			s3.deleteObjects(params, function(err, d) {
-				if (err) return callback(err);
-				else callback(d);
-			});	
+			else callback('--d--');
 		});
 	}
 
