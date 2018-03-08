@@ -58,7 +58,7 @@ function trackAws(_file, _cbk)  {
 			else    cbk(v);
 		});		
 	}
-	var splitTrackes = function(cbk) {
+	var createSection = function(cbk) {
 		pkg.exec('rm -f ' + tmp_folder + '* ' + ' && rm -f ' + tmp_folder + '*.* ' +
 			 '&& split -b ' + trunkSize + ' ' + source_path +  source_file +  ' ' + tmp_folder + '', 					 
 			function(err, stdout, stderr) {
@@ -109,8 +109,8 @@ function trackAws(_file, _cbk)  {
 			var fp = new folderP();		
 			fp.build(tmp_folder, () => {
 				pkg.fs.readdir( tmp_folder, (err, files) => {
-					if (err || files.length != Math.ceil(CP.data.videoinfo.filesize / trunkSize) || true) {
-						splitTrackes(cbk);
+					if (err || files.length != Math.ceil(CP.data.videoinfo.filesize / trunkSize)) {
+						createSection(cbk);
 					} else {
 						cbk(files);					
 					}
