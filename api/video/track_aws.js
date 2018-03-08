@@ -1,4 +1,4 @@
-function trackAws(_file, _cbk)  {
+function trackAws(_type, _file, _cbk)  {
 	let _p = _file.match(/(.+)\/([^\/]+)$/);
 	
 	const AWS = require(env.site_path + '/api/inc/aws-sdk/node_modules/aws-sdk')
@@ -10,12 +10,12 @@ function trackAws(_file, _cbk)  {
 	});
 	let source_path = _p[1] + '/',
 	    source_file = _p[2],
-	    tmp_folder = '/var/shusiou_cache/tmpvideo/' + source_file + '/_t/',
+	    tmp_folder = '/var/shusiou_cache/tmpvideo/' + source_file + '/' + _type + '/',
 
 	    space_id = 'shusiou-d-01',
 	    space_url = 'https://shusiou-d-01.nyc3.digitaloceanspaces.com/', 
 	    space_info = 'shusiou/' + source_file + '/_info.txt',
-	    space_dir = 'shusiou/' + source_file + '/_t/',
+	    space_dir = 'shusiou/' + source_file + '/' + _type + '/',
 	    trunkSize = 1024 * 1024;
 
 	let tm = new Date().getTime();
@@ -199,9 +199,9 @@ function trackAws(_file, _cbk)  {
 				if (!uploaded) {
 					if (Object.keys(CP.data.space).length == CP.data.tracks.length && (CP.data.tracks.length)) {
 						let v = CP.data.videoinfo;
-						v['_t'] = tracks; 
+						v[_type] = tracks; 
 						if (!v['status']) v['status'] = {}; 
-						v['status']['_t'] = 1;						
+						v['status'][_type] = 1;						
 						writeInfo(v, function() {
 							cbk(true);
 						});
@@ -224,6 +224,6 @@ function trackAws(_file, _cbk)  {
 	return true;
 }
 
-trackAws('/var/img/video.mp4',function(data) {
+trackAws('_t', '/var/img/video.mp4',function(data) {
 	res.send(data);
 });
