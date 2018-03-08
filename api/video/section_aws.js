@@ -107,7 +107,7 @@ function trackAws(_file, _cbk)  {
 			var fp = new folderP();		
 			fp.build(tmp_folder, () => {
 				pkg.fs.readdir( tmp_folder, (err, files) => {
-					if (err) {
+					if ((err) || !files.length) {
 						splitTrackes(cbk);
 					} else {
 						cbk(files);					
