@@ -86,7 +86,10 @@ function trackAws(_file, _cbk)  {
 							var duration = buffer.readUInt32BE(start + 4, 4);
 							var movieLength = Math.floor(duration/timeScale);
 							var v = {filesize:stat.size,time_scale:timeScale, trunksize: trunkSize,
-								duration: duration, length:movieLength, x:[], status:0};
+								duration: duration, length:movieLength};
+							v['_s'] = []; 
+							if (!v['status']) v['status'] = {}; 
+							v['status']['_s'] = 0;							
 							writeInfo(v, function() {
 								cbk(v);
 							});
@@ -197,8 +200,9 @@ function trackAws(_file, _cbk)  {
 				if (!uploaded) {
 					if (Object.keys(CP.data.space).length == CP.data.tracks.length && (CP.data.tracks.length)) {
 						let v = CP.data.videoinfo;
-						v.x = tracks;
-						v.status = 1;
+						v['_s'] = tracks; 
+						if (!v['status']) v['status'] = {}; 
+						v['status']['_s'] = 1;						
 						writeInfo(v, function() {
 							cbk(true);
 						});
