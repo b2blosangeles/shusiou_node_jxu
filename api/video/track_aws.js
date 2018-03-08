@@ -219,6 +219,6 @@ function splitVideo(_type, _file, _cbk)  {
 	return true;
 }
 
-splitVideo('_m', '/var/img/video.mp4',function(data) {
+splitVideo('_t', '/var/img/video.mp4',function(data) {
 	res.send(data);
 });
