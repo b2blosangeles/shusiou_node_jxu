@@ -18,7 +18,6 @@ function splitVideo(_type, _file, _cbk)  {
 	    space_dir = 'shusiou/' + source_file + '/' + _type + '/',
 	    trunkSize = 1024 * 1024;
 
-	let tm = new Date().getTime();
 	var CP = new pkg.crowdProcess();
 	var _f = {}; 
 
@@ -174,7 +173,8 @@ function splitVideo(_type, _file, _cbk)  {
 		} 
 		let objs = CP.data.space;
 		let CP1 = new pkg.crowdProcess(), _f1 = {};
-
+		let tm = new Date().getTime();
+		
 		let uploaded = 0;
 
 		for (var t in tracks) {
@@ -241,6 +241,6 @@ function splitVideo(_type, _file, _cbk)  {
 	return true;
 }
 
-splitVideo('_s', '/var/img/video.mp4',function(data) {
+splitVideo('_t', '/var/img/video.mp4',function(data) {
 	res.send(data);
 });
