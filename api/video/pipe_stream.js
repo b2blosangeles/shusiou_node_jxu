@@ -14,7 +14,7 @@ var CP = new pkg.crowdProcess();
 var _f = {}; 
 
 _f['P_I0'] = function(cbk) { 
-	pkg.request( space_info, 
+	pkg.request(  space_url + space_info, 
 	function (err, res, body) {
 		if (err) { 
 			cbk(false); 
