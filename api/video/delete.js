@@ -16,12 +16,11 @@
 			Prefix: folder
 		};
 		s3.listObjects(params, function(err, data) {
-			 callback(data);
-			/*
+
 			if (err) return callback(err);
 			if (data.Contents.length == 0) callback({"Deleted":[],"Errors":[]});
 			var params = {
-				Bucket: space_id
+				Bucket: 'shusiou-d-01'
 			};		
 			params.Delete = {Objects:[]};
 			data.Contents.forEach(function(content) {
@@ -31,7 +30,7 @@
 				if (err) return callback(err);
 				else callback(d);
 			});
-   */
+
 		});
 	}
 
