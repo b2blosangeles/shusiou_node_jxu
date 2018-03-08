@@ -64,7 +64,14 @@ function trackAws(_file, _cbk)  {
 				cbk(err.message);
 			} else {
 				pkg.fs.readdir( tmp_folder, (err1, files) => {
-					cbk((err1) ? err1.message : files);
+					cbk((err1) ? err1.message : files.filter(function(a) {
+        			let patt = /s\_([0-9]+)\./;
+        			return  patt.test(a); 
+       		 	}).sort(function(a, b) {
+				let va = a.match(/s\_([0-9]+)\./), 
+                		vb = b.match(/s\_([0-9]+)\./);
+		 	 	return parseInt(va[1]) - parseInt(vb[1]);
+			}));
 				});			
 			}
 		});		
@@ -110,7 +117,14 @@ function trackAws(_file, _cbk)  {
 					if ((err) || !files.length) {
 						splitTrackes(cbk);
 					} else {
-						cbk(files);					
+						cbk(files.filter(function(a) {
+        			let patt = /s\_([0-9]+)\./;
+        			return  patt.test(a); 
+       		 	}).sort(function(a, b) {
+				let va = a.match(/s\_([0-9]+)\./), 
+                		vb = b.match(/s\_([0-9]+)\./);
+		 	 	return parseInt(va[1]) - parseInt(vb[1]);
+			}));					
 					}
 				});			
 
