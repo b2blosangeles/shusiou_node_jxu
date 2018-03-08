@@ -50,7 +50,7 @@ function splitVideo(_type, _file, _cbk)  {
 			else    cbk(v);
 		});		
 	}
-	var generateSection = function(cbk) {
+	var splitVideo = function(cbk) {
 		switch(_type) {
 			case '_t':
 				pkg.exec('rm -f ' + tmp_folder + '* ' + ' && rm -f ' + tmp_folder + '*.* ' +
@@ -67,7 +67,7 @@ function splitVideo(_type, _file, _cbk)  {
 				break;
 			case '_s':
 				pkg.exec('ffmpeg -i ' + source_path +  source_file + 
-					 ' -c copy -map 0 -segment_time 5 -reset_timestamps 1 -f segment ' + tmp_folder + 's_%d', 					 
+					 ' -c copy -map 0 -segment_time 5 -reset_timestamps 1 -f segment ' + tmp_folder + 's_%d.mp4', 					 
 					function(err, stdout, stderr) {
 						if (err) {
 							cbk(err.message);
@@ -127,7 +127,7 @@ function splitVideo(_type, _file, _cbk)  {
 					else var condition = false;
 					
 					if (err || condition) {
-						generateSection(function(data) { cbk(data); });
+						splitVideo(function(data) { cbk(data); });
 					} else {
 						cbk(files);					
 					}
