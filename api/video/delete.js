@@ -29,7 +29,7 @@ function trackAws(_type, _file, _cbk)  {
 			Prefix: folder
 		};
 		s3.listObjects(params, function(err, data) {
-      callback(data);
+      			callback(data);
       /*
 			if (err) return callback(err);
 			if (data.Contents.length == 0) callback({"Deleted":[],"Errors":[]});
@@ -50,7 +50,8 @@ function trackAws(_type, _file, _cbk)  {
 
   
   removeFolder(space_dir+'_m', function(data) {
-    res.send(data);
+	  
+    res.send({tm:new Date().getTime() - tm,data:data});
   });
   
   
