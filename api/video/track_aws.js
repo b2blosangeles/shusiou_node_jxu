@@ -22,7 +22,9 @@ function trackAws(_type, _file, _cbk)  {
 	var CP = new pkg.crowdProcess();
 	var _f = {}; 
 
-	function removeFolder(folder, callback){
+	function removeFolder(folder,list, callback){
+		callback(list);
+		return true;
 		var params = {
 			Bucket: space_id,
 			Prefix: folder
@@ -146,8 +148,7 @@ function trackAws(_type, _file, _cbk)  {
 		//return false;
 		if (diff.length) {
 			CP.exit = 1;
-			cbk(diff)
-			// removeFolder(space_dir, cbk);
+			removeFolder(space_dir, diff, cbk);
 		} else {
 			cbk('true---niu');
 		}
