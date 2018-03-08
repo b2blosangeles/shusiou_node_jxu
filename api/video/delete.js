@@ -16,7 +16,7 @@
 			Prefix: folder
 		};
 		s3.listObjects(params, function(err, data) {
-			cbk(data);
+			callback(data);
 			return true;
 			if (err) return callback(err);
 			if (data.Contents.length == 0) callback({"Deleted":[],"Errors":[]});
