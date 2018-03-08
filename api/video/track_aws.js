@@ -141,6 +141,9 @@ function trackAws(_type, _file, _cbk)  {
 	_f['clean_space'] = function(cbk) { 
 		let tracks = CP.data.tracks, objs = Object.keys(CP.data.space);
 		let diff = objs.filter(x => !tracks.includes(x));
+		CP.exit = 1;
+		cbk('bu---niu');
+		return false;
 		if (diff.length) {
 			CP.exit = 1;
 			removeFolder(space_dir, cbk);
