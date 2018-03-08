@@ -19,6 +19,7 @@ function trackAws(_file, _cbk)  {
 	
 	res.send('ffmpeg -i ' + source_path +  source_file + 
 			 ' -c copy -map 0 -segment_time 5 -reset_timestamps 1 -f segment ' + tmp_folder + 's_%d.mp4');
+	return true;
 	
 	let tm = new Date().getTime();
 	var CP = new pkg.crowdProcess();
