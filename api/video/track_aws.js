@@ -23,7 +23,7 @@ function trackAws(_type, _file, _cbk)  {
 	var _f = {}; 
 
 	function removeFolder(folder,list, callback){
-		callback(list);
+		callback({niu:list});
 		return true;
 		var params = {
 			Bucket: space_id,
