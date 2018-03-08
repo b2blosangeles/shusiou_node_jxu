@@ -199,9 +199,9 @@ function trackAws(_file, _cbk)  {
 				if (!uploaded) {
 					if (Object.keys(CP.data.space).length == CP.data.tracks.length && (CP.data.tracks.length)) {
 						let v = CP.data.videoinfo;
-						v['_s'] = tracks; 
+						v['_t'] = tracks; 
 						if (!v['status']) v['status'] = {}; 
-						v['status']['_s'] = 1;						
+						v['status']['_t'] = 1;						
 						writeInfo(v, function() {
 							cbk(true);
 						});
