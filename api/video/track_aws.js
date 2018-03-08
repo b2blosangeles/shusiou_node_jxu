@@ -63,7 +63,7 @@ function trackAws(_type, _file, _cbk)  {
 				}
 			});		
 	}	
-	_f['videoinfo'] = function(cbk) { // P_I0
+	_f['videoinfo'] = function(cbk) { 
 		pkg.request(space_url +  space_info, 
 		function (err, res, body) {
 			let v = (err) ? false : {};
