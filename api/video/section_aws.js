@@ -10,11 +10,11 @@ function trackAws(_file, _cbk)  {
 	});
 	let source_path = _p[1],
 	    source_file = _p[2],
-	    tmp_folder = '/var/shusiou_cache/tmpvideo/' + source_file + '/_t/',
+	    tmp_folder = '/var/shusiou_cache/tmpvideo/' + source_file + '/_s/',
 
 	    space_id = 'shusiou-d-01',
 	    space_url = 'https://shusiou-d-01.nyc3.digitaloceanspaces.com/', 
-	    space_dir = 'shusiou/' + source_file + '/_t/',
+	    space_dir = 'shusiou/' + source_file + '/_s/',
 	    trunkSize = 1024 * 1024;
 
 	let tm = new Date().getTime();
@@ -57,16 +57,13 @@ function trackAws(_file, _cbk)  {
 	     });		
 	}
 	var splitTrackes = function(cbk) {
-		pkg.exec('cd ' + source_path + ' && split -b ' + trunkSize + ' ' +  source_file +  ' ' + tmp_folder + '', 					 
-			function(err, stdout, stderr) {
-				if (err) {
-					cbk(err.message);
-				} else {
-					pkg.fs.readdir( tmp_folder, (err1, files) => {
-						cbk((err1) ? err1.message : files);
-					});			
-				}
-			});		
+		pkg.exec('cd ' + source_path + ' && ffmpeg -i ' +  source_file + 
+			 ' -c copy -map 0 -segment_time 5 -reset_timestamps 1 -f segment ' + tmp_folder + 's_%d.mp4', 					 
+		function(error, stdout, stderr) {
+			if (error) cbk(false);
+			else if (stdout) cbk(true);
+			else cbk(false);
+		});		
 	}	
 	_f['videoinfo'] = function(cbk) { // P_I0
 		pkg.request(space_url +  space_dir + '_info.txt', 
