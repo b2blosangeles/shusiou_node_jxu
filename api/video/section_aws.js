@@ -17,10 +17,6 @@ function trackAws(_file, _cbk)  {
 	    space_dir = 'shusiou/' + source_file + '/_s/',
 	    trunkSize = 1024 * 1024;
 	
-	res.send('ffmpeg -i ' + source_path +  source_file + 
-			 ' -c copy -map 0 -segment_time 5 -reset_timestamps 1 -f segment ' + tmp_folder + 's_%d.mp4');
-	return true;
-	
 	let tm = new Date().getTime();
 	var CP = new pkg.crowdProcess();
 	var _f = {}; 
