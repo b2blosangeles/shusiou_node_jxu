@@ -1,4 +1,4 @@
-function trackAws(_type, _file, _cbk)  {
+function splitVideo(_type, _file, _cbk)  {
 	let _p = _file.match(/(.+)\/([^\/]+)$/);
 	
 	const AWS = require(env.site_path + '/api/inc/aws-sdk/node_modules/aws-sdk')
@@ -219,6 +219,6 @@ function trackAws(_type, _file, _cbk)  {
 	return true;
 }
 
-trackAws('_m', '/var/img/video.mp4',function(data) {
+splitVideo('_m', '/var/img/video.mp4',function(data) {
 	res.send(data);
 });
