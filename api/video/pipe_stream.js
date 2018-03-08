@@ -62,7 +62,7 @@ CP.serial(
 		var eidx = Math.min(Math.ceil(end / maxChunk), sidx+1); 
 		start = sidx * maxChunk; end = eidx * maxChunk;
 		for (var i = sidx; i < eidx; i++) {
-			fn.push(cfg.x[i]);	
+			fn.push(cfg._t[i]);	
 		}
 		res.writeHead(206, {'Content-Range': 'bytes ' + start + '-' + end + '/' + total, 
 		    'Accept-Ranges': 'bytes', 'Content-Type': 'video/mp4' });			
