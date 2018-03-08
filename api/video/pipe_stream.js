@@ -6,14 +6,15 @@ let source_path = '/var/img/',
     source_file = 'video.mp4',
     tmp_folder = source_path + '_t/' + source_file + '/',
     space_id = 'shusiou-d-01',
-    space_url = 'https://shusiou-d-01.nyc3.digitaloceanspaces.com',  
+    space_url = 'https://shusiou-d-01.nyc3.digitaloceanspaces.com', 
+    space_info = '/shusiou/' + source_file + '/_info.txt',
     space_dir = '/shusiou/' + source_file + '/_t/';
 
 var CP = new pkg.crowdProcess();
 var _f = {}; 
 
 _f['P_I0'] = function(cbk) { 
-	pkg.request(space_url +  space_dir + '_info.txt', 
+	pkg.request( space_info, 
 	function (err, res, body) {
 		if (err) { 
 			cbk(false); 
