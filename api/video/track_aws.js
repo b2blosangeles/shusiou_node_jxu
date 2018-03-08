@@ -146,7 +146,7 @@ function trackAws(_type, _file, _cbk)  {
 		//return false;
 		if (diff.length) {
 			CP.exit = 1;
-			cbk('bu--2-niu')
+			cbk(diff)
 			// removeFolder(space_dir, cbk);
 		} else {
 			cbk('true---niu');
