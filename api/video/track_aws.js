@@ -33,7 +33,6 @@ function trackAws(_type, _file, _cbk)  {
 		s3.deleteObjects(params, function(err, d) {
 			if (err) return callback(err);
 			else callback(d);
-				// callback('removed ' + params.Delete.Objects.length + ' Objects');
 		});
 	}
 
