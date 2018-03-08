@@ -1,4 +1,4 @@
-function splitVideo(s3, _type, _file, _cbk)  {
+function splitVideo(cfg, _type, _file, _cbk)  {
 	let _p = _file.match(/(.+)\/([^\/]+)$/);
 	let source_path = _p[1] + '/',
 	    source_file = _p[2],
@@ -9,6 +9,13 @@ function splitVideo(s3, _type, _file, _cbk)  {
 	    space_dir = 'shusiou/' + source_file + '/' + _type + '/',
 	    trunkSize = 1024 * 1024;
 
+	const AWS = require(env.site_path + '/api/inc/aws-sdk/node_modules/aws-sdk')
+	const s3 = new AWS.S3({
+	    endpoint: new AWS.Endpoint('nyc3.digitaloceanspaces.com'),
+	    accessKeyId: 'QYF3ENCI4TEDFDWFBS6N',
+	    secretAccessKey: '7DJD8b9iAqD5qsLgRZH9OXfgOQMob/edWouwiqYeOwI'
+	});	
+	
 	var CP = new pkg.crowdProcess();
 	var _f = {}; 
 
@@ -232,13 +239,14 @@ function splitVideo(s3, _type, _file, _cbk)  {
 	return true;
 }
 
-const AWS = require(env.site_path + '/api/inc/aws-sdk/node_modules/aws-sdk')
-const s3 = new AWS.S3({
-    endpoint: new AWS.Endpoint('nyc3.digitaloceanspaces.com'),
-    accessKeyId: 'QYF3ENCI4TEDFDWFBS6N',
-    secretAccessKey: '7DJD8b9iAqD5qsLgRZH9OXfgOQMob/edWouwiqYeOwI'
-});
 
-splitVideo(s3, '_t', '/var/img/video.mp4',function(data) {
+let cfg = {
+	id:'shusiou-d-01',
+	endpoint : 'nyc3.digitaloceanspaces.com',
+	accessKeyId: 'QYF3ENCI4TEDFDWFBS6N',
+	secretAccessKey: '7DJD8b9iAqD5qsLgRZH9OXfgOQMob/edWouwiqYeOwI'	
+}
+
+splitVideo(cfg, '_t', '/var/img/video.mp4',function(data) {
 	res.send(data);
 });
