@@ -110,14 +110,7 @@ function trackAws(_file, _cbk)  {
 					if (err) {
 						splitTrackes(cbk);
 					} else {
-						cbk(files.filter(function(a) {
-							let patt = /s\_([0-9]+)\./;
-							return  patt.test(a); 
-						}).sort(function(a, b) {
-							let va = a.match(/s\_([0-9]+)\./), 
-							vb = b.match(/s\_([0-9]+)\./);
-							return parseInt(va[1]) - parseInt(vb[1]);
-						}));					
+						cbk(files);					
 					}
 				});			
 
