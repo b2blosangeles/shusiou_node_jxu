@@ -22,7 +22,7 @@ function trackAws(_type, _file, _cbk)  {
 	var CP = new pkg.crowdProcess();
 	var _f = {}; 
 
-	function removeFolder(folder, list, callback) {
+	function removeObjects(folder, list, callback) {
 		var params = {
 			Bucket: space_id,
 			Delete: {Objects:[]}
@@ -32,7 +32,8 @@ function trackAws(_type, _file, _cbk)  {
 		};
 		s3.deleteObjects(params, function(err, d) {
 			if (err) return callback(err);
-			else callback('--d--');
+			else callback(d);
+				// callback('removed ' + d.length + ' Objects');
 		});
 	}
 
