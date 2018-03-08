@@ -22,15 +22,15 @@ function trackAws(_type, _file, _cbk)  {
 	var CP = new pkg.crowdProcess();
 	var _f = {}; 
 
-	function removeFolder(folder, list, callback){
+	function removeFolder(folder, list, callback) {
 		var params = {
 			Bucket: space_id,
 			Delete: {Objects:[]}
 		};		
 		for (var i = 0; i < list.length; i++) {
-			params.Delete.Objects[params.Delete.Objects.length] = {Key: folder + list[i]};
+			params.Delete.Objects.push({Key: folder + list[i]});
 		};
-		callback(params.Delete.Objects);.
+		callback(params.Delete.Objects);
 		return false;
 		params.Delete = {Objects:delList};
 		s3.deleteObjects(params, function(err, d) {
