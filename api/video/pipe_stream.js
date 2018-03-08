@@ -1,7 +1,3 @@
-var CP = new pkg.crowdProcess();
-var _f = {};
-var buff = new Buffer(100);
-
 let source_file = 'video.mp4',
     space_id = 'shusiou-d-01',
     space_url = 'https://shusiou-d-01.nyc3.digitaloceanspaces.com', 
