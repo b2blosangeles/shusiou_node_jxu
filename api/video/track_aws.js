@@ -233,7 +233,6 @@ function splitVideo(s3, _type, _file, _cbk)  {
 }
 
 const AWS = require(env.site_path + '/api/inc/aws-sdk/node_modules/aws-sdk')
-// const spacesEndpoint = new AWS.Endpoint('nyc3.digitaloceanspaces.com');
 const s3 = new AWS.S3({
     endpoint: new AWS.Endpoint('nyc3.digitaloceanspaces.com'),
     accessKeyId: 'QYF3ENCI4TEDFDWFBS6N',
