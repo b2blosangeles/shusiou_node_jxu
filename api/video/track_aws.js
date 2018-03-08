@@ -45,17 +45,22 @@ function trackAws(_file, _cbk)  {
 	}
 
 	var writeInfo = function(v, cbk) {
-	     var params = {
-		 Body: JSON.stringify(v),
-		 Bucket: space_id,
-		 Key: space_info,
-		 ContentType: 'text/plain',
-		 ACL: 'public-read'
-	     };	
-	     s3.putObject(params, function(err, data) {
-		 if (err) cbk(false);
-		 else    cbk(v);
-	     });		
+		if (!v['_s']) v['_s'] = []; 
+		if (!v['status']) v['status'] = {}; 
+		if (!v['status']['_s']) v['status']['_s'] = 0;
+		
+		var params = {
+			Body: JSON.stringify(v),
+			Bucket: space_id,
+			Key: space_info,
+			ContentType: 'text/plain',
+			ACL: 'public-read'
+		};	
+
+		s3.putObject(params, function(err, data) {
+			if (err) cbk(false);
+			else    cbk(v);
+		});		
 	}
 	var splitTrackes = function(cbk) {
 		pkg.exec('cd ' + source_path + ' && split -b ' + trunkSize + ' ' +  source_file +  ' ' + tmp_folder + '', 					 
@@ -87,9 +92,6 @@ function trackAws(_file, _cbk)  {
 							var movieLength = Math.floor(duration/timeScale);
 							var v = {filesize:stat.size,time_scale:timeScale, trunksize: trunkSize,
 								duration: duration, length:movieLength};
-							v['_s'] = []; 
-							if (!v['status']) v['status'] = {}; 
-							v['status']['_s'] = 0;							
 							writeInfo(v, function() {
 								cbk(v);
 							});
