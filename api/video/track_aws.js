@@ -133,14 +133,11 @@ function splitVideo(_type, _file, _cbk)  {
 	_f['clean_space'] = function(cbk) { 
 		let tracks = CP.data.tracks, objs = Object.keys(CP.data.space);
 		let diff = objs.filter(x => !tracks.includes(x));
-		//CP.exit = 1;
-		//cbk('bu---niu');
-		//return false;
 		if (diff.length) {
 			CP.exit = 1;
 			removeObjects(space_dir, diff, cbk);
 		} else {
-			cbk('true---niu');
+			cbk(true);
 		}
 	}
 	_f['upload'] = function(cbk) { 
