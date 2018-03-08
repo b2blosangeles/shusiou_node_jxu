@@ -51,17 +51,36 @@ function splitVideo(_type, _file, _cbk)  {
 		});		
 	}
 	var generateSection = function(cbk) {
-		pkg.exec('rm -f ' + tmp_folder + '* ' + ' && rm -f ' + tmp_folder + '*.* ' +
-			 '&& split -b ' + trunkSize + ' ' + source_path +  source_file +  ' ' + tmp_folder + '', 					 
-			function(err, stdout, stderr) {
-				if (err) {
-					cbk(err.message);
-				} else {
-					pkg.fs.readdir( tmp_folder, (err1, files) => {
-						cbk((err1) ? err1.message : files);
-					});			
-				}
-			});		
+		switch(_type) {
+			case '_t':
+				pkg.exec('rm -f ' + tmp_folder + '* ' + ' && rm -f ' + tmp_folder + '*.* ' +
+					 '&& split -b ' + trunkSize + ' ' + source_path +  source_file +  ' ' + tmp_folder + '', 					 
+					function(err, stdout, stderr) {
+						if (err) {
+							cbk(err.message);
+						} else {
+							pkg.fs.readdir( tmp_folder, (err1, files) => {
+								cbk((err1) ? err1.message : files);
+							});			
+						}
+					});
+				break;
+			case '_s':
+				pkg.exec('ffmpeg -i ' + source_path +  source_file + 
+					 ' -c copy -map 0 -segment_time 5 -reset_timestamps 1 -f segment ' + tmp_folder + 's_%d.mp4', 					 
+					function(err, stdout, stderr) {
+						if (err) {
+							cbk(err.message);
+						} else {
+							pkg.fs.readdir( tmp_folder, (err1, files) => {
+								cbk((err1) ? err1.message : files);
+							});			
+						}
+					});
+				break;	
+			default:
+				cbk('Missing _type');
+		}		
 	}	
 	_f['videoinfo'] = function(cbk) { 
 		pkg.request(space_url +  space_info, 
@@ -216,6 +235,6 @@ function splitVideo(_type, _file, _cbk)  {
 	return true;
 }
 
-splitVideo('_t', '/var/img/video.mp4',function(data) {
+splitVideo('_ty', '/var/img/video.mp4',function(data) {
 	res.send(data);
 });
