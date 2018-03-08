@@ -30,6 +30,8 @@ function trackAws(_type, _file, _cbk)  {
 		for (var i = 0; i < list.length; i++) {
 			delList[delList.length] = folder + list[i];
 		};
+		callback(delList);
+		return false;
 		params.Delete = {Objects:delList};
 		s3.deleteObjects(params, function(err, d) {
 			if (err) return callback(err);
