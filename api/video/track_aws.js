@@ -59,7 +59,7 @@ function trackAws(_file, _cbk)  {
 		});		
 	}
 	var splitTrackes = function(cbk) {
-		pkg.exec('cd ' + source_path + ' && rm ' + tmp_folder + ' * *.* && split -b ' + trunkSize + ' ' +  source_file +  ' ' + tmp_folder + '', 					 
+		pkg.exec('cd ' + source_path + ' && rm ' + tmp_folder + '* ' + tmp_folder + '*.* && split -b ' + trunkSize + ' ' +  source_file +  ' ' + tmp_folder + '', 					 
 			function(err, stdout, stderr) {
 				if (err) {
 					cbk(err.message);
