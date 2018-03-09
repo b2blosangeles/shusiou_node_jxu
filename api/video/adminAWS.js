@@ -22,7 +22,7 @@
 
 let folder = '/shusiou/';
   
-  browseFolder(folder, function(data) {
+  browseFolder('', function(data) {
 	  
     res.send({tm:new Date().getTime() - tm,data:data});
   });
