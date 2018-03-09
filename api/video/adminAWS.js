@@ -20,9 +20,9 @@
 		});
 	}
 
-let folder = '/shusiou/';
+let folder = 'shusiou/video.mp4/_t/';
   
-  browseFolder('', function(data) {
+  browseFolder(folder , function(data) {
 	  
     res.send({tm:new Date().getTime() - tm,data:data});
   });
