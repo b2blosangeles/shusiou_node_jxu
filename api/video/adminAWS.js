@@ -11,6 +11,7 @@
 	function browseFolder(folder, cbk){
 		var params = {
 			Bucket: 'shusiou-d-01',
+			Delimiter: '/',
 			Prefix: folder
 		};
 		s3.listObjects(params, function(err, data) {
