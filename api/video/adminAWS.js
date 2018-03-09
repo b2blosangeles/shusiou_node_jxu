@@ -24,7 +24,7 @@ let folder = '';
   
 browseFolder(folder , function(data) {
 	let list = [];
-	for (var i = 0; i <  data.content.length; i++) {
+	for (var i = 0; i < data.Contents.length; i++) {
 		list.push(data..Contents[i].Key);
 	}
 	res.send({tm:new Date().getTime() - tm, list});
