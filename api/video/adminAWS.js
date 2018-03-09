@@ -22,9 +22,12 @@
 
 let folder = '';
   
-  browseFolder(folder , function(data) {
-	  
-    res.send({tm:new Date().getTime() - tm,data:data});
-  });
-  
+browseFolder(folder , function(data) {
+	let list = [];
+	for (var i = 0; i <  data.content.length; i++) {
+		list.push(data.content[i].Key);
+	}
+	res.send({tm:new Date().getTime() - tm, list});
+});
+
   
