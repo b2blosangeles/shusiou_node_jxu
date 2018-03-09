@@ -50,6 +50,8 @@ let space = {
 	video:(req.query['video_fn']) ?  req.query['video_fn'] : 'video.mp4',
 	cache_folder: '/tmp/shusiou_cache/video.mp4/'
 }
+space.cache_folder =  '/tmp/shusiou_cache/' + space.video + '/';
+
 let CP = new pkg.crowdProcess();
 let _f = {}, fn = []; 
   
