@@ -25,9 +25,12 @@ let folder = '';
 browseFolder(folder , function(data) {
 	let list = [];
 	for (var i = 0; i < data.Contents.length; i++) {
-		list.push(data.Contents[i].Key);
+		let a = data.Contents[i].Key;
+		a.match(/(.+)\/([^\/]+)/);
+		
+		list.push(a);
 	}
-	res.send({tm:new Date().getTime() - tm, list});
+	res.send({tm:new Date().getTime() - tm, list:list});
 });
 
   
