@@ -47,7 +47,7 @@ let _w = parseFloat(req.query['size']),
 
 let space = {
 	endpoint : 'https://shusiou-d-01.nyc3.digitaloceanspaces.com/shusiou/',
-	video:'video.mp4',
+	video:(req.query['video_fn']) ?  req.query['video_fn'] : 'video.mp4',
 	cache_folder: '/tmp/shusiou_cache/video.mp4/'
 }
 let CP = new pkg.crowdProcess();
