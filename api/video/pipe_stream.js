@@ -1,4 +1,4 @@
-let source_file = req.query['video_fn'] || 'video.mp4',
+let source_file = (req.query['video_fn']) ?  req.query['video_fn'] : 'video.mp4',
     space_id = 'shusiou-d-01',
     space_url = 'https://shusiou-d-01.nyc3.digitaloceanspaces.com', 
     space_info = '/shusiou/' + source_file + '/_info.txt',
