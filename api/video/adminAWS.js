@@ -20,7 +20,7 @@
 		});
 	}
 
-let folder = 'shusiou/';
+let folder = '';
   
   browseFolder(folder , function(data) {
 	  
