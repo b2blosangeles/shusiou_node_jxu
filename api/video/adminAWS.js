@@ -19,7 +19,7 @@
 		});
 	}
 
-let folder = '/shusiou/';
+let folder = '/shusiou/video.mp4';
   
   browseFolder(folder, function(data) {
 	  
