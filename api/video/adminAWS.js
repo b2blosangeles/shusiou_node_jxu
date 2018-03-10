@@ -34,7 +34,8 @@ function _f(v, list) {
 var _sort = function(x, y){   
 		let xa = x.split('/'), ya = y.split('/');
 		for (var i = 0; i < xa.length; i++) {
-			if (typeof ya[i] === undefined || xa[i] > ya[i]) return true;
+			if (!ya[i]) return true;
+			if (ya[i] !== null && xa[i] > ya[i]) return true;
 		}		
   		return false;
 	};
