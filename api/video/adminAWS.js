@@ -26,7 +26,7 @@ browseFolder(folder , function(data) {
 	let list = [];
 	for (var i = 0; i < data.Contents.length; i++) {
 		let a = data.Contents[i].Key.match(/(.+)\/([^\/]+)/);
-		if (list.indexOf(a[1]) !== -1) {
+		if (list.indexOf(a[1]) === -1) {
 			list.push(a[1]);
 		}	
 	}
