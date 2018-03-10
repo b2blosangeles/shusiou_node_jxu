@@ -37,9 +37,9 @@ browseFolder(folder , function(data) {
 		_f(data.Contents[i].Key, list);
 		full_list.push(data.Contents[i].Key);
 	}
-	let full_list2 = full_list.concat(list);
+	full_list = full_list.concat(list);
 	
-	let full_list_ASC = full_list.sort(function(x, y){   
+	full_list = full_list.sort(function(x, y){   
 		let xa = x.split('/'), ya = y.split('/');
 		for (var i = 0; i < xa.length; i++) {
 			if (ya[i] === null || xa[i] > ya[i]) return 1;
