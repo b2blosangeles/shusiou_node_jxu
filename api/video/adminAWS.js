@@ -51,7 +51,7 @@ browseFolder(folder , function(data) {
 	
 	var full_list2 = full_list.sort(_sort);
 	
-	res.send({tm:new Date().getTime() - tm, list:full_list2});
+	res.send({tm:new Date().getTime() - tm, list:list});
 });
 
   
