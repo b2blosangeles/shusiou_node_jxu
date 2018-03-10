@@ -37,7 +37,7 @@ browseFolder(folder , function(data) {
 		let a = data.Contents[i].Key.match(/(.+)\/([^\/]+)/);
 		_f(data.Contents[i].Key, list);	
 	}
-	res.send({tm:new Date().getTime() - tm, list:list});
+	res.send({tm:new Date().getTime() - tm, list:list.sort()});
 });
 
   
