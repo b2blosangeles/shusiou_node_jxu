@@ -32,7 +32,7 @@ function _f(v, list) {
 }
 
 browseFolder(folder , function(data) {
-	let list = ["shusiou/75600000000001"], full_list = [];
+	let list = [], full_list = [];
 	for (var i = 0; i < data.Contents.length; i++) {
 		_f(data.Contents[i].Key, list);
 		full_list.push(data.Contents[i].Key);
