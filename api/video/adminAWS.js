@@ -43,12 +43,11 @@ browseFolder(folder , function(data) {
 		let xa = x.split('/'), ya = y.split('/');
 		for (var i = 0; i < xa.length; i++) {
 			if (!ya[i] || xa[i] > ya[i]) return true;
-			
 		}
   		return false;
 		});
 	
-	res.send({tm:new Date().getTime() - tm, list:full_list2});
+	res.send({tm:new Date().getTime() - tm, list:full_list_ASC});
 });
 
   
