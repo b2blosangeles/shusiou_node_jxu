@@ -42,7 +42,7 @@ browseFolder(folder , function(data) {
 	let full_list_ASC = full_list.sort(function(x, y){   
 		let xa = x.split('/'), ya = y.split('/');
 		for (var i = 0; i < xa.length; i++) {
-			if (!ya[i] || xa[i] > ya[i]) return true;
+			if (ya[i] === null || xa[i] > ya[i]) return true;
 		}		
   		return false;
 	});
