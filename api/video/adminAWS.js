@@ -21,14 +21,21 @@
 	}
 
 let folder = '';
-  
+
+function _f(v, list) {
+	let a = v.match(/(.+)\/([^\/]+)/);
+	if (!a) return true;
+	else {
+		if (list.indexOf(a[1]) === -1) list.push(a[1]);
+		_f(a[1], list);
+	}	
+}
+
 browseFolder(folder , function(data) {
 	let list = [];
 	for (var i = 0; i < data.Contents.length; i++) {
 		let a = data.Contents[i].Key.match(/(.+)\/([^\/]+)/);
-		if (list.indexOf(a[1]) === -1) {
-			list.push(a[1]);
-		}	
+		_f(data.Contents[i].Key, list);	
 	}
 	res.send({tm:new Date().getTime() - tm, list:list});
 });
