@@ -52,7 +52,7 @@ browseFolder(folder , function(data) {
 	res.send({tm:new Date().getTime() - tm, list:full_list.sort(function(x, y){   
 		let xa = x.split('/'), ya = y.split('/');
 		for (var i = 0; i < xa.length; i++) {
-			if (!ya[i]) return true;
+			if (ya[i] == null) return true;
 			if (ya[i] !== null && xa[i] > ya[i]) return true;
 		}		
   		return false;
