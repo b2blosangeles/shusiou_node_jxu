@@ -35,7 +35,8 @@ browseFolder(folder , function(data) {
 	let list = [], full_list = [];
 	for (var i = 0; i < data.Contents.length; i++) {
 		// let a = data.Contents[i].Key.match(/(.+)\/([^\/]+)/);
-		_f(data.Contents[i].Key, list);	
+		//_f(data.Contents[i].Key, list);
+		list.push(data.Contents[i].Key);
 	}
 	
 	let list_ASC = list.sort(function(x, y){   
