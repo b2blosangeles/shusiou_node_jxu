@@ -48,7 +48,7 @@ browseFolder(folder , function(data) {
   		return false;
 		});
 	
-	res.send({tm:new Date().getTime() - tm, list:full_list_ASC});
+	res.send({tm:new Date().getTime() - tm, list:full_list2});
 });
 
   
