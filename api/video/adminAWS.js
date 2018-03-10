@@ -35,11 +35,8 @@ var _sort = function(x, y){
 		let xa = x.split('/'), ya = y.split('/');
 		for (var i = 0; i < xa.length; i++) {
 			if (typeof ya[i] === undefined || xa[i] > ya[i]) return 1;
-		}
-		for (var i = 0; i < ya.length; i++) {
-			if (typeof xa[i] === undefined || ya[i] > xa[i]) return -1;
 		}		
-  		return 0;
+  		return -1;
 	};
 browseFolder(folder , function(data) {
 	let list = [], full_list = [];
