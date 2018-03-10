@@ -37,10 +37,14 @@ browseFolder(folder , function(data) {
 		let a = data.Contents[i].Key.match(/(.+)\/([^\/]+)/);
 		_f(data.Contents[i].Key, list);	
 	}
-	res.send({tm:new Date().getTime() - tm, list:list.sort(function(path1, path2){   
-		var path1Dir = path1.substring(path1.lastIndexOf('/'));
-  		var path2Dir = path2.substring(path2.lastIndexOf('/'));
-  		return path1Dir > path2Dir;})});
+	res.send({tm:new Date().getTime() - tm, list:list.sort(function(x, y){   
+		let xa = x.split('/'), ya = y.split('/');
+		for (var i = 0; i < xa.length; i++) {
+			if (!ya[i] || xa[i] > ya[i]) return true;
+			
+		}
+  		return false;
+		})});
 });
 
   
