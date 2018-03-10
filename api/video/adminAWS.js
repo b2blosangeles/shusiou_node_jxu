@@ -45,10 +45,10 @@ browseFolder(folder , function(data) {
 			if (!ya[i] || xa[i] > ya[i]) return true;
 		}
 		for (var i = 0; i < ya.length; i++) {
-			if (!xa[i] || xa[i] < ya[i]) return false;
+			if (!xa[i] || ya[i] < xa[i]) return false;
 		}		
   		return false;
-		});
+	});
 	
 	res.send({tm:new Date().getTime() - tm, list:full_list_ASC});
 });
