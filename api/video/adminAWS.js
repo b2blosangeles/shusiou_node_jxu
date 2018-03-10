@@ -47,9 +47,9 @@ browseFolder(folder , function(data) {
 		_f(data.Contents[i].Key, list);
 		full_list.push(data.Contents[i].Key);
 	}
-	full_list = full_list.concat(list);
+	//full_list = full_list.concat(list);
 	
-	full_list = full_list.sort(_sort).sort(_sort).sort(_sort);
+	full_list = full_list.sort(_sort);
 	
 	res.send({tm:new Date().getTime() - tm, list:full_list});
 });
