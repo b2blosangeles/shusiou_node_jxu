@@ -43,9 +43,6 @@ browseFolder(folder , function(data) {
 		let xa = x.split('/'), ya = y.split('/');
 		for (var i = 0; i < xa.length; i++) {
 			if (!ya[i] || xa[i] > ya[i]) return true;
-		}
-		for (var i = 0; i < ya.length; i++) {
-			if (!xa[i] || ya[i] < xa[i]) return false;
 		}		
   		return false;
 	});
