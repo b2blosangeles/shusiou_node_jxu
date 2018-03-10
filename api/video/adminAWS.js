@@ -49,7 +49,7 @@ browseFolder(folder , function(data) {
 	
 	//var full_list2 = full_list.sort(_sort);
 	
-	res.send({tm:new Date().getTime() - tm, list:list_full.sort(function(x, y){   
+	res.send({tm:new Date().getTime() - tm, list:full_list.sort(function(x, y){   
 		let xa = x.split('/'), ya = y.split('/');
 		for (var i = 0; i < xa.length; i++) {
 			if (!ya[i]) return true;
