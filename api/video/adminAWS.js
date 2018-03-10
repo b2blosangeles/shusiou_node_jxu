@@ -32,12 +32,12 @@ function _f(v, list) {
 }
 
 browseFolder(folder , function(data) {
-	let list = [], full_list = [];
+	let path = [], list = [], full_list = [];
 	for (var i = 0; i < data.Contents.length; i++) {
-		// let a = data.Contents[i].Key.match(/(.+)\/([^\/]+)/);
-		//_f(data.Contents[i].Key, list);
+		_f(data.Contents[i].Key, path);
 		list.push(data.Contents[i].Key);
 	}
+	list = list.concat(path);
 	
 	let list_ASC = list.sort(function(x, y){   
 		let xa = x.split('/'), ya = y.split('/');
@@ -47,8 +47,6 @@ browseFolder(folder , function(data) {
 		}
   		return false;
 		});
-	
-//	for (var i = 0)
 	
 	res.send({tm:new Date().getTime() - tm, list:list_ASC});
 });
