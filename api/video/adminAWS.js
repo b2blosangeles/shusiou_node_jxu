@@ -32,19 +32,24 @@ function _f(v, list) {
 }
 
 browseFolder(folder , function(data) {
-	let list = [];
+	let list = [], full_list = [];
 	for (var i = 0; i < data.Contents.length; i++) {
-		let a = data.Contents[i].Key.match(/(.+)\/([^\/]+)/);
+		// let a = data.Contents[i].Key.match(/(.+)\/([^\/]+)/);
 		_f(data.Contents[i].Key, list);	
 	}
-	res.send({tm:new Date().getTime() - tm, list:list.sort(function(x, y){   
+	
+	let list_ASC = list.sort(function(x, y){   
 		let xa = x.split('/'), ya = y.split('/');
 		for (var i = 0; i < xa.length; i++) {
 			if (!ya[i] || xa[i] > ya[i]) return true;
 			
 		}
   		return false;
-		})});
+		});
+	
+//	for (var i = 0)
+	
+	res.send({tm:new Date().getTime() - tm, list:list_ASC});
 });
 
   
