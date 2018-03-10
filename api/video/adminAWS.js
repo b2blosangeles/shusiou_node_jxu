@@ -42,9 +42,12 @@ browseFolder(folder , function(data) {
 	full_list = full_list.sort(function(x, y){   
 		let xa = x.split('/'), ya = y.split('/');
 		for (var i = 0; i < xa.length; i++) {
-			if (typeof ya[i] === undefined || xa[i] > ya[i]) return true;
+			if (typeof ya[i] === undefined || xa[i] > ya[i]) return 1;
+		}
+		for (var i = 0; i < ya.length; i++) {
+			if (typeof xa[i] === undefined || ya[i] > xa[i]) return -1;
 		}		
-  		return false;
+  		return 0;
 	});
 	
 	res.send({tm:new Date().getTime() - tm, list:full_list});
