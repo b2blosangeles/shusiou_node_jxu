@@ -25,8 +25,10 @@ let folder = '';
 browseFolder(folder , function(data) {
 	let list = [];
 	for (var i = 0; i < data.Contents.length; i++) {
-		let a = data.Contents[i].Key;
-		list.push(a.match(/(.+)\/([^\/]+)/));
+		let a = data.Contents[i].Key.match(/(.+)\/([^\/]+)/);
+		if (a[1].indexOf(list) !== -1) {
+			list.push(a[1]);
+		}	
 	}
 	res.send({tm:new Date().getTime() - tm, list:list});
 });
