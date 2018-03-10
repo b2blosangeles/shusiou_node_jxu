@@ -31,15 +31,7 @@ function _f(v, list) {
 	}	
 }
 
-browseFolder(folder , function(data) {
-	let list = [], full_list = [];
-	for (var i = 0; i < data.Contents.length; i++) {
-		_f(data.Contents[i].Key, list);
-		full_list.push(data.Contents[i].Key);
-	}
-	full_list = full_list.concat(list);
-	
-	full_list = full_list.sort(function(x, y){   
+function _sort = function(x, y){   
 		let xa = x.split('/'), ya = y.split('/');
 		for (var i = 0; i < xa.length; i++) {
 			if (typeof ya[i] === undefined || xa[i] > ya[i]) return 1;
@@ -48,7 +40,16 @@ browseFolder(folder , function(data) {
 			if (typeof xa[i] === undefined || ya[i] > xa[i]) return -1;
 		}		
   		return 0;
-	});
+	};
+browseFolder(folder , function(data) {
+	let list = [], full_list = [];
+	for (var i = 0; i < data.Contents.length; i++) {
+		_f(data.Contents[i].Key, list);
+		full_list.push(data.Contents[i].Key);
+	}
+	full_list = full_list.concat(list);
+	
+	full_list = full_list.sort(_sort).sort(_sort).sort(_sort);
 	
 	res.send({tm:new Date().getTime() - tm, list:full_list});
 });
