@@ -44,6 +44,9 @@ browseFolder(folder , function(data) {
 		for (var i = 0; i < xa.length; i++) {
 			if (!ya[i] || xa[i] > ya[i]) return true;
 		}
+		for (var i = 0; i < ya.length; i++) {
+			if (!xa[i] || xa[i] < ya[i]) return false;
+		}		
   		return false;
 		});
 	
