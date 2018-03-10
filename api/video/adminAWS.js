@@ -26,9 +26,7 @@ browseFolder(folder , function(data) {
 	let list = [];
 	for (var i = 0; i < data.Contents.length; i++) {
 		let a = data.Contents[i].Key;
-		a.match(/(.+)\/([^\/]+)/);
-		
-		list.push(a);
+		list.push(a.match(/(.+)\/([^\/]+)/));
 	}
 	res.send({tm:new Date().getTime() - tm, list:list});
 });
