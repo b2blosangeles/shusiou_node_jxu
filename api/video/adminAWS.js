@@ -40,7 +40,7 @@ browseFolder(folder , function(data) {
 	res.send({tm:new Date().getTime() - tm, list:list.sort(function(path1, path2){   
 		var path1Dir = path1.substring(path1.lastIndexOf('/'));
   		var path2Dir = path2.substring(path2.lastIndexOf('/'));
-  		return path1Dir == path2Dir;})});
+  		return path1Dir > path2Dir;})});
 });
 
   
