@@ -39,6 +39,7 @@ diskspace.check('/', function (err, space) {
             try { s = JSON.parse(body); } catch (e) {}
             process.stdout.write(s.value + '--' + JSON.stringify(space));
     });
+    console.log({ip:getServerIP(), space:space});
 });
 
 /* --- code for cron watch ---*/
