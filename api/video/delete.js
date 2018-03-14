@@ -32,7 +32,7 @@
 	}
 
   
-  removeFolder('shusiou/', function(data) {
+  removeFolder('/', function(data) {
 	  
     res.send({tm:new Date().getTime() - tm,data:data});
   });
