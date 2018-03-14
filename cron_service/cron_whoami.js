@@ -36,8 +36,6 @@ diskspace.check('/', function (err, space) {
       form:{ip:getServerIP(), space:space}
     }, function (error, resp, body) { 
             var s = {};
-        console.log('---body---');
-        console.log(body);
             try { s = JSON.parse(body); } catch (e) {}
             process.stdout.write(s.value + '--' + JSON.stringify(space));
     });
