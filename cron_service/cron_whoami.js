@@ -79,7 +79,6 @@ diskspace.check('/', function (err, space) {
               },
               form:{}
             }, function (error, resp, body) { 
-                console.log('http://'+ config.root  +'/api/cron_watch.api');
                 console.log(delay + '--' + body);
                 console.log('');
             });
