@@ -45,9 +45,10 @@ var CP = new pkg.crowdProcess();
 var _f = {}; 
 
 _f['VALIDATION'] = function(cbk) {
-	if (!source_file) {
+	//if (!source_file) {
 		cbk({status:0, message:'Missing video_fn parameter'});
-	}
+	//}
+	/*
 	cache_request(space_url + space_info, 
 		function(status) {
 			pkg.fs.readFile(space_url + space_info, 'utf8', function(err, data) {	 
@@ -61,7 +62,8 @@ _f['VALIDATION'] = function(cbk) {
 				} catch (e) {}			
 				cbk({status:1, cfg:v});
 			});
-	});	
+	});
+	*/
 };
 CP.serial(
 	_f,
@@ -73,7 +75,7 @@ CP.serial(
 			write505(CP.data.VALIDATION.message);
 			return true;
 		}
-		*/
+		
 		let cfg = CP.data.VALIDATION.cfg,
 		    stream = require("stream"),
 		    a = new stream.PassThrough(),
@@ -135,7 +137,7 @@ CP.serial(
 			},
 			6000
 		);
-		
+		*/
 	},
 	10000
 );
