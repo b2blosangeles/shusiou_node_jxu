@@ -39,7 +39,7 @@ finder.on('end', function (file, stat) {
      diskspace.check('/', function (err, space) {
          space.free_rate =  Math.floor(space.free  * 100 /  space.total); 
          if  (space.free < minsize || true) {
-		goalsize = minsize;	 
+		let goalsize = Math.max(minsiz, minsize - space.free);	 
                for (var i = 0; i < list.length; i++) {
                     if ((goalsize - list[i].size) > 0) {
                          goalsize -= list[i].size;
