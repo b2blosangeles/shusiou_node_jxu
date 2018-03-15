@@ -23,25 +23,23 @@ finder.on('end', function (file, stat) {
      
      var diskspace = require(env.root_path + '/package/diskspace/node_modules/diskspace');
      diskspace.check('/', function (err, space) {
-         space.total = Math.round(space.total);
+         space.total = space.total;
          space.free = space.free;
          space.free_rate =  Math.floor(space.free  * 100 /  space.total); 
-          
-          for (var i = 0; i < list.length; i++) {
-               if  (space.free < goalsize) {
+          if  (space.free < goalsize) {
+               for (var i = 0; i < list.length; i++) {
 
-
+                    if ((goalsize - list[i].size) > 0) {
+                         goalsize -= list[i].size;
+                         clean_list.push(list[i].fn);
+                    } 
                }
-               if ((goalsize - list[i].size) > 0) {
-                    goalsize -= list[i].size;
-                    clean_list.push(list[i].fn);
-               } 
-          }
-          batchDelete(clean_list, function(data) {
-               data.space = space;
-               res.send(data);    
-          });          
-          
+               batchDelete(clean_list, function(data) {
+                    data.space = space;
+                    res.send(data);    
+               });                
+          }          
+          res.send(space);
      });	
 
 });
