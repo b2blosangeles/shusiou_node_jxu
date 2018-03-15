@@ -37,7 +37,7 @@ let ss0 = parseFloat(req.query['ss']),
     d_s = ss - ss0,
     sec_s = Math.floor(parseInt(ss) / 5), 
     t = (isNaN(req.query['t'])) ? 0 : parseFloat(req.query['t']),
-    sec_t =  Math.ceil(parseInt(t) / 5), 
+    sec_t =  Math.ceil(parseInt(ss + t) / 5), 
     start_point = parseInt(ss) % 5 + d_s;
 
 let _w = parseFloat(req.query['size']),
@@ -54,8 +54,8 @@ space.cache_folder =  '/var/shusiou_cache/' + space.video + '/';
 let CP = new pkg.crowdProcess();
 let _f = {}, fn = []; 
   
-for (var i = 0; i < sec_t; i++) {
-	fn.push('s_' + (sec_s + i) + '.mp4')
+for (var i = sec_s; i < sec_t; i++) {
+	fn.push('s_' + i + '.mp4')
 }
 res.send(fn);
 return true;
