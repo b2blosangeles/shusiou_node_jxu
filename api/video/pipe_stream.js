@@ -1,30 +1,77 @@
-let source_file = (req.query['video_fn']) ?  req.query['video_fn'] : 'video.mp4',
+function write505(msg) {
+	res.writeHead(505);
+	res.write(msg);
+	res.end();	
+}
+function cache_request(url, fn, cbk) {
+	pkg.fs.stat(fn, function(err0, stats) {
+		if (err0) {
+			let file = pkg.fs.createWriteStream(fn);
+			file.on('finish', function() {
+				let c = '';
+				let rf = pkg.fs.createReadStream(fn, {start : 0, end: 4, encoding: 'utf8'});
+				rf.on('data', function (chunk) {
+					c += chunk;
+					rf.close();
+				}).on('close', function () {
+					if (c === '<?xml') {
+						pkg.fs.unlink(fn, function(error) {
+						    cbk(false);
+						});					
+					} else {
+						cbk(true);
+					}
+				})
+				.on('error', function (err) {
+					cbk(false);
+				});
+			});	
+			pkg.request(url, function (err1, response, body) {
+			}).pipe(file);			
+		} else {
+			cbk(true);
+		}
+	});
+}
+
+let source_file = req.query['video_fn'],
     space_id = 'shusiou-d-01',
     space_url = 'https://shusiou-d-01.nyc3.digitaloceanspaces.com', 
     space_info = '/shusiou/' + source_file + '/_info.txt',
-    space_dir = '/shusiou/' + source_file + '/_t/';
+    space_dir = '/shusiou/' + source_file + '/_t/',
+    cache_folder =  '/var/shusiou_cache/' + source_file + '/';
 
 var CP = new pkg.crowdProcess();
 var _f = {}; 
 
-_f['P_I0'] = function(cbk) { 
-	pkg.request(  space_url + space_info, 
-	function (err, res, body) {
-		if (err) { 
-			cbk(false); 
-		} else {
-			let v = {};
-			try { 
-				v = JSON.parse(body);
-			} catch (e) { v = false; }
-			cbk(v);
-		}
-	});		
+_f['VALIDATION'] = function(cbk) {
+	if (!source_file) {
+		cbk({status:0, message:'Missing video_fn parameter'});
+	}
+	cache_request(space_url + space_info, 
+		function(status) {
+			pkg.fs.readFile(space_url + space_info, 'utf8', function(err, data) {	 
+				if (err) {
+					CP.exit = 1;
+					cbk({status:0, message: space_info + '_info.txt does not exist'});
+					return true;
+				}
+				let v = {};
+				try { 
+					v = JSON.parse(body);
+				} catch (e) {}			
+				cbk({status:1, cfg:v});
+			});
+	});	
 };
 CP.serial(
 	_f,
 	function(results) {
-		let cfg = CP.data.P_I0,
+		if (!CP.data.VALIDATION.status) {
+			write505(CP.data.VALIDATION.message);
+			return true;
+		}		
+		let cfg = CP.data.VALIDATION.cfg,
 		    stream = require("stream"),
 		    a = new stream.PassThrough(),
 		    fn = [];
