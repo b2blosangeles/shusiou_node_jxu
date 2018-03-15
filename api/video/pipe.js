@@ -1,3 +1,8 @@
+function write404(msg) {
+	res.writeHead(404);
+	res.write(msg);
+	res.end();	
+}
 function cache_request(url, fn, cbk) {
 	pkg.fs.stat(fn, function(err0, stats) {
 		if (err0) {
@@ -185,8 +190,8 @@ _f['FFMPEG_IMG'] = function(cbk) {
 
 CP.serial(_f,
 	function(results) {
-		if (CP.data.VALIDATION) {
-			res.send(results);
+		if (CP.data.VALIDATION.status) {
+			write404(CP.data.VALIDATION);
 			return true;
 		}
       		if (!sec_t) {
@@ -221,7 +226,6 @@ CP.serial(_f,
 							'Accept-Ranges': 'bytes', 'Content-Length': chunksize, 'Content-Type': 'video/mp4' });
 					       file.pipe(res);
 					} else {
-					//	res.send('Need streaming player');
 						var file = pkg.fs.createReadStream(space.cache_folder +'sec_' + ss0 + '_' + t + '.mp4', {start:start, end:end});
 						res.writeHead(206, {'Content-Range': 'bytes ' + 0 + '-' + total + '/' + total, 
 							'Accept-Ranges': 'bytes', 'Content-Length': total, 'Content-Type': 'video/mp4' });
