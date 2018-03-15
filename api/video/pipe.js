@@ -10,7 +10,13 @@ function cache_request(url, fn, cbk) {
 					c += chunk;
 					rf.close();
 				}).on('close', function () {
-					cbk((c === '<?xml') ? 'A' : 'B')
+					if (c === '<?xml') {
+						pkg.fs.unlink(fn, function(error) {
+						    cbk('AA');
+						});					
+					} else {
+						cbk('BB');
+					}
 				})
 				.on('error', function (err) {
 					cbk('C');
