@@ -76,6 +76,10 @@ _f['VALIDATION'] = function(cbk) {
 };
 
 _f['PULLING'] = function(cbk) {;
+	if (fn.length <=1) {
+		cbk(true);
+		return true;
+	}
 	var CP1 = new pkg.crowdProcess();
 	var _f1 = {}; 	
 	_f1['WRITE_CFG'] = function(cbk1) {
@@ -112,7 +116,7 @@ _f['PULLING'] = function(cbk) {;
 }
 
 _f['MERGE_VIDEO'] = function(cbk) {
-	if (!sec_t) {
+	if (fn.length <=1) {
 		cbk(false);
 	} else {
 		let cmd = 'cd ' + space.cache_folder  + 
@@ -123,7 +127,7 @@ _f['MERGE_VIDEO'] = function(cbk) {
 };
 
 _f['FFMPEG_SECTION'] = function(cbk) {
-	if (!sec_t) {
+	if (!t) {
 		cbk(false);
 	} else {
 		let cmd = 'cd ' + space.cache_folder + ' && ffmpeg -ss ' + d_s + 
@@ -133,7 +137,7 @@ _f['FFMPEG_SECTION'] = function(cbk) {
 };
 
 _f['FFMPEG_IMG'] = function(cbk) {
-	if (sec_t) {
+	if (t) {
 		cbk(false);
 	} else {
 		let cmd =  'ffmpeg -i ' + space.cache_folder  + fn[0] + ' -ss ' + d_s + _size_str + ' -preset ultrafast ' + 
