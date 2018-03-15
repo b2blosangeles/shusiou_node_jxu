@@ -14,8 +14,16 @@ finder.on('link', function (link, stat) {
     
 });
 finder.on('end', function (file, stat) {
+     let goalsize = 1000000000;
      list = list.sort(function(a, b) {
           return (new Date(a.mtime) > new Date(b.mtime))? 1 : -1;
      });
-     res.send(list);
+     clean_list= [];
+     for (var i = 0; i < list.length; i++) {
+          if (goalsize - list[i].size > 0) {
+               goalsize -= list[i].size;
+               clean_list.push(list[i].fn);
+          } 
+     }
+     res.send(list.length + '---' + clean_list.length);
 });
