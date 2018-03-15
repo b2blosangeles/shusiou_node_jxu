@@ -33,12 +33,13 @@ finder.on('end', function (file, stat) {
           return (new Date(a.mtime) > new Date(b.mtime))? 1 : -1;
      });
      let clean_list= [];
-     let goalsize = 100;
+     let minsize = 2000000000
      
      var diskspace = require(env.root_path + '/package/diskspace/node_modules/diskspace');
      diskspace.check('/', function (err, space) {
          space.free_rate =  Math.floor(space.free  * 100 /  space.total); 
-         if  (space.free < goalsize || true) {
+         if  (space.free < minsize || true) {
+		goalsize = minsize;	 
                for (var i = 0; i < list.length; i++) {
                     if ((goalsize - list[i].size) > 0) {
                          goalsize -= list[i].size;
