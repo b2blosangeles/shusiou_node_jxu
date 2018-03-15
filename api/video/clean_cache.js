@@ -26,20 +26,23 @@ finder.on('end', function (file, stat) {
          space.total = Math.round(space.total);
          space.free = space.free;
          space.free_rate =  Math.floor(space.free  * 100 /  space.total); 
-     });	
-     for (var i = 0; i < list.length; i++) {
-          if  (diskspace.free < goalsize) {
           
-          
+          for (var i = 0; i < list.length; i++) {
+               if  (space.free < goalsize) {
+
+
+               }
+               if ((goalsize - list[i].size) > 0) {
+                    goalsize -= list[i].size;
+                    clean_list.push(list[i].fn);
+               } 
           }
-          if ((goalsize - list[i].size) > 0) {
-               goalsize -= list[i].size;
-               clean_list.push(list[i].fn);
-          } 
-     }
-     batchDelete(clean_list, function(data) {
-          res.send(data);    
-     });
+          batchDelete(clean_list, function(data) {
+               res.send(data);    
+          });          
+          
+     });	
+
 });
 
 var batchDelete = function(list, cbk) {
