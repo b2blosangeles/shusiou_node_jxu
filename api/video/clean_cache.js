@@ -5,7 +5,9 @@ finder.on('directory', function (dir, stat, stop) {
 });
 
 finder.on('file', function (file, stat) {
-     list.push({fn:file, mtime:stat.mtime, size:stat.size});
+     if (!file.match(/\.txt$/)) {
+          list.push({fn:file, mtime:stat.mtime, size:stat.size});
+     }     
 });
 
 finder.on('link', function (link, stat) {
