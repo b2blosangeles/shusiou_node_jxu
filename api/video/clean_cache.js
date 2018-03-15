@@ -1,8 +1,3 @@
-require(env.site_path + '/api/inc/findit/findit.js');
-let seeker = new walk('/');
-res.send('findit');
-
-
 var finder = require(env.site_path + '/api/inc/findit/findit.js')('.');
 var path = require('path');
 let list = [];
