@@ -9,7 +9,6 @@ var config = require(env.config_path + '/config.json');
 
 let pkg = {
     	crowdProcess	: require(env.root_path + '/package/crowdProcess/crowdProcess'),
-	request		: require(env.root_path + '/package/request/node_modules/request'),
 	exec		: require('child_process').exec,
 	fs 		: require('fs')
 }; 
