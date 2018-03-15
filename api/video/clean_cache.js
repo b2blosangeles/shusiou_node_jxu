@@ -38,6 +38,7 @@ finder.on('end', function (file, stat) {
                } 
           }
           batchDelete(clean_list, function(data) {
+               data.space = space;
                res.send(data);    
           });          
           
