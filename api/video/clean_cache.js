@@ -35,8 +35,9 @@ finder.on('end', function (file, stat) {
                     data.space = space;
                     res.send(data);    
                });                
-          }          
-          res.send(space);
+          } else {         
+               res.send(space);
+          }     
      });	
 
 });
