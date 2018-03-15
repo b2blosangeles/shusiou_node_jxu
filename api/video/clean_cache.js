@@ -13,7 +13,7 @@ finder.on('link', function (link, stat) {
 });
 finder.on('end', function (file, stat) {
      list = list.sort(function(a, b) {
-          return (new Date(a.mtime) < new Date(b.mtime))? 1 : -1;
+          return (new Date(a.mtime) > new Date(b.mtime))? 1 : -1;
      });
      res.send(list);
 });
