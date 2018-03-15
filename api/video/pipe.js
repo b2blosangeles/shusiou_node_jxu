@@ -76,7 +76,8 @@ _f['VALIDATION'] = function(cbk) {
 
 _f['PULLING'] = function(cbk) {;
 	if (fn.length <=1) {
-		cbk(true);
+		let url = space.endpoint +  space.video + '/_s/' + fn[0];
+		cache_request(url, space.cache_folder + fn[0], cbk);
 		return true;
 	}
 	var CP1 = new pkg.crowdProcess();
