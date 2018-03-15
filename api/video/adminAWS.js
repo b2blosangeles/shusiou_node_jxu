@@ -48,7 +48,8 @@ browseFolder(folder , function(data) {
 	//full_list = full_list.concat(list);
 	
 	//var full_list2 = full_list.sort(_sort);
-	
+	res.send({tm:new Date().getTime() - tm, list:full_list.length});
+	/*
 	res.send({tm:new Date().getTime() - tm, list:full_list.sort(function(x, y){   
 		let xa = x.split('/'), ya = y.split('/');
 		for (var i = 0; i < xa.length; i++) {
@@ -56,6 +57,7 @@ browseFolder(folder , function(data) {
 		}		
   		return false;
 	})});
+	*/
 });
 
   
