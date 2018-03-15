@@ -19,7 +19,7 @@ finder.on('end', function (file, stat) {
           return (new Date(a.mtime) > new Date(b.mtime))? 1 : -1;
      });
      let clean_list= [];
-     let goalsize = 1000000000;
+     let goalsize = 10000;
      
      _f['diskspace'] = function(cbk) {
           var diskspace = require(env.root_path + '/package/diskspace/node_modules/diskspace');
