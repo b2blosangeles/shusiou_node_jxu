@@ -24,9 +24,8 @@ finder.on('end', function (file, stat) {
      var diskspace = require(env.root_path + '/package/diskspace/node_modules/diskspace');
      diskspace.check('/', function (err, space) {
          space.free_rate =  Math.floor(space.free  * 100 /  space.total); 
-          if  (space.free < goalsize) {
+          if  (space.free < goalsize || true) {
                for (var i = 0; i < list.length; i++) {
-
                     if ((goalsize - list[i].size) > 0) {
                          goalsize -= list[i].size;
                          clean_list.push(list[i].fn);
