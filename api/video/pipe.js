@@ -5,9 +5,12 @@ function cache_request(url, fn, cbk) {
 			file.on('finish', function() {
 				// file.close(function() {
 				let firstline = '';
-				pkg.fs.createReadStream(fn, {encoding: 'utf8'})
+				let rf = pkg.fs.createReadStream(fn, {encoding: 'utf8', 'bufferSize': 10})
 				.on('data', function (chunk) {
-					if (!firstline) firstline += chunk;
+					if (!firstline) { 
+						firstline += chunk;
+						rf.close();
+					}
 				}).on('close', function () {
 					cbk(firstline);
 				})
