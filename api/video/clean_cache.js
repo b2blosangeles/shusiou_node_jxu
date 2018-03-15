@@ -20,7 +20,7 @@ finder.on('end', function (file, stat) {
      });
      clean_list= [];
      for (var i = 0; i < list.length; i++) {
-          if (goalsize - list[i].size > 0) {
+          if ((goalsize - list[i].size) > 0) {
                goalsize -= list[i].size;
                clean_list.push(list[i].fn);
           } 
