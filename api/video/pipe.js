@@ -4,7 +4,7 @@ function cache_request(url, fn, cbk) {
 			let file = pkg.fs.createWriteStream(fn);
 			file.on('finish', function() {
 				file.close(function() {
-					
+					cbk('firstlineA');
 				});  
 			});	
 			pkg.request(url, function (err1, response, body) {
@@ -68,7 +68,8 @@ _f['CREATE_DIR'] = function(cbk) {
 };
 
 _f['VALIDATION'] = function(cbk) {
-	let url = space.endpoint +  space.video + '/_s/_info.txt';
+	let url = space.endpoint +  space.video + '/s_1.mp4';
+//	let url = space.endpoint +  space.video + '/_s/_info.txt';
 	cache_request(url, space.cache_folder + '_info.txt', 
 		function(tt) {
 			cbk(tt);
