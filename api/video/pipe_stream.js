@@ -67,6 +67,8 @@ _f['VALIDATION'] = function(cbk) {
 CP.serial(
 	_f,
 	function(results) {
+		res.send(results);
+		return true;
 		if (!CP.data.VALIDATION.status) {
 			write505(CP.data.VALIDATION.message);
 			return true;
