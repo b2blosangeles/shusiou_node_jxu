@@ -1,4 +1,4 @@
-var finder = require(env.site_path + '/api/inc/findit/findit.js')('/tmp/shusiou_cache/');
+var finder = require(env.site_path + '/api/inc/findit/findit.js')('/var/shusiou_cache/');
 var path = require('path');
 let list = [];
 finder.on('directory', function (dir, stat, stop) {
