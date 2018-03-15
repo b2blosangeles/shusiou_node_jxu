@@ -14,7 +14,7 @@ finder.on('link', function (link, stat) {
     
 });
 finder.on('end', function (file, stat) {
-     let goalsize = 100000000;
+     let goalsize = 1000000000;
      list = list.sort(function(a, b) {
           return (new Date(a.mtime) > new Date(b.mtime))? 1 : -1;
      });
