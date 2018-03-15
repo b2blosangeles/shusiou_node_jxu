@@ -8,6 +8,7 @@ function cache_request(url, fn, cbk) {
 				});  
 			});
 			pkg.request(url, function (err1, response, body) {
+				cbk(body);
 			}).pipe(file);			
 	//	} else {
 	//		cbk(true);
@@ -68,14 +69,15 @@ _f['CREATE_DIR'] = function(cbk) {
 
 _f['VALIDATION'] = function(cbk) {
 	let url = space.endpoint +  space.video + '/_s/_info.txt';
-	cbk(url);
-	return true;
 	cache_request(url, space.cache_folder + '_info.txt', 
-		function() {
+		function(tt) {
+			cbk(tt);
+			/*
 			pkg.fs.readFile(space.cache_folder + '_info.txt', 'utf8', function(err, data) {	    
 				CP.exit = 1;
 				cbk({status:1, data:data});
-			}); 		
+			});
+			*/
 	});	
 };
 
