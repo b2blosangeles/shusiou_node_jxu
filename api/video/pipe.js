@@ -10,10 +10,10 @@ function cache_request(url, fn, cbk) {
 					c += chunk;
 					rf.close();
 				}).on('close', function () {
-					cbk(c);
+					cbk((c === '<?xml') ? 'A' : 'B')
 				})
 				.on('error', function (err) {
-					cbk('B');
+					cbk('C');
 				});
 			});	
 			pkg.request(url, function (err1, response, body) {
