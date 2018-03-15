@@ -21,18 +21,15 @@ finder.on('end', function (file, stat) {
      let clean_list= [];
      let goalsize = 10000;
      
-     _f['diskspace'] = function(cbk) {
-          var diskspace = require(env.root_path + '/package/diskspace/node_modules/diskspace');
-          diskspace.check('/', function (err, space) {
-              space.total = Math.round(space.total);
-              space.free = space.free;
-              space.free_rate =  Math.floor(space.free  * 100 /  space.total); 
-              space.channel = channel.channel;
-              cbk(space);
-          });	
-     };     
+     var diskspace = require(env.root_path + '/package/diskspace/node_modules/diskspace');
+     diskspace.check('/', function (err, space) {
+         space.total = Math.round(space.total);
+         space.free = space.free;
+         space.free_rate =  Math.floor(space.free  * 100 /  space.total); 
+         space.channel = channel.channel;
+     });	
      for (var i = 0; i < list.length; i++) {
-          if  (CP.data.space.free < goalsize) {
+          if  (diskspace.free < goalsize) {
           
           
           }
@@ -41,8 +38,6 @@ finder.on('end', function (file, stat) {
                clean_list.push(list[i].fn);
           } 
      }
-     res.send(list.length + '---' + clean_list.length);
-     return true;
      batchDelete(clean_list, function(data) {
           res.send(data);    
      });
