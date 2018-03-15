@@ -90,7 +90,7 @@ _f['VALIDATION'] = function(cbk) {
 				try {
 					v = JSON.parse(data);
 				} catch (e) {}
-				cbk({status:1, data:v.length});
+				cbk({status:1, data:v});
 			});
 	});	
 };
