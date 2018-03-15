@@ -3,9 +3,16 @@ function cache_request(url, fn, cbk) {
 	//	if (err0) {
 			let file = pkg.fs.createWriteStream(fn);
 			file.on('finish', function() {
-				file.close(function() {
-					cbk(true);
-				});  
+				// file.close(function() {
+				pkg.fs.createReadStream(fn, {encoding: 'utf8'})
+				.on('data', function (chunk) {
+					
+				}).on('close', function () {
+					cbk('A');
+				})
+				.on('error', function (err) {
+					cbk('B');
+				});
 			});	
 			pkg.request(url, function (err1, response, body) {
 			}).pipe(file);			
