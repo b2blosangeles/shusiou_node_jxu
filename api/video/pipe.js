@@ -3,23 +3,22 @@ function cache_request(url, fn, cbk) {
 	//	if (err0) {
 			let file = pkg.fs.createWriteStream(fn);
 			file.on('finish', function() {
-				// file.close(function() {
 				let c = '';
-				let rf = pkg.fs.createReadStream(fn, {start : 0, end: 4, encoding: 'utf8'})
-				.on('data', function (chunk) {
+				let rf = pkg.fs.createReadStream(fn, {start : 0, end: 4, encoding: 'utf8'});
+				rf.on('data', function (chunk) {
 					c += chunk;
 					rf.close();
 				}).on('close', function () {
 					if (c === '<?xml') {
 						pkg.fs.unlink(fn, function(error) {
-						    cbk('AA');
+						    cbk(false);
 						});					
 					} else {
-						cbk('BB');
+						cbk(true);
 					}
 				})
 				.on('error', function (err) {
-					cbk('C');
+					cbk(false);
 				});
 			});	
 			pkg.request(url, function (err1, response, body) {
@@ -86,7 +85,8 @@ _f['VALIDATION'] = function(cbk) {
 	let url = space.endpoint +  space.video + '/_s/_info.txt';
 	cache_request(url, space.cache_folder + '_info.txt', 
 		function(tt) {
-			cbk(tt);
+			CP.exit = 1;
+			cbk({tt:tt});
 			/*
 			pkg.fs.readFile(space.cache_folder + '_info.txt', 'utf8', function(err, data) {	    
 				CP.exit = 1;
