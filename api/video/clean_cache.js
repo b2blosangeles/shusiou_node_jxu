@@ -23,8 +23,6 @@ finder.on('end', function (file, stat) {
      
      var diskspace = require(env.root_path + '/package/diskspace/node_modules/diskspace');
      diskspace.check('/', function (err, space) {
-         space.total = space.total;
-         space.free = space.free;
          space.free_rate =  Math.floor(space.free  * 100 /  space.total); 
           if  (space.free < goalsize) {
                for (var i = 0; i < list.length; i++) {
