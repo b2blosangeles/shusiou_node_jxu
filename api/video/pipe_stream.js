@@ -39,16 +39,23 @@ let source_file = req.query['video_fn'],
     space_url = 'https://shusiou-d-01.nyc3.digitaloceanspaces.com', 
     space_info = '/shusiou/' + source_file + '/_info.txt',
     space_dir = '/shusiou/' + source_file + '/_t/',
-    cache_info =  '/var/shusiou_cache/' + source_file + '/_info.txt';
+    cache_folder = '/var/shusiou_cache/' + source_file + '/',
+    cache_info =  cache_folder + '_info.txt';
 
 var CP = new pkg.crowdProcess();
 var _f = {}; 
-
+_f['CREATE_DIR'] = function(cbk) {
+	var folderP = require(env.site_path + '/api/inc/folderP/folderP');
+	var fp = new folderP();		
+	fp.build(cache_folder, () => {
+		cbk(true)
+	});	
+};
 _f['VALIDATION'] = function(cbk) {
 	if (!source_file) {
 		cbk({status:0, message:'Missing video_fn parameter'});
 	} else {
-		cache_request(space_url + space_info,  cache_info
+		cache_request(space_url + space_info,  cache_info,
 			function(status) {
 				pkg.fs.readFile(cache_info, 'utf8', function(err, data) {	 
 					if (err) {
