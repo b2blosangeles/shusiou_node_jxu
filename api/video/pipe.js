@@ -1,6 +1,6 @@
 function cache_request(url, fn, cbk) {
-	pkg.fs.stat(fn, function(err0, stats) {
-		if (err0) {
+	//pkg.fs.stat(fn, function(err0, stats) {
+	//	if (err0) {
 			let file = pkg.fs.createWriteStream(fn);
 			file.on('finish', function() {
 				file.close(function() {
@@ -9,10 +9,10 @@ function cache_request(url, fn, cbk) {
 			});
 			pkg.request(url, function (err1, response, body) {
 			}).pipe(file);			
-		} else {
-			cbk(true);
-		}
-	});
+	//	} else {
+	//		cbk(true);
+	//	}
+	//});
 }
 function cache_ffmpeg(cmd, fn, cbk) {
 	pkg.fs.stat(fn, function(err, stats) {
