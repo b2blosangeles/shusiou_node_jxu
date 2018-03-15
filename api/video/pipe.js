@@ -84,9 +84,12 @@ _f['VALIDATION'] = function(cbk) {
 	let url = space.endpoint +  space.video + '/_info.txt';
 	cache_request(url, space.cache_folder + '_info.txt', 
 		function(status) {
-			CP.exit = 1;
-			pkg.fs.readFile(space.cache_folder + '_info.txt', 'utf8', function(err, data) {	    
-				
+			pkg.fs.readFile(space.cache_folder + '_info.txt', 'utf8', function(err, data) {	 
+				if (err) {
+					CP.exit = 1;
+					cbk({status:0, message: space.cache_folder + '_info.txt does not exist'});
+					return true;
+				}
 				try {
 					v = JSON.parse(data);
 				} catch (e) {}
@@ -105,7 +108,6 @@ _f['VALIDATION'] = function(cbk) {
 					cbk({status:0, message:'t is bigger than 60s.'});
 					return true;
 				}
-				CP.exit = 1;
 				cbk({status:1});
 			});
 	});	
@@ -183,7 +185,7 @@ _f['FFMPEG_IMG'] = function(cbk) {
 
 CP.serial(_f,
 	function(results) {
-		if (!CP.data.VALIDATION.status) {
+		if (!CP.data.VALIDATION) {
 			res.send(CP.data.VALIDATION);
 			return true;
 		}
