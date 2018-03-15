@@ -5,7 +5,7 @@ finder.on('directory', function (dir, stat, stop) {
 });
 
 finder.on('file', function (file, stat) {
-     list.push({fn:file, created:stat.ctime});
+     list.push({fn:file, created:stat.ctime, modified:stat.mtime}});
 });
 
 finder.on('link', function (link, stat) {
