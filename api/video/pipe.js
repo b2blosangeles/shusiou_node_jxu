@@ -37,8 +37,8 @@ let ss0 = parseFloat(req.query['ss']),
     d_s = ss - ss0,
     sec_s = Math.floor(parseInt(ss) / 5), 
     t = (isNaN(req.query['t'])) ? 0 : parseFloat(req.query['t']),
-    sec_t =  Math.ceil(parseInt(ss + t) / 5), 
-    start_point = parseInt(ss) % 5 + d_s;
+    sec_t =  Math.ceil(parseInt(ss + t) / 5);
+//    start_point = parseInt(ss) % 5 + d_s;
 
 let _w = parseFloat(req.query['size']),
     _size_str = ([90, 180, 480].indexOf(_w) !== -1) ? (' -vf scale=' + _w + ':-1 ') : ' -vframes 1 ',
