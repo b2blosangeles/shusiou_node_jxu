@@ -1,3 +1,19 @@
+/* ---  This cron is to clean video cache on video nodes.  */
+
+var path = require('path');
+var env = {root_path:path.join(__dirname, '../..')};
+env.site_path = env.root_path + '/site';
+env.config_path = '/var/qalet_config';
+
+var config = require(env.config_path + '/config.json');
+
+let pkg = {
+    	mysql		: require(env.site_path + '/api/inc/mysql/node_modules/mysql'),
+    	crowdProcess	: require(env.root_path + '/package/crowdProcess/crowdProcess'),
+	request		: require(env.root_path + '/package/request/node_modules/request'),
+	exec		: require('child_process').exec,
+	fs 		: require('fs')
+}; 
 var finder = require(env.site_path + '/api/inc/findit/findit.js')('/var/shusiou_cache/');
 var path = require('path');
 let list = [];
@@ -33,10 +49,10 @@ finder.on('end', function (file, stat) {
                }
                batchDelete(clean_list, function(data) {
                     data.space = space;
-                    res.send(data);    
+                    console.log(data);    
                });                
           } else {         
-               res.send(space);
+              console.log(space);
           }     
      });	
 
