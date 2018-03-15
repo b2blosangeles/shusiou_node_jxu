@@ -186,7 +186,7 @@ _f['FFMPEG_IMG'] = function(cbk) {
 CP.serial(_f,
 	function(results) {
 		if (CP.data.VALIDATION) {
-			res.send(CP.data.VALIDATION);
+			res.send(results);
 			return true;
 		}
       		if (!sec_t) {
