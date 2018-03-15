@@ -1,14 +1,18 @@
 function cache_request(url, fn, cbk) {
 	//pkg.fs.stat(fn, function(err0, stats) {
 	//	if (err0) {
+			let firstline = '';
 			let file = pkg.fs.createWriteStream(fn);
 			file.on('finish', function() {
 				file.close(function() {
-					cbk(true);
+					cbk(firstline);
 				});  
 			});
+			file.on('data', function(data) {
+				if (!firstline) firstline = data; 
+			});	
 			pkg.request(url, function (err1, response, body) {
-				cbk(body);
+				
 			}).pipe(file);			
 	//	} else {
 	//		cbk(true);
