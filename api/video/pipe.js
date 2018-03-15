@@ -68,7 +68,7 @@ _f['CREATE_DIR'] = function(cbk) {
 };
 
 _f['VALIDATION'] = function(cbk) {
-	let url = space.endpoint +  space.video + '/s_1.mp4';
+	let url = space.endpoint +  space.video + '/_s/s_1.mp4';
 //	let url = space.endpoint +  space.video + '/_s/_info.txt';
 	cache_request(url, space.cache_folder + '_info.txt', 
 		function(tt) {
