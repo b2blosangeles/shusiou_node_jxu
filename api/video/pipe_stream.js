@@ -45,25 +45,29 @@ var CP = new pkg.crowdProcess();
 var _f = {}; 
 
 _f['VALIDATION'] = function(cbk) {
-	//if (!source_file) {
+	if (!source_file) {
 		cbk({status:0, message:'Missing video_fn parameter'});
-	//}
-	/*
-	cache_request(space_url + space_info, 
-		function(status) {
-			pkg.fs.readFile(space_url + space_info, 'utf8', function(err, data) {	 
-				if (err) {
-					cbk({status:0, message: space_info + ' does not exist'});
-					return true;
-				}
-				let v = {};
-				try { 
-					v = JSON.parse(body);
-				} catch (e) {}			
-				cbk({status:1, cfg:v});
-			});
-	});
-	*/
+	} else {
+		cbk(space_url + space_info)
+	
+	
+		/*
+		cache_request(space_url + space_info, 
+			function(status) {
+				pkg.fs.readFile(space_url + space_info, 'utf8', function(err, data) {	 
+					if (err) {
+						cbk({status:0, message: space_info + ' does not exist'});
+						return true;
+					}
+					let v = {};
+					try { 
+						v = JSON.parse(body);
+					} catch (e) {}			
+					cbk({status:1, cfg:v});
+				});
+		});
+		*/
+	}	
 };
 CP.serial(
 	_f,
