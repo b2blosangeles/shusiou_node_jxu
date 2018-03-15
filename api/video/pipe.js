@@ -70,7 +70,10 @@ _f['VALIDATION'] = function(cbk) {
 	let url = space.endpoint +  space.video + '/_s/_info.txt';
 	cache_request(url, space.cache_folder + '_info.txt', 
 		function() {
-			cbk('_info.txt');
+			pkg.fs.readFile(space.cache_folder + '_info.txt', function(err, data) {	    
+				CP.exit = 1;
+				cbk({status:1, data:data});
+			}); 		
 	});	
 };
 
@@ -145,7 +148,11 @@ _f['FFMPEG_IMG'] = function(cbk) {
 };
 
 CP.serial(_f,
-	function(results) {			
+	function(results) {
+		if (CP.data.VALIDATION) {
+			res.send(results);
+			return true;
+		}
       		if (!sec_t) {
 			pkg.fs.stat(space.cache_folder + ss0 + _size_fn + '.png', function(err, stat) {
 				if (err) { res.send(err.message); }
