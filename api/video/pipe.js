@@ -86,11 +86,27 @@ _f['VALIDATION'] = function(cbk) {
 		function(status) {
 			CP.exit = 1;
 			pkg.fs.readFile(space.cache_folder + '_info.txt', 'utf8', function(err, data) {	    
-				CP.exit = 1;
+				
 				try {
 					v = JSON.parse(data);
 				} catch (e) {}
-				cbk({status:1, data:v._s.length});
+				if (!v._s || !v._s.length) {
+					CP.exit = 1;
+					cbk({status:0, message:'uncompleted space cache.'});
+					return true;
+				}
+				if ( ss > v._s.length *5) {
+					CP.exit = 1;
+					cbk({status:0, message:'ss is longer than video length.'});
+					return true;
+				}
+				if (t > 60) {
+					CP.exit = 1;
+					cbk({status:0, message:'t is bigger than 60s.'});
+					return true;
+				}
+				CP.exit = 1;
+				cbk({status:1});
 			});
 	});	
 };
