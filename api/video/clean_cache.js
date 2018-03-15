@@ -15,5 +15,5 @@ finder.on('link', function (link, stat) {
     
 });
 finder.on('end', function (file, stat) {
-     res.send('niu');
+     res.send(list);
 });
