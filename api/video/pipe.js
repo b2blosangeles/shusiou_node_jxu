@@ -82,7 +82,7 @@ _f['PULLING'] = function(cbk) {;
 		if (!sec_t) {
 			cbk(false);
 		} else {
-			pkg.fs.stat( 'engine_' + sec_s + '_' + sec_t +'.cfg', function(err, stat) {
+			pkg.fs.stat(space.cache_folder  +  'engine_' + sec_s + '_' + sec_t +'.cfg', function(err, stat) {
 				if (!err) { res.send(true); }
 				else {
 					var str = '';
