@@ -46,10 +46,13 @@ var batchDelete = function(list, cbk) {
      let CP = new pkg.crowdProcess();
      let _f = {}, fn = []; 
      _f['clean_tmp']  = function(cbk) { 
+          /*
           pkg.exec('rm -fr /tmp/* && rm -fr /tmp/*.*', 					 
                function(err, stdout, stderr) {
                     cbk(true);
                });
+          */ 
+          cbk(true);
      };    
      for (var i = 0; i < list.length; i++) {
           _f['P_'+i] = (function(i) {
