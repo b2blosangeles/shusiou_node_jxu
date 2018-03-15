@@ -18,7 +18,7 @@ finder.on('end', function (file, stat) {
      list = list.sort(function(a, b) {
           return (new Date(a.mtime) > new Date(b.mtime))? 1 : -1;
      });
-     clean_list= [];
+     let clean_list= [];
      for (var i = 0; i < list.length; i++) {
           if ((goalsize - list[i].size) > 0) {
                goalsize -= list[i].size;
@@ -26,5 +26,32 @@ finder.on('end', function (file, stat) {
           } 
      }
   //   res.send(list.length + '---' + clean_list.length);
-     res.send(clean_list);
+     batchDelete(clean_list, function(data) {
+          res.send(data);    
+     });
 });
+
+
+var batchDelete = function(list, cbk) {
+     let CP = new pkg.crowdProcess();
+     let _f = {}, fn = []; 
+     for (var i = 0; i < list.length; i++) {
+          _f['P_'+i] = (function(i) {
+               return function(cbk1) {
+                    pkg.fs.unlink(list[i],function(err){
+                         // if(err) return console.log(err);
+                         cbk1('deleted ' + list[i]);
+                    });                   
+                    
+               
+               }
+               
+          })(i);
+     }
+     CP.serial(
+          _f,
+          function(result) {
+               cbk(result);
+          }, 30000
+     )
+}
