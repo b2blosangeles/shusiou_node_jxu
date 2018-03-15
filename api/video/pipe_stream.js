@@ -69,11 +69,12 @@ CP.serial(
 	function(results) {
 		res.send(results);
 		return true;
+		/*
 		if (!CP.data.VALIDATION.status) {
 			write505(CP.data.VALIDATION.message);
 			return true;
 		}
-		/*
+		
 		let cfg = CP.data.VALIDATION.cfg,
 		    stream = require("stream"),
 		    a = new stream.PassThrough(),
