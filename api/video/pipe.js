@@ -87,7 +87,10 @@ _f['VALIDATION'] = function(cbk) {
 			CP.exit = 1;
 			pkg.fs.readFile(space.cache_folder + '_info.txt', 'utf8', function(err, data) {	    
 				CP.exit = 1;
-				cbk({status:1, data:data});
+				try {
+					v = JSON.parse(data);
+				} catch (e) {}
+				cbk({status:1, data:v});
 			});
 	});	
 };
