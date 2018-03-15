@@ -57,7 +57,7 @@ let _f = {}, fn = [];
 for (var i = 0; i <= sec_t; i++) {
 	fn.push('s_' + (sec_s + i) + '.mp4')
 }
-
+res.send(fn);
 _f['CREATE_DIR'] = function(cbk) {
 	var folderP = require(env.site_path + '/api/inc/folderP/folderP');
 	var fp = new folderP();		
