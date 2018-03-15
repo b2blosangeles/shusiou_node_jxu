@@ -4,15 +4,13 @@ function cache_request(url, fn, cbk) {
 			let file = pkg.fs.createWriteStream(fn);
 			file.on('finish', function() {
 				// file.close(function() {
-				let firstline = '';
-				let rf = pkg.fs.createReadStream(fn, {start : 1, end: 10, encoding: 'utf8'})
+				let c = '';
+				let rf = pkg.fs.createReadStream(fn, {start : 0, end: 5, encoding: 'utf8'})
 				.on('data', function (chunk) {
-					if (!firstline) { 
-						firstline += chunk;
-						rf.close();
-					}
+					c += chunk;
+					rf.close();
 				}).on('close', function () {
-					cbk(firstline);
+					cbk(c);
 				})
 				.on('error', function (err) {
 					cbk('B');
