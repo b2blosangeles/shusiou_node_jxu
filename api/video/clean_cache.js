@@ -25,5 +25,6 @@ finder.on('end', function (file, stat) {
                clean_list.push(list[i].fn);
           } 
      }
-     res.send(list.length + '---' + clean_list.length);
+  //   res.send(list.length + '---' + clean_list.length);
+     res.send(clean_list);
 });
