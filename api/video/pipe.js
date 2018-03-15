@@ -194,7 +194,7 @@ CP.serial(_f,
 			write505(CP.data.VALIDATION.message);
 			return true;
 		}
-      		if (t) {
+      		if (!t) {
 			pkg.fs.stat(space.cache_folder + ss0 + _size_fn + '.png', function(err, stat) {
 				if (err) { res.send(err.message); }
 				else {
