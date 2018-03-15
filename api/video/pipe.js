@@ -1,5 +1,5 @@
-function write404(msg) {
-	res.writeHead(404);
+function write505(msg) {
+	res.writeHead(505);
 	res.write(msg);
 	res.end();	
 }
@@ -191,7 +191,7 @@ _f['FFMPEG_IMG'] = function(cbk) {
 CP.serial(_f,
 	function(results) {
 		if (!CP.data.VALIDATION.status) {
-			write404(CP.data.VALIDATION.message);
+			write505(CP.data.VALIDATION.message);
 			return true;
 		}
       		if (!sec_t) {
