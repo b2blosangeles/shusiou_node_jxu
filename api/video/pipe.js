@@ -111,28 +111,26 @@ _f['PULLING'] = function(cbk) {;
 	CP1.parallel(
 	_f1,
 	function(results) {
-		cbk(results);
-	}, 10000);
-}
-
-_f['MERGE_VIDEO'] = function(cbk) {
-	if (fn.length <=1) {
-		cbk(false);
-	} else {
 		let cmd = 'cd ' + space.cache_folder  + 
 		    ' && ffmpeg -f concat -safe 0 -i ' + space.cache_folder  + 
 		    'engine_' + sec_s + '_' + sec_t +'.cfg -c copy cache_' + sec_s + '_' + sec_t + '.mp4 -y';
 		cache_ffmpeg(cmd, space.cache_folder  + 'cache_' + sec_s + '_' + sec_t + '.mp4', cbk);
-	}
-};
+	}, 10000);
+}
 
 _f['FFMPEG_SECTION'] = function(cbk) {
 	if (!t) {
 		cbk(false);
 	} else {
-		let cmd = 'cd ' + space.cache_folder + ' && ffmpeg -ss ' + d_s + 
-		    ' -i cache_' + sec_s + '_' + sec_t + '.mp4  -t ' + t + ' -c copy sec_' + ss0 + '_' + t + '.mp4';
-		cache_ffmpeg(cmd, space.cache_folder  + 'sec_' + ss0 + '_' + t + '.mp4', cbk);
+		if (fn.length > 1) {
+			let cmd = 'cd ' + space.cache_folder + ' && ffmpeg -ss ' + d_s + 
+			    ' -i cache_' + sec_s + '_' + sec_t + '.mp4  -t ' + t + ' -c copy sec_' + ss0 + '_' + t + '.mp4';
+			cache_ffmpeg(cmd, space.cache_folder  + 'sec_' + ss0 + '_' + t + '.mp4', cbk);
+		} else {
+			let cmd = 'cd ' + space.cache_folder + ' && ffmpeg -ss ' + d_s + 
+			    ' -i '+ fn[0] + '  -t ' + t + ' -c copy sec_' + ss0 + '_' + t + '.mp4';
+			cache_ffmpeg(cmd, space.cache_folder  + 'sec_' + ss0 + '_' + t + '.mp4', cbk);
+		}
 	}
 };
 
