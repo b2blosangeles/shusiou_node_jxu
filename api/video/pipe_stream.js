@@ -52,8 +52,7 @@ _f['VALIDATION'] = function(cbk) {
 		function(status) {
 			pkg.fs.readFile(space_url + space_info, 'utf8', function(err, data) {	 
 				if (err) {
-					CP.exit = 1;
-					cbk({status:0, message: space_info + '_info.txt does not exist'});
+					cbk({status:0, message: space_info + ' does not exist'});
 					return true;
 				}
 				let v = {};
@@ -67,10 +66,14 @@ _f['VALIDATION'] = function(cbk) {
 CP.serial(
 	_f,
 	function(results) {
+		res.send(results);
+		return; 
+		/*
 		if (!CP.data.VALIDATION.status) {
 			write505(CP.data.VALIDATION.message);
 			return true;
-		}		
+		}
+		*/
 		let cfg = CP.data.VALIDATION.cfg,
 		    stream = require("stream"),
 		    a = new stream.PassThrough(),
