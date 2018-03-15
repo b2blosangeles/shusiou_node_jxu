@@ -83,15 +83,12 @@ _f['CREATE_DIR'] = function(cbk) {
 _f['VALIDATION'] = function(cbk) {
 	let url = space.endpoint +  space.video + '/_info.txt';
 	cache_request(url, space.cache_folder + '_info.txt', 
-		function(tt) {
+		function(status) {
 			CP.exit = 1;
-			cbk({tt:tt});
-			/*
 			pkg.fs.readFile(space.cache_folder + '_info.txt', 'utf8', function(err, data) {	    
 				CP.exit = 1;
 				cbk({status:1, data:data});
 			});
-			*/
 	});	
 };
 
