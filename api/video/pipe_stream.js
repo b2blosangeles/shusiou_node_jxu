@@ -4,8 +4,8 @@ function write505(msg) {
 	res.end();	
 }
 function cache_request(url, fn, cbk) {
-	pkg.fs.stat(fn, function(err0, stats) {
-		if (err0) {
+	pkg.fs.stat(fn, function(err, stats) {
+		if (err) {
 			let file = pkg.fs.createWriteStream(fn);
 			file.on('finish', function() {
 				let c = '';
@@ -73,7 +73,7 @@ CP.serial(
 			write505(CP.data.VALIDATION.message);
 			return true;
 		}
-		
+		/*
 		let cfg = CP.data.VALIDATION.cfg,
 		    stream = require("stream"),
 		    a = new stream.PassThrough(),
@@ -135,6 +135,7 @@ CP.serial(
 			},
 			6000
 		);
+		*/
 	},
 	10000
 );
