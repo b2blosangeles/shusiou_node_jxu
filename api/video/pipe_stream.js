@@ -48,10 +48,6 @@ _f['VALIDATION'] = function(cbk) {
 	if (!source_file) {
 		cbk({status:0, message:'Missing video_fn parameter'});
 	} else {
-		cbk(space_url + space_info)
-	
-	
-		/*
 		cache_request(space_url + space_info, 
 			function(status) {
 				pkg.fs.readFile(space_url + space_info, 'utf8', function(err, data) {	 
@@ -61,12 +57,11 @@ _f['VALIDATION'] = function(cbk) {
 					}
 					let v = {};
 					try { 
-						v = JSON.parse(body);
+						v = JSON.parse(data);
 					} catch (e) {}			
 					cbk({status:1, cfg:v});
 				});
 		});
-		*/
 	}	
 };
 CP.serial(
