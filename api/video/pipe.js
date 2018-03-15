@@ -49,7 +49,7 @@ let space = {
 	endpoint : 'https://shusiou-d-01.nyc3.digitaloceanspaces.com/shusiou/',
 	video:(req.query['video_fn']) ?  req.query['video_fn'] : 'video.mp4'
 }
-space.cache_folder =  '/tmp/shusiou_cache/' + space.video + '/';
+space.cache_folder =  '/var/shusiou_cache/' + space.video + '/';
 
 let CP = new pkg.crowdProcess();
 let _f = {}, fn = []; 
