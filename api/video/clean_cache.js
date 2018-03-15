@@ -26,7 +26,6 @@ finder.on('end', function (file, stat) {
          space.total = Math.round(space.total);
          space.free = space.free;
          space.free_rate =  Math.floor(space.free  * 100 /  space.total); 
-         space.channel = channel.channel;
      });	
      for (var i = 0; i < list.length; i++) {
           if  (diskspace.free < goalsize) {
