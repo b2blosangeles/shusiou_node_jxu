@@ -190,7 +190,7 @@ _f['FFMPEG_IMG'] = function(cbk) {
 
 CP.serial(_f,
 	function(results) {
-		if (CP.data.VALIDATION.status) {
+		if (!CP.data.VALIDATION.status) {
 			write404(CP.data.VALIDATION);
 			return true;
 		}
