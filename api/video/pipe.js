@@ -75,47 +75,47 @@ _f['VALIDATION'] = function(cbk) {
 };
 
 _f['PULLING'] = function(cbk) {;
-	if (fn.length <=1) {
+	if (fn.length === 1) {
 		let url = space.endpoint +  space.video + '/_s/' + fn[0];
 		cache_request(url, space.cache_folder + fn[0], cbk);
-		return true;
-	}
-	var CP1 = new pkg.crowdProcess();
-	var _f1 = {}; 	
-	_f1['WRITE_CFG'] = function(cbk1) {
-		if (!sec_t) {
-			cbk(false);
-		} else {
-			pkg.fs.stat(space.cache_folder  +  'engine_' + sec_s + '_' + sec_t +'.cfg', function(err, stat) {
-				if (!err) { cbk1(true); }
-				else {
-					var str = '';
-					for (var i = 0; i < fn.length; i++) {
-						str += "file '" + space.cache_folder + fn[i] + "'\n";
+	} else {
+		var CP1 = new pkg.crowdProcess();
+		var _f1 = {}; 	
+		_f1['WRITE_CFG'] = function(cbk1) {
+			if (!sec_t) {
+				cbk(false);
+			} else {
+				pkg.fs.stat(space.cache_folder  +  'engine_' + sec_s + '_' + sec_t +'.cfg', function(err, stat) {
+					if (!err) { cbk1(true); }
+					else {
+						var str = '';
+						for (var i = 0; i < fn.length; i++) {
+							str += "file '" + space.cache_folder + fn[i] + "'\n";
+						}
+						pkg.fs.writeFile(space.cache_folder  + 'engine_' + sec_s + '_' + sec_t +'.cfg', str, function(err) {	    
+							cbk1('WRITE_TXT:' + space.cache_folder  + 'engine_' + sec_s + '_' + sec_t +'.cfg');
+						}); 					
 					}
-					pkg.fs.writeFile(space.cache_folder  + 'engine_' + sec_s + '_' + sec_t +'.cfg', str, function(err) {	    
-						cbk1('WRITE_TXT:' + space.cache_folder  + 'engine_' + sec_s + '_' + sec_t +'.cfg');
-					}); 					
+				});
+			}	
+		};			       
+		for (var i = 0; i < fn.length; i++) {
+			_f1['P_' + i] = (function(i) {
+				return function(cbk1) {
+					let url = space.endpoint +  space.video + '/_s/' + fn[i];
+					cache_request(url, space.cache_folder + fn[i], cbk1);
 				}
-			});
-		}	
-	};			       
-	for (var i = 0; i < fn.length; i++) {
-		_f1['P_' + i] = (function(i) {
-			return function(cbk1) {
-				let url = space.endpoint +  space.video + '/_s/' + fn[i];
-				cache_request(url, space.cache_folder + fn[i], cbk1);
-			}
-		})(i);	
+			})(i);	
+		}
+		CP1.parallel(
+		_f1,
+		function(results) {
+			let cmd = 'cd ' + space.cache_folder  + 
+			    ' && ffmpeg -f concat -safe 0 -i ' + space.cache_folder  + 
+			    'engine_' + sec_s + '_' + sec_t +'.cfg -c copy cache_' + sec_s + '_' + sec_t + '.mp4 -y';
+			cache_ffmpeg(cmd, space.cache_folder  + 'cache_' + sec_s + '_' + sec_t + '.mp4', cbk);
+		}, 10000);
 	}
-	CP1.parallel(
-	_f1,
-	function(results) {
-		let cmd = 'cd ' + space.cache_folder  + 
-		    ' && ffmpeg -f concat -safe 0 -i ' + space.cache_folder  + 
-		    'engine_' + sec_s + '_' + sec_t +'.cfg -c copy cache_' + sec_s + '_' + sec_t + '.mp4 -y';
-		cache_ffmpeg(cmd, space.cache_folder  + 'cache_' + sec_s + '_' + sec_t + '.mp4', cbk);
-	}, 10000);
 }
 
 _f['FFMPEG_SECTION'] = function(cbk) {
