@@ -82,4 +82,3 @@ var batchDelete = function(list, cbk) {
           }, 30000
      )
 }
-© 2018 GitHub, Inc.
