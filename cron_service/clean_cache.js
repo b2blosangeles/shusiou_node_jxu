@@ -12,7 +12,7 @@ let pkg = {
 	exec		: require('child_process').exec,
 	fs 		: require('fs')
 }; 
-var finder = require(env.site_path + '/api/inc/findit/findit.js')('/var/shusiou_video/');
+var finder = require(env.site_path + '/api/inc/findit/findit.js')('/var/shusiou_cache/');
 var path = require('path');
 let list = [];
 finder.on('directory', function (dir, stat, stop) {
@@ -38,9 +38,8 @@ finder.on('end', function (file, stat) {
      var diskspace = require(env.root_path + '/package/diskspace/node_modules/diskspace');
      diskspace.check('/', function (err, space) {
          space.free_rate =  Math.floor(space.free  * 100 /  space.total); 
-         if  (space.free < minsize || true) {
-		 let goalsize = minsize;
-	//	let goalsize = minsize - space.free;	 
+         if  (space.free < minsize) {
+		let goalsize = minsize - space.free;	 
                for (var i = 0; i < list.length; i++) {
                     if ((goalsize - list[i].size) > 0) {
                          goalsize -= list[i].size;
@@ -62,17 +61,17 @@ var batchDelete = function(list, cbk) {
      let CP = new pkg.crowdProcess();
      let _f = {}, fn = []; 
      _f['clean_tmp']  = function(cbk) { 
-      //    pkg.exec('rm -fr /tmp/* && rm -fr /tmp/*.*', 					 
-       //        function(err, stdout, stderr) {
+          pkg.exec('rm -fr /tmp/* && rm -fr /tmp/*.*', 					 
+               function(err, stdout, stderr) {
                     cbk(true);
-         //      });
+               });
      };    
      for (var i = 0; i < list.length; i++) {
           _f['P_'+i] = (function(i) {
                return function(cbk1) {
-                   // pkg.fs.unlink(list[i],function(err){
+                    pkg.fs.unlink(list[i],function(err){
                          cbk1('deleted ' + list[i]);
-                  //  });
+                    });
                } 
           })(i);
      }
@@ -83,3 +82,4 @@ var batchDelete = function(list, cbk) {
           }, 30000
      )
 }
+© 2018 GitHub, Inc.
