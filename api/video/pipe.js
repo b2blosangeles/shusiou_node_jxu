@@ -80,8 +80,6 @@ if (sec_s == sec_t) {
 		fn.push('s_' + i + '.mp4');
 	}
 }
-res.send({sec_s:sec_s, sec_t:sec_t, fn:fn});
-return false;
 
 _f['CREATE_DIR'] = function(cbk) {
 	var folderP = require(env.site_path + '/api/inc/folderP/folderP');
@@ -201,10 +199,6 @@ CP.serial(_f,
 			return true;
 		}
       		if (!t) {
-			let cmd =  'ffmpeg -i ' + space.cache_folder  + fn[0] + ' -ss ' + d_s + _size_str + ' -preset ultrafast ' + 
-		    space.cache_folder + ss0 + _size_fn + '.png -y';
-			res.send(cmd);
-			return true;
 			pkg.fs.stat(space.cache_folder + ss0 + _size_fn + '.png', function(err, stat) {
 				if (err) { res.send(err.message); }
 				else {
