@@ -76,7 +76,7 @@ let _f = {}, fn = [];
 for (var i = sec_s; i < sec_t; i++) {
 	fn.push('s_' + i + '.mp4')
 }
-res.send(fn);
+res.send({sec_s:sec_s, sec_t:sec_t, fn:fn});
 return false;
 
 _f['CREATE_DIR'] = function(cbk) {
