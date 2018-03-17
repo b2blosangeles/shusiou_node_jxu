@@ -73,13 +73,15 @@ space.cache_folder =  '/var/shusiou_cache/' + space.video + '/';
 let CP = new pkg.crowdProcess();
 let _f = {}, fn = []; 
 
-if (sec_s == sec_t) {
-	fn.push('s_' + sec_s + '.mp4');
-} else {
-	for (var i = sec_s; i < sec_t; i++) {
+// if (sec_s == sec_t) {
+//	fn.push('s_' + sec_s + '.mp4');
+//} else {
+	for (var i = sec_s; i <= sec_t; i++) {
 		fn.push('s_' + i + '.mp4');
 	}
-}
+//}
+res.send(fn);
+return false;
 
 _f['CREATE_DIR'] = function(cbk) {
 	var folderP = require(env.site_path + '/api/inc/folderP/folderP');
