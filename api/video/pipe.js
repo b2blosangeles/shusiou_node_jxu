@@ -76,7 +76,7 @@ let _f = {}, fn = [];
 // if (sec_s == sec_t) {
 //	fn.push('s_' + sec_s + '.mp4');
 //} else {
-	for (var i = sec_s; i < sec_t; i++) {
+	for (var i = sec_s; i < Math.max(sec_s+1, sec_t); i++) {
 		fn.push('s_' + i + '.mp4');
 	}
 //}
