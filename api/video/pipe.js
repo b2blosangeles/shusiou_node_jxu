@@ -77,9 +77,6 @@ for (var i = sec_s; i < Math.max(sec_s+1, sec_t); i++) {
 	fn.push('s_' + i + '.mp4');
 }
 
-res.send({sec_t:sec_t, sec_s:sec_s, fn:fn});
-return false;
-
 _f['CREATE_DIR'] = function(cbk) {
 	var folderP = require(env.site_path + '/api/inc/folderP/folderP');
 	var fp = new folderP();		
