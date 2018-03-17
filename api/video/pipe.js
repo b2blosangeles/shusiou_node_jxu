@@ -72,9 +72,13 @@ space.cache_folder =  '/var/shusiou_cache/' + space.video + '/';
 
 let CP = new pkg.crowdProcess();
 let _f = {}, fn = []; 
-  
-for (var i = sec_s; i < sec_t; i++) {
-	fn.push('s_' + i + '.mp4')
+
+if (sec_s == sec_t) {
+	fn.push('s_' + sec_s + '.mp4');
+} else {
+	for (var i = sec_s; i < sec_t; i++) {
+		fn.push('s_' + i + '.mp4');
+	}
 }
 res.send({sec_s:sec_s, sec_t:sec_t, fn:fn});
 return false;
