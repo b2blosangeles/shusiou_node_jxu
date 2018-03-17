@@ -80,7 +80,7 @@ let _f = {}, fn = [];
 		fn.push('s_' + i + '.mp4');
 	}
 //}
-res.send(fn);
+res.send({sec_t:sec_t, sec_s:sec_s, fn:fn});
 return false;
 
 _f['CREATE_DIR'] = function(cbk) {
