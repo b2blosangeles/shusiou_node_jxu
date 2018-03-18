@@ -30,6 +30,8 @@ finder.on('end', function (file, stat) {
      list = list.sort(function(a, b) {
           return (new Date(a.mtime) > new Date(b.mtime))? 1 : -1;
      });
+     console.log(list);
+	return true;
      let clean_list= [];
      let minsize = 2000000000
      
