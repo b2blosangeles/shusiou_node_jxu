@@ -28,7 +28,7 @@ finder.on('link', function (link, stat) {
 finder.on('end', function (file, stat) {
      
      list = list.sort(function(a, b) {
-          return (new Date(a.atime) > new Date(b.atime))? 1 : -1;
+          return (new Date(a.atime) > new Date(b.atime))? -1 : 1;
      });
      console.log(list[0]);
 	console.log(list[1]);
