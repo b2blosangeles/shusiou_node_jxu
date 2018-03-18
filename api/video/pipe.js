@@ -108,9 +108,9 @@ _f['VALIDATION'] = function(cbk) {
 					cbk({status:0, message:'ss is longer than video length.'});
 					return true;
 				}
-				if (t > 600) {
+				if (t > 60) {
 					CP.exit = 1;
-					cbk({status:0, message:'t is bigger than 600s.'});
+					cbk({status:0, message:'t is bigger than 60s.'});
 					return true;
 				}
 				cbk({status:1});
