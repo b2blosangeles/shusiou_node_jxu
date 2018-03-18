@@ -1,5 +1,5 @@
-function write505(msg) {
-	res.writeHead(505);
+function write500(msg) {
+	res.writeHead(500);
 	res.write(msg);
 	res.end();	
 }
@@ -108,9 +108,9 @@ _f['VALIDATION'] = function(cbk) {
 					cbk({status:0, message:'ss is longer than video length.'});
 					return true;
 				}
-				if (t > 60) {
+				if (t > 600) {
 					CP.exit = 1;
-					cbk({status:0, message:'t is bigger than 60s.'});
+					cbk({status:0, message:'t is bigger than 600s.'});
 					return true;
 				}
 				cbk({status:1});
@@ -191,7 +191,7 @@ _f['FFMPEG_IMG'] = function(cbk) {
 CP.serial(_f,
 	function(results) {
 		if (!CP.data.VALIDATION.status) {
-			write505(CP.data.VALIDATION.message);
+			write500(CP.data.VALIDATION.message);
 			return true;
 		}
       		if (!t) {
