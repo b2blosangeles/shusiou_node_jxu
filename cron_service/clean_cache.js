@@ -20,7 +20,7 @@ finder.on('directory', function (dir, stat, stop) {
 
 finder.on('file', function (file, stat) {
      if (!file.match(/\.txt$/)) {
-          list.push({fn:file, mtime:stat.mtime, size:stat.size});
+          list.push({fn:file, mtime:stat.mtime, atime:stat.atime, size:stat.size});
      }     
 });
 
@@ -30,7 +30,7 @@ finder.on('link', function (link, stat) {
 finder.on('end', function (file, stat) {
      
      list = list.sort(function(a, b) {
-          return (new Date(a.mtime) > new Date(b.mtime))? 1 : -1;
+          return (new Date(a.atime) > new Date(b.atime))? 1 : -1;
      });
      let clean_list= [];
      let minsize = 2000000000
