@@ -37,14 +37,16 @@ function cache_request(url, fn, cbk) {
 	});
 }
 function cache_ffmpeg(cmd, fn, cbk) {
-	pkg.fs.stat(fn, function(err, stats) {
+	pkg.fs.stat(fn, function(err, stat) {
 		if (err) {
 			pkg.exec(cmd, 
 				function(error, stdout, stderr) {
 					cbk(cmd);	
 			});
 		} else {
-			cbk(cmd);
+			pkg.fs.utimes(fn, new Date(), stat.mtime, function() {
+				cbk(cmd);
+			});			
 		}
 	});	
 }
