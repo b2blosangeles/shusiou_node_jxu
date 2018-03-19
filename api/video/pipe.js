@@ -4,7 +4,7 @@ function write500(msg) {
 	res.end();	
 }
 function cache_request(url, fn, cbk) {
-	pkg.fs.stat(fn, function(err0, stats) {
+	pkg.fs.stat(fn, function(err0, stat) {
 		if (err0) {
 			let file = pkg.fs.createWriteStream(fn);
 			file.on('finish', function() {
@@ -30,9 +30,9 @@ function cache_request(url, fn, cbk) {
 			pkg.request(url, function (err1, response, body) {
 			}).pipe(file);			
 		} else {
-			//pkg.fs.utimes(fn, new Date(), stat.mtime, function() {
+			pkg.fs.utimes(fn, new Date(), stat.mtime, function() {
 				cbk(true);
-			//});
+			});
 		}
 	});
 }
