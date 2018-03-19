@@ -10,9 +10,6 @@ function cache_request(url, fn, cbk) {
 			file.on('finish', function() {
 				let c = '';
 				let rf = pkg.fs.createReadStream(fn, {start : 0, end: 4, encoding: 'utf8'});
-				pkg.fs.utimes(fn, new Date(), stat.mtime, function() {
-				
-				});
 				
 				rf.on('data', function (chunk) {
 					c += chunk;
